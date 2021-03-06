@@ -1,0 +1,128 @@
+﻿Public Class frmCreateAccount
+
+    Private Sub picHideShowPassword_Click(sender As Object, e As EventArgs) Handles picHideShowPassword.Click
+        Call subShowHidePassword(sender, txtPassword)
+    End Sub
+
+    Private Sub picHideShowConfirmPassword_Click(sender As Object, e As EventArgs) Handles picHideShowConfirmPassword.Click
+        Call subShowHidePassword(sender, txtConfirmPassword)
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Try
+            Dim strSQL As String
+            Dim dsID As new DataSet
+            Dim strID As String
+            Dim blResult As Boolean
+
+            If fn_CheckRequire(Me) Then
+                MsgBox("Please Fill out Required Field:" & vbCrLf & strRequire, MsgBoxStyle.Exclamation)
+
+            Else
+                If (txtPassword.Text <> txtConfirmPassword.Text || txtConfirmPassword.Text == "") Then
+                    MsgBox("Make sure your passwords match!", vbOKOnly, "PASSWORD MISMATCH")
+                    txtConfirmPassword.ForeColor = Color.Red
+                    txtConfirmPassword.Focus()
+
+                Else
+                    strSQL = ""
+                    strSQL = "SELECT dbo.fn_colID ('U')"
+
+                    dsID = SQLPetMIS(strSQL)
+                    strID = dsID.Tables(0).Rows(0)(0)
+
+                    sqlQuery += "INSERT INTO dbo.Users " + vbCrLf
+                    sqlQuery += "(" + vbCrLf
+                    sqlQuery += "UserID," + vbCrLf
+                    sqlQuery += "LastName," + vbCrLf
+                    sqlQuery += "FirstName," + vbCrLf
+                    sqlQuery += "MiddleName," + vbCrLf
+                    sqlQuery += "CreatedDate," + vbCrLf
+                    sqlQuery += "UpdatedDate," + vbCrLf
+                    sqlQuery += "DeletedDate, " + vbCrLf
+                    sqlQuery += "UpdatedBy" + vbCrLf
+                    sqlQuery += ")" + vbCrLf
+                    sqlQuery += "VALUES " + vbCrLf
+                    sqlQuery += "(" + vbCrLf
+                    sqlQuery += "'" + strID + "'," + vbCrLf
+                    sqlQuery += "'" + txtLName.Text + "'," + vbCrLf
+                    sqlQuery += "'" + txtFName.Text + "'," + vbCrLf
+                    sqlQuery += "'" + txtMName.Text + "'," + vbCrLf
+                    sqlQuery += "getdate()," + vbCrLf
+                    sqlQuery += "getdate(), " + vbCrLf
+                    sqlQuery += "Null," + vbCrLf
+                    sqlQuery += "'" + strID + "')" + vbCrLf
+
+                    blResult = sqlExecute(sqlQuery)
+
+                    strSQL = ""
+                    strSQL += "INSERT INTO dbo.Accounts " + vbCrLf
+                    strSQL += "(" + vbCrLf
+                    strSQL += "AccountID, " + vbCrLf
+                    strSQL += "UserName," + vbCrLf
+                    strSQL += "Password," + vbCrLf
+                    strSQL += "UserLevel," + vbCrLf
+                    strSQL += "Q1," + vbCrLf
+                    strSQL += "Q2," + vbCrLf
+                    strSQL += "A1," + vbCrLf
+                    strSQL += "A2," + vbCrLf
+                    strSQL += "CreatedDate," + vbCrLf
+                    strSQL += "UpdatedDate," + vbCrLf
+                    strSQL += "DeletedDate," + vbCrLf
+                    strSQL += "UpdatedBy" + vbCrLf
+                    strSQL += ")" + vbCrLf
+                    strSQL += "VALUES" + vbCrLf
+                    strSQL += "(" + vbCrLf
+                    strSQL += "'" + strID + "'," + vbCrLf
+                    strSQL += "'" + txtUserName.Text + "'," + vbCrLf
+                    strSQL += "'" + txtPassword.Text + "'," + vbCrLf
+                    strSQL += "'" + cboLevel.Text + "'," + vbCrLf
+                    strSQL += "" + cboQuestion_1.SelectedValue.ToString + "," + vbCrLf
+                    strSQL += "" + cboQuestion_2.SelectedValue.ToString + "," + vbCrLf
+                    strSQL += "'" + txtAnswer_1.Text + "'," + vbCrLf
+                    strSQL += "'" + txtAnswer_2.Text + "'," + vbCrLf
+                    strSQL += "getdate()," + vbCrLf
+                    strSQL += "getdate()," + vbCrLf
+                    strSQL += "null," + vbCrLf
+                    strSQL += "'" + strID + "'" + vbCrLf
+                    strSQL += ")" + vbCrLf
+
+                    blResult = sqlExecute(strSQL)
+
+                    MsgBox(blResult.ToString)
+
+                End If
+            End If
+
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub frmCreateAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Dim dsQuestions As New DataSet
+
+        sqlQuery = ""
+        sqlQuery += "SELECT * FROM M_SecurityQuestion" + vbCrLf
+        sqlQuery += "WHERE DeletedDate IS NULL"
+
+        dsQuestions = SQLPetMIS(sqlQuery)
+
+        cboQuestion_1.DataSource = dsQuestions.Tables(0)
+        cboQuestion_1.DisplayMember = "Question"
+        cboQuestion_1.ValueMember = "QuestionID"
+
+        cboQuestion_2.DataSource = dsQuestions.Tables(0)
+        cboQuestion_2.DisplayMember = "Question"
+        cboQuestion_2.ValueMember = "QuestionID"
+
+        cboLevel.Items.Add("Admin")
+        cboLevel.Items.Add("User")
+        sqlQuery = ""
+    End Sub
+
+    Private Sub txtConfirmPassword_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmPassword.TextChanged
+        txtConfirmPassword.ForeColor = Color.Black
+    End Sub
+End Class
