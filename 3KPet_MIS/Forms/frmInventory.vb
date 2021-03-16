@@ -1,0 +1,186 @@
+﻿Public Class frmInventory
+
+    Private Sub frmInventory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Call getProducts()
+        Call getProductType()
+        btnUpdate.Visible = False
+    End Sub
+
+    Private Sub getProducts()
+        Try
+            Dim dsProducts As New DataSet
+
+            sqlQuery = ""
+            sqlQuery += "SELECT ProductID, P.Description, PT.Description as Type, P.TotalQTY, P.AvailableQTY, P.Price   FROM Products P" & vbCrLf
+            sqlQuery += "INNER JOIN ProductTypes PT ON PT.TypeID = P.TypeID" & vbCrLf
+            sqlQuery += "WHERE P.DeletedDate IS NULL " & vbCrLf
+            If txtSearch.Text <> "" Then
+                sqlQuery += "AND (ProductID LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "OR P.Description LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "OR PT.Description LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "OR P.TotalQTY  LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "OR P.AvailableQTY  LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "OR P.Price  LIKE '%" + txtSearch.Text + "%')" & vbCrLf
+            End If
+
+            dsProducts = SQLPetMIS(sqlQuery)
+
+            With datRecords
+                .Columns.Clear()
+                .Columns.Add("colProductID", "PRODUCT ID") : .Columns("colProductID").Width = .Width * 0.15
+                .Columns.Add("colProdName", "NAME") : .Columns("colProdName").Width = .Width * 0.3
+                .Columns.Add("colProdType", "TYPE") : .Columns("colProdType").Width = .Width * 0.15
+                .Columns.Add("colTotalQTY", "TOTAL QTY") : .Columns("colTotalQTY").Width = .Width * 0.1
+                .Columns.Add("colAvail", "AVAILABLE QTY") : .Columns("colAvail").Width = .Width * 0.1
+                .Columns.Add("colPrice", "PRICE") : .Columns("colPrice").Width = .Width * 0.1
+
+                Dim btnSelect As New DataGridViewButtonColumn
+                btnSelect.Text = "•••"
+                btnSelect.UseColumnTextForButtonValue = True
+                btnSelect.Width = .Width * 0.09
+                .Columns.Add(btnSelect)
+
+                For Each row As DataRow In dsProducts.Tables(0).Rows
+                    .Rows.Add()
+                    .Rows(.RowCount - 1).Cells(0).Value = row.Item("ProductID")
+                    .Rows(.RowCount - 1).Cells(1).Value = row.Item("Description")
+                    .Rows(.RowCount - 1).Cells(2).Value = row.Item("Type")
+                    .Rows(.RowCount - 1).Cells(3).Value = row.Item("TotalQTY")
+                    .Rows(.RowCount - 1).Cells(4).Value = row.Item("AvailableQTY")
+                    .Rows(.RowCount - 1).Cells(5).Value = row.Item("Price")
+                Next
+
+
+            End With
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Private Sub getProductType()
+        Try
+            Dim dsProdType As New DataSet
+
+            sqlQuery = ""
+            sqlQuery += "SELECT TypeID, Description FROM ProductTypes" & vbCrLf
+            sqlQuery += "WHERE DeletedDate IS null" & vbCrLf
+            dsProdType = SQLPetMIS(sqlQuery)
+
+            cboType.DataSource = dsProdType.Tables(0)
+            cboType.ValueMember = "TypeID"
+            cboType.DisplayMember = "Description"
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+        Call getProducts()
+    End Sub
+
+    Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+        Try
+            Dim dsID As New DataSet
+            Dim strID As String
+            Dim blnSaved As Boolean
+
+            If MsgBox("Are you sure you want to add new product?", vbYesNo + vbQuestion) Then
+                sqlQuery = ""
+                sqlQuery += "SELECT dbo.fn_colID ('I')" & vbCrLf
+                dsID = SQLPetMIS(sqlQuery)
+                strID = dsID.Tables(0).Rows(0)(0)
+
+
+                sqlQuery = ""
+                sqlQuery += "INSERT INTO dbo.Products " & vbCrLf
+                sqlQuery += "( " & vbCrLf
+                sqlQuery += "ProductID," & vbCrLf
+                sqlQuery += "Description," & vbCrLf
+                sqlQuery += "TypeID," & vbCrLf
+                sqlQuery += "TotalQTY," & vbCrLf
+                sqlQuery += "AvailableQTY," & vbCrLf
+                sqlQuery += "Price, " & vbCrLf
+                sqlQuery += "CreatedDate," & vbCrLf
+                sqlQuery += "UpdatedDate," & vbCrLf
+                sqlQuery += "DeletedDate," & vbCrLf
+                sqlQuery += "UpdatedBy" & vbCrLf
+                sqlQuery += ")" & vbCrLf
+                sqlQuery += "VALUES " & vbCrLf
+                sqlQuery += "(" & vbCrLf
+                sqlQuery += "'" + strID + "'," & vbCrLf
+                sqlQuery += "'" + txtDescription.Text + "'," & vbCrLf
+                sqlQuery += "'" + cboType.SelectedValue.ToString + "'," & vbCrLf
+                sqlQuery += txtTotalQTY.Text + "," & vbCrLf
+                sqlQuery += txtAvailableQTY.Text + "," & vbCrLf
+                sqlQuery += txtPrice.Text + "," & vbCrLf
+                sqlQuery += "getdate()," & vbCrLf
+                sqlQuery += "getdate()," & vbCrLf
+                sqlQuery += "null," & vbCrLf
+                sqlQuery += "'" + _gbAccountID + "')" & vbCrLf
+                blnSaved = sqlExecute(sqlQuery)
+
+                If blnSaved Then
+                    Call saveLogs(1, "New product added with product code of " + strID)
+                    MsgBox("Saved Succesfully", vbOKOnly + vbInformation)
+                    Call getProducts()
+                End If
+            End If
+           
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
+        Call clearFields(grpProduct)
+    End Sub
+
+    Private Sub datRecords_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datRecords.CellContentClick
+        Try
+            If e.ColumnIndex() = 6 Then
+                txtID.Text = datRecords.Rows(e.RowIndex).Cells(0).Value
+                txtDescription.Text = datRecords.Rows(e.RowIndex).Cells(1).Value
+                cboType.Text = datRecords.Rows(e.RowIndex).Cells(2).Value
+                txtTotalQTY.Text = datRecords.Rows(e.RowIndex).Cells(3).Value
+                txtAvailableQTY.Text = datRecords.Rows(e.RowIndex).Cells(4).Value
+                txtPrice.Text = datRecords.Rows(e.RowIndex).Cells(5).Value
+
+                btnSave.Visible = False
+                btnUpdate.Visible = True
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Private Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+        Try
+            Dim blnSaved As Boolean
+
+            If MsgBox("Are you sure you want to update?", vbYesNo + vbQuestion) Then
+
+                sqlQuery = ""
+                sqlQuery += "UPDATE dbo.Products" & vbCrLf
+                sqlQuery += "SET Description ='" + txtDescription.Text + "'," & vbCrLf
+                sqlQuery += "TypeID ='" + cboType.SelectedValue.ToString + "'," & vbCrLf
+                sqlQuery += "TotalQTY =" + txtTotalQTY.Text + "," & vbCrLf
+                sqlQuery += "AvailableQTY=" + txtAvailableQTY.Text + "," & vbCrLf
+                sqlQuery += "Price =" + txtPrice.Text + "," & vbCrLf
+                sqlQuery += "UpdatedDate =getdate()" & vbCrLf
+                sqlQuery += "WHERE ProductID ='" + txtID.Text + "'" & vbCrLf
+                blnSaved = sqlExecute(sqlQuery)
+
+                If blnSaved Then
+                    Call clearFields(grpProduct)
+                    Call getProducts()
+                    Call saveLogs(2, "Updated product information with product ID of " + txtID.Text)
+                    MsgBox("Product information updated!", vbOKOnly + vbInformation)
+                End If
+
+
+            End If
+        Catch ex As Exception
+
+        End Try
+    End Sub
+End Class

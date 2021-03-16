@@ -35,6 +35,8 @@ Partial Class frmOwnerList
         '
         Me.datData.AllowUserToAddRows = False
         Me.datData.AllowUserToDeleteRows = False
+        Me.datData.AllowUserToResizeColumns = False
+        Me.datData.AllowUserToResizeRows = False
         Me.datData.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control

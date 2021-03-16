@@ -23,6 +23,8 @@
                 .txtPetBreed.Text = dtData.Rows(0)("Breed")
                 .txtPetColor.Text = dtData.Rows(0)("PetColor")
                 .txtPetAge.Text = dtData.Rows(0)("Age")
+                .chkisDeceased.Checked = dtData.Rows(0)("isDeceased")
+
 
 
                 'If strdestination <> "ADD" Then
@@ -52,6 +54,9 @@
                 .txtPetAge.ReadOnly = True
                 .optFemale.Enabled = False
                 .optMale.Enabled = False
+                .chkisDeceased.Enabled = False
+
+
 
                 .btnConfirm.Enabled = False
                 'End If
@@ -88,6 +93,7 @@
                     .txtPetBreed.Text = dtData.Rows(0)("Breed")
                     .txtPetColor.Text = dtData.Rows(0)("PetColor")
                     .txtPetAge.Text = dtData.Rows(0)("Age")
+                    .chkisDeceased.Checked = dtData.Rows(0)("isDeceased")
                 End If
 
                 .txtOwnerLName.ReadOnly = True
@@ -102,6 +108,7 @@
                 .txtPetAge.ReadOnly = False
                 .optFemale.Enabled = True
                 .optMale.Enabled = True
+                .chkisDeceased.Enabled = True
 
                 .btnConfirm.Enabled = True
             End With

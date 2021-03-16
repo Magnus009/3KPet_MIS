@@ -15,6 +15,14 @@ Public Class frmCreateAccount
             Dim dsID As New DataSet
             Dim strID As String
             Dim blResult As Boolean
+            Dim dsUserName As New DataSet
+
+
+            strSQL = ""
+            strSQL += "SELECT count(AccountID) FROM Accounts" & vbCrLf
+            strSQL += "WHERE UserName ='" + txtUserName.Text + "'" + vbCrLf
+
+            dsUserName = SQLPetMIS(strSQL)
 
             strRequire = ""
             If fn_CheckRequire(Me) Then
@@ -25,7 +33,10 @@ Public Class frmCreateAccount
                     MsgBox("Make sure your passwords match!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "PASSWORD MISMATCH")
                     txtConfirmPassword.ForeColor = Color.Red
                     txtConfirmPassword.Focus()
-
+                ElseIf dsUserName.Tables(0).Rows.Count <> 0 Then
+                    MsgBox("User name already exist!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly)
+                    txtUserName.ForeColor = Color.Red
+                    txtUserName.Focus()
                 Else
                     strSQL = ""
                     strSQL = "SELECT dbo.fn_colID ('U')"
@@ -179,4 +190,7 @@ Public Class frmCreateAccount
 
     End Sub
 
+    Private Sub txtUserName_TextChanged(sender As Object, e As EventArgs) Handles txtUserName.TextChanged
+        txtUserName.ForeColor = Color.Black
+    End Sub
 End Class

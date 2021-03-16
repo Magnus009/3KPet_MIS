@@ -2,6 +2,7 @@
     Public strRequire As String
     Public blnRequired As Boolean = False
     Public _gbAccountID As String
+    Public _gbUSerName As String
 
     Public Sub subShowHidePassword(obj As PictureBox, txtInput As TextBox)
         If obj.Image.Tag = "SHOW" Then
@@ -54,6 +55,17 @@
                     clearFields(ctrl)
                 Case GetType(Panel)
                     clearFields(ctrl)
+                Case GetType(DateTimePicker)
+                    Dim dtP As New DateTimePicker
+                    dtP = ctrl
+                    dtP.Value = Now
+                Case GetType(CheckedListBox)
+                    Dim chkListBox As New CheckedListBox
+                    chkListBox = ctrl
+                    For Each item In chkListBox.Items
+                        Dim chkBox As New CheckBox
+                        chkBox.Checked = False
+                    Next
                 Case Else
                     'No Event
             End Select

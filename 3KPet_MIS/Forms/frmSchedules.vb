@@ -11,7 +11,7 @@
 
     End Sub
 
-    Private Sub getSchedules()
+    Public Sub getSchedules()
         Try
             Dim dsSched As New DataSet
 
@@ -20,9 +20,9 @@
             sqlQuery += "Left JOIN Services S ON SD.ServiceID = S.ServiceID" & vbCrLf
             sqlQuery += "WHERE SD.DeletedDate IS NULL" & vbCrLf
             If blnFilter Then
-                sqlQuery += "AND ScheduleDate "
-                sqlQuery += "BETWEEN '" + dtpVisitDateFrom.Text + " 00:00:00' "
-                sqlQuery += "and '" + dtpVisitDateTo.Text + " 23:59:59' "
+                sqlQuery += "AND ScheduleDate " & vbCrLf
+                sqlQuery += "BETWEEN '" + dtpVisitDateFrom.Text + " 00:00:00' " & vbCrLf
+                sqlQuery += "and '" + dtpVisitDateTo.Text + " 23:59:59' " & vbCrLf
             End If
             dsSched = SQLPetMIS(sqlQuery)
 
@@ -58,4 +58,5 @@
         blnFilter = True
         Call getSchedules()
     End Sub
+
 End Class

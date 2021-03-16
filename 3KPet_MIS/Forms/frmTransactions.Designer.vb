@@ -27,21 +27,19 @@ Partial Class frmTransactions
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.pnlHeader = New System.Windows.Forms.Panel()
         Me.pnlContent = New System.Windows.Forms.Panel()
+        Me.btnFIlter = New System.Windows.Forms.Button()
+        Me.lblDash = New System.Windows.Forms.Label()
+        Me.dtpTo = New System.Windows.Forms.DateTimePicker()
         Me.btnAddNew = New System.Windows.Forms.Button()
-        Me.dtpVisitDate = New System.Windows.Forms.DateTimePicker()
+        Me.dtpFrom = New System.Windows.Forms.DateTimePicker()
         Me.lblVistDate = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.lblSearch = New System.Windows.Forms.Label()
-        Me.datTransaction = New System.Windows.Forms.DataGridView()
-        Me.colVisitationCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colCustomer = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colTransDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colService = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.colRemarks = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.datTransactions = New System.Windows.Forms.DataGridView()
         Me.colView = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.pnlHeader.SuspendLayout()
         Me.pnlContent.SuspendLayout()
-        CType(Me.datTransaction, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.datTransactions, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'lblHeader
@@ -62,22 +60,54 @@ Partial Class frmTransactions
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(900, 57)
+        Me.pnlHeader.Size = New System.Drawing.Size(940, 57)
         Me.pnlHeader.TabIndex = 4
         '
         'pnlContent
         '
+        Me.pnlContent.Controls.Add(Me.btnFIlter)
+        Me.pnlContent.Controls.Add(Me.lblDash)
+        Me.pnlContent.Controls.Add(Me.dtpTo)
         Me.pnlContent.Controls.Add(Me.btnAddNew)
-        Me.pnlContent.Controls.Add(Me.dtpVisitDate)
+        Me.pnlContent.Controls.Add(Me.dtpFrom)
         Me.pnlContent.Controls.Add(Me.lblVistDate)
         Me.pnlContent.Controls.Add(Me.txtSearch)
         Me.pnlContent.Controls.Add(Me.lblSearch)
-        Me.pnlContent.Controls.Add(Me.datTransaction)
+        Me.pnlContent.Controls.Add(Me.datTransactions)
         Me.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlContent.Location = New System.Drawing.Point(0, 57)
         Me.pnlContent.Name = "pnlContent"
-        Me.pnlContent.Size = New System.Drawing.Size(900, 531)
+        Me.pnlContent.Size = New System.Drawing.Size(940, 531)
         Me.pnlContent.TabIndex = 5
+        '
+        'btnFIlter
+        '
+        Me.btnFIlter.BackColor = System.Drawing.Color.Purple
+        Me.btnFIlter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnFIlter.ForeColor = System.Drawing.Color.White
+        Me.btnFIlter.Location = New System.Drawing.Point(658, 8)
+        Me.btnFIlter.Name = "btnFIlter"
+        Me.btnFIlter.Size = New System.Drawing.Size(75, 23)
+        Me.btnFIlter.TabIndex = 11
+        Me.btnFIlter.Text = "FILTER"
+        Me.btnFIlter.UseVisualStyleBackColor = False
+        '
+        'lblDash
+        '
+        Me.lblDash.AutoSize = True
+        Me.lblDash.Location = New System.Drawing.Point(542, 12)
+        Me.lblDash.Name = "lblDash"
+        Me.lblDash.Size = New System.Drawing.Size(10, 13)
+        Me.lblDash.TabIndex = 10
+        Me.lblDash.Text = "-"
+        '
+        'dtpTo
+        '
+        Me.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpTo.Location = New System.Drawing.Point(557, 9)
+        Me.dtpTo.Name = "dtpTo"
+        Me.dtpTo.Size = New System.Drawing.Size(95, 21)
+        Me.dtpTo.TabIndex = 9
         '
         'btnAddNew
         '
@@ -86,25 +116,25 @@ Partial Class frmTransactions
         Me.btnAddNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAddNew.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnAddNew.ForeColor = System.Drawing.Color.White
-        Me.btnAddNew.Location = New System.Drawing.Point(777, 4)
+        Me.btnAddNew.Location = New System.Drawing.Point(817, 4)
         Me.btnAddNew.Name = "btnAddNew"
         Me.btnAddNew.Size = New System.Drawing.Size(111, 27)
         Me.btnAddNew.TabIndex = 8
         Me.btnAddNew.Text = "&ADD NEW"
         Me.btnAddNew.UseVisualStyleBackColor = False
         '
-        'dtpVisitDate
+        'dtpFrom
         '
-        Me.dtpVisitDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpVisitDate.Location = New System.Drawing.Point(479, 9)
-        Me.dtpVisitDate.Name = "dtpVisitDate"
-        Me.dtpVisitDate.Size = New System.Drawing.Size(95, 21)
-        Me.dtpVisitDate.TabIndex = 7
+        Me.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFrom.Location = New System.Drawing.Point(442, 9)
+        Me.dtpFrom.Name = "dtpFrom"
+        Me.dtpFrom.Size = New System.Drawing.Size(95, 21)
+        Me.dtpFrom.TabIndex = 7
         '
         'lblVistDate
         '
         Me.lblVistDate.AutoSize = True
-        Me.lblVistDate.Location = New System.Drawing.Point(399, 13)
+        Me.lblVistDate.Location = New System.Drawing.Point(362, 13)
         Me.lblVistDate.Name = "lblVistDate"
         Me.lblVistDate.Size = New System.Drawing.Size(74, 13)
         Me.lblVistDate.TabIndex = 6
@@ -128,11 +158,13 @@ Partial Class frmTransactions
         Me.lblSearch.TabIndex = 5
         Me.lblSearch.Text = "SEARCH :"
         '
-        'datTransaction
+        'datTransactions
         '
-        Me.datTransaction.AllowUserToAddRows = False
-        Me.datTransaction.AllowUserToDeleteRows = False
-        Me.datTransaction.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
+        Me.datTransactions.AllowUserToAddRows = False
+        Me.datTransactions.AllowUserToDeleteRows = False
+        Me.datTransactions.AllowUserToResizeColumns = False
+        Me.datTransactions.AllowUserToResizeRows = False
+        Me.datTransactions.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -140,65 +172,30 @@ Partial Class frmTransactions
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.datTransaction.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.datTransaction.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datTransaction.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colVisitationCode, Me.colCustomer, Me.colTransDate, Me.colService, Me.colRemarks, Me.colView})
-        Me.datTransaction.Location = New System.Drawing.Point(12, 36)
-        Me.datTransaction.MultiSelect = False
-        Me.datTransaction.Name = "datTransaction"
-        Me.datTransaction.ReadOnly = True
-        Me.datTransaction.RowHeadersVisible = False
-        Me.datTransaction.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datTransaction.Size = New System.Drawing.Size(876, 483)
-        Me.datTransaction.TabIndex = 0
-        '
-        'colVisitationCode
-        '
-        Me.colVisitationCode.FillWeight = 50.0!
-        Me.colVisitationCode.HeaderText = "CODE"
-        Me.colVisitationCode.Name = "colVisitationCode"
-        Me.colVisitationCode.ReadOnly = True
-        '
-        'colCustomer
-        '
-        Me.colCustomer.FillWeight = 150.0!
-        Me.colCustomer.HeaderText = "CUSTOMER"
-        Me.colCustomer.Name = "colCustomer"
-        Me.colCustomer.ReadOnly = True
-        '
-        'colTransDate
-        '
-        Me.colTransDate.FillWeight = 80.0!
-        Me.colTransDate.HeaderText = "DATE"
-        Me.colTransDate.Name = "colTransDate"
-        Me.colTransDate.ReadOnly = True
-        '
-        'colService
-        '
-        Me.colService.FillWeight = 75.0!
-        Me.colService.HeaderText = "SERVICE"
-        Me.colService.Name = "colService"
-        Me.colService.ReadOnly = True
-        '
-        'colRemarks
-        '
-        Me.colRemarks.HeaderText = "REMARKS"
-        Me.colRemarks.Name = "colRemarks"
-        Me.colRemarks.ReadOnly = True
+        Me.datTransactions.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.datTransactions.ColumnHeadersHeight = 30
+        Me.datTransactions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        Me.datTransactions.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colView})
+        Me.datTransactions.Location = New System.Drawing.Point(12, 36)
+        Me.datTransactions.MultiSelect = False
+        Me.datTransactions.Name = "datTransactions"
+        Me.datTransactions.RowHeadersVisible = False
+        Me.datTransactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datTransactions.Size = New System.Drawing.Size(916, 483)
+        Me.datTransactions.TabIndex = 0
         '
         'colView
         '
         Me.colView.FillWeight = 40.0!
         Me.colView.HeaderText = ""
         Me.colView.Name = "colView"
-        Me.colView.ReadOnly = True
         '
         'frmTransactions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.ClientSize = New System.Drawing.Size(900, 588)
+        Me.ClientSize = New System.Drawing.Size(940, 588)
         Me.Controls.Add(Me.pnlContent)
         Me.Controls.Add(Me.pnlHeader)
         Me.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -213,23 +210,21 @@ Partial Class frmTransactions
         Me.pnlHeader.PerformLayout()
         Me.pnlContent.ResumeLayout(False)
         Me.pnlContent.PerformLayout()
-        CType(Me.datTransaction, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.datTransactions, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents lblHeader As System.Windows.Forms.Label
     Friend WithEvents pnlHeader As System.Windows.Forms.Panel
     Friend WithEvents pnlContent As System.Windows.Forms.Panel
-    Friend WithEvents datTransaction As System.Windows.Forms.DataGridView
-    Friend WithEvents dtpVisitDate As System.Windows.Forms.DateTimePicker
+    Friend WithEvents datTransactions As System.Windows.Forms.DataGridView
+    Friend WithEvents dtpFrom As System.Windows.Forms.DateTimePicker
     Friend WithEvents lblVistDate As System.Windows.Forms.Label
     Friend WithEvents txtSearch As System.Windows.Forms.TextBox
     Friend WithEvents lblSearch As System.Windows.Forms.Label
     Friend WithEvents btnAddNew As System.Windows.Forms.Button
-    Friend WithEvents colVisitationCode As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colCustomer As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colTransDate As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colService As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents colRemarks As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents colView As System.Windows.Forms.DataGridViewButtonColumn
+    Friend WithEvents lblDash As System.Windows.Forms.Label
+    Friend WithEvents dtpTo As System.Windows.Forms.DateTimePicker
+    Friend WithEvents btnFIlter As System.Windows.Forms.Button
 End Class

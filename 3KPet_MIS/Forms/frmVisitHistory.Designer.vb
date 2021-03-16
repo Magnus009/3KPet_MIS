@@ -22,18 +22,21 @@ Partial Class frmVisitHistory
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmVisitHistory))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lblHeader = New System.Windows.Forms.Label()
-        Me.dtpTo = New System.Windows.Forms.DataGridView()
+        Me.datLogs = New System.Windows.Forms.DataGridView()
         Me.lblDateVisit = New System.Windows.Forms.Label()
         Me.dtpFrom = New System.Windows.Forms.DateTimePicker()
         Me.lblSearch = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.lblDash = New System.Windows.Forms.Label()
-        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.dtpTo = New System.Windows.Forms.DateTimePicker()
         Me.btnFilter = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
-        CType(Me.dtpTo, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.datLogs, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel1
@@ -43,7 +46,7 @@ Partial Class frmVisitHistory
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(819, 65)
+        Me.Panel1.Size = New System.Drawing.Size(780, 65)
         Me.Panel1.TabIndex = 0
         '
         'lblHeader
@@ -53,26 +56,45 @@ Partial Class frmVisitHistory
         Me.lblHeader.ForeColor = System.Drawing.Color.White
         Me.lblHeader.Location = New System.Drawing.Point(22, 19)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(172, 33)
+        Me.lblHeader.Size = New System.Drawing.Size(224, 33)
         Me.lblHeader.TabIndex = 0
-        Me.lblHeader.Text = "VISIT HISTORY"
+        Me.lblHeader.Text = "MEDICAL  HISTORY"
         '
-        'dtpTo
+        'datLogs
         '
-        Me.dtpTo.AllowUserToAddRows = False
-        Me.dtpTo.AllowUserToDeleteRows = False
-        Me.dtpTo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dtpTo.Location = New System.Drawing.Point(12, 132)
-        Me.dtpTo.Name = "dtpTo"
-        Me.dtpTo.ReadOnly = True
-        Me.dtpTo.Size = New System.Drawing.Size(795, 386)
-        Me.dtpTo.TabIndex = 1
+        Me.datLogs.AllowUserToAddRows = False
+        Me.datLogs.AllowUserToDeleteRows = False
+        Me.datLogs.AllowUserToResizeColumns = False
+        Me.datLogs.AllowUserToResizeRows = False
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.datLogs.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.datLogs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.datLogs.DefaultCellStyle = DataGridViewCellStyle2
+        Me.datLogs.Location = New System.Drawing.Point(12, 118)
+        Me.datLogs.Name = "datLogs"
+        Me.datLogs.ReadOnly = True
+        Me.datLogs.RowHeadersVisible = False
+        Me.datLogs.Size = New System.Drawing.Size(751, 400)
+        Me.datLogs.TabIndex = 1
         '
         'lblDateVisit
         '
         Me.lblDateVisit.AutoSize = True
         Me.lblDateVisit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.lblDateVisit.Location = New System.Drawing.Point(372, 93)
+        Me.lblDateVisit.Location = New System.Drawing.Point(361, 84)
         Me.lblDateVisit.Name = "lblDateVisit"
         Me.lblDateVisit.Size = New System.Drawing.Size(69, 15)
         Me.lblDateVisit.TabIndex = 2
@@ -81,7 +103,7 @@ Partial Class frmVisitHistory
         'dtpFrom
         '
         Me.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFrom.Location = New System.Drawing.Point(447, 89)
+        Me.dtpFrom.Location = New System.Drawing.Point(436, 80)
         Me.dtpFrom.Name = "dtpFrom"
         Me.dtpFrom.Size = New System.Drawing.Size(106, 23)
         Me.dtpFrom.TabIndex = 3
@@ -89,43 +111,43 @@ Partial Class frmVisitHistory
         'lblSearch
         '
         Me.lblSearch.AutoSize = True
-        Me.lblSearch.Location = New System.Drawing.Point(25, 93)
+        Me.lblSearch.Location = New System.Drawing.Point(21, 84)
         Me.lblSearch.Name = "lblSearch"
         Me.lblSearch.Size = New System.Drawing.Size(54, 15)
         Me.lblSearch.TabIndex = 4
         Me.lblSearch.Text = "SEARCH :"
         '
-        'TextBox1
+        'txtSearch
         '
-        Me.TextBox1.Location = New System.Drawing.Point(85, 89)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(256, 23)
-        Me.TextBox1.TabIndex = 5
+        Me.txtSearch.Location = New System.Drawing.Point(81, 80)
+        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch.Size = New System.Drawing.Size(256, 23)
+        Me.txtSearch.TabIndex = 5
         '
         'lblDash
         '
         Me.lblDash.AutoSize = True
         Me.lblDash.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.lblDash.Location = New System.Drawing.Point(559, 93)
+        Me.lblDash.Location = New System.Drawing.Point(548, 84)
         Me.lblDash.Name = "lblDash"
         Me.lblDash.Size = New System.Drawing.Size(11, 15)
         Me.lblDash.TabIndex = 6
         Me.lblDash.Text = "-"
         '
-        'DateTimePicker1
+        'dtpTo
         '
-        Me.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimePicker1.Location = New System.Drawing.Point(576, 89)
-        Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(106, 23)
-        Me.DateTimePicker1.TabIndex = 7
+        Me.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpTo.Location = New System.Drawing.Point(565, 80)
+        Me.dtpTo.Name = "dtpTo"
+        Me.dtpTo.Size = New System.Drawing.Size(106, 23)
+        Me.dtpTo.TabIndex = 7
         '
         'btnFilter
         '
         Me.btnFilter.BackColor = System.Drawing.Color.Purple
         Me.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnFilter.ForeColor = System.Drawing.Color.White
-        Me.btnFilter.Location = New System.Drawing.Point(688, 89)
+        Me.btnFilter.Location = New System.Drawing.Point(677, 80)
         Me.btnFilter.Name = "btnFilter"
         Me.btnFilter.Size = New System.Drawing.Size(75, 23)
         Me.btnFilter.TabIndex = 8
@@ -137,17 +159,18 @@ Partial Class frmVisitHistory
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.ClientSize = New System.Drawing.Size(819, 530)
+        Me.ClientSize = New System.Drawing.Size(780, 530)
         Me.Controls.Add(Me.btnFilter)
-        Me.Controls.Add(Me.DateTimePicker1)
+        Me.Controls.Add(Me.dtpTo)
         Me.Controls.Add(Me.lblDash)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.lblSearch)
         Me.Controls.Add(Me.dtpFrom)
         Me.Controls.Add(Me.lblDateVisit)
-        Me.Controls.Add(Me.dtpTo)
+        Me.Controls.Add(Me.datLogs)
         Me.Controls.Add(Me.Panel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmVisitHistory"
@@ -155,19 +178,19 @@ Partial Class frmVisitHistory
         Me.Text = "Visit History"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.dtpTo, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.datLogs, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents lblHeader As System.Windows.Forms.Label
-    Friend WithEvents dtpTo As System.Windows.Forms.DataGridView
+    Friend WithEvents datLogs As System.Windows.Forms.DataGridView
     Friend WithEvents lblDateVisit As System.Windows.Forms.Label
     Friend WithEvents dtpFrom As System.Windows.Forms.DateTimePicker
     Friend WithEvents lblSearch As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents txtSearch As System.Windows.Forms.TextBox
     Friend WithEvents lblDash As System.Windows.Forms.Label
-    Friend WithEvents DateTimePicker1 As System.Windows.Forms.DateTimePicker
+    Friend WithEvents dtpTo As System.Windows.Forms.DateTimePicker
     Friend WithEvents btnFilter As System.Windows.Forms.Button
 End Class

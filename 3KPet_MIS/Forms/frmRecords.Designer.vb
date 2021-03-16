@@ -63,6 +63,7 @@ Partial Class frmRecords
         Me.colOwnerName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colPetName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colSelect = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.chkisDeceased = New System.Windows.Forms.CheckBox()
         Me.pnlHeader.SuspendLayout()
         Me.pnlContent.SuspendLayout()
         Me.grpPetInfo.SuspendLayout()
@@ -103,7 +104,7 @@ Partial Class frmRecords
         Me.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlContent.Location = New System.Drawing.Point(0, 57)
         Me.pnlContent.Name = "pnlContent"
-        Me.pnlContent.Size = New System.Drawing.Size(736, 445)
+        Me.pnlContent.Size = New System.Drawing.Size(736, 469)
         Me.pnlContent.TabIndex = 4
         '
         'btnNewRecord
@@ -113,7 +114,7 @@ Partial Class frmRecords
         Me.btnNewRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnNewRecord.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnNewRecord.ForeColor = System.Drawing.Color.White
-        Me.btnNewRecord.Location = New System.Drawing.Point(474, 399)
+        Me.btnNewRecord.Location = New System.Drawing.Point(474, 421)
         Me.btnNewRecord.Name = "btnNewRecord"
         Me.btnNewRecord.Size = New System.Drawing.Size(121, 35)
         Me.btnNewRecord.TabIndex = 5
@@ -122,6 +123,7 @@ Partial Class frmRecords
         '
         'grpPetInfo
         '
+        Me.grpPetInfo.Controls.Add(Me.chkisDeceased)
         Me.grpPetInfo.Controls.Add(Me.optFemale)
         Me.grpPetInfo.Controls.Add(Me.optMale)
         Me.grpPetInfo.Controls.Add(Me.Label10)
@@ -139,7 +141,7 @@ Partial Class frmRecords
         Me.grpPetInfo.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpPetInfo.Location = New System.Drawing.Point(392, 207)
         Me.grpPetInfo.Name = "grpPetInfo"
-        Me.grpPetInfo.Size = New System.Drawing.Size(330, 186)
+        Me.grpPetInfo.Size = New System.Drawing.Size(330, 208)
         Me.grpPetInfo.TabIndex = 3
         Me.grpPetInfo.TabStop = False
         Me.grpPetInfo.Text = "PET INFORMATION"
@@ -301,7 +303,7 @@ Partial Class frmRecords
         Me.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnConfirm.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnConfirm.ForeColor = System.Drawing.Color.White
-        Me.btnConfirm.Location = New System.Drawing.Point(601, 399)
+        Me.btnConfirm.Location = New System.Drawing.Point(601, 421)
         Me.btnConfirm.Name = "btnConfirm"
         Me.btnConfirm.Size = New System.Drawing.Size(121, 35)
         Me.btnConfirm.TabIndex = 4
@@ -489,7 +491,7 @@ Partial Class frmRecords
         Me.datInformation.RowHeadersVisible = False
         Me.datInformation.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.datInformation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datInformation.Size = New System.Drawing.Size(374, 392)
+        Me.datInformation.Size = New System.Drawing.Size(374, 414)
         Me.datInformation.TabIndex = 1
         '
         'colOwnerID
@@ -521,12 +523,23 @@ Partial Class frmRecords
         Me.colSelect.ReadOnly = True
         Me.colSelect.Width = 44
         '
+        'chkisDeceased
+        '
+        Me.chkisDeceased.AutoSize = True
+        Me.chkisDeceased.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkisDeceased.Location = New System.Drawing.Point(209, 172)
+        Me.chkisDeceased.Name = "chkisDeceased"
+        Me.chkisDeceased.Size = New System.Drawing.Size(78, 19)
+        Me.chkisDeceased.TabIndex = 11
+        Me.chkisDeceased.Text = "Deceased"
+        Me.chkisDeceased.UseVisualStyleBackColor = True
+        '
         'frmRecords
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.ClientSize = New System.Drawing.Size(736, 502)
+        Me.ClientSize = New System.Drawing.Size(736, 526)
         Me.Controls.Add(Me.pnlContent)
         Me.Controls.Add(Me.pnlHeader)
         Me.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -587,4 +600,5 @@ Partial Class frmRecords
     Friend WithEvents colSelect As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents btnNewRecord As System.Windows.Forms.Button
     Friend WithEvents txtPetAge As System.Windows.Forms.TextBox
+    Friend WithEvents chkisDeceased As System.Windows.Forms.CheckBox
 End Class

@@ -22,6 +22,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>3KPet_MIS.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -86,6 +87,12 @@
     <Compile Include="Forms\frmActivityLogs.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmArchive.Designer.vb">
+      <DependentUpon>frmArchive.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmArchive.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmCreateAccount.Designer.vb">
       <DependentUpon>frmCreateAccount.vb</DependentUpon>
     </Compile>
@@ -102,6 +109,12 @@
       <DependentUpon>frmInfoDialog.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmInfoDialog.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmInventory.Designer.vb">
+      <DependentUpon>frmInventory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmInventory.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmNewTransaction.Designer.vb">
@@ -146,11 +159,23 @@
     <Compile Include="Forms\frmTransactions.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmTreatment.Designer.vb">
+      <DependentUpon>frmTreatment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmTreatment.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmUserLogin.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmUserLogin.Designer.vb">
       <DependentUpon>frmUserLogin.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmVaccine.Designer.vb">
+      <DependentUpon>frmVaccine.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmVaccine.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmVisitHistory.Designer.vb">
@@ -191,6 +216,9 @@
     <EmbeddedResource Include="Forms\frmActivityLogs.resx">
       <DependentUpon>frmActivityLogs.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmArchive.resx">
+      <DependentUpon>frmArchive.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmCreateAccount.resx">
       <DependentUpon>frmCreateAccount.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -201,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmInfoDialog.resx">
       <DependentUpon>frmInfoDialog.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmInventory.resx">
+      <DependentUpon>frmInventory.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmNewTransaction.resx">
       <DependentUpon>frmNewTransaction.vb</DependentUpon>
@@ -228,8 +259,14 @@
     <EmbeddedResource Include="Forms\frmTransactions.resx">
       <DependentUpon>frmTransactions.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTreatment.resx">
+      <DependentUpon>frmTreatment.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmUserLogin.resx">
       <DependentUpon>frmUserLogin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmVaccine.resx">
+      <DependentUpon>frmVaccine.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmVisitHistory.resx">
       <DependentUpon>frmVisitHistory.vb</DependentUpon>

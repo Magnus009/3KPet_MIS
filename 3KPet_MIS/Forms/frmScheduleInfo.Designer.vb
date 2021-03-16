@@ -22,19 +22,23 @@ Partial Class frmScheduleInfo
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmScheduleInfo))
         Me.pnlHeader = New System.Windows.Forms.Panel()
         Me.lblCustomer = New System.Windows.Forms.Label()
         Me.lblAddress = New System.Windows.Forms.Label()
         Me.txtCustomer = New System.Windows.Forms.TextBox()
         Me.txtAddress = New System.Windows.Forms.TextBox()
-        Me.txtCustomerCode = New System.Windows.Forms.TextBox()
+        Me.txtOwnerID = New System.Windows.Forms.TextBox()
         Me.lblCustomerCD = New System.Windows.Forms.Label()
         Me.lblContactNo = New System.Windows.Forms.Label()
         Me.btnView = New System.Windows.Forms.Button()
         Me.txtContactNo = New System.Windows.Forms.TextBox()
         Me.tabPetInfo = New System.Windows.Forms.TabControl()
         Me.tabPet = New System.Windows.Forms.TabPage()
+        Me.btnAddRecord = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
         Me.grpTreatment = New System.Windows.Forms.GroupBox()
         Me.chkTreatments = New System.Windows.Forms.CheckedListBox()
         Me.grpVaccinations = New System.Windows.Forms.GroupBox()
@@ -54,8 +58,6 @@ Partial Class frmScheduleInfo
         Me.lblVisitDate = New System.Windows.Forms.Label()
         Me.datHistory = New System.Windows.Forms.DataGridView()
         Me.btnAddPet = New System.Windows.Forms.Button()
-        Me.btnSave = New System.Windows.Forms.Button()
-        Me.btnAddRecord = New System.Windows.Forms.Button()
         Me.tabPetInfo.SuspendLayout()
         Me.tabPet.SuspendLayout()
         Me.grpTreatment.SuspendLayout()
@@ -98,6 +100,7 @@ Partial Class frmScheduleInfo
         Me.txtCustomer.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtCustomer.Location = New System.Drawing.Point(153, 46)
         Me.txtCustomer.Name = "txtCustomer"
+        Me.txtCustomer.ReadOnly = True
         Me.txtCustomer.Size = New System.Drawing.Size(209, 22)
         Me.txtCustomer.TabIndex = 5
         Me.txtCustomer.Tag = "*Customer"
@@ -107,28 +110,29 @@ Partial Class frmScheduleInfo
         Me.txtAddress.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtAddress.Location = New System.Drawing.Point(489, 20)
         Me.txtAddress.Name = "txtAddress"
+        Me.txtAddress.ReadOnly = True
         Me.txtAddress.Size = New System.Drawing.Size(239, 22)
         Me.txtAddress.TabIndex = 6
         Me.txtAddress.Tag = "*Address"
         '
-        'txtCustomerCode
+        'txtOwnerID
         '
-        Me.txtCustomerCode.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCustomerCode.Location = New System.Drawing.Point(153, 18)
-        Me.txtCustomerCode.Name = "txtCustomerCode"
-        Me.txtCustomerCode.ReadOnly = True
-        Me.txtCustomerCode.Size = New System.Drawing.Size(239, 22)
-        Me.txtCustomerCode.TabIndex = 8
+        Me.txtOwnerID.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtOwnerID.Location = New System.Drawing.Point(153, 18)
+        Me.txtOwnerID.Name = "txtOwnerID"
+        Me.txtOwnerID.ReadOnly = True
+        Me.txtOwnerID.Size = New System.Drawing.Size(239, 22)
+        Me.txtOwnerID.TabIndex = 8
         '
         'lblCustomerCD
         '
         Me.lblCustomerCD.AutoSize = True
         Me.lblCustomerCD.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCustomerCD.Location = New System.Drawing.Point(47, 20)
+        Me.lblCustomerCD.Location = New System.Drawing.Point(108, 20)
         Me.lblCustomerCD.Name = "lblCustomerCD"
-        Me.lblCustomerCD.Size = New System.Drawing.Size(100, 15)
+        Me.lblCustomerCD.Size = New System.Drawing.Size(39, 15)
         Me.lblCustomerCD.TabIndex = 7
-        Me.lblCustomerCD.Text = "CUSTOMER CODE"
+        Me.lblCustomerCD.Text = "ID NO"
         '
         'lblContactNo
         '
@@ -158,6 +162,7 @@ Partial Class frmScheduleInfo
         Me.txtContactNo.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtContactNo.Location = New System.Drawing.Point(489, 51)
         Me.txtContactNo.Name = "txtContactNo"
+        Me.txtContactNo.ReadOnly = True
         Me.txtContactNo.Size = New System.Drawing.Size(239, 22)
         Me.txtContactNo.TabIndex = 19
         Me.txtContactNo.Tag = "*Contact No"
@@ -187,6 +192,30 @@ Partial Class frmScheduleInfo
         Me.tabPet.TabIndex = 0
         Me.tabPet.Text = "PET"
         Me.tabPet.UseVisualStyleBackColor = True
+        '
+        'btnAddRecord
+        '
+        Me.btnAddRecord.BackColor = System.Drawing.Color.Purple
+        Me.btnAddRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAddRecord.ForeColor = System.Drawing.Color.White
+        Me.btnAddRecord.Location = New System.Drawing.Point(521, 382)
+        Me.btnAddRecord.Name = "btnAddRecord"
+        Me.btnAddRecord.Size = New System.Drawing.Size(97, 36)
+        Me.btnAddRecord.TabIndex = 5
+        Me.btnAddRecord.Text = "ADD RECORD"
+        Me.btnAddRecord.UseVisualStyleBackColor = False
+        '
+        'btnSave
+        '
+        Me.btnSave.BackColor = System.Drawing.Color.Purple
+        Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnSave.ForeColor = System.Drawing.Color.White
+        Me.btnSave.Location = New System.Drawing.Point(624, 382)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(97, 36)
+        Me.btnSave.TabIndex = 4
+        Me.btnSave.Text = "SAVE"
+        Me.btnSave.UseVisualStyleBackColor = False
         '
         'grpTreatment
         '
@@ -368,10 +397,29 @@ Partial Class frmScheduleInfo
         '
         Me.datHistory.AllowUserToAddRows = False
         Me.datHistory.AllowUserToDeleteRows = False
-        Me.datHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datHistory.AllowUserToResizeColumns = False
+        Me.datHistory.AllowUserToResizeRows = False
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.datHistory.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.datHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.datHistory.DefaultCellStyle = DataGridViewCellStyle2
         Me.datHistory.Location = New System.Drawing.Point(6, 6)
         Me.datHistory.Name = "datHistory"
         Me.datHistory.ReadOnly = True
+        Me.datHistory.RowHeadersVisible = False
         Me.datHistory.Size = New System.Drawing.Size(240, 424)
         Me.datHistory.TabIndex = 0
         '
@@ -387,30 +435,6 @@ Partial Class frmScheduleInfo
         Me.btnAddPet.Text = "ADD PET"
         Me.btnAddPet.UseVisualStyleBackColor = False
         '
-        'btnSave
-        '
-        Me.btnSave.BackColor = System.Drawing.Color.Purple
-        Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(624, 382)
-        Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(97, 36)
-        Me.btnSave.TabIndex = 4
-        Me.btnSave.Text = "SAVE"
-        Me.btnSave.UseVisualStyleBackColor = False
-        '
-        'btnAddRecord
-        '
-        Me.btnAddRecord.BackColor = System.Drawing.Color.Purple
-        Me.btnAddRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAddRecord.ForeColor = System.Drawing.Color.White
-        Me.btnAddRecord.Location = New System.Drawing.Point(524, 382)
-        Me.btnAddRecord.Name = "btnAddRecord"
-        Me.btnAddRecord.Size = New System.Drawing.Size(97, 36)
-        Me.btnAddRecord.TabIndex = 5
-        Me.btnAddRecord.Text = "ADD RECORD"
-        Me.btnAddRecord.UseVisualStyleBackColor = False
-        '
         'frmScheduleInfo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
@@ -422,7 +446,7 @@ Partial Class frmScheduleInfo
         Me.Controls.Add(Me.btnView)
         Me.Controls.Add(Me.txtContactNo)
         Me.Controls.Add(Me.lblContactNo)
-        Me.Controls.Add(Me.txtCustomerCode)
+        Me.Controls.Add(Me.txtOwnerID)
         Me.Controls.Add(Me.lblCustomerCD)
         Me.Controls.Add(Me.txtAddress)
         Me.Controls.Add(Me.txtCustomer)
@@ -452,7 +476,7 @@ Partial Class frmScheduleInfo
     Friend WithEvents lblAddress As System.Windows.Forms.Label
     Friend WithEvents txtCustomer As System.Windows.Forms.TextBox
     Friend WithEvents txtAddress As System.Windows.Forms.TextBox
-    Friend WithEvents txtCustomerCode As System.Windows.Forms.TextBox
+    Friend WithEvents txtOwnerID As System.Windows.Forms.TextBox
     Friend WithEvents lblCustomerCD As System.Windows.Forms.Label
     Friend WithEvents lblContactNo As System.Windows.Forms.Label
     Friend WithEvents btnView As System.Windows.Forms.Button

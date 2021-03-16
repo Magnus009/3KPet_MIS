@@ -28,6 +28,7 @@
                 MsgBox("Account has been deactivated!", vbExclamation)
             Else
                 _gbAccountID = dsRecord.Tables(0).Rows(0)(0)
+                _gbUSerName = dsRecord.Tables(0).Rows(0)(1)
                 Call saveLogs(4, "Account " + _gbAccountID + " logged in")
                 frmDashboard.Show()
                 Me.Hide()

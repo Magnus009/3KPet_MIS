@@ -12,10 +12,10 @@
             Dim dsCount As New DataSet
 
             If strdestination = "ADD" Then
-                'Owner ID
-                'sqlQuery = ""
-                'sqlQuery = "SELECT dbo.fn_colID ('O')"
-                'strOwnerID = SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0).ToString
+                'Owner(ID)
+                sqlQuery = ""
+                sqlQuery = "SELECT dbo.fn_colID ('O')"
+                strOwnerID = SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0).ToString
 
                 'Pet ID
                 sqlQuery = ""
@@ -51,8 +51,8 @@
                         sqlQuery += "'" + strOwnerID + "'," & vbCrLf
                         sqlQuery += "'" + txtOwnerLName.Text + "'," & vbCrLf
                         sqlQuery += "'" + txtOwnerFName.Text + "'," & vbCrLf
-                        sqlQuery += "'" + txtOwnerContactNo.Text + "'," & vbCrLf
                         sqlQuery += "'" + txtOwnerAddress.Text + "'," & vbCrLf
+                        sqlQuery += "'" + txtOwnerContactNo.Text + "'," & vbCrLf
                         sqlQuery += "getdate()," & vbCrLf
                         sqlQuery += "getdate()," & vbCrLf
                         sqlQuery += "null," & vbCrLf
@@ -71,6 +71,7 @@
                     sqlQuery += "PetColor," & vbCrLf
                     sqlQuery += "Age," & vbCrLf
                     sqlQuery += "Gender," & vbCrLf
+                    sqlQuery += "isDeceased," & vbCrLf
                     sqlQuery += "CreatedDate," & vbCrLf
                     sqlQuery += "UpdateDate," & vbCrLf
                     sqlQuery += "DeletedDate," & vbCrLf
@@ -85,6 +86,7 @@
                     sqlQuery += "'" + txtPetColor.Text + "'," & vbCrLf
                     sqlQuery += "" + txtPetAge.Text + "," & vbCrLf
                     sqlQuery += "'" + IIf(optMale.Checked = True, "M", "F") + "'," & vbCrLf
+                    sqlQuery += "" + Convert.ToInt32(chkisDeceased.Checked).ToString + "," & vbCrLf
                     sqlQuery += "getdate()," & vbCrLf
                     sqlQuery += "getdate()," & vbCrLf
                     sqlQuery += "null," & vbCrLf
@@ -226,6 +228,8 @@
         txtPetAge.ReadOnly = False
         optFemale.Enabled = True
         optMale.Enabled = True
+        chkisDeceased.Enabled = True
+        chkisDeceased.Checked = False
 
         btnConfirm.Enabled = True
     End Sub
