@@ -87,6 +87,7 @@ Partial Class frmVisitHistory
         Me.datLogs.Name = "datLogs"
         Me.datLogs.ReadOnly = True
         Me.datLogs.RowHeadersVisible = False
+        Me.datLogs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datLogs.Size = New System.Drawing.Size(751, 400)
         Me.datLogs.TabIndex = 1
         '

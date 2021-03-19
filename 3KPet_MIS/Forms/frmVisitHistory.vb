@@ -70,19 +70,13 @@
         Try
             If e.ColumnIndex = 7 Then
                 With frmScheduleInfo
+                    .txtTransactionID.Text = datLogs.Rows(e.RowIndex).Cells(0).Value
                     .txtOwnerID.Text = datLogs.Rows(e.RowIndex).Cells(5).Value
                     .txtCustomer.Text = datLogs.Rows(e.RowIndex).Cells(1).Value
                     .txtAddress.Text = datLogs.Rows(e.RowIndex).Cells(6).Value
                     .txtContactNo.Text = datLogs.Rows(e.RowIndex).Cells(2).Value
 
-                    For Each tp As TabPage In frmScheduleInfo.tabPetInfo.TabPages
-                        frmScheduleInfo.tabPetInfo.TabPages.Remove(tp)
-                    Next
-                    frmScheduleInfo.getInfo()
-
-                    'Me.Hide()
                     frmScheduleInfo.ShowDialog()
-
                 End With
             End If
         Catch ex As Exception

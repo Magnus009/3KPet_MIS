@@ -39,11 +39,6 @@
                 .txtAddress.Text = datData.Rows(e.RowIndex).Cells(2).Value
                 .txtContactNo.Text = datData.Rows(e.RowIndex).Cells(3).Value
 
-                For Each tp As TabPage In frmScheduleInfo.tabPetInfo.TabPages
-                    frmScheduleInfo.tabPetInfo.TabPages.Remove(tp)
-                Next
-                frmScheduleInfo.getInfo()
-
                 Me.Hide()
 
             End With
