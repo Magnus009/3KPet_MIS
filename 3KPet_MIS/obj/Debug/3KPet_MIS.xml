@@ -21,6 +21,14 @@
 </summary>
 </member><member name="P:_3KPet_MIS.My.Resources.Resources.ConnectionString">
 	<summary>
+  Looks up a localized string similar to Data Source=LAPTOP-MI8RS0PS\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=Pet_MIS.
+</summary>
+</member><member name="P:_3KPet_MIS.My.Resources.Resources.ConnString_temp1">
+	<summary>
+  Looks up a localized string similar to Data Source=LAPTOP-MI8RS0PS\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=Pet_MIS.
+</summary>
+</member><member name="P:_3KPet_MIS.My.Resources.Resources.ConnString_temp2">
+	<summary>
   Looks up a localized string similar to Data Source=SD_SQL_Training;Persist Security Info=True;User ID=sa;Password=81at84;Initial Catalog=Pet_MIS.
 </summary>
 </member><member name="P:_3KPet_MIS.My.Resources.Resources.hide">

@@ -149,4 +149,10 @@
     <value>Data Source=SD_SQL_Training;Persist Security Info=True;User ID=sa;Password=81at84;Initial Catalog=Pet_MIS</value>
     <comment>SQLCONNECTIONSTRING</comment>
   </data>
+  <data name="ConnString_temp1" xml:space="preserve">
+    <value>Data Source=LAPTOP-MI8RS0PS\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=Pet_MIS</value>
+  </data>
+  <data name="ConnString_temp2" xml:space="preserve">
+    <value>Data Source=SD_SQL_Training;Persist Security Info=True;User ID=sa;Password=81at84;Initial Catalog=Pet_MIS</value>
+  </data>
 </root>

@@ -30,7 +30,6 @@ Partial Class frmTransactions
         Me.btnFIlter = New System.Windows.Forms.Button()
         Me.lblDash = New System.Windows.Forms.Label()
         Me.dtpTo = New System.Windows.Forms.DateTimePicker()
-        Me.btnAddNew = New System.Windows.Forms.Button()
         Me.dtpFrom = New System.Windows.Forms.DateTimePicker()
         Me.lblVistDate = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
@@ -49,9 +48,9 @@ Partial Class frmTransactions
         Me.lblHeader.ForeColor = System.Drawing.Color.White
         Me.lblHeader.Location = New System.Drawing.Point(12, 12)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(189, 33)
+        Me.lblHeader.Size = New System.Drawing.Size(229, 33)
         Me.lblHeader.TabIndex = 0
-        Me.lblHeader.Text = "TRANSACTIONS"
+        Me.lblHeader.Text = "PATMENT MODULE"
         '
         'pnlHeader
         '
@@ -68,7 +67,6 @@ Partial Class frmTransactions
         Me.pnlContent.Controls.Add(Me.btnFIlter)
         Me.pnlContent.Controls.Add(Me.lblDash)
         Me.pnlContent.Controls.Add(Me.dtpTo)
-        Me.pnlContent.Controls.Add(Me.btnAddNew)
         Me.pnlContent.Controls.Add(Me.dtpFrom)
         Me.pnlContent.Controls.Add(Me.lblVistDate)
         Me.pnlContent.Controls.Add(Me.txtSearch)
@@ -103,29 +101,17 @@ Partial Class frmTransactions
         '
         'dtpTo
         '
-        Me.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpTo.CustomFormat = "yyyy/MM/dd"
+        Me.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpTo.Location = New System.Drawing.Point(557, 9)
         Me.dtpTo.Name = "dtpTo"
         Me.dtpTo.Size = New System.Drawing.Size(95, 21)
         Me.dtpTo.TabIndex = 9
         '
-        'btnAddNew
-        '
-        Me.btnAddNew.BackColor = System.Drawing.Color.Purple
-        Me.btnAddNew.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.btnAddNew.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAddNew.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnAddNew.ForeColor = System.Drawing.Color.White
-        Me.btnAddNew.Location = New System.Drawing.Point(817, 4)
-        Me.btnAddNew.Name = "btnAddNew"
-        Me.btnAddNew.Size = New System.Drawing.Size(111, 27)
-        Me.btnAddNew.TabIndex = 8
-        Me.btnAddNew.Text = "&ADD NEW"
-        Me.btnAddNew.UseVisualStyleBackColor = False
-        '
         'dtpFrom
         '
-        Me.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpFrom.CustomFormat = "yyyy/MM/dd"
+        Me.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpFrom.Location = New System.Drawing.Point(442, 9)
         Me.dtpFrom.Name = "dtpFrom"
         Me.dtpFrom.Size = New System.Drawing.Size(95, 21)
@@ -206,6 +192,7 @@ Partial Class frmTransactions
         Me.Name = "frmTransactions"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Payment Module"
         Me.pnlHeader.ResumeLayout(False)
         Me.pnlHeader.PerformLayout()
         Me.pnlContent.ResumeLayout(False)
@@ -222,7 +209,6 @@ Partial Class frmTransactions
     Friend WithEvents lblVistDate As System.Windows.Forms.Label
     Friend WithEvents txtSearch As System.Windows.Forms.TextBox
     Friend WithEvents lblSearch As System.Windows.Forms.Label
-    Friend WithEvents btnAddNew As System.Windows.Forms.Button
     Friend WithEvents colView As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents lblDash As System.Windows.Forms.Label
     Friend WithEvents dtpTo As System.Windows.Forms.DateTimePicker

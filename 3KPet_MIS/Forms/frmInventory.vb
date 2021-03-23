@@ -133,6 +133,8 @@
 
     Private Sub btnCancel_Click(sender As Object, e As EventArgs) Handles btnCancel.Click
         Call clearFields(grpProduct)
+        btnSave.Visible = True
+        btnUpdate.Visible = False
     End Sub
 
     Private Sub datRecords_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datRecords.CellContentClick

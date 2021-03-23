@@ -33,7 +33,7 @@ Public Class frmCreateAccount
                     MsgBox("Make sure your passwords match!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly, "PASSWORD MISMATCH")
                     txtConfirmPassword.ForeColor = Color.Red
                     txtConfirmPassword.Focus()
-                ElseIf dsUserName.Tables(0).Rows.Count <> 0 Then
+                ElseIf dsUserName.Tables(0).Rows(0)(0) <> 0 Then
                     MsgBox("User name already exist!", MsgBoxStyle.Exclamation + MsgBoxStyle.OkOnly)
                     txtUserName.ForeColor = Color.Red
                     txtUserName.Focus()
@@ -44,6 +44,7 @@ Public Class frmCreateAccount
                     dsID = SQLPetMIS(strSQL)
                     strID = dsID.Tables(0).Rows(0)(0)
 
+                    sqlQuery = ""
                     sqlQuery += "INSERT INTO dbo.Users " + vbCrLf
                     sqlQuery += "(" + vbCrLf
                     sqlQuery += "UserID," + vbCrLf
@@ -79,6 +80,7 @@ Public Class frmCreateAccount
                     strSQL += "Q2," + vbCrLf
                     strSQL += "A1," + vbCrLf
                     strSQL += "A2," + vbCrLf
+                    strSQL += "isDeactivate," + vbCrLf
                     strSQL += "CreatedDate," + vbCrLf
                     strSQL += "UpdatedDate," + vbCrLf
                     strSQL += "DeletedDate," + vbCrLf
@@ -89,11 +91,12 @@ Public Class frmCreateAccount
                     strSQL += "'" + strID + "'," + vbCrLf
                     strSQL += "'" + txtUserName.Text + "'," + vbCrLf
                     strSQL += "'" + txtPassword.Text + "'," + vbCrLf
-                    strSQL += "'" + cboLevel.Text + "'," + vbCrLf
+                    strSQL += "'" + cboLevel.SelectedValue + "'," + vbCrLf
                     strSQL += "" + cboQuestion_1.SelectedIndex.ToString + "," + vbCrLf
                     strSQL += "" + cboQuestion_2.SelectedIndex.ToString + "," + vbCrLf
                     strSQL += "'" + txtAnswer_1.Text + "'," + vbCrLf
                     strSQL += "'" + txtAnswer_2.Text + "'," + vbCrLf
+                    strSQL += "0," + vbCrLf
                     strSQL += "getdate()," + vbCrLf
                     strSQL += "getdate()," + vbCrLf
                     strSQL += "null," + vbCrLf
@@ -119,22 +122,34 @@ Public Class frmCreateAccount
 
     Private Sub frmCreateAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim dsQuestions As New DataSet
+        Dim dsUserLevel As New DataSet
 
         sqlQuery = ""
         sqlQuery += "SELECT * FROM M_SecurityQuestion" + vbCrLf
         sqlQuery += "WHERE DeletedDate IS NULL"
-
         dsQuestions = SQLPetMIS(sqlQuery)
 
+        sqlQuery = ""
+        sqlQuery += "SELECT * FROM UserLevel" & vbCrLf
+        sqlQuery += "WHERE DeletedDate IS NULL"
+        dsUserLevel = SQLPetMIS(sqlQuery)
+
+        cboQuestion_1.Items.Clear()
+        cboQuestion_2.Items.Clear()
 
         For Each row As DataRow In dsQuestions.Tables(0).Rows
             cboQuestion_1.Items.Add(row.Item("Question"))
             cboQuestion_2.Items.Add(row.Item("Question"))
         Next
 
-        cboLevel.Items.Add("Doctor")
-        cboLevel.Items.Add("Staff")
-        sqlQuery = ""
+        'cboLevel.Items.Clear()
+        'cboLevel.Items.Add("Admin")
+        'cboLevel.Items.Add("Staff")
+        'sqlQuery = ""
+
+        cboLevel.DataSource = dsUserLevel.Tables(0)
+        cboLevel.DisplayMember = "Description"
+        cboLevel.ValueMember = "LevelID"
     End Sub
 
     Private Sub txtConfirmPassword_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmPassword.TextChanged

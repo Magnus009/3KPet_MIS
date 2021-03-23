@@ -1,111 +1,159 @@
 ﻿Public Class frmScheduleReservation
-
-    Private Sub txtTimeFrom_Leave(sender As Object, e As EventArgs) Handles txtTimeFrom.Leave
-        subCheckTime(sender)
-    End Sub
-    Private Sub txtTimeTo_Leave(sender As Object, e As EventArgs) Handles txtTimeTo.Leave
-        subCheckTime(sender)
-    End Sub
-
-    Private Sub subCheckTime(txtInput As MaskedTextBox)
-        If txtInput.Text <> "" Then
-            txtInput.TextMaskFormat = MaskFormat.IncludePromptAndLiterals
-
-            Dim strErr As String = ""
-            Dim intTime As Integer = Val(txtInput.Text.Substring(0, 2))
-
-            Select Case True
-                Case Not txtInput.MaskCompleted
-                    strErr = "Input Incomplete"
-                Case intTime > 23
-                    strErr = "Invalid Input"
-            End Select
-
-            If strErr <> "" Then
-                MessageBox.Show(strErr, "Invalid Time", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                txtInput.Select()
-            End If
-        End If
-        txtInput.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals
-    End Sub
+    Public blnisUpdate As Boolean
 
     Private Sub frmScheduleReservation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Try
-            Dim dsServices As DataSet
 
-            sqlQuery = ""
-            sqlQuery = "SELECT * FROM Services" & vbCrLf
-            sqlQuery += "WHERE DeletedDate IS null"
-
-            dsServices = SQLPetMIS(sqlQuery)
-
-            For Each row As DataRow In dsServices.Tables(0).Rows
-                cboServices.Items.Add(row.Item("Description"))
-            Next
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+        Call getServices()
+        If txtSchedCode.Text <> "" And txtSchedCode.Text <> "- - -" Then
+            Call getSchedule()
+        End If
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
         Try
             Dim dsID As New DataSet
-            Dim strCustomerID As String
+            Dim strScheduleID As String
+            Dim blnSQLRun As Boolean
 
-            sqlQuery = ""
-            sqlQuery += "SELECT dbo.fn_colID ('S')"
+            If blnisUpdate Then
+                If MsgBox("Are you sure you want to update?", vbYesNo + vbQuestion) Then
+                    sqlQuery = ""
+                    sqlQuery += "UPDATE dbo.Schedules" & vbCrLf
+                    sqlQuery += "SET ScheduleDate = '" + Format(dtpDateSched.Value, "yyyy/MM/dd") + "'" & vbCrLf
+                    sqlQuery += ", ServiceID = '" + cboServices.SelectedValue + "'" & vbCrLf
+                    sqlQuery += ", Purpose = '" + txtPurpose.Text + "'" & vbCrLf
+                    sqlQuery += ", isArrived = " + Convert.ToInt32(chkIsArrived.CheckState).ToString & vbCrLf
+                    sqlQuery += ", isCancelled = " + Convert.ToInt32(chkCancel.CheckState).ToString & vbCrLf
+                    sqlQuery += ", UpdatedDate = getdate()" & vbCrLf
+                    sqlQuery += ", UpdatedBy = '" + _gbAccountID + "'" & vbCrLf
+                    sqlQuery += "WHERE ScheduleCode = '" + txtSchedCode.Text + "'" & vbCrLf
+                    blnSQLRun = sqlExecute(sqlQuery)
 
-            dsID = SQLPetMIS(sqlQuery)
-
-            strCustomerID = dsID.Tables(0).Rows(0)(0)
-
-            If fn_CheckRequire(Me) Then
-                MsgBox("Please Fill out Required Field:" & vbCrLf & strRequire, MsgBoxStyle.Exclamation)
-                strRequire = ""
-            Else
-                sqlQuery = ""
-                sqlQuery += "INSERT INTO dbo.Schedules " & vbCrLf
-                sqlQuery += "(" & vbCrLf
-                sqlQuery += "ScheduleCode, " & vbCrLf
-                sqlQuery += "CustomerName, " & vbCrLf
-                sqlQuery += "ScheduleDate," & vbCrLf
-                sqlQuery += "TimeFrom," & vbCrLf
-                sqlQuery += "TimeTo," & vbCrLf
-                sqlQuery += "ServiceID," & vbCrLf
-                sqlQuery += "Purpose," & vbCrLf
-                sqlQuery += "CreatedDate," & vbCrLf
-                sqlQuery += "UpdatedDate," & vbCrLf
-                sqlQuery += "DeletedDate," & vbCrLf
-                sqlQuery += "UpdatedBy" & vbCrLf
-                sqlQuery += ")" & vbCrLf
-                sqlQuery += "VALUES " & vbCrLf
-                sqlQuery += "(" & vbCrLf
-                sqlQuery += "'" + strCustomerID + "'," + vbCrLf
-                sqlQuery += "'" + txtCustomer.Text + "'," + vbCrLf
-                sqlQuery += "'" + Format(dtpDateSched.Value, "Short Date") + "'," + vbCrLf
-                txtTimeFrom.TextMaskFormat = MaskFormat.IncludePromptAndLiterals
-                sqlQuery += "'" + txtTimeFrom.Text + "'," + vbCrLf
-                txtTimeTo.TextMaskFormat = MaskFormat.IncludePromptAndLiterals
-                sqlQuery += "'" + txtTimeTo.Text + "'," + vbCrLf
-                sqlQuery += "'" + cboServices.SelectedIndex.ToString + "'," + vbCrLf
-                sqlQuery += "'" + txtPurpose.Text + "'," + vbCrLf
-                sqlQuery += "getdate()," + vbCrLf
-                sqlQuery += "getdate(), " + vbCrLf
-                sqlQuery += "Null," + vbCrLf
-                sqlQuery += "'" + strCustomerID + "')" + vbCrLf
-
-                blnRequired = sqlExecute(sqlQuery)
-
-                If blnRequired = True Then
-                    MsgBox("Schedule saved succesfully", vbInformation + vbOKOnly)
+                    If blnSQLRun Then
+                        MsgBox("Schedule updated!", vbOKOnly + vbInformation)
+                        Call saveLogs(2, "Updated schedule wirh Schedule code of : " + txtSchedCode.Text)
+                        frmSchedules.getSchedules()
+                        blnisUpdate = False
+                        Me.Hide()
+                    End If
                 End If
 
+            Else
+                If MsgBox("Are you sure you want to save?", vbYesNo + vbQuestion) Then
+                    sqlQuery = ""
+                    sqlQuery += "SELECT dbo.fn_colID ('S')"
+
+                    dsID = SQLPetMIS(sqlQuery)
+
+                    strScheduleID = dsID.Tables(0).Rows(0)(0)
+
+                    If fn_CheckRequire(Me) Then
+                        MsgBox("Please Fill out Required Field:" & vbCrLf & strRequire, MsgBoxStyle.Exclamation)
+                        strRequire = ""
+                    Else
+                        sqlQuery = ""
+                        sqlQuery += "INSERT INTO dbo.Schedules " & vbCrLf
+                        sqlQuery += "(" & vbCrLf
+                        sqlQuery += "ScheduleCode, " & vbCrLf
+                        sqlQuery += "CustomerID, " & vbCrLf
+                        sqlQuery += "ScheduleDate," & vbCrLf
+                        sqlQuery += "ServiceID," & vbCrLf
+                        sqlQuery += "Purpose," & vbCrLf
+                        sqlQuery += "isArrived," & vbCrLf
+                        sqlQuery += "isCancelled," & vbCrLf
+                        sqlQuery += "CreatedDate," & vbCrLf
+                        sqlQuery += "UpdatedDate," & vbCrLf
+                        sqlQuery += "DeletedDate," & vbCrLf
+                        sqlQuery += "UpdatedBy" & vbCrLf
+                        sqlQuery += ")" & vbCrLf
+                        sqlQuery += "VALUES " & vbCrLf
+                        sqlQuery += "(" & vbCrLf
+                        sqlQuery += "'" + strScheduleID + "', " & vbCrLf
+                        sqlQuery += "'" + dsOwnerInfo.Tables(0).Rows(0)("OwnerID") + "', " & vbCrLf
+                        sqlQuery += "'" + Format(dtpDateSched.Value, "yyyy/MM/dd") + "'," & vbCrLf
+                        sqlQuery += "'" + cboServices.SelectedValue + "'," & vbCrLf
+                        sqlQuery += "'" + txtPurpose.Text + "'," & vbCrLf
+                        sqlQuery += Convert.ToInt32(chkIsArrived.CheckState).ToString + "," & vbCrLf
+                        sqlQuery += Convert.ToInt32(chkCancel.CheckState).ToString + "," & vbCrLf
+                        sqlQuery += "getdate()," & vbCrLf
+                        sqlQuery += "getdate()," & vbCrLf
+                        sqlQuery += "null," & vbCrLf
+                        sqlQuery += "'" + _gbAccountID + "'" & vbCrLf
+                        sqlQuery += ")" & vbCrLf
+
+
+                        blnSQLRun = sqlExecute(sqlQuery)
+
+                        If blnSQLRun = True Then
+                            MsgBox("Schedule saved succesfully", vbInformation + vbOKOnly)
+                            strNextvisit = Format(dtpDateSched.Value, "yyyy/MM/dd")
+                            Call saveLogs(1, "Save a schedule with Schedule code of : " + strScheduleID)
+                            frmSchedules.getSchedules()
+                            Me.Hide()
+                        End If
+
+
+                    End If
+                End If
 
             End If
 
-           
-        Catch ex As Exception
 
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub btnOwner_Click(sender As Object, e As EventArgs) Handles btnOwner.Click
+        frmOwnerList.ShowDialog()
+        txtCustomer.Text = dsOwnerInfo.Tables(0).Rows(0)("LastName") + ", " + dsOwnerInfo.Tables(0).Rows(0)("FirstName")
+        txtAddress.Text = dsOwnerInfo.Tables(0).Rows(0)("Address")
+        txtContact.Text = dsOwnerInfo.Tables(0).Rows(0)("ContactNo")
+    End Sub
+
+    Private Sub getServices()
+        Try
+            Dim dsServices As New DataSet
+
+            sqlQuery = ""
+            sqlQuery = "SELECT * FROM Services" & vbCrLf
+            sqlQuery += "WHERE DeletedDate IS null"
+
+            dsServices = New DataSet
+            dsServices = SQLPetMIS(sqlQuery)
+
+
+            'cboServices.Items.Clear()
+            cboServices.DataSource = dsServices.Tables(0)
+            cboServices.DisplayMember = "Description"
+            cboServices.ValueMember = "ServiceID"
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+    Private Sub getSchedule()
+        Try
+            Dim dsSched As New DataSet
+
+            sqlQuery = ""
+            sqlQuery += "SELECT SD.ScheduleCode, SD.CustomerID, O.LastName + ', ' + O.FirstName as CUSTOMERNAme, O.Address, O.ContactNo,S.ServiceID, S.Description, SD.Purpose, SD.ScheduleDate, SD.isArrived, SD.isCancelled FROM Schedules SD" & vbCrLf
+            sqlQuery += "INNER JOIN Owners O ON SD.CustomerID = O.OwnerID" & vbCrLf
+            sqlQuery += "Left JOIN Services S ON SD.ServiceID = S.ServiceID" & vbCrLf
+            sqlQuery += "WHERE SD.ScheduleCode ='" + txtSchedCode.Text + "'" & vbCrLf
+            dsSched = SQLPetMIS(sqlQuery)
+
+            txtCustomer.Text = dsSched.Tables(0).Rows(0)("CUSTOMERNAme")
+            txtAddress.Text = dsSched.Tables(0).Rows(0)("Address")
+            txtContact.Text = dsSched.Tables(0).Rows(0)("ContactNo")
+            dtpDateSched.Value = Format(dsSched.Tables(0).Rows(0)("ScheduleDate"), "yyyy/MM/dd")
+            cboServices.Text = IIf(IsDBNull(dsSched.Tables(0).Rows(0)("Description")), "", dsSched.Tables(0).Rows(0)("Description"))
+            txtPurpose.Text = dsSched.Tables(0).Rows(0)("Purpose")
+            chkCancel.Checked = dsSched.Tables(0).Rows(0)("isCancelled")
+            chkIsArrived.Checked = dsSched.Tables(0).Rows(0)("isArrived")
+        Catch ex As Exception
+            MsgBox(ex.Message)
         End Try
     End Sub
 End Class

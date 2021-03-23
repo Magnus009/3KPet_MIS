@@ -49,7 +49,7 @@ Partial Class frmUserLogin
         Me.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.pnlLeft.Location = New System.Drawing.Point(0, 0)
         Me.pnlLeft.Name = "pnlLeft"
-        Me.pnlLeft.Size = New System.Drawing.Size(281, 382)
+        Me.pnlLeft.Size = New System.Drawing.Size(110, 382)
         Me.pnlLeft.TabIndex = 0
         '
         'txtUsername
@@ -80,7 +80,7 @@ Partial Class frmUserLogin
         Me.pnlRight.Controls.Add(Me.picPassword)
         Me.pnlRight.Controls.Add(Me.picUser)
         Me.pnlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.pnlRight.Location = New System.Drawing.Point(278, 0)
+        Me.pnlRight.Location = New System.Drawing.Point(20, 0)
         Me.pnlRight.Name = "pnlRight"
         Me.pnlRight.Size = New System.Drawing.Size(323, 382)
         Me.pnlRight.TabIndex = 1
@@ -198,7 +198,7 @@ Partial Class frmUserLogin
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.ClientSize = New System.Drawing.Size(601, 382)
+        Me.ClientSize = New System.Drawing.Size(343, 382)
         Me.Controls.Add(Me.pnlRight)
         Me.Controls.Add(Me.pnlLeft)
         Me.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))

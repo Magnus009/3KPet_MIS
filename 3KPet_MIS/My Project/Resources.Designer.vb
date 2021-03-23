@@ -80,6 +80,24 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to Data Source=LAPTOP-MI8RS0PS\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=Pet_MIS.
+        '''</summary>
+        Friend ReadOnly Property ConnString_temp1() As String
+            Get
+                Return ResourceManager.GetString("ConnString_temp1", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to Data Source=SD_SQL_Training;Persist Security Info=True;User ID=sa;Password=81at84;Initial Catalog=Pet_MIS.
+        '''</summary>
+        Friend ReadOnly Property ConnString_temp2() As String
+            Get
+                Return ResourceManager.GetString("ConnString_temp2", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
         Friend ReadOnly Property hide() As System.Drawing.Bitmap

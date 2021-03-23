@@ -1,10 +1,7 @@
 ﻿Public Class frmSchedules
     Dim blnFilter As Boolean
 
-    Private Sub btnArrive_Click(sender As Object, e As EventArgs) Handles btnReservation.Click
-        frmScheduleReservation.Text = "Reservation Details"
-        frmScheduleReservation.ShowDialog()
-    End Sub
+
 
     Private Sub frmSchedules_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call getSchedules()
@@ -16,7 +13,8 @@
             Dim dsSched As New DataSet
 
             sqlQuery = ""
-            sqlQuery += "SELECT * FROM Schedules SD" & vbCrLf
+            sqlQuery += "SELECT SD.ScheduleCode, SD.CustomerID, O.LastName + ', ' + O.FirstName as CUSTOMERNAme, S.Description, SD.Purpose, SD.ScheduleDate, SD.isArrived, SD.isCancelled FROM Schedules SD" & vbCrLf
+            sqlQuery += "INNER JOIN Owners O ON SD.CustomerID = O.OwnerID" & vbCrLf
             sqlQuery += "Left JOIN Services S ON SD.ServiceID = S.ServiceID" & vbCrLf
             sqlQuery += "WHERE SD.DeletedDate IS NULL" & vbCrLf
             If blnFilter Then
@@ -33,11 +31,31 @@
                 .Columns.Add("colCustomer", "CUSTOMER")
                 .Columns("colCustomer").Width = .Width * 0.2
                 .Columns.Add("colService", "SERVICE")
-                .Columns("colService").Width = .Width * 0.15
+                .Columns("colService").Width = .Width * 0.13
                 .Columns.Add("colPurpose", "PURPOSE")
-                .Columns("colPurpose").Width = .Width * 0.3
+                .Columns("colPurpose").Width = .Width * 0.2
                 .Columns.Add("colDate", "DATE")
-                .Columns("colDate").Width = .Width * 0.19
+                .Columns("colDate").Width = .Width * 0.12
+
+                Dim chkIsArrived As New DataGridViewCheckBoxColumn
+                chkIsArrived.Width = 45
+                chkIsArrived.HeaderText = "ARRIVE"
+                chkIsArrived.Name = "colArrived"
+                .Columns.Add(chkIsArrived)
+                .Columns("colArrived").ReadOnly = True
+
+                Dim chkIsCancel As New DataGridViewCheckBoxColumn
+                chkIsCancel.Width = 45
+                chkIsCancel.HeaderText = "CANCEL"
+                chkIsCancel.Name = "colCancel"
+                .Columns.Add(chkIsCancel)
+                .Columns("colCancel").ReadOnly = True
+
+                Dim btnSelect As New DataGridViewButtonColumn
+                btnSelect.Text = "•••"
+                btnSelect.UseColumnTextForButtonValue = True
+                btnSelect.Width = .Width * 0.06
+                .Columns.Add(btnSelect)
 
                 For Each row As DataRow In dsSched.Tables(0).Rows
                     .Rows.Add()
@@ -46,6 +64,8 @@
                     .Rows(.RowCount - 1).Cells(2).Value = row.Item("Description")
                     .Rows(.RowCount - 1).Cells(3).Value = row.Item("Purpose")
                     .Rows(.RowCount - 1).Cells(4).Value = Format(row.Item("ScheduleDate"), "Short Date")
+                    .Rows(.RowCount - 1).Cells(5).Value = row.Item("isArrived")
+                    .Rows(.RowCount - 1).Cells(6).Value = row.Item("isCancelled")
                 Next
             End With
             blnFilter = False
@@ -59,4 +79,18 @@
         Call getSchedules()
     End Sub
 
+    Private Sub datSchedules_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datSchedules.CellContentClick
+        If e.ColumnIndex = 7 Then
+            frmScheduleReservation.txtSchedCode.Text = datSchedules.Rows(e.RowIndex).Cells(0).Value
+            frmScheduleReservation.blnisUpdate = True
+            frmScheduleReservation.ShowDialog()
+
+        End If
+    End Sub
+
+    Private Sub btnReservation_Click(sender As Object, e As EventArgs) Handles btnReservation.Click
+        Call clearFields(frmScheduleReservation)
+        frmScheduleReservation.Text = "Reservation Details"
+        frmScheduleReservation.ShowDialog()
+    End Sub
 End Class

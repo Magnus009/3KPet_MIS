@@ -1,9 +1,5 @@
 ﻿Public Class frmTransactions
     Dim blnIsFIlter As Boolean = False
-    Private Sub btnAddNew_Click(sender As Object, e As EventArgs) Handles btnAddNew.Click
-        frmScheduleInfo.ShowDialog()
-    End Sub
-
 
     Private Sub frmTransactions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call getTransactions()
@@ -134,11 +130,6 @@
         blnIsFIlter = True
         Call getTransactions()
     End Sub
-
-    
-
-
-
     Private Sub datTransactions_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles datTransactions.CellEndEdit
         Try
 

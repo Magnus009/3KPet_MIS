@@ -71,7 +71,7 @@ Partial Class frmSchedules
         Me.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlContent.Location = New System.Drawing.Point(0, 57)
         Me.pnlContent.Name = "pnlContent"
-        Me.pnlContent.Size = New System.Drawing.Size(650, 379)
+        Me.pnlContent.Size = New System.Drawing.Size(708, 379)
         Me.pnlContent.TabIndex = 7
         '
         'btnFilter
@@ -90,7 +90,8 @@ Partial Class frmSchedules
         '
         'dtpVisitDateTo
         '
-        Me.dtpVisitDateTo.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpVisitDateTo.CustomFormat = "yyyy/MM/dd"
+        Me.dtpVisitDateTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpVisitDateTo.Location = New System.Drawing.Point(228, 8)
         Me.dtpVisitDateTo.Name = "dtpVisitDateTo"
         Me.dtpVisitDateTo.Size = New System.Drawing.Size(105, 21)
@@ -113,7 +114,7 @@ Partial Class frmSchedules
         Me.btnReservation.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnReservation.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnReservation.ForeColor = System.Drawing.Color.White
-        Me.btnReservation.Location = New System.Drawing.Point(507, 344)
+        Me.btnReservation.Location = New System.Drawing.Point(567, 342)
         Me.btnReservation.Name = "btnReservation"
         Me.btnReservation.Size = New System.Drawing.Size(129, 31)
         Me.btnReservation.TabIndex = 5
@@ -122,7 +123,8 @@ Partial Class frmSchedules
         '
         'dtpVisitDateFrom
         '
-        Me.dtpVisitDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpVisitDateFrom.CustomFormat = "yyyy/MM/dd"
+        Me.dtpVisitDateFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpVisitDateFrom.Location = New System.Drawing.Point(97, 8)
         Me.dtpVisitDateFrom.Name = "dtpVisitDateFrom"
         Me.dtpVisitDateFrom.Size = New System.Drawing.Size(105, 21)
@@ -174,7 +176,7 @@ Partial Class frmSchedules
         Me.datSchedules.RowHeadersDefaultCellStyle = DataGridViewCellStyle4
         Me.datSchedules.RowHeadersVisible = False
         Me.datSchedules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datSchedules.Size = New System.Drawing.Size(626, 302)
+        Me.datSchedules.Size = New System.Drawing.Size(684, 302)
         Me.datSchedules.TabIndex = 4
         '
         'colSchedCode
@@ -234,7 +236,7 @@ Partial Class frmSchedules
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(650, 57)
+        Me.pnlHeader.Size = New System.Drawing.Size(708, 57)
         Me.pnlHeader.TabIndex = 6
         '
         'frmSchedules
@@ -242,7 +244,7 @@ Partial Class frmSchedules
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.ClientSize = New System.Drawing.Size(650, 436)
+        Me.ClientSize = New System.Drawing.Size(708, 436)
         Me.Controls.Add(Me.pnlContent)
         Me.Controls.Add(Me.pnlHeader)
         Me.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -253,6 +255,7 @@ Partial Class frmSchedules
         Me.Name = "frmSchedules"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Schedules"
         Me.pnlContent.ResumeLayout(False)
         Me.pnlContent.PerformLayout()
         CType(Me.datSchedules, System.ComponentModel.ISupportInitialize).EndInit()

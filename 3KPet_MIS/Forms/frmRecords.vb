@@ -84,7 +84,12 @@
                     sqlQuery += "'" + txtPetName.Text + "'," & vbCrLf
                     sqlQuery += "'" + txtPetBreed.Text + "'," & vbCrLf
                     sqlQuery += "'" + txtPetColor.Text + "'," & vbCrLf
-                    sqlQuery += "" + txtPetAge.Text + "," & vbCrLf
+                    If txtPetAge.Text <> "" Then
+                        sqlQuery += "" + txtPetAge.Text + "," & vbCrLf
+                    Else
+                        sqlQuery += "null," & vbCrLf
+                    End If
+
                     sqlQuery += "'" + IIf(optMale.Checked = True, "M", "F") + "'," & vbCrLf
                     sqlQuery += "" + Convert.ToInt32(chkisDeceased.Checked).ToString + "," & vbCrLf
                     sqlQuery += "getdate()," & vbCrLf
@@ -185,9 +190,10 @@
         Call loadOwnerInfo()
 
         If (strdestination = "UPDATE") Then
-            btnNewRecord.Hide()
-        Else
             btnNewRecord.Show()
+            btnNewRecord.Enabled = False
+        Else
+            btnNewRecord.Hide()
         End If
     End Sub
 
@@ -198,7 +204,7 @@
                 strSearch = "OwnerID = '" + datInformation.Rows(e.RowIndex).Cells(0).Value + "' "
                 strSearch += "AND PetID = '" + datInformation.Rows(e.RowIndex).Cells("colPetID").Value + "' "
                 frmInfoDialog.Show()
-
+                btnNewRecord.Enabled = True
             End If
 
         Catch ex As Exception
@@ -244,5 +250,5 @@
         End If
     End Sub
 
-  
+
 End Class

@@ -36,6 +36,9 @@
 
     Private Sub chkisUpdate_CheckedChanged(sender As Object, e As EventArgs) Handles chkisUpdate.CheckedChanged
         datVaccine.Enabled = True
+        If chkisUpdate.Checked = False Then
+            txtName.Text = ""
+        End If
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -57,7 +60,7 @@
                 blnIsSave = sqlExecute(sqlQuery)
 
                 If blnIsSave Then
-                    MsgBox("Data save successfully!", vbOKOnly + vbExclamation)
+                    MsgBox("Data save successfully!", vbOKOnly + vbInformation)
                     Call saveLogs(1, "Insert new Vaccines")
                     Call getVaccines()
                 End If

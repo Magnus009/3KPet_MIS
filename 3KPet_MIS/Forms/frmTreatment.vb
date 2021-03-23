@@ -66,7 +66,7 @@
                 blnIsSave = sqlExecute(sqlQuery)
 
                 If blnIsSave Then
-                    MsgBox("Data save successfully!", vbOKOnly + vbExclamation)
+                    MsgBox("Data save successfully!", vbOKOnly + vbInformation)
                     Call getTreatments()
                     Call saveLogs(2, "Update treatment description with ID " + intTreatmentID.ToString)
                     txtName.Text = ""
@@ -90,6 +90,9 @@
 
     Private Sub chkisUpdate_CheckedChanged(sender As Object, e As EventArgs) Handles chkisUpdate.CheckedChanged
         datTreatment.Enabled = True
+        If chkisUpdate.Checked = False Then
+            txtName.Text = ""
+        End If
     End Sub
 
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged

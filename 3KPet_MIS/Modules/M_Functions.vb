@@ -3,6 +3,10 @@
     Public blnRequired As Boolean = False
     Public _gbAccountID As String
     Public _gbUSerName As String
+    Public _gbUserType As String
+    Public dsOwnerInfo As New DataSet
+    Public strNextvisit As String
+    Public dtPurchasedProd As New DataTable("Products")
 
     Public Sub subShowHidePassword(obj As PictureBox, txtInput As TextBox)
         If obj.Image.Tag = "SHOW" Then
@@ -145,6 +149,18 @@
 
             sqlExecute(sqlQuery)
 
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Public Sub getOwnerInfo(strOwnerId As String)
+        Try
+            sqlQuery = ""
+            sqlQuery += "SELECT * FROM Owners" & vbCrLf
+            sqlQuery += "WHERE OwnerID = '" + strOwnerId + "'" & vbCrLf
+            dsOwnerInfo = SQLPetMIS(sqlQuery)
 
         Catch ex As Exception
             MsgBox(ex.Message)

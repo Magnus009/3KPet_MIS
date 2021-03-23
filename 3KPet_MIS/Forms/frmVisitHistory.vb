@@ -16,12 +16,12 @@
             sqlQuery += "INNER JOIN Pets P ON TH.PetID = P.PetID" & vbCrLf
             sqlQuery += "WHERE TH.DeletedDate is null" & vbCrLf
             If txtSearch.Text <> "" Then
-                sqlQuery += "OR TH.TransactionID LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "and (TH.TransactionID LIKE '%" + txtSearch.Text + "%'" & vbCrLf
                 sqlQuery += "OR O.LastName LIKE '%" + txtSearch.Text + "%'" & vbCrLf
                 sqlQuery += "OR O.FirstName LIKE '%" + txtSearch.Text + "%'" & vbCrLf
                 sqlQuery += "OR O.ContactNo LIKE '%" + txtSearch.Text + "%'" & vbCrLf
                 sqlQuery += "OR P.Name LIKE '%" + txtSearch.Text + "%'" & vbCrLf
-                sqlQuery += "OR TH.VisitDate LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "OR TH.VisitDate LIKE '%" + txtSearch.Text + "%')" & vbCrLf
             End If
             If blnFilter Then
                 sqlQuery += "AND VisitDate" & vbCrLf
@@ -60,7 +60,7 @@
                     .Rows(.RowCount - 1).Cells(6).Value = row.Item("Address")
                 Next
             End With
-            
+            blnFilter = False
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -91,5 +91,10 @@
     Private Sub btnFilter_Click(sender As Object, e As EventArgs) Handles btnFilter.Click
         blnFilter = True
         Call getVisitLogs()
+    End Sub
+
+    Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
+        Dim frmSchedInfo As New frmScheduleInfo
+        frmSchedInfo.ShowDialog()
     End Sub
 End Class

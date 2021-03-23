@@ -35,6 +35,7 @@ Partial Class frmVisitHistory
         Me.lblDash = New System.Windows.Forms.Label()
         Me.dtpTo = New System.Windows.Forms.DateTimePicker()
         Me.btnFilter = New System.Windows.Forms.Button()
+        Me.btnAdd = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.datLogs, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -95,7 +96,7 @@ Partial Class frmVisitHistory
         '
         Me.lblDateVisit.AutoSize = True
         Me.lblDateVisit.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.lblDateVisit.Location = New System.Drawing.Point(361, 84)
+        Me.lblDateVisit.Location = New System.Drawing.Point(287, 84)
         Me.lblDateVisit.Name = "lblDateVisit"
         Me.lblDateVisit.Size = New System.Drawing.Size(69, 15)
         Me.lblDateVisit.TabIndex = 2
@@ -103,8 +104,9 @@ Partial Class frmVisitHistory
         '
         'dtpFrom
         '
-        Me.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpFrom.Location = New System.Drawing.Point(436, 80)
+        Me.dtpFrom.CustomFormat = "yyyy/MM/dd"
+        Me.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpFrom.Location = New System.Drawing.Point(362, 80)
         Me.dtpFrom.Name = "dtpFrom"
         Me.dtpFrom.Size = New System.Drawing.Size(106, 23)
         Me.dtpFrom.TabIndex = 3
@@ -112,7 +114,7 @@ Partial Class frmVisitHistory
         'lblSearch
         '
         Me.lblSearch.AutoSize = True
-        Me.lblSearch.Location = New System.Drawing.Point(21, 84)
+        Me.lblSearch.Location = New System.Drawing.Point(15, 84)
         Me.lblSearch.Name = "lblSearch"
         Me.lblSearch.Size = New System.Drawing.Size(54, 15)
         Me.lblSearch.TabIndex = 4
@@ -120,16 +122,16 @@ Partial Class frmVisitHistory
         '
         'txtSearch
         '
-        Me.txtSearch.Location = New System.Drawing.Point(81, 80)
+        Me.txtSearch.Location = New System.Drawing.Point(75, 80)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(256, 23)
+        Me.txtSearch.Size = New System.Drawing.Size(204, 23)
         Me.txtSearch.TabIndex = 5
         '
         'lblDash
         '
         Me.lblDash.AutoSize = True
         Me.lblDash.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.lblDash.Location = New System.Drawing.Point(548, 84)
+        Me.lblDash.Location = New System.Drawing.Point(474, 84)
         Me.lblDash.Name = "lblDash"
         Me.lblDash.Size = New System.Drawing.Size(11, 15)
         Me.lblDash.TabIndex = 6
@@ -137,8 +139,9 @@ Partial Class frmVisitHistory
         '
         'dtpTo
         '
-        Me.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpTo.Location = New System.Drawing.Point(565, 80)
+        Me.dtpTo.CustomFormat = "yyyy/MM/dd"
+        Me.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpTo.Location = New System.Drawing.Point(491, 80)
         Me.dtpTo.Name = "dtpTo"
         Me.dtpTo.Size = New System.Drawing.Size(106, 23)
         Me.dtpTo.TabIndex = 7
@@ -148,12 +151,24 @@ Partial Class frmVisitHistory
         Me.btnFilter.BackColor = System.Drawing.Color.Purple
         Me.btnFilter.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnFilter.ForeColor = System.Drawing.Color.White
-        Me.btnFilter.Location = New System.Drawing.Point(677, 80)
+        Me.btnFilter.Location = New System.Drawing.Point(603, 80)
         Me.btnFilter.Name = "btnFilter"
         Me.btnFilter.Size = New System.Drawing.Size(75, 23)
         Me.btnFilter.TabIndex = 8
         Me.btnFilter.Text = "FILTER"
         Me.btnFilter.UseVisualStyleBackColor = False
+        '
+        'btnAdd
+        '
+        Me.btnAdd.BackColor = System.Drawing.Color.Purple
+        Me.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAdd.ForeColor = System.Drawing.Color.White
+        Me.btnAdd.Location = New System.Drawing.Point(688, 79)
+        Me.btnAdd.Name = "btnAdd"
+        Me.btnAdd.Size = New System.Drawing.Size(75, 23)
+        Me.btnAdd.TabIndex = 9
+        Me.btnAdd.Text = "NEW"
+        Me.btnAdd.UseVisualStyleBackColor = False
         '
         'frmVisitHistory
         '
@@ -161,6 +176,7 @@ Partial Class frmVisitHistory
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.ClientSize = New System.Drawing.Size(780, 530)
+        Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.btnFilter)
         Me.Controls.Add(Me.dtpTo)
         Me.Controls.Add(Me.lblDash)
@@ -176,7 +192,7 @@ Partial Class frmVisitHistory
         Me.MinimizeBox = False
         Me.Name = "frmVisitHistory"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Visit History"
+        Me.Text = "Medical History"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         CType(Me.datLogs, System.ComponentModel.ISupportInitialize).EndInit()
@@ -194,4 +210,5 @@ Partial Class frmVisitHistory
     Friend WithEvents lblDash As System.Windows.Forms.Label
     Friend WithEvents dtpTo As System.Windows.Forms.DateTimePicker
     Friend WithEvents btnFilter As System.Windows.Forms.Button
+    Friend WithEvents btnAdd As Button
 End Class

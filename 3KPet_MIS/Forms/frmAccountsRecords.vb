@@ -3,8 +3,11 @@
     Dim dsAccounts As DataSet
 
     Private Sub frmAccountsRecords_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Call getAccounts()
+        If _gbUserType = "001" Then
+            btnAdd.Enabled = False
+        End If
 
+        Call getAccounts()
     End Sub
 
     Public Sub getAccounts()

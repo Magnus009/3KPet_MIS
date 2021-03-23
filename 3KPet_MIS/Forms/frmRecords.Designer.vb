@@ -31,6 +31,7 @@ Partial Class frmRecords
         Me.pnlContent = New System.Windows.Forms.Panel()
         Me.btnNewRecord = New System.Windows.Forms.Button()
         Me.grpPetInfo = New System.Windows.Forms.GroupBox()
+        Me.chkisDeceased = New System.Windows.Forms.CheckBox()
         Me.optFemale = New System.Windows.Forms.RadioButton()
         Me.optMale = New System.Windows.Forms.RadioButton()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -63,7 +64,6 @@ Partial Class frmRecords
         Me.colOwnerName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colPetName = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.colSelect = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.chkisDeceased = New System.Windows.Forms.CheckBox()
         Me.pnlHeader.SuspendLayout()
         Me.pnlContent.SuspendLayout()
         Me.grpPetInfo.SuspendLayout()
@@ -146,6 +146,17 @@ Partial Class frmRecords
         Me.grpPetInfo.TabStop = False
         Me.grpPetInfo.Text = "PET INFORMATION"
         '
+        'chkisDeceased
+        '
+        Me.chkisDeceased.AutoSize = True
+        Me.chkisDeceased.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.chkisDeceased.Location = New System.Drawing.Point(209, 172)
+        Me.chkisDeceased.Name = "chkisDeceased"
+        Me.chkisDeceased.Size = New System.Drawing.Size(78, 19)
+        Me.chkisDeceased.TabIndex = 11
+        Me.chkisDeceased.Text = "Deceased"
+        Me.chkisDeceased.UseVisualStyleBackColor = True
+        '
         'optFemale
         '
         Me.optFemale.AutoSize = True
@@ -205,7 +216,7 @@ Partial Class frmRecords
         Me.txtPetAge.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.txtPetAge.Size = New System.Drawing.Size(71, 21)
         Me.txtPetAge.TabIndex = 4
-        Me.txtPetAge.Tag = "*Pet  Age"
+        Me.txtPetAge.Tag = ""
         '
         'Label6
         '
@@ -307,7 +318,7 @@ Partial Class frmRecords
         Me.btnConfirm.Name = "btnConfirm"
         Me.btnConfirm.Size = New System.Drawing.Size(121, 35)
         Me.btnConfirm.TabIndex = 4
-        Me.btnConfirm.Text = "&SAVE"
+        Me.btnConfirm.Text = "&CONFIRM"
         Me.btnConfirm.UseVisualStyleBackColor = False
         '
         'txtSearch
@@ -522,17 +533,6 @@ Partial Class frmRecords
         Me.colSelect.Name = "colSelect"
         Me.colSelect.ReadOnly = True
         Me.colSelect.Width = 44
-        '
-        'chkisDeceased
-        '
-        Me.chkisDeceased.AutoSize = True
-        Me.chkisDeceased.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkisDeceased.Location = New System.Drawing.Point(209, 172)
-        Me.chkisDeceased.Name = "chkisDeceased"
-        Me.chkisDeceased.Size = New System.Drawing.Size(78, 19)
-        Me.chkisDeceased.TabIndex = 11
-        Me.chkisDeceased.Text = "Deceased"
-        Me.chkisDeceased.UseVisualStyleBackColor = True
         '
         'frmRecords
         '

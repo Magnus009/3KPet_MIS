@@ -123,6 +123,12 @@
     <Compile Include="Forms\frmNewTransaction.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmProducts.Designer.vb">
+      <DependentUpon>frmProducts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmProducts.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmRecords.Designer.vb">
       <DependentUpon>frmRecords.vb</DependentUpon>
     </Compile>
@@ -242,6 +248,9 @@
     <EmbeddedResource Include="Forms\frmNewTransaction.resx">
       <DependentUpon>frmNewTransaction.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmProducts.resx">
+      <DependentUpon>frmProducts.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmRecords.resx">
       <DependentUpon>frmRecords.vb</DependentUpon>

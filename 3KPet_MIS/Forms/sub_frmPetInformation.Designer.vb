@@ -24,6 +24,8 @@ Partial Class sub_frmPetInformation
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.btnAddRecord = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.grpTreatment = New System.Windows.Forms.GroupBox()
@@ -31,7 +33,7 @@ Partial Class sub_frmPetInformation
         Me.grpVaccinations = New System.Windows.Forms.GroupBox()
         Me.chkVaccinations = New System.Windows.Forms.CheckedListBox()
         Me.grpHistory = New System.Windows.Forms.GroupBox()
-        Me.dtpNextVisit = New System.Windows.Forms.DateTimePicker()
+        Me.txtNextVisit = New System.Windows.Forms.TextBox()
         Me.lblNextVist = New System.Windows.Forms.Label()
         Me.txtAmount = New System.Windows.Forms.TextBox()
         Me.lblAmount = New System.Windows.Forms.Label()
@@ -45,20 +47,25 @@ Partial Class sub_frmPetInformation
         Me.lblVisitDate = New System.Windows.Forms.Label()
         Me.datHistory = New System.Windows.Forms.DataGridView()
         Me.cboPet = New System.Windows.Forms.ComboBox()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
+        Me.lblPetName = New System.Windows.Forms.Label()
+        Me.lblVisitHistory = New System.Windows.Forms.Label()
+        Me.lblproduct = New System.Windows.Forms.Label()
+        Me.datProduct = New System.Windows.Forms.DataGridView()
+        Me.btnPurchase = New System.Windows.Forms.Button()
         Me.grpTreatment.SuspendLayout()
         Me.grpVaccinations.SuspendLayout()
         Me.grpHistory.SuspendLayout()
         CType(Me.datHistory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.datProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'btnAddRecord
         '
         Me.btnAddRecord.BackColor = System.Drawing.Color.Purple
+        Me.btnAddRecord.Enabled = False
         Me.btnAddRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnAddRecord.ForeColor = System.Drawing.Color.White
-        Me.btnAddRecord.Location = New System.Drawing.Point(518, 376)
+        Me.btnAddRecord.Location = New System.Drawing.Point(518, 386)
         Me.btnAddRecord.Name = "btnAddRecord"
         Me.btnAddRecord.Size = New System.Drawing.Size(97, 36)
         Me.btnAddRecord.TabIndex = 5
@@ -70,7 +77,7 @@ Partial Class sub_frmPetInformation
         Me.btnSave.BackColor = System.Drawing.Color.Purple
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(621, 376)
+        Me.btnSave.Location = New System.Drawing.Point(621, 386)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(97, 36)
         Me.btnSave.TabIndex = 6
@@ -81,7 +88,7 @@ Partial Class sub_frmPetInformation
         '
         Me.grpTreatment.Controls.Add(Me.chkTreatments)
         Me.grpTreatment.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grpTreatment.Location = New System.Drawing.Point(489, 192)
+        Me.grpTreatment.Location = New System.Drawing.Point(489, 206)
         Me.grpTreatment.Name = "grpTreatment"
         Me.grpTreatment.Size = New System.Drawing.Size(229, 176)
         Me.grpTreatment.TabIndex = 4
@@ -105,7 +112,7 @@ Partial Class sub_frmPetInformation
         '
         Me.grpVaccinations.Controls.Add(Me.chkVaccinations)
         Me.grpVaccinations.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grpVaccinations.Location = New System.Drawing.Point(249, 189)
+        Me.grpVaccinations.Location = New System.Drawing.Point(249, 206)
         Me.grpVaccinations.Name = "grpVaccinations"
         Me.grpVaccinations.Size = New System.Drawing.Size(234, 179)
         Me.grpVaccinations.TabIndex = 3
@@ -119,7 +126,6 @@ Partial Class sub_frmPetInformation
         Me.chkVaccinations.CheckOnClick = True
         Me.chkVaccinations.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.chkVaccinations.FormattingEnabled = True
-        Me.chkVaccinations.Items.AddRange(New Object() {"P/D", "2 in 1", "9 in 1", "K/C", "R", "M"})
         Me.chkVaccinations.Location = New System.Drawing.Point(24, 32)
         Me.chkVaccinations.Name = "chkVaccinations"
         Me.chkVaccinations.Size = New System.Drawing.Size(186, 144)
@@ -127,7 +133,7 @@ Partial Class sub_frmPetInformation
         '
         'grpHistory
         '
-        Me.grpHistory.Controls.Add(Me.dtpNextVisit)
+        Me.grpHistory.Controls.Add(Me.txtNextVisit)
         Me.grpHistory.Controls.Add(Me.lblNextVist)
         Me.grpHistory.Controls.Add(Me.txtAmount)
         Me.grpHistory.Controls.Add(Me.lblAmount)
@@ -142,25 +148,25 @@ Partial Class sub_frmPetInformation
         Me.grpHistory.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpHistory.Location = New System.Drawing.Point(249, 16)
         Me.grpHistory.Name = "grpHistory"
-        Me.grpHistory.Size = New System.Drawing.Size(469, 170)
+        Me.grpHistory.Size = New System.Drawing.Size(469, 184)
         Me.grpHistory.TabIndex = 2
         Me.grpHistory.TabStop = False
         Me.grpHistory.Text = "VISIT INFORMATION"
         '
-        'dtpNextVisit
+        'txtNextVisit
         '
-        Me.dtpNextVisit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpNextVisit.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.dtpNextVisit.Location = New System.Drawing.Point(313, 113)
-        Me.dtpNextVisit.Name = "dtpNextVisit"
-        Me.dtpNextVisit.Size = New System.Drawing.Size(135, 23)
-        Me.dtpNextVisit.TabIndex = 6
+        Me.txtNextVisit.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtNextVisit.Location = New System.Drawing.Point(318, 147)
+        Me.txtNextVisit.Name = "txtNextVisit"
+        Me.txtNextVisit.ReadOnly = True
+        Me.txtNextVisit.Size = New System.Drawing.Size(130, 23)
+        Me.txtNextVisit.TabIndex = 15
         '
         'lblNextVist
         '
         Me.lblNextVist.AutoSize = True
         Me.lblNextVist.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblNextVist.Location = New System.Drawing.Point(247, 117)
+        Me.lblNextVist.Location = New System.Drawing.Point(247, 150)
         Me.lblNextVist.Name = "lblNextVist"
         Me.lblNextVist.Size = New System.Drawing.Size(65, 15)
         Me.lblNextVist.TabIndex = 14
@@ -169,7 +175,7 @@ Partial Class sub_frmPetInformation
         'txtAmount
         '
         Me.txtAmount.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtAmount.Location = New System.Drawing.Point(75, 113)
+        Me.txtAmount.Location = New System.Drawing.Point(75, 146)
         Me.txtAmount.Name = "txtAmount"
         Me.txtAmount.Size = New System.Drawing.Size(160, 23)
         Me.txtAmount.TabIndex = 5
@@ -178,7 +184,7 @@ Partial Class sub_frmPetInformation
         '
         Me.lblAmount.AutoSize = True
         Me.lblAmount.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAmount.Location = New System.Drawing.Point(7, 116)
+        Me.lblAmount.Location = New System.Drawing.Point(7, 149)
         Me.lblAmount.Name = "lblAmount"
         Me.lblAmount.Size = New System.Drawing.Size(62, 15)
         Me.lblAmount.TabIndex = 12
@@ -188,8 +194,9 @@ Partial Class sub_frmPetInformation
         '
         Me.txtDX.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtDX.Location = New System.Drawing.Point(75, 84)
+        Me.txtDX.Multiline = True
         Me.txtDX.Name = "txtDX"
-        Me.txtDX.Size = New System.Drawing.Size(373, 23)
+        Me.txtDX.Size = New System.Drawing.Size(373, 56)
         Me.txtDX.TabIndex = 4
         '
         'lblDX
@@ -240,8 +247,9 @@ Partial Class sub_frmPetInformation
         '
         'dtpVisitDate
         '
+        Me.dtpVisitDate.CustomFormat = "yyyy/MM/dd"
         Me.dtpVisitDate.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.dtpVisitDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.dtpVisitDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom
         Me.dtpVisitDate.Location = New System.Drawing.Point(75, 27)
         Me.dtpVisitDate.Name = "dtpVisitDate"
         Me.dtpVisitDate.Size = New System.Drawing.Size(106, 23)
@@ -281,12 +289,12 @@ Partial Class sub_frmPetInformation
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.datHistory.DefaultCellStyle = DataGridViewCellStyle2
-        Me.datHistory.Location = New System.Drawing.Point(3, 61)
+        Me.datHistory.Location = New System.Drawing.Point(3, 51)
         Me.datHistory.Name = "datHistory"
         Me.datHistory.ReadOnly = True
         Me.datHistory.RowHeadersVisible = False
         Me.datHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datHistory.Size = New System.Drawing.Size(240, 351)
+        Me.datHistory.Size = New System.Drawing.Size(240, 182)
         Me.datHistory.TabIndex = 1
         '
         'cboPet
@@ -297,25 +305,79 @@ Partial Class sub_frmPetInformation
         Me.cboPet.Size = New System.Drawing.Size(121, 21)
         Me.cboPet.TabIndex = 27
         '
-        'Label1
+        'lblPetName
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(6, 9)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(67, 15)
-        Me.Label1.TabIndex = 28
-        Me.Label1.Text = "PET NAME :"
+        Me.lblPetName.AutoSize = True
+        Me.lblPetName.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPetName.Location = New System.Drawing.Point(6, 9)
+        Me.lblPetName.Name = "lblPetName"
+        Me.lblPetName.Size = New System.Drawing.Size(67, 15)
+        Me.lblPetName.TabIndex = 28
+        Me.lblPetName.Text = "PET NAME :"
         '
-        'Label2
+        'lblVisitHistory
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(6, 40)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(95, 18)
-        Me.Label2.TabIndex = 29
-        Me.Label2.Text = "VISIT HISTORY"
+        Me.lblVisitHistory.AutoSize = True
+        Me.lblVisitHistory.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblVisitHistory.Location = New System.Drawing.Point(6, 30)
+        Me.lblVisitHistory.Name = "lblVisitHistory"
+        Me.lblVisitHistory.Size = New System.Drawing.Size(95, 18)
+        Me.lblVisitHistory.TabIndex = 29
+        Me.lblVisitHistory.Text = "VISIT HISTORY"
+        '
+        'lblproduct
+        '
+        Me.lblproduct.AutoSize = True
+        Me.lblproduct.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblproduct.Location = New System.Drawing.Point(6, 238)
+        Me.lblproduct.Name = "lblproduct"
+        Me.lblproduct.Size = New System.Drawing.Size(146, 18)
+        Me.lblproduct.TabIndex = 30
+        Me.lblproduct.Text = "PURCHASED PRODUCT"
+        '
+        'datProduct
+        '
+        Me.datProduct.AllowUserToAddRows = False
+        Me.datProduct.AllowUserToDeleteRows = False
+        Me.datProduct.AllowUserToResizeColumns = False
+        Me.datProduct.AllowUserToResizeRows = False
+        Me.datProduct.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.datProduct.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        Me.datProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.datProduct.DefaultCellStyle = DataGridViewCellStyle4
+        Me.datProduct.Location = New System.Drawing.Point(3, 259)
+        Me.datProduct.Name = "datProduct"
+        Me.datProduct.RowHeadersVisible = False
+        Me.datProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datProduct.Size = New System.Drawing.Size(240, 126)
+        Me.datProduct.TabIndex = 31
+        '
+        'btnPurchase
+        '
+        Me.btnPurchase.BackColor = System.Drawing.Color.Purple
+        Me.btnPurchase.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnPurchase.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnPurchase.ForeColor = System.Drawing.Color.White
+        Me.btnPurchase.Location = New System.Drawing.Point(145, 389)
+        Me.btnPurchase.Name = "btnPurchase"
+        Me.btnPurchase.Size = New System.Drawing.Size(97, 36)
+        Me.btnPurchase.TabIndex = 32
+        Me.btnPurchase.Text = "PURCHASE"
+        Me.btnPurchase.UseVisualStyleBackColor = False
         '
         'sub_frmPetInformation
         '
@@ -324,9 +386,12 @@ Partial Class sub_frmPetInformation
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.ClientSize = New System.Drawing.Size(721, 430)
         Me.ControlBox = False
-        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.btnPurchase)
+        Me.Controls.Add(Me.datProduct)
+        Me.Controls.Add(Me.lblproduct)
+        Me.Controls.Add(Me.lblVisitHistory)
         Me.Controls.Add(Me.cboPet)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblPetName)
         Me.Controls.Add(Me.btnAddRecord)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.grpTreatment)
@@ -341,6 +406,7 @@ Partial Class sub_frmPetInformation
         Me.grpHistory.ResumeLayout(False)
         Me.grpHistory.PerformLayout()
         CType(Me.datHistory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.datProduct, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -352,7 +418,6 @@ Partial Class sub_frmPetInformation
     Friend WithEvents grpVaccinations As System.Windows.Forms.GroupBox
     Friend WithEvents chkVaccinations As System.Windows.Forms.CheckedListBox
     Friend WithEvents grpHistory As System.Windows.Forms.GroupBox
-    Friend WithEvents dtpNextVisit As System.Windows.Forms.DateTimePicker
     Friend WithEvents lblNextVist As System.Windows.Forms.Label
     Friend WithEvents txtAmount As System.Windows.Forms.TextBox
     Friend WithEvents lblAmount As System.Windows.Forms.Label
@@ -366,6 +431,10 @@ Partial Class sub_frmPetInformation
     Friend WithEvents lblVisitDate As System.Windows.Forms.Label
     Friend WithEvents datHistory As System.Windows.Forms.DataGridView
     Friend WithEvents cboPet As System.Windows.Forms.ComboBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents lblPetName As System.Windows.Forms.Label
+    Friend WithEvents lblVisitHistory As System.Windows.Forms.Label
+    Friend WithEvents txtNextVisit As TextBox
+    Friend WithEvents lblproduct As Label
+    Friend WithEvents datProduct As DataGridView
+    Friend WithEvents btnPurchase As Button
 End Class
