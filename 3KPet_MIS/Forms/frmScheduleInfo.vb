@@ -14,13 +14,27 @@
         sqlQuery += "WHERE OwnerID = '" + txtOwnerID.Text + "'"
         dtHistory = SQLPetMIS(sqlQuery).Tables(0)
 
-        Call subform.loadPetsInformation(txtOwnerID.Text)
-        Call subform.loadTransactionDetails(dtHistory.Rows(0)(0))
+        Call getsubForm()
+        Call subform.loadPetsInformation(txtOwnerID.Text) '/Gets Pet Info
+        If dtHistory.Rows.Count <> 0 Then
+            Call subform.loadTransactionDetails(dtHistory.Rows(0)(0))
+        End If
+
 
 
     End Sub
 
     Private Sub frmScheduleInfo_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If txtCustomer.Text <> "" Then
+            Call getsubForm()
+        End If
+       
+    End Sub
+
+    Private Sub txtCustomer_TextChanged(sender As Object, e As EventArgs) Handles txtCustomer.TextChanged
+        subform.loadPetsInformation(txtOwnerID.Text)
+    End Sub
+    Public Sub getsubForm()
         subform.FormBorderStyle = Windows.Forms.FormBorderStyle.None
         subform.TopLevel = False
         subform.ShowInTaskbar = False
@@ -31,7 +45,4 @@
         pnlPetInfo.Controls.Add(subform)
     End Sub
 
-    Private Sub txtCustomer_TextChanged(sender As Object, e As EventArgs) Handles txtCustomer.TextChanged
-        subform.loadPetsInformation(txtOwnerID.Text)
-    End Sub
 End Class

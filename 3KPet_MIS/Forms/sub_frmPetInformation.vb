@@ -36,8 +36,7 @@
             dtTransHeader = SQLPetMIS(sqlQuery).Tables(0)
 
             sqlQuery = ""
-            sqlQuery += "select TD.TransactionID, TD.Treatment, TRDescription, TD.Vaccine, VXDesvription from TransactionDetails TD" & vbCrLf
-            sqlQuery += "inner join Vaccinations V on TD.Vaccine = V.VXID" & vbCrLf
+            sqlQuery += "select TD.TransactionID, TD.Treatment, TRDescription from TransactionDetails TD" & vbCrLf
             sqlQuery += "inner join Treatments T on TD.Treatment = T.TRID" & vbCrLf
             sqlQuery += "WHERE TransactionID = '" + strTransactionID + "'" + vbCrLf
             dtTransDetails = SQLPetMIS(sqlQuery).Tables(0)
@@ -48,6 +47,8 @@
             sqlQuery += "WHERE PP.TransactionID = '" + strTransactionID + "'" & vbCrLf
             dtPurchasedProd = SQLPetMIS(sqlQuery).Tables(0)
 
+            datProduct.DataSource = dtPurchasedProd
+            Call setGridProperties()
 
             If dtTransHeader.Rows.Count <> 0 Then
                 dtpVisitDate.Value = dtTransHeader.Rows(0)("VisitDate")
@@ -60,7 +61,7 @@
 
                 For Each row As DataRow In dtTransDetails.Rows
                     chkTreatments.SetItemChecked(row.Item("Treatment"), True)
-                    chkVaccinations.SetItemChecked(row.Item("Vaccine"), True)
+                    'chkVaccinations.SetItemChecked(row.Item("Vaccine"), True)
 
                 Next
                 'History
@@ -108,27 +109,20 @@
 
     Private Sub txtNextVisit_Click(sender As Object, e As EventArgs) Handles txtNextVisit.Click
         With frmScheduleReservation
-            .txtCustomer.Text = frmScheduleInfo.txtCustomer.Text
-            .txtContact.Text = frmScheduleInfo.txtContactNo.Text
-            .txtAddress.Text = frmScheduleInfo.txtAddress.Text
+            .txtCustomer.Text = dsOwnerInfo.Tables(0).Rows(0)("LastName") + ", " + dsOwnerInfo.Tables(0).Rows(0)("FirstName")
+            .txtContact.Text = dsOwnerInfo.Tables(0).Rows(0)("Address")
+            .txtAddress.Text = dsOwnerInfo.Tables(0).Rows(0)("ContactNo")
         End With
         frmScheduleReservation.ShowDialog()
         txtNextVisit.Text = strNextvisit
     End Sub
     Private Sub btnPurchase_Click(sender As Object, e As EventArgs) Handles btnPurchase.Click
         frmProducts.ShowDialog()
-        datProduct.DataSource = dtPurchasedProd
-        With datProduct
-            .Columns("colID").Visible = False
-            .Columns("colName").Width = .Width * 0.4
-            .Columns("colPrice").Width = .Width * 0.3
-            .Columns("colQTY").Width = .Width * 0.28
-        End With
+        Call setGridProperties()
     End Sub
 
     Private Sub setGridColumns()
         Try
-
             With dtPurchasedProd
                 .Columns.Clear()
                 .Columns.Add("colID")
@@ -142,24 +136,42 @@
         End Try
     End Sub
 
-    Private Sub loadVaccine()
-        Try
-            Dim dtVX As New DataTable
-            sqlQuery = "SELECT VXID, VXDesvription FROM Vaccinations WHERE DeletedDate IS NULL"
-            dtVX = SQLPetMIS(sqlQuery).Tables(0)
-
-            chkVaccinations.Items.Clear()
-            chkVaccinations.DataSource = dtVX
-            chkVaccinations.DisplayMember = "VXDesvription"
-            chkVaccinations.ValueMember = "VXID"
-        Catch ex As Exception
-            MsgBox(ex.Message, MsgBoxStyle.Critical)
-        End Try
+    Private Sub setGridProperties()
+        datProduct.DataSource = dtPurchasedProd
+        With datProduct
+            .Columns("ProductID").Visible = False
+            .Columns("Description").Width = .Width * 0.4
+            .Columns("QTY").Width = .Width * 0.3
+            .Columns("TotatlPrice").Width = .Width * 0.28
+        End With
     End Sub
+
+    'Private Sub loadVaccine()
+    '    Try
+    '        Dim dtVX As New DataTable
+    '        sqlQuery = "SELECT VXID, VXDesvription FROM Vaccinations WHERE DeletedDate IS NULL"
+    '        dtVX = SQLPetMIS(sqlQuery).Tables(0)
+
+    '        chkVaccinations.Items.Clear()
+    '        chkVaccinations.DataSource = dtVX
+    '        chkVaccinations.DisplayMember = "VXDesvription"
+    '        chkVaccinations.ValueMember = "VXID"
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message, MsgBoxStyle.Critical)
+    '    End Try
+    'End Sub
 
     Private Sub sub_frmPetInformation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call setGridColumns()
-        loadVaccine()
+        If (fn_CheckRequire(Me) = False) Then
+            btnAddRecord.Enabled = True
+            btnSave.Enabled = False
+        Else
+            btnSave.Enabled = True
+            btnAddRecord.Enabled = False
+        End If
+        'loadVaccine()
+
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -196,7 +208,7 @@
                 sqlQuery += "VALUES " & vbCrLf
                 sqlQuery += "(" & vbCrLf
                 sqlQuery += "'" + strTransID + "'," & vbCrLf
-                sqlQuery += "'" + frmScheduleInfo.txtOwnerID.Text + "'," & vbCrLf
+                sqlQuery += "'" + dsOwnerInfo.Tables(0).Rows(0)("OwnerID") + "'," & vbCrLf
                 sqlQuery += "'" + cboPet.SelectedValue + "', " & vbCrLf
                 sqlQuery += "'" + Format(dtpVisitDate.Value, "yyyy/MM/dd") + "', " & vbCrLf
                 sqlQuery += "'" + txtWT.Text + "', " & vbCrLf
@@ -213,31 +225,31 @@
                 sqlExecute(sqlQuery)
 
                 '//Insert into transaction details
-                For Each chkIndex In chkVaccinations.CheckedIndices
-                    sqlQuery = ""
-                    sqlQuery += "INSERT INTO dbo.TransactionDetails " & vbCrLf
-                    sqlQuery += "( " & vbCrLf
-                    sqlQuery += "TransactionID," & vbCrLf
-                    sqlQuery += "Treatment," & vbCrLf
-                    sqlQuery += "Vaccine," & vbCrLf
-                    sqlQuery += "CreatedDate, " & vbCrLf
-                    sqlQuery += "UpdatedDate, " & vbCrLf
-                    sqlQuery += "DeletedDate," & vbCrLf
-                    sqlQuery += "UpdatedBy " & vbCrLf
-                    sqlQuery += ") " & vbCrLf
-                    sqlQuery += "VALUES" & vbCrLf
-                    sqlQuery += "( " & vbCrLf
-                    sqlQuery += "'" + strTransID + "'," & vbCrLf
-                    sqlQuery += "null," & vbCrLf
-                    sqlQuery += (chkIndex + 1).ToString + "," & vbCrLf
-                    sqlQuery += "getdate(), " & vbCrLf
-                    sqlQuery += "getdate(), " & vbCrLf
-                    sqlQuery += "null," & vbCrLf
-                    sqlQuery += "'" + _gbAccountID + "' " & vbCrLf
-                    sqlQuery += ") "
-                    sqlExecute(sqlQuery)
+                'For Each chkIndex In chkVaccinations.CheckedIndices
+                '    sqlQuery = ""
+                '    sqlQuery += "INSERT INTO dbo.TransactionDetails " & vbCrLf
+                '    sqlQuery += "( " & vbCrLf
+                '    sqlQuery += "TransactionID," & vbCrLf
+                '    sqlQuery += "Treatment," & vbCrLf
+                '    sqlQuery += "Vaccine," & vbCrLf
+                '    sqlQuery += "CreatedDate, " & vbCrLf
+                '    sqlQuery += "UpdatedDate, " & vbCrLf
+                '    sqlQuery += "DeletedDate," & vbCrLf
+                '    sqlQuery += "UpdatedBy " & vbCrLf
+                '    sqlQuery += ") " & vbCrLf
+                '    sqlQuery += "VALUES" & vbCrLf
+                '    sqlQuery += "( " & vbCrLf
+                '    sqlQuery += "'" + strTransID + "'," & vbCrLf
+                '    sqlQuery += "null," & vbCrLf
+                '    sqlQuery += (chkIndex + 1).ToString + "," & vbCrLf
+                '    sqlQuery += "getdate(), " & vbCrLf
+                '    sqlQuery += "getdate(), " & vbCrLf
+                '    sqlQuery += "null," & vbCrLf
+                '    sqlQuery += "'" + _gbAccountID + "' " & vbCrLf
+                '    sqlQuery += ") "
+                '    sqlExecute(sqlQuery)
 
-                Next
+                'Next
                 For Each chkIndex In chkTreatments.CheckedIndices
                     sqlQuery = ""
                     sqlQuery += "INSERT INTO dbo.TransactionDetails " & vbCrLf
@@ -299,7 +311,8 @@
                     sqlExecute(sqlQuery)
                 Next
                 MsgBox("Record saved successfully!", vbInformation)
-                Me.Hide()
+                Call loadTransactionDetails(strTransID)
+                Call clearFields(Me)
             End If
 
         Catch ex As Exception
@@ -309,9 +322,16 @@
 
     Private Sub btnAddRecord_Click(sender As Object, e As EventArgs) Handles btnAddRecord.Click
         Try
-            Call clearFields(Me)
+            Call clearFields(grpHistory)
+            Call clearFields(grpTreatment)
+            datProduct.Columns.Clear()
+            btnSave.Enabled = True
+            btnAddRecord.Enabled = False
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
     End Sub
+
+  
+  
 End Class

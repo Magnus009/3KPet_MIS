@@ -3,7 +3,7 @@
     Dim dsAccounts As DataSet
 
     Private Sub frmAccountsRecords_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If _gbUserType = "001" Then
+        If _gbUserType <> "1" Then
             btnAdd.Enabled = False
         End If
 
@@ -18,6 +18,7 @@
 
             sqlQuery = ""
             sqlQuery += "SELECT * FROM Accounts A" & vbCrLf
+            sqlQuery += "INNER JOIN UserLevel UL ON A.Userlevel = UL.LevelID" & vbCrLf
             sqlQuery += "INNER JOIN Users U ON A.AccountID = U.UserID" & vbCrLf
             If txtSearch.Text <> "" Then
                 sqlQuery += "WHERE AccountID LIKE '%" + txtSearch.Text + "%'" & vbCrLf
@@ -46,7 +47,7 @@
                     .Rows.Add()
                     .Rows(.RowCount - 1).Cells(0).Value = row.Item("AccountID")
                     .Rows(.RowCount - 1).Cells(1).Value = row.Item("UserName")
-                    .Rows(.RowCount - 1).Cells(2).Value = row.Item("UserLevel")
+                    .Rows(.RowCount - 1).Cells(2).Value = row.Item("Description")
                     .Rows(.RowCount - 1).Cells(3).Value = IIf(row.Item("isDeactivate") = 0, "Active", "Deactivated")
                 Next
 
@@ -64,7 +65,14 @@
     End Sub
 
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
-        frmCreateAccount.ShowDialog()
+        clearFields(frmCreateAccount)
+        With frmCreateAccount
+            .blnIsUpdate = False
+            .btnDeactivate.Enabled = False
+            .ShowDialog()
+        End With
+
+
 
     End Sub
 
@@ -78,6 +86,7 @@
             If e.ColumnIndex = 4 Then
                 drResult = dsAccounts.Tables(0).Select(strFilter)(0)
                 With frmCreateAccount
+                    .blnIsUpdate = True
                     .txtUserID.Text = drResult.Item("AccountID")
                     .txtLName.Text = drResult.Item("LastName")
                     .txtFName.Text = drResult.Item("FirstName")
@@ -89,7 +98,7 @@
                     .txtAnswer_1.Text = drResult.Item("A1")
                     .cboQuestion_2.SelectedValue = drResult.Item("Q2")
                     .txtAnswer_2.Text = drResult.Item("A2")
-
+                    .btnDeactivate.Enabled = True
                     Dim blnDeactivate As Boolean = drResult.Item("isDeactivate")
                     .lblDeact.Visible = blnDeactivate
                     If blnDeactivate = True Then
@@ -97,8 +106,6 @@
                     Else
                         .btnDeactivate.Text = "DEACTIVATE"
                     End If
-
-
 
                     .ShowDialog()
 

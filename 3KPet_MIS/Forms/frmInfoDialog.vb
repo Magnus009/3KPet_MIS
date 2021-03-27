@@ -22,7 +22,7 @@
                 .txtPetName.Text = dtData.Rows(0)("Name")
                 .txtPetBreed.Text = dtData.Rows(0)("Breed")
                 .txtPetColor.Text = dtData.Rows(0)("PetColor")
-                .txtPetAge.Text = dtData.Rows(0)("Age")
+                .txtPetAge.Text = IIf(IsDBNull(dtData.Rows(0)("Age")), "", dtData.Rows(0)("Age"))
                 .chkisDeceased.Checked = dtData.Rows(0)("isDeceased")
 
 

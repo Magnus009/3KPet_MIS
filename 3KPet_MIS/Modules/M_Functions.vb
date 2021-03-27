@@ -66,10 +66,12 @@
                 Case GetType(CheckedListBox)
                     Dim chkListBox As New CheckedListBox
                     chkListBox = ctrl
-                    For Each item In chkListBox.Items
-                        Dim chkBox As New CheckBox
-                        chkBox.Checked = False
+                    For i As Integer = 1 To chkListBox.Items.Count - 1
+                        chkListBox.SetItemChecked(i, False)
                     Next
+
+
+
                 Case Else
                     'No Event
             End Select
@@ -166,4 +168,21 @@
             MsgBox(ex.Message)
         End Try
     End Sub
+
+    Public Function openFileDialog() As String
+        Dim fileDialog As New OpenFileDialog
+        Dim strFileName As String = ""
+
+        With fileDialog
+            .Title = "Select Supporting Documents"
+            .Multiselect = False
+            .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.Desktop
+            .Filter = "Picture Files (*)|*.jpg;*.jpeg;*.jpe;*.png"
+
+            If .ShowDialog = DialogResult.OK Then
+                strFileName = .FileName
+            End If
+        End With
+        Return strFileName
+    End Function
 End Module

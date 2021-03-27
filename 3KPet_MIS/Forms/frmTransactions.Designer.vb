@@ -160,7 +160,6 @@ Partial Class frmTransactions
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.datTransactions.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.datTransactions.ColumnHeadersHeight = 30
-        Me.datTransactions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.datTransactions.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colView})
         Me.datTransactions.Location = New System.Drawing.Point(12, 36)
         Me.datTransactions.MultiSelect = False

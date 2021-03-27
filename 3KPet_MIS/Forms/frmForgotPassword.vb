@@ -176,6 +176,7 @@
                         _gbAccountID = strID
                         Call saveLogs(2, "Account " + _gbAccountID + " changed password")
                         MsgBox("Your password has been changed succesfully", vbInformation + vbOKOnly)
+                        clearFields(Me)
                         frmUserLogin.Show()
                         Me.Hide()
                     End If

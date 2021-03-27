@@ -251,4 +251,7 @@
     End Sub
 
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+        MsgBox(My.Application.Info.DirectoryPath)
+    End Sub
 End Class

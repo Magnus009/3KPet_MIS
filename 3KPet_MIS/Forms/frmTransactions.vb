@@ -12,7 +12,12 @@
             Dim dsDetails As New DataSet
             Dim dsTreatments As New DataSet
             Dim dsVaccines As New DataSet
+            Dim dsPurchasedProd As New DataSet
+            Dim dtVaccine As New DataTable
+            Dim dtProducts As New DataTable
+            Dim strOthers As String
 
+            '/Get Transaction Header
             sqlQuery = ""
             sqlQuery += "SELECT TransactionID, LastName + ', ' + FirstNAme as OwnerName, Amount, Others, VisitDate FROM TransactionHeader TH" & vbCrLf
             sqlQuery += "INNER JOIN Owners O ON O.OwnerID = TH.OwnerID" & vbCrLf
@@ -32,14 +37,18 @@
             sqlQuery += "ORDER BY VisitDate DESC" & vbCrLf
             dsHeader = SQLPetMIS(sqlQuery)
 
+            
+
+
+            '/Get treatment
             sqlQuery = ""
             sqlQuery += "SELECT TRID, TRDescription FROM Treatments " & vbCrLf
             sqlQuery += "WHERE DeletedDate IS NULL" & vbCrLf
             dsTreatments = SQLPetMIS(sqlQuery)
 
             sqlQuery = ""
-            sqlQuery += "SELECT VXID, VXDesvription FROM Vaccinations " & vbCrLf
-            sqlQuery += "WHERE DeletedDate IS NULL" & vbCrLf
+            sqlQuery += "SELECT ProductID,Description FROM Products" & vbCrLf
+            sqlQuery += "WHERE TypeID = 2 AND DeletedDate IS null" & vbCrLf
             dsVaccines = SQLPetMIS(sqlQuery)
 
             With datTransactions
@@ -83,25 +92,46 @@
                     .Rows(.RowCount - 1).Cells("colTransactionID").Value = row.Item("TransactionID")
                     .Rows(.RowCount - 1).Cells("colOwnerName").Value = row.Item("OwnerName")
                     .Rows(.RowCount - 1).Cells("colVisitDate").Value = Format(row.Item("VisitDate"), "Short Date")
-                    .Rows(.RowCount - 1).Cells("colOthers").Value = row.Item("Others")
+
                     .Rows(.RowCount - 1).Cells("colAmount").Value = row.Item("Amount")
 
+                    '/Transaction Details
                     sqlQuery = ""
-                    sqlQuery += "SELECT Distinct TransactionID, Treatment,TRDescription,Vaccine,VXDesvription FROM TransactionDetails TD" & vbCrLf
+                    sqlQuery += "SELECT Distinct TransactionID, Treatment,TRDescription FROM TransactionDetails TD" & vbCrLf
                     sqlQuery += "INNER JOIN Treatments T ON TD.Treatment = T.TRID" & vbCrLf
-                    sqlQuery += "INNER JOIN Vaccinations V ON TD.Vaccine = V.VXID " & vbCrLf
                     sqlQuery += "WHERE TransactionID = '" + row.Item("TransactionID") + "'"
                     If txtSearch.Text <> "" Then
-                        sqlQuery += "AND TRDescription LIKE '%" + txtSearch.Text + "%'" & vbCrLf
-                        sqlQuery += "OR VXDesvription LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                        sqlQuery += "AND (TRDescription LIKE '%" + txtSearch.Text + "%')" & vbCrLf
                     End If
                     dsDetails = SQLPetMIS(sqlQuery)
 
+                    'Purchased Product
+                    sqlQuery = ""
+                    sqlQuery += "SELECT PP.ProductID,Description, TypeID FROM PurschasedProducts PP" & vbCrLf
+                    sqlQuery += "INNER JOIN Products P ON PP.ProductID = P.ProductID" & vbCrLf
+                    sqlQuery += "WHERE pp.DeletedDate IS NULL" & vbCrLf
+                    sqlQuery += "and TransactionID = '" + row.Item("TransactionID") + "'"
+                    If txtSearch.Text <> "" Then
+                        sqlQuery += "AND (TRDescription LIKE '%" + txtSearch.Text + "%')" & vbCrLf
+                    End If
+                    dsPurchasedProd = SQLPetMIS(sqlQuery)
 
-                    For Each row1 As DataRow In dsDetails.Tables(0).Rows
+                    If dsPurchasedProd.Tables(0).Select("TypeID <> 2").Count <> 0 Then
+                        dtProducts = dsPurchasedProd.Tables(0).Select("TypeID <> 2").CopyToDataTable
+                        strOthers = ""
+                        For Each row3 As DataRow In dtProducts.Rows
+                            strOthers += row3.Item("Description") + ", "
+                        Next
+
+                        .Rows(.RowCount - 1).Cells("colOthers").Value = strOthers.Remove(strOthers.Count() - 1, 1)
+                    End If
+
+                    dtVaccine = dsPurchasedProd.Tables(0).Select("TypeID = 2").CopyToDataTable
+
+                    For Each row1 As DataRow In dtVaccine.Rows
                         For Each row2 As DataRow In dsVaccines.Tables(0).Rows
-                            If row2.Item("VXDesvription") = row1.Item("VXDesvription") Then
-                                .Rows(.RowCount - 1).Cells(row1.Item("VXDesvription")).Value = True
+                            If row2.Item("Description") = row1.Item("Description") Then
+                                .Rows(.RowCount - 1).Cells(row1.Item("Description")).Value = True
                             End If
                         Next
                     Next
@@ -113,6 +143,7 @@
                         Next
                     Next
 
+                    
                 Next
             End With
 

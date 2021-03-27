@@ -41,7 +41,6 @@ Partial Class frmDashboard
         Me.AUDITTRAILToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ACCOUNTSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TREATMENTSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.VACCINESToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmReports = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuAccount = New System.Windows.Forms.ToolStripMenuItem()
         Me.LOGOUTToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -143,34 +142,28 @@ Partial Class frmDashboard
         '
         'tsmSettings
         '
-        Me.tsmSettings.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AUDITTRAILToolStripMenuItem, Me.ACCOUNTSToolStripMenuItem, Me.TREATMENTSToolStripMenuItem, Me.VACCINESToolStripMenuItem})
+        Me.tsmSettings.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AUDITTRAILToolStripMenuItem, Me.ACCOUNTSToolStripMenuItem, Me.TREATMENTSToolStripMenuItem})
         Me.tsmSettings.Name = "tsmSettings"
-        Me.tsmSettings.Size = New System.Drawing.Size(101, 20)
-        Me.tsmSettings.Text = "MAINTENANCE"
+        Me.tsmSettings.Size = New System.Drawing.Size(69, 20)
+        Me.tsmSettings.Text = "SETTINGS"
         '
         'AUDITTRAILToolStripMenuItem
         '
         Me.AUDITTRAILToolStripMenuItem.Name = "AUDITTRAILToolStripMenuItem"
-        Me.AUDITTRAILToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
+        Me.AUDITTRAILToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AUDITTRAILToolStripMenuItem.Text = "AUDIT TRAIL"
         '
         'ACCOUNTSToolStripMenuItem
         '
         Me.ACCOUNTSToolStripMenuItem.Name = "ACCOUNTSToolStripMenuItem"
-        Me.ACCOUNTSToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
+        Me.ACCOUNTSToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ACCOUNTSToolStripMenuItem.Text = "ACCOUNTS"
         '
         'TREATMENTSToolStripMenuItem
         '
         Me.TREATMENTSToolStripMenuItem.Name = "TREATMENTSToolStripMenuItem"
-        Me.TREATMENTSToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
+        Me.TREATMENTSToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.TREATMENTSToolStripMenuItem.Text = "TREATMENTS"
-        '
-        'VACCINESToolStripMenuItem
-        '
-        Me.VACCINESToolStripMenuItem.Name = "VACCINESToolStripMenuItem"
-        Me.VACCINESToolStripMenuItem.Size = New System.Drawing.Size(144, 22)
-        Me.VACCINESToolStripMenuItem.Text = "VACCINES"
         '
         'tsmReports
         '
@@ -271,7 +264,6 @@ Partial Class frmDashboard
     Friend WithEvents AUDITTRAILToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ACCOUNTSToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TREATMENTSToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents VACCINESToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents datSchedules As System.Windows.Forms.DataGridView
     Friend WithEvents mnuAccount As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LOGOUTToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem

@@ -15,6 +15,7 @@
             Dim strScheduleID As String
             Dim blnSQLRun As Boolean
 
+
             If blnisUpdate Then
                 If MsgBox("Are you sure you want to update?", vbYesNo + vbQuestion) Then
                     sqlQuery = ""
@@ -35,16 +36,22 @@
                         frmSchedules.getSchedules()
                         blnisUpdate = False
                         Me.Hide()
+                        Call clearFields(Me)
+
                     End If
                 End If
 
             Else
+                
                 If MsgBox("Are you sure you want to save?", vbYesNo + vbQuestion) Then
                     sqlQuery = ""
                     sqlQuery += "SELECT dbo.fn_colID ('S')"
 
                     dsID = SQLPetMIS(sqlQuery)
 
+                    txtCustomer.Text = dsOwnerInfo.Tables(0).Rows(0)("LastName") + ", " + dsOwnerInfo.Tables(0).Rows(0)("FirstName")
+                    txtAddress.Text = dsOwnerInfo.Tables(0).Rows(0)("Address")
+                    txtContact.Text = dsOwnerInfo.Tables(0).Rows(0)("ContactNo")
                     strScheduleID = dsID.Tables(0).Rows(0)(0)
 
                     If fn_CheckRequire(Me) Then
@@ -90,6 +97,8 @@
                             Call saveLogs(1, "Save a schedule with Schedule code of : " + strScheduleID)
                             frmSchedules.getSchedules()
                             Me.Hide()
+                            Call clearFields(Me)
+
                         End If
 
 
@@ -156,4 +165,5 @@
             MsgBox(ex.Message)
         End Try
     End Sub
+
 End Class

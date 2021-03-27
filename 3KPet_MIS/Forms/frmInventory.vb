@@ -11,16 +11,17 @@
             Dim dsProducts As New DataSet
 
             sqlQuery = ""
-            sqlQuery += "SELECT ProductID, P.Description, PT.Description as Type, P.TotalQTY, P.AvailableQTY, P.Price   FROM Products P" & vbCrLf
+            sqlQuery += "SELECT P.ProductID, P.Description, PT.Description as Type, PI.TotalQTY, PI.Stocks, PI.Price   FROM Products P" & vbCrLf
+            sqlQuery += "INNER JOIN ProductInventory PI ON PI.ProductID = P.ProductID" & vbCrLf
             sqlQuery += "INNER JOIN ProductTypes PT ON PT.TypeID = P.TypeID" & vbCrLf
             sqlQuery += "WHERE P.DeletedDate IS NULL " & vbCrLf
             If txtSearch.Text <> "" Then
-                sqlQuery += "AND (ProductID LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "AND (P.ProductID LIKE '%" + txtSearch.Text + "%'" & vbCrLf
                 sqlQuery += "OR P.Description LIKE '%" + txtSearch.Text + "%'" & vbCrLf
                 sqlQuery += "OR PT.Description LIKE '%" + txtSearch.Text + "%'" & vbCrLf
-                sqlQuery += "OR P.TotalQTY  LIKE '%" + txtSearch.Text + "%'" & vbCrLf
-                sqlQuery += "OR P.AvailableQTY  LIKE '%" + txtSearch.Text + "%'" & vbCrLf
-                sqlQuery += "OR P.Price  LIKE '%" + txtSearch.Text + "%')" & vbCrLf
+                sqlQuery += "OR PI.TotalQTY  LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "OR PI.Stocks  LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "OR PI.Price  LIKE '%" + txtSearch.Text + "%')" & vbCrLf
             End If
 
             dsProducts = SQLPetMIS(sqlQuery)
@@ -46,11 +47,9 @@
                     .Rows(.RowCount - 1).Cells(1).Value = row.Item("Description")
                     .Rows(.RowCount - 1).Cells(2).Value = row.Item("Type")
                     .Rows(.RowCount - 1).Cells(3).Value = row.Item("TotalQTY")
-                    .Rows(.RowCount - 1).Cells(4).Value = row.Item("AvailableQTY")
+                    .Rows(.RowCount - 1).Cells(4).Value = row.Item("Stocks")
                     .Rows(.RowCount - 1).Cells(5).Value = row.Item("Price")
                 Next
-
-
             End With
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -97,9 +96,6 @@
                 sqlQuery += "ProductID," & vbCrLf
                 sqlQuery += "Description," & vbCrLf
                 sqlQuery += "TypeID," & vbCrLf
-                sqlQuery += "TotalQTY," & vbCrLf
-                sqlQuery += "AvailableQTY," & vbCrLf
-                sqlQuery += "Price, " & vbCrLf
                 sqlQuery += "CreatedDate," & vbCrLf
                 sqlQuery += "UpdatedDate," & vbCrLf
                 sqlQuery += "DeletedDate," & vbCrLf
@@ -110,9 +106,30 @@
                 sqlQuery += "'" + strID + "'," & vbCrLf
                 sqlQuery += "'" + txtDescription.Text + "'," & vbCrLf
                 sqlQuery += "'" + cboType.SelectedValue.ToString + "'," & vbCrLf
-                sqlQuery += txtTotalQTY.Text + "," & vbCrLf
-                sqlQuery += txtAvailableQTY.Text + "," & vbCrLf
-                sqlQuery += txtPrice.Text + "," & vbCrLf
+                sqlQuery += "getdate()," & vbCrLf
+                sqlQuery += "getdate()," & vbCrLf
+                sqlQuery += "null," & vbCrLf
+                sqlQuery += "'" + _gbAccountID + "')" & vbCrLf
+                blnSaved = sqlExecute(sqlQuery)
+
+                sqlQuery = ""
+                sqlQuery += "INSERT INTO dbo.ProductInventory " & vbCrLf
+                sqlQuery += "( " & vbCrLf
+                sqlQuery += "ProductID," & vbCrLf
+                sqlQuery += "TotalQTY," & vbCrLf
+                sqlQuery += "Stocks," & vbCrLf
+                sqlQuery += "Price," & vbCrLf
+                sqlQuery += "CreatedDate," & vbCrLf
+                sqlQuery += "UpdatedDate," & vbCrLf
+                sqlQuery += "DeletedDate," & vbCrLf
+                sqlQuery += "UpdatedBy" & vbCrLf
+                sqlQuery += ")" & vbCrLf
+                sqlQuery += "VALUES " & vbCrLf
+                sqlQuery += "(" & vbCrLf
+                sqlQuery += "'" + strID + "'," & vbCrLf
+                sqlQuery += "'" + txtTotalQTY.Text + "'," & vbCrLf
+                sqlQuery += "'" + txtAvailableQTY.Text + "'," & vbCrLf
+                sqlQuery += "'" + txtPrice.Text + "'," & vbCrLf
                 sqlQuery += "getdate()," & vbCrLf
                 sqlQuery += "getdate()," & vbCrLf
                 sqlQuery += "null," & vbCrLf
@@ -165,9 +182,15 @@
                 sqlQuery += "UPDATE dbo.Products" & vbCrLf
                 sqlQuery += "SET Description ='" + txtDescription.Text + "'," & vbCrLf
                 sqlQuery += "TypeID ='" + cboType.SelectedValue.ToString + "'," & vbCrLf
-                sqlQuery += "TotalQTY =" + txtTotalQTY.Text + "," & vbCrLf
-                sqlQuery += "AvailableQTY=" + txtAvailableQTY.Text + "," & vbCrLf
-                sqlQuery += "Price =" + txtPrice.Text + "," & vbCrLf
+                sqlQuery += "UpdatedDate =getdate()" & vbCrLf
+                sqlQuery += "WHERE ProductID ='" + txtID.Text + "'" & vbCrLf
+                blnSaved = sqlExecute(sqlQuery)
+0:
+                sqlQuery = ""
+                sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
+                sqlQuery += "SET TotalQTY ='" + txtTotalQTY.Text + "'," & vbCrLf
+                sqlQuery += "Stocks ='" + txtAvailableQTY.Text + "'," & vbCrLf
+                sqlQuery += "Price ='" + txtPrice.Text + "'," & vbCrLf
                 sqlQuery += "UpdatedDate =getdate()" & vbCrLf
                 sqlQuery += "WHERE ProductID ='" + txtID.Text + "'" & vbCrLf
                 blnSaved = sqlExecute(sqlQuery)

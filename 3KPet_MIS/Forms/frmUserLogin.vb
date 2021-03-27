@@ -21,33 +21,39 @@
     End Sub
 
     Private Sub Login()
-        Dim dsRecord As New DataSet
+        Try
+            Dim dsRecord As New DataSet
 
-        strRequire = ""
-        If fn_CheckRequire(Me) Then
-            MsgBox("Please insert a correct username and password.", MsgBoxStyle.Exclamation)
             strRequire = ""
-        Else
-            sqlQuery = ""
-            sqlQuery += "SELECT * FROM Accounts" & vbCrLf
-            sqlQuery += "WHERE UserName COLLATE Latin1_General_CS_AS = '" + txtUsername.Text + "' AND " & vbCrLf
-            sqlQuery += "Password COLLATE Latin1_General_CS_AS = '" + txtPassword.Text + "'"
-
-            dsRecord = SQLPetMIS(sqlQuery)
-
-            If dsRecord.Tables(0).Rows.Count = 0 Then
+            If fn_CheckRequire(Me) Then
                 MsgBox("Please insert a correct username and password.", MsgBoxStyle.Exclamation)
-            ElseIf dsRecord.Tables(0).Rows(0)("isDeactivate") = True Then
-                MsgBox("Account has been deactivated!", vbExclamation)
+                strRequire = ""
             Else
-                _gbAccountID = dsRecord.Tables(0).Rows(0)(0)
-                _gbUSerName = dsRecord.Tables(0).Rows(0)(1)
-                _gbUserType = dsRecord.Tables(0).Rows(0)("UserLevel")
-                Call saveLogs(4, "Account " + _gbAccountID + " logged in")
-                frmDashboard.Show()
-                Me.Hide()
+                sqlQuery = ""
+                sqlQuery += "SELECT * FROM Accounts" & vbCrLf
+                sqlQuery += "WHERE UserName COLLATE Latin1_General_CS_AS = '" + txtUsername.Text + "' AND " & vbCrLf
+                sqlQuery += "Password COLLATE Latin1_General_CS_AS = '" + txtPassword.Text + "'"
+
+                dsRecord = SQLPetMIS(sqlQuery)
+
+                If dsRecord.Tables(0).Rows.Count = 0 Then
+                    MsgBox("Please insert a correct username and password.", MsgBoxStyle.Exclamation)
+                ElseIf dsRecord.Tables(0).Rows(0)("isDeactivate") = True Then
+                    MsgBox("Account has been deactivated!", vbExclamation)
+                Else
+                    _gbAccountID = dsRecord.Tables(0).Rows(0)(0)
+                    _gbUSerName = dsRecord.Tables(0).Rows(0)(1)
+                    _gbUserType = dsRecord.Tables(0).Rows(0)("UserLevel")
+                    Call saveLogs(4, "Account " + _gbAccountID + " logged in")
+                    frmDashboard.mnuAccount.Text = UCase(_gbUSerName)
+                    frmDashboard.Show()
+                    Me.Hide()
+                End If
             End If
-        End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    
 
     End Sub
 

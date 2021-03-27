@@ -29,6 +29,7 @@ Partial Class frmInventory
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.datRecords = New System.Windows.Forms.DataGridView()
         Me.grpProduct = New System.Windows.Forms.GroupBox()
+        Me.btnUpdate = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.txtPrice = New System.Windows.Forms.TextBox()
@@ -45,7 +46,6 @@ Partial Class frmInventory
         Me.lblProductID = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.lblSearch = New System.Windows.Forms.Label()
-        Me.btnUpdate = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         CType(Me.datRecords, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpProduct.SuspendLayout()
@@ -86,7 +86,7 @@ Partial Class frmInventory
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.datRecords.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.datRecords.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.datRecords.ColumnHeadersHeight = 20
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -126,6 +126,18 @@ Partial Class frmInventory
         Me.grpProduct.TabIndex = 2
         Me.grpProduct.TabStop = False
         Me.grpProduct.Text = "INFORMATION"
+        '
+        'btnUpdate
+        '
+        Me.btnUpdate.BackColor = System.Drawing.Color.Purple
+        Me.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnUpdate.ForeColor = System.Drawing.Color.White
+        Me.btnUpdate.Location = New System.Drawing.Point(25, 279)
+        Me.btnUpdate.Name = "btnUpdate"
+        Me.btnUpdate.Size = New System.Drawing.Size(106, 40)
+        Me.btnUpdate.TabIndex = 14
+        Me.btnUpdate.Text = "UPDATE"
+        Me.btnUpdate.UseVisualStyleBackColor = False
         '
         'btnCancel
         '
@@ -276,18 +288,6 @@ Partial Class frmInventory
         Me.lblSearch.Size = New System.Drawing.Size(54, 15)
         Me.lblSearch.TabIndex = 4
         Me.lblSearch.Text = "SEARCH :"
-        '
-        'btnUpdate
-        '
-        Me.btnUpdate.BackColor = System.Drawing.Color.Purple
-        Me.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnUpdate.ForeColor = System.Drawing.Color.White
-        Me.btnUpdate.Location = New System.Drawing.Point(25, 279)
-        Me.btnUpdate.Name = "btnUpdate"
-        Me.btnUpdate.Size = New System.Drawing.Size(106, 40)
-        Me.btnUpdate.TabIndex = 14
-        Me.btnUpdate.Text = "UPDATE"
-        Me.btnUpdate.UseVisualStyleBackColor = False
         '
         'frmInventory
         '

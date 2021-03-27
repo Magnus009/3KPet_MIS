@@ -95,7 +95,7 @@
             sqlQuery += "SELECT SD.ScheduleCode, SD.CustomerID, O.LastName + ', ' + O.FirstName as CUSTOMERNAme, S.Description, SD.Purpose, SD.ScheduleDate, SD.isArrived, SD.isCancelled FROM Schedules SD" & vbCrLf
             sqlQuery += "INNER JOIN Owners O ON SD.CustomerID = O.OwnerID" & vbCrLf
             sqlQuery += "Left JOIN Services S ON SD.ServiceID = S.ServiceID" & vbCrLf
-            sqlQuery += "WHERE SD.DeletedDate IS NULL" & vbCrLf
+            sqlQuery += "WHERE SD.DeletedDate IS NULL AND convert(VARCHAR, SD.ScheduleDate, 1) = convert(VARCHAR, getdate(), 1)" & vbCrLf
             'If blnFilter Then
             '    sqlQuery += "AND ScheduleDate " & vbCrLf
             '    sqlQuery += "BETWEEN '" + dtpVisitDateFrom.Text + " 00:00:00' " & vbCrLf
@@ -180,7 +180,7 @@
         frmTreatment.ShowDialog()
     End Sub
 
-    Private Sub VACCINESToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles VACCINESToolStripMenuItem.Click
+    Private Sub VACCINESToolStripMenuItem_Click(sender As Object, e As EventArgs)
         frmVaccine.ShowDialog()
     End Sub
 
@@ -194,6 +194,9 @@
         frmUserLogin.txtPassword.Text = ""
         _gbAccountID = ""
         _gbUSerName = ""
+        mnuAccount.Text = ""
         frmUserLogin.Show()
     End Sub
+
+   
 End Class

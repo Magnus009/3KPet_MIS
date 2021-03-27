@@ -21,6 +21,8 @@
                 sqlQuery += "AND ScheduleDate " & vbCrLf
                 sqlQuery += "BETWEEN '" + dtpVisitDateFrom.Text + " 00:00:00' " & vbCrLf
                 sqlQuery += "and '" + dtpVisitDateTo.Text + " 23:59:59' " & vbCrLf
+            Else
+                sqlQuery += "AND convert(VARCHAR, SD.ScheduleDate, 1) = convert(VARCHAR, getdate(), 1)" & vbCrLf
             End If
             dsSched = SQLPetMIS(sqlQuery)
 

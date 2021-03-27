@@ -33,17 +33,6 @@
 
     Private Sub datData_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datData.CellContentClick
         Try
-
-            'With frmScheduleInfo
-            '    .txtOwnerID.Text = datData.Rows(e.RowIndex).Cells(0).Value
-            '    .txtCustomer.Text = datData.Rows(e.RowIndex).Cells(1).Value
-            '    .txtAddress.Text = datData.Rows(e.RowIndex).Cells(2).Value
-            '    .txtContactNo.Text = datData.Rows(e.RowIndex).Cells(3).Value
-
-            '    Me.Hide()
-
-            '    End
-            'End With
             Call getOwnerInfo(datData.Rows(e.RowIndex).Cells(0).Value)
             Me.Hide()
 
@@ -51,5 +40,6 @@
             MsgBox(ex.Message)
         End Try
     End Sub
+  
 
 End Class

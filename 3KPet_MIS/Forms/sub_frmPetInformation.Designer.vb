@@ -30,8 +30,6 @@ Partial Class sub_frmPetInformation
         Me.btnSave = New System.Windows.Forms.Button()
         Me.grpTreatment = New System.Windows.Forms.GroupBox()
         Me.chkTreatments = New System.Windows.Forms.CheckedListBox()
-        Me.grpVaccinations = New System.Windows.Forms.GroupBox()
-        Me.chkVaccinations = New System.Windows.Forms.CheckedListBox()
         Me.grpHistory = New System.Windows.Forms.GroupBox()
         Me.txtNextVisit = New System.Windows.Forms.TextBox()
         Me.lblNextVist = New System.Windows.Forms.Label()
@@ -53,7 +51,6 @@ Partial Class sub_frmPetInformation
         Me.datProduct = New System.Windows.Forms.DataGridView()
         Me.btnPurchase = New System.Windows.Forms.Button()
         Me.grpTreatment.SuspendLayout()
-        Me.grpVaccinations.SuspendLayout()
         Me.grpHistory.SuspendLayout()
         CType(Me.datHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.datProduct, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,9 +85,9 @@ Partial Class sub_frmPetInformation
         '
         Me.grpTreatment.Controls.Add(Me.chkTreatments)
         Me.grpTreatment.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grpTreatment.Location = New System.Drawing.Point(489, 206)
+        Me.grpTreatment.Location = New System.Drawing.Point(499, 206)
         Me.grpTreatment.Name = "grpTreatment"
-        Me.grpTreatment.Size = New System.Drawing.Size(229, 176)
+        Me.grpTreatment.Size = New System.Drawing.Size(219, 176)
         Me.grpTreatment.TabIndex = 4
         Me.grpTreatment.TabStop = False
         Me.grpTreatment.Text = "TREATMENTS"
@@ -107,29 +104,6 @@ Partial Class sub_frmPetInformation
         Me.chkTreatments.Name = "chkTreatments"
         Me.chkTreatments.Size = New System.Drawing.Size(186, 126)
         Me.chkTreatments.TabIndex = 1
-        '
-        'grpVaccinations
-        '
-        Me.grpVaccinations.Controls.Add(Me.chkVaccinations)
-        Me.grpVaccinations.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grpVaccinations.Location = New System.Drawing.Point(249, 206)
-        Me.grpVaccinations.Name = "grpVaccinations"
-        Me.grpVaccinations.Size = New System.Drawing.Size(234, 179)
-        Me.grpVaccinations.TabIndex = 3
-        Me.grpVaccinations.TabStop = False
-        Me.grpVaccinations.Text = "VACCINATIONS"
-        '
-        'chkVaccinations
-        '
-        Me.chkVaccinations.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.chkVaccinations.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.chkVaccinations.CheckOnClick = True
-        Me.chkVaccinations.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkVaccinations.FormattingEnabled = True
-        Me.chkVaccinations.Location = New System.Drawing.Point(24, 32)
-        Me.chkVaccinations.Name = "chkVaccinations"
-        Me.chkVaccinations.Size = New System.Drawing.Size(186, 144)
-        Me.chkVaccinations.TabIndex = 1
         '
         'grpHistory
         '
@@ -294,7 +268,7 @@ Partial Class sub_frmPetInformation
         Me.datHistory.ReadOnly = True
         Me.datHistory.RowHeadersVisible = False
         Me.datHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datHistory.Size = New System.Drawing.Size(240, 182)
+        Me.datHistory.Size = New System.Drawing.Size(240, 367)
         Me.datHistory.TabIndex = 1
         '
         'cboPet
@@ -329,7 +303,7 @@ Partial Class sub_frmPetInformation
         '
         Me.lblproduct.AutoSize = True
         Me.lblproduct.Font = New System.Drawing.Font("Calibri", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblproduct.Location = New System.Drawing.Point(6, 238)
+        Me.lblproduct.Location = New System.Drawing.Point(256, 206)
         Me.lblproduct.Name = "lblproduct"
         Me.lblproduct.Size = New System.Drawing.Size(146, 18)
         Me.lblproduct.TabIndex = 30
@@ -359,11 +333,11 @@ Partial Class sub_frmPetInformation
         DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.datProduct.DefaultCellStyle = DataGridViewCellStyle4
-        Me.datProduct.Location = New System.Drawing.Point(3, 259)
+        Me.datProduct.Location = New System.Drawing.Point(253, 226)
         Me.datProduct.Name = "datProduct"
         Me.datProduct.RowHeadersVisible = False
         Me.datProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datProduct.Size = New System.Drawing.Size(240, 126)
+        Me.datProduct.Size = New System.Drawing.Size(240, 156)
         Me.datProduct.TabIndex = 31
         '
         'btnPurchase
@@ -372,7 +346,7 @@ Partial Class sub_frmPetInformation
         Me.btnPurchase.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnPurchase.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnPurchase.ForeColor = System.Drawing.Color.White
-        Me.btnPurchase.Location = New System.Drawing.Point(145, 389)
+        Me.btnPurchase.Location = New System.Drawing.Point(253, 386)
         Me.btnPurchase.Name = "btnPurchase"
         Me.btnPurchase.Size = New System.Drawing.Size(97, 36)
         Me.btnPurchase.TabIndex = 32
@@ -395,14 +369,12 @@ Partial Class sub_frmPetInformation
         Me.Controls.Add(Me.btnAddRecord)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.grpTreatment)
-        Me.Controls.Add(Me.grpVaccinations)
         Me.Controls.Add(Me.grpHistory)
         Me.Controls.Add(Me.datHistory)
         Me.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "sub_frmPetInformation"
         Me.grpTreatment.ResumeLayout(False)
-        Me.grpVaccinations.ResumeLayout(False)
         Me.grpHistory.ResumeLayout(False)
         Me.grpHistory.PerformLayout()
         CType(Me.datHistory, System.ComponentModel.ISupportInitialize).EndInit()
@@ -415,8 +387,6 @@ Partial Class sub_frmPetInformation
     Friend WithEvents btnSave As System.Windows.Forms.Button
     Friend WithEvents grpTreatment As System.Windows.Forms.GroupBox
     Friend WithEvents chkTreatments As System.Windows.Forms.CheckedListBox
-    Friend WithEvents grpVaccinations As System.Windows.Forms.GroupBox
-    Friend WithEvents chkVaccinations As System.Windows.Forms.CheckedListBox
     Friend WithEvents grpHistory As System.Windows.Forms.GroupBox
     Friend WithEvents lblNextVist As System.Windows.Forms.Label
     Friend WithEvents txtAmount As System.Windows.Forms.TextBox

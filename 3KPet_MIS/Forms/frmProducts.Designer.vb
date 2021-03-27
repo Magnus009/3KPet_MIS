@@ -55,7 +55,7 @@ Partial Class frmProducts
         '
         Me.txtSearch.Location = New System.Drawing.Point(88, 16)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(282, 20)
+        Me.txtSearch.Size = New System.Drawing.Size(250, 20)
         Me.txtSearch.TabIndex = 2
         '
         'datProducts
@@ -87,7 +87,7 @@ Partial Class frmProducts
         Me.datProducts.ReadOnly = True
         Me.datProducts.RowHeadersVisible = False
         Me.datProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datProducts.Size = New System.Drawing.Size(353, 363)
+        Me.datProducts.Size = New System.Drawing.Size(306, 363)
         Me.datProducts.TabIndex = 3
         '
         'frmProducts
@@ -95,7 +95,7 @@ Partial Class frmProducts
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.ClientSize = New System.Drawing.Size(397, 417)
+        Me.ClientSize = New System.Drawing.Size(350, 417)
         Me.Controls.Add(Me.datProducts)
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.Panel1)
