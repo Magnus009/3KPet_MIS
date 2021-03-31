@@ -33,7 +33,6 @@ Partial Class frmScheduleInfo
         Me.lblContactNo = New System.Windows.Forms.Label()
         Me.btnView = New System.Windows.Forms.Button()
         Me.txtContactNo = New System.Windows.Forms.TextBox()
-        Me.btnAddPet = New System.Windows.Forms.Button()
         Me.pnlPetInfo = New System.Windows.Forms.Panel()
         Me.txtTransactionID = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -140,18 +139,6 @@ Partial Class frmScheduleInfo
         Me.txtContactNo.TabIndex = 5
         Me.txtContactNo.Tag = "*Contact No"
         '
-        'btnAddPet
-        '
-        Me.btnAddPet.BackColor = System.Drawing.Color.Purple
-        Me.btnAddPet.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnAddPet.ForeColor = System.Drawing.Color.White
-        Me.btnAddPet.Location = New System.Drawing.Point(648, 75)
-        Me.btnAddPet.Name = "btnAddPet"
-        Me.btnAddPet.Size = New System.Drawing.Size(93, 33)
-        Me.btnAddPet.TabIndex = 7
-        Me.btnAddPet.Text = "ADD PET"
-        Me.btnAddPet.UseVisualStyleBackColor = False
-        '
         'pnlPetInfo
         '
         Me.pnlPetInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -188,7 +175,6 @@ Partial Class frmScheduleInfo
         Me.Controls.Add(Me.txtTransactionID)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.pnlPetInfo)
-        Me.Controls.Add(Me.btnAddPet)
         Me.Controls.Add(Me.btnView)
         Me.Controls.Add(Me.txtContactNo)
         Me.Controls.Add(Me.lblContactNo)
@@ -220,7 +206,6 @@ Partial Class frmScheduleInfo
     Friend WithEvents lblContactNo As System.Windows.Forms.Label
     Friend WithEvents btnView As System.Windows.Forms.Button
     Friend WithEvents txtContactNo As System.Windows.Forms.TextBox
-    Friend WithEvents btnAddPet As System.Windows.Forms.Button
     Friend WithEvents pnlPetInfo As System.Windows.Forms.Panel
     Friend WithEvents txtTransactionID As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label

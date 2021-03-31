@@ -43,9 +43,11 @@ Partial Class frmDashboard
         Me.TREATMENTSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmReports = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuAccount = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ACCOUNTSETTINGToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LOGOUTToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlContent = New System.Windows.Forms.Panel()
         Me.datSchedules = New System.Windows.Forms.DataGridView()
+        Me.PRODUCTTYPEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlHeader.SuspendLayout()
         Me.mnuDashboard.SuspendLayout()
         Me.pnlContent.SuspendLayout()
@@ -142,7 +144,7 @@ Partial Class frmDashboard
         '
         'tsmSettings
         '
-        Me.tsmSettings.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AUDITTRAILToolStripMenuItem, Me.ACCOUNTSToolStripMenuItem, Me.TREATMENTSToolStripMenuItem})
+        Me.tsmSettings.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AUDITTRAILToolStripMenuItem, Me.ACCOUNTSToolStripMenuItem, Me.TREATMENTSToolStripMenuItem, Me.PRODUCTTYPEToolStripMenuItem})
         Me.tsmSettings.Name = "tsmSettings"
         Me.tsmSettings.Size = New System.Drawing.Size(69, 20)
         Me.tsmSettings.Text = "SETTINGS"
@@ -150,19 +152,19 @@ Partial Class frmDashboard
         'AUDITTRAILToolStripMenuItem
         '
         Me.AUDITTRAILToolStripMenuItem.Name = "AUDITTRAILToolStripMenuItem"
-        Me.AUDITTRAILToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AUDITTRAILToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.AUDITTRAILToolStripMenuItem.Text = "AUDIT TRAIL"
         '
         'ACCOUNTSToolStripMenuItem
         '
         Me.ACCOUNTSToolStripMenuItem.Name = "ACCOUNTSToolStripMenuItem"
-        Me.ACCOUNTSToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ACCOUNTSToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.ACCOUNTSToolStripMenuItem.Text = "ACCOUNTS"
         '
         'TREATMENTSToolStripMenuItem
         '
         Me.TREATMENTSToolStripMenuItem.Name = "TREATMENTSToolStripMenuItem"
-        Me.TREATMENTSToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.TREATMENTSToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.TREATMENTSToolStripMenuItem.Text = "TREATMENTS"
         '
         'tsmReports
@@ -173,15 +175,21 @@ Partial Class frmDashboard
         '
         'mnuAccount
         '
-        Me.mnuAccount.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LOGOUTToolStripMenuItem})
+        Me.mnuAccount.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ACCOUNTSETTINGToolStripMenuItem, Me.LOGOUTToolStripMenuItem})
         Me.mnuAccount.Name = "mnuAccount"
         Me.mnuAccount.Size = New System.Drawing.Size(80, 20)
         Me.mnuAccount.Text = "User Name"
         '
+        'ACCOUNTSETTINGToolStripMenuItem
+        '
+        Me.ACCOUNTSETTINGToolStripMenuItem.Name = "ACCOUNTSETTINGToolStripMenuItem"
+        Me.ACCOUNTSETTINGToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
+        Me.ACCOUNTSETTINGToolStripMenuItem.Text = "ACCOUNT SETTING"
+        '
         'LOGOUTToolStripMenuItem
         '
         Me.LOGOUTToolStripMenuItem.Name = "LOGOUTToolStripMenuItem"
-        Me.LOGOUTToolStripMenuItem.Size = New System.Drawing.Size(123, 22)
+        Me.LOGOUTToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.LOGOUTToolStripMenuItem.Text = "LOG OUT"
         '
         'pnlContent
@@ -223,6 +231,12 @@ Partial Class frmDashboard
         Me.datSchedules.Size = New System.Drawing.Size(805, 365)
         Me.datSchedules.TabIndex = 0
         '
+        'PRODUCTTYPEToolStripMenuItem
+        '
+        Me.PRODUCTTYPEToolStripMenuItem.Name = "PRODUCTTYPEToolStripMenuItem"
+        Me.PRODUCTTYPEToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.PRODUCTTYPEToolStripMenuItem.Text = "PRODUCT TYPE"
+        '
         'frmDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -233,7 +247,7 @@ Partial Class frmDashboard
         Me.Controls.Add(Me.pnlContent)
         Me.Controls.Add(Me.pnlHeader)
         Me.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.mnuDashboard
         Me.MaximizeBox = False
@@ -271,4 +285,6 @@ Partial Class frmDashboard
     Friend WithEvents INVENTORYToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents tsmReports As ToolStripMenuItem
     Friend WithEvents tsmSettings As ToolStripMenuItem
+    Friend WithEvents ACCOUNTSETTINGToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PRODUCTTYPEToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

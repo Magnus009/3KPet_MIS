@@ -3,10 +3,6 @@
     Dim dsAccounts As DataSet
 
     Private Sub frmAccountsRecords_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If _gbUserType <> "1" Then
-            btnAdd.Enabled = False
-        End If
-
         Call getAccounts()
     End Sub
 
@@ -67,8 +63,10 @@
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         clearFields(frmCreateAccount)
         With frmCreateAccount
+           
             .blnIsUpdate = False
             .btnDeactivate.Enabled = False
+            enableObjects()
             .ShowDialog()
         End With
 
@@ -107,6 +105,13 @@
                         .btnDeactivate.Text = "DEACTIVATE"
                     End If
 
+                    If _gbAccountID <> .txtUserID.Text Then
+                        .btnSave.Enabled = False
+                        .btnDeactivate.Enabled = False
+                    Else
+                        enableObjects()
+                    End If
+
                     .ShowDialog()
 
                 End With
@@ -114,5 +119,19 @@
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+    End Sub
+    Private Sub enableObjects()
+        With frmCreateAccount
+            .txtUserID.ReadOnly = False
+            .txtLName.ReadOnly = False
+            .txtFName.ReadOnly = False
+            .txtMName.ReadOnly = False
+            .txtPassword.Text = ""
+            .cboQuestion_1.Enabled = True
+            .cboQuestion_2.Enabled = True
+            .txtAnswer_1.ReadOnly = False
+            .txtAnswer_2.ReadOnly = False
+            .btnDeactivate.Enabled = False
+        End With
     End Sub
 End Class

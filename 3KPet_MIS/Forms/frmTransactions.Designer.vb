@@ -35,7 +35,6 @@ Partial Class frmTransactions
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.lblSearch = New System.Windows.Forms.Label()
         Me.datTransactions = New System.Windows.Forms.DataGridView()
-        Me.colView = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.pnlHeader.SuspendLayout()
         Me.pnlContent.SuspendLayout()
         CType(Me.datTransactions, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -160,20 +159,15 @@ Partial Class frmTransactions
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.datTransactions.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.datTransactions.ColumnHeadersHeight = 30
-        Me.datTransactions.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.colView})
+        Me.datTransactions.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter
         Me.datTransactions.Location = New System.Drawing.Point(12, 36)
         Me.datTransactions.MultiSelect = False
         Me.datTransactions.Name = "datTransactions"
+        Me.datTransactions.ReadOnly = True
         Me.datTransactions.RowHeadersVisible = False
         Me.datTransactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datTransactions.Size = New System.Drawing.Size(916, 483)
         Me.datTransactions.TabIndex = 0
-        '
-        'colView
-        '
-        Me.colView.FillWeight = 40.0!
-        Me.colView.HeaderText = ""
-        Me.colView.Name = "colView"
         '
         'frmTransactions
         '
@@ -208,7 +202,6 @@ Partial Class frmTransactions
     Friend WithEvents lblVistDate As System.Windows.Forms.Label
     Friend WithEvents txtSearch As System.Windows.Forms.TextBox
     Friend WithEvents lblSearch As System.Windows.Forms.Label
-    Friend WithEvents colView As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents lblDash As System.Windows.Forms.Label
     Friend WithEvents dtpTo As System.Windows.Forms.DateTimePicker
     Friend WithEvents btnFIlter As System.Windows.Forms.Button

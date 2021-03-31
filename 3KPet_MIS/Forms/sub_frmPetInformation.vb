@@ -59,8 +59,10 @@
                 txtAmount.Text = dtTransHeader.Rows(0)("Amount")
                 txtNextVisit.Text = Format(dtTransHeader.Rows(0)("NextVisit"), "yyyy/MM/dd")
 
+                clearFields(grpTreatment)
                 For Each row As DataRow In dtTransDetails.Rows
-                    chkTreatments.SetItemChecked(row.Item("Treatment"), True)
+                    'chkTreatments.SetItemChecked(row.Item("Treatment"), True)
+                    chkTreatments.SetItemChecked(Convert.ToInt32(row.Item("Treatment") - 1), True)
                     'chkVaccinations.SetItemChecked(row.Item("Vaccine"), True)
 
                 Next
@@ -80,6 +82,9 @@
                 datHistory.Columns.Add(btnView)
 
             Else
+                btnSave.Enabled = True
+                btnPurchase.Enabled = True
+                btnAddRecord.Enabled = False
                 dtpVisitDate.Value = Today
                 txtWT.Text = ""
                 txtTemp.Text = ""
@@ -125,10 +130,11 @@
         Try
             With dtPurchasedProd
                 .Columns.Clear()
-                .Columns.Add("colID")
-                .Columns.Add("colName")
-                .Columns.Add("colPrice")
-                .Columns.Add("colQTY")
+                .Columns.Add("ProductID")
+                .Columns.Add("Description")
+                .Columns.Add("QTY")
+                .Columns.Add("TotatlPrice")
+
             End With
 
         Catch ex As Exception
@@ -136,7 +142,7 @@
         End Try
     End Sub
 
-    Private Sub setGridProperties()
+    Public Sub setGridProperties()
         datProduct.DataSource = dtPurchasedProd
         With datProduct
             .Columns("ProductID").Visible = False
@@ -162,13 +168,16 @@
     'End Sub
 
     Private Sub sub_frmPetInformation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         Call setGridColumns()
         If (fn_CheckRequire(Me) = False) Then
             btnAddRecord.Enabled = True
             btnSave.Enabled = False
+            btnPurchase.Enabled = False
         Else
             btnSave.Enabled = True
             btnAddRecord.Enabled = False
+            btnPurchase.Enabled = True
         End If
         'loadVaccine()
 
@@ -295,7 +304,7 @@
                     sqlQuery += "( " & vbCrLf
                     sqlQuery += "'" + strTransID + "'," & vbCrLf
                     sqlQuery += "'" + row.Cells(0).Value.ToString + "'," & vbCrLf
-                    sqlQuery += row.Cells(3).Value.ToString + "," & vbCrLf
+                    sqlQuery += row.Cells(2).Value.ToString + "," & vbCrLf
                     sqlQuery += strTotalPrice + "," & vbCrLf
                     sqlQuery += "getdate(), " & vbCrLf
                     sqlQuery += "getdate(), " & vbCrLf
@@ -305,14 +314,19 @@
                     sqlExecute(sqlQuery)
 
                     sqlQuery = ""
-                    sqlQuery += "UPDATE dbo.Products" & vbCrLf
-                    sqlQuery += "SET AvailableQTY = AvailableQTY - " + row.Cells(3).Value.ToString & vbCrLf
+                    sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
+                    sqlQuery += "SET Stocks = Stocks - " + row.Cells(2).Value.ToString & vbCrLf
                     sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "'" & vbCrLf
                     sqlExecute(sqlQuery)
                 Next
                 MsgBox("Record saved successfully!", vbInformation)
                 Call loadTransactionDetails(strTransID)
-                Call clearFields(Me)
+                Call clearFields(grpHistory)
+                Call clearFields(grpTreatment)
+                datProduct.Columns.Clear()
+                btnSave.Enabled = False
+                btnPurchase.Enabled = False
+                btnAddRecord.Enabled = True
             End If
 
         Catch ex As Exception
@@ -324,14 +338,26 @@
         Try
             Call clearFields(grpHistory)
             Call clearFields(grpTreatment)
-            datProduct.Columns.Clear()
             btnSave.Enabled = True
+            btnPurchase.Enabled = True
             btnAddRecord.Enabled = False
+            datProduct.Columns.Clear()
+            dtPurchasedProd.Clear()
+            setGridColumns()
+            setGridProperties()
+
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
     End Sub
 
-  
-  
+    Private Sub datProduct_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles datProduct.CellValueChanged
+        Try
+            If e.ColumnIndex = 2 Then
+                datProduct.Rows(e.RowIndex).Cells(3).Value = (Convert.ToInt32(datProduct.Rows(e.RowIndex).Cells(2).Value) * Convert.ToInt32(datProduct.Rows(e.RowIndex).Cells(3).Value))
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
 End Class

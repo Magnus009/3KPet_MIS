@@ -38,80 +38,83 @@ Public Class frmCreateAccount
                         txtUserName.ForeColor = Color.Red
                         txtUserName.Focus()
                     Else
-                        strSQL = ""
-                        strSQL = "SELECT dbo.fn_colID ('U')"
+                        If MsgBox("Are you sure you want to save?", vbYesNo + vbQuestion) Then
+                            strSQL = ""
+                            strSQL = "SELECT dbo.fn_colID ('U')"
 
-                        dsID = SQLPetMIS(strSQL)
-                        strID = dsID.Tables(0).Rows(0)(0)
+                            dsID = SQLPetMIS(strSQL)
+                            strID = dsID.Tables(0).Rows(0)(0)
 
-                        sqlQuery = ""
-                        sqlQuery += "INSERT INTO dbo.Users " + vbCrLf
-                        sqlQuery += "(" + vbCrLf
-                        sqlQuery += "UserID," + vbCrLf
-                        sqlQuery += "LastName," + vbCrLf
-                        sqlQuery += "FirstName," + vbCrLf
-                        sqlQuery += "MiddleName," + vbCrLf
-                        sqlQuery += "CreatedDate," + vbCrLf
-                        sqlQuery += "UpdatedDate," + vbCrLf
-                        sqlQuery += "DeletedDate, " + vbCrLf
-                        sqlQuery += "UpdatedBy" + vbCrLf
-                        sqlQuery += ")" + vbCrLf
-                        sqlQuery += "VALUES " + vbCrLf
-                        sqlQuery += "(" + vbCrLf
-                        sqlQuery += "'" + strID + "'," + vbCrLf
-                        sqlQuery += "'" + txtLName.Text + "'," + vbCrLf
-                        sqlQuery += "'" + txtFName.Text + "'," + vbCrLf
-                        sqlQuery += "'" + txtMName.Text + "'," + vbCrLf
-                        sqlQuery += "getdate()," + vbCrLf
-                        sqlQuery += "getdate(), " + vbCrLf
-                        sqlQuery += "Null," + vbCrLf
-                        sqlQuery += "'" + strID + "')" + vbCrLf
+                            sqlQuery = ""
+                            sqlQuery += "INSERT INTO dbo.Users " + vbCrLf
+                            sqlQuery += "(" + vbCrLf
+                            sqlQuery += "UserID," + vbCrLf
+                            sqlQuery += "LastName," + vbCrLf
+                            sqlQuery += "FirstName," + vbCrLf
+                            sqlQuery += "MiddleName," + vbCrLf
+                            sqlQuery += "CreatedDate," + vbCrLf
+                            sqlQuery += "UpdatedDate," + vbCrLf
+                            sqlQuery += "DeletedDate, " + vbCrLf
+                            sqlQuery += "UpdatedBy" + vbCrLf
+                            sqlQuery += ")" + vbCrLf
+                            sqlQuery += "VALUES " + vbCrLf
+                            sqlQuery += "(" + vbCrLf
+                            sqlQuery += "'" + strID + "'," + vbCrLf
+                            sqlQuery += "'" + txtLName.Text + "'," + vbCrLf
+                            sqlQuery += "'" + txtFName.Text + "'," + vbCrLf
+                            sqlQuery += "'" + txtMName.Text + "'," + vbCrLf
+                            sqlQuery += "getdate()," + vbCrLf
+                            sqlQuery += "getdate(), " + vbCrLf
+                            sqlQuery += "Null," + vbCrLf
+                            sqlQuery += "'" + strID + "')" + vbCrLf
 
-                        blResult = sqlExecute(sqlQuery)
+                            blResult = sqlExecute(sqlQuery)
 
-                        strSQL = ""
-                        strSQL += "INSERT INTO dbo.Accounts " + vbCrLf
-                        strSQL += "(" + vbCrLf
-                        strSQL += "AccountID, " + vbCrLf
-                        strSQL += "UserName," + vbCrLf
-                        strSQL += "Password," + vbCrLf
-                        strSQL += "UserLevel," + vbCrLf
-                        strSQL += "Q1," + vbCrLf
-                        strSQL += "Q2," + vbCrLf
-                        strSQL += "A1," + vbCrLf
-                        strSQL += "A2," + vbCrLf
-                        strSQL += "isDeactivate," + vbCrLf
-                        strSQL += "CreatedDate," + vbCrLf
-                        strSQL += "UpdatedDate," + vbCrLf
-                        strSQL += "DeletedDate," + vbCrLf
-                        strSQL += "UpdatedBy" + vbCrLf
-                        strSQL += ")" + vbCrLf
-                        strSQL += "VALUES" + vbCrLf
-                        strSQL += "(" + vbCrLf
-                        strSQL += "'" + strID + "'," + vbCrLf
-                        strSQL += "'" + txtUserName.Text + "'," + vbCrLf
-                        strSQL += "'" + txtPassword.Text + "'," + vbCrLf
-                        strSQL += "'" + cboLevel.SelectedValue.ToString + "'," + vbCrLf
-                        strSQL += "" + cboQuestion_1.SelectedValue.ToString + "," + vbCrLf
-                        strSQL += "" + cboQuestion_2.SelectedValue.ToString + "," + vbCrLf
-                        strSQL += "'" + txtAnswer_1.Text + "'," + vbCrLf
-                        strSQL += "'" + txtAnswer_2.Text + "'," + vbCrLf
-                        strSQL += "0," + vbCrLf
-                        strSQL += "getdate()," + vbCrLf
-                        strSQL += "getdate()," + vbCrLf
-                        strSQL += "null," + vbCrLf
-                        strSQL += "'" + strID + "'" + vbCrLf
-                        strSQL += ")" + vbCrLf
+                            strSQL = ""
+                            strSQL += "INSERT INTO dbo.Accounts " + vbCrLf
+                            strSQL += "(" + vbCrLf
+                            strSQL += "AccountID, " + vbCrLf
+                            strSQL += "UserName," + vbCrLf
+                            strSQL += "Password," + vbCrLf
+                            strSQL += "UserLevel," + vbCrLf
+                            strSQL += "Q1," + vbCrLf
+                            strSQL += "Q2," + vbCrLf
+                            strSQL += "A1," + vbCrLf
+                            strSQL += "A2," + vbCrLf
+                            strSQL += "isDeactivate," + vbCrLf
+                            strSQL += "CreatedDate," + vbCrLf
+                            strSQL += "UpdatedDate," + vbCrLf
+                            strSQL += "DeletedDate," + vbCrLf
+                            strSQL += "UpdatedBy" + vbCrLf
+                            strSQL += ")" + vbCrLf
+                            strSQL += "VALUES" + vbCrLf
+                            strSQL += "(" + vbCrLf
+                            strSQL += "'" + strID + "'," + vbCrLf
+                            strSQL += "'" + txtUserName.Text + "'," + vbCrLf
+                            strSQL += "'" + txtPassword.Text + "'," + vbCrLf
+                            strSQL += "'" + cboLevel.SelectedValue.ToString + "'," + vbCrLf
+                            strSQL += "" + cboQuestion_1.SelectedValue.ToString + "," + vbCrLf
+                            strSQL += "" + cboQuestion_2.SelectedValue.ToString + "," + vbCrLf
+                            strSQL += "'" + txtAnswer_1.Text + "'," + vbCrLf
+                            strSQL += "'" + txtAnswer_2.Text + "'," + vbCrLf
+                            strSQL += "0," + vbCrLf
+                            strSQL += "getdate()," + vbCrLf
+                            strSQL += "getdate()," + vbCrLf
+                            strSQL += "null," + vbCrLf
+                            strSQL += "'" + strID + "'" + vbCrLf
+                            strSQL += ")" + vbCrLf
 
-                        blResult = sqlExecute(strSQL)
+                            blResult = sqlExecute(strSQL)
 
-                        If (blResult = True) Then
-                            _gbAccountID = strID
-                            Call saveLogs(1, "Account created")
-                            MsgBox("Account Registered", vbOKOnly & vbInformation)
-                            Me.Close()
+                            If (blResult = True) Then
+                                _gbAccountID = strID
+                                Call saveLogs(1, "Account created")
+                                MsgBox("Account Registered", vbOKOnly & vbInformation)
+                                Me.Close()
+                            End If
                         End If
-                    End If
+                        End If
+                       
                 End If
             Else
                 strSQL = ""
@@ -128,34 +131,37 @@ Public Class frmCreateAccount
                     txtUserName.ForeColor = Color.Red
                     txtUserName.Focus()
                 Else
-                    strSQL = ""
-                    strSQL += "UPDATE dbo.Accounts" & vbCrLf
-                    strSQL += "SET UserName = '" + txtUserName.Text + "'" & vbCrLf
-                    strSQL += ", Password = '" + txtPassword.Text + "'" & vbCrLf
-                    strSQL += ", UserLevel = '" + cboLevel.SelectedValue.ToString + "'" & vbCrLf
-                    strSQL += ", Q1 = '" + cboQuestion_1.SelectedValue.ToString + "'" & vbCrLf
-                    strSQL += ", Q2 = '" + cboQuestion_2.SelectedValue.ToString + "'" & vbCrLf
-                    strSQL += ", A1 = '" + txtAnswer_1.Text + "'" & vbCrLf
-                    strSQL += ", A2 = '" + txtAnswer_2.Text + "'" & vbCrLf
-                    strSQL += ", UpdatedDate =getdate()" & vbCrLf
-                    strSQL += "WHERE AccountID = '" + txtUserID.Text + "'" & vbCrLf
-                    blResult = sqlExecute(strSQL)
+                    If MsgBox("Are you sure you want to save changes?", vbYesNo + vbQuestion) Then
+                        strSQL = ""
+                        strSQL += "UPDATE dbo.Accounts" & vbCrLf
+                        strSQL += "SET UserName = '" + txtUserName.Text + "'" & vbCrLf
+                        strSQL += ", Password = '" + txtPassword.Text + "'" & vbCrLf
+                        strSQL += ", UserLevel = '" + cboLevel.SelectedValue.ToString + "'" & vbCrLf
+                        strSQL += ", Q1 = '" + cboQuestion_1.SelectedValue.ToString + "'" & vbCrLf
+                        strSQL += ", Q2 = '" + cboQuestion_2.SelectedValue.ToString + "'" & vbCrLf
+                        strSQL += ", A1 = '" + txtAnswer_1.Text + "'" & vbCrLf
+                        strSQL += ", A2 = '" + txtAnswer_2.Text + "'" & vbCrLf
+                        strSQL += ", UpdatedDate =getdate()" & vbCrLf
+                        strSQL += "WHERE AccountID = '" + txtUserID.Text + "'" & vbCrLf
+                        blResult = sqlExecute(strSQL)
 
-                    strSQL = ""
-                    strSQL += "UPDATE dbo.Users" & vbCrLf
-                    strSQL += "SET LastName = '" + txtLName.Text + "'" & vbCrLf
-                    strSQL += ", FirstName = '" + txtFName.Text + "'" & vbCrLf
-                    strSQL += ", MiddleName = '" + txtMName.Text + "'" & vbCrLf
-                    strSQL += ", UpdatedDate =getdate()" & vbCrLf
-                    strSQL += "WHERE UserID = '" + txtUserID.Text + "'" & vbCrLf
-                    blResult = sqlExecute(strSQL)
+                        strSQL = ""
+                        strSQL += "UPDATE dbo.Users" & vbCrLf
+                        strSQL += "SET LastName = '" + txtLName.Text + "'" & vbCrLf
+                        strSQL += ", FirstName = '" + txtFName.Text + "'" & vbCrLf
+                        strSQL += ", MiddleName = '" + txtMName.Text + "'" & vbCrLf
+                        strSQL += ", UpdatedDate =getdate()" & vbCrLf
+                        strSQL += "WHERE UserID = '" + txtUserID.Text + "'" & vbCrLf
+                        blResult = sqlExecute(strSQL)
 
-                    If (blResult = True) Then
-                        _gbAccountID = txtUserID.Text
-                        Call saveLogs(2, "Account updated")
-                        MsgBox("Account Updated!", vbOKOnly & vbInformation)
-                        Me.Close()
+                        If (blResult = True) Then
+                            _gbAccountID = txtUserID.Text
+                            Call saveLogs(2, "Account updated")
+                            MsgBox("Account Updated!", vbOKOnly & vbInformation)
+                            Me.Close()
+                        End If
                     End If
+                   
                 End If
             End If
 
@@ -203,6 +209,7 @@ Public Class frmCreateAccount
         cboLevel.DataSource = dsUserLevel.Tables(0)
         cboLevel.DisplayMember = "Description"
         cboLevel.ValueMember = "LevelID"
+
     End Sub
 
     Private Sub txtConfirmPassword_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmPassword.TextChanged

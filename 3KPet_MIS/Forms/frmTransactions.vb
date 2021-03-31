@@ -15,7 +15,7 @@
             Dim dsPurchasedProd As New DataSet
             Dim dtVaccine As New DataTable
             Dim dtProducts As New DataTable
-            Dim strOthers As String
+            'Dim strOthers As String
 
             '/Get Transaction Header
             sqlQuery = ""
@@ -79,8 +79,19 @@
 
                 .Columns.Add("colVisitDate", "VISIT DATE")
                 .Columns("colVisitDate").Width = .Width * 0.1
-                .Columns.Add("colOthers", "OTHERS")
-                .Columns("colOthers").Width = .Width * 0.1
+
+                Dim btnSelect As New DataGridViewButtonColumn
+                btnSelect.Text = "•••"
+                btnSelect.UseColumnTextForButtonValue = True
+                btnSelect.Width = .Width * 0.1
+                .Columns.Add(btnSelect)
+                btnSelect.Name = "colOthers"
+                btnSelect.HeaderText = "OTHERS"
+                btnSelect.FlatStyle = FlatStyle.Flat
+                btnSelect.DefaultCellStyle.BackColor = Color.Purple
+                btnSelect.DefaultCellStyle.ForeColor = Color.White
+                '.Columns("colOthers").Width = .Width * 0.1
+
                 .Columns.Add("colAmount", "Amount")
                 .Columns("colAmount").Width = .Width * 0.1
                 .Columns("colAmount").Frozen = True
@@ -92,7 +103,7 @@
                     .Rows(.RowCount - 1).Cells("colTransactionID").Value = row.Item("TransactionID")
                     .Rows(.RowCount - 1).Cells("colOwnerName").Value = row.Item("OwnerName")
                     .Rows(.RowCount - 1).Cells("colVisitDate").Value = Format(row.Item("VisitDate"), "Short Date")
-
+                    '.Rows(.RowCount - 1).Cells("colOthers").Value =
                     .Rows(.RowCount - 1).Cells("colAmount").Value = row.Item("Amount")
 
                     '/Transaction Details
@@ -116,17 +127,21 @@
                     End If
                     dsPurchasedProd = SQLPetMIS(sqlQuery)
 
-                    If dsPurchasedProd.Tables(0).Select("TypeID <> 2").Count <> 0 Then
-                        dtProducts = dsPurchasedProd.Tables(0).Select("TypeID <> 2").CopyToDataTable
-                        strOthers = ""
-                        For Each row3 As DataRow In dtProducts.Rows
-                            strOthers += row3.Item("Description") + ", "
-                        Next
+                    'If dsPurchasedProd.Tables(0).Select("TypeID <> 2").Count <> 0 Then
+                    '    dtProducts = dsPurchasedProd.Tables(0).Select("TypeID <> 2").CopyToDataTable
+                    '    strOthers = ""
+                    '    For Each row3 As DataRow In dtProducts.Rows
+                    '        strOthers += row3.Item("Description") + ", "
+                    '    Next
 
-                        .Rows(.RowCount - 1).Cells("colOthers").Value = strOthers.Remove(strOthers.Count() - 1, 1)
+                    '    .Rows(.RowCount - 1).Cells("colOthers").Value = strOthers.Remove(strOthers.Count() - 1, 1)
+                    'End If
+
+                    If dsPurchasedProd.Tables(0).Select("TypeID = 2").Count <> 0 Then
+
+                        dtVaccine = dsPurchasedProd.Tables(0).Select("TypeID = 2").CopyToDataTable
                     End If
 
-                    dtVaccine = dsPurchasedProd.Tables(0).Select("TypeID = 2").CopyToDataTable
 
                     For Each row1 As DataRow In dtVaccine.Rows
                         For Each row2 As DataRow In dsVaccines.Tables(0).Rows
@@ -143,7 +158,7 @@
                         Next
                     Next
 
-                    
+
                 Next
             End With
 
@@ -170,6 +185,17 @@
             sqlQuery += ", Amount = " + datTransactions.Rows(e.RowIndex).Cells("colAmount").Value.ToString & vbCrLf
             sqlQuery += "WHERE TransactionID = '" + datTransactions.Rows(e.RowIndex).Cells("colTransactionID").Value + "'" & vbCrLf
             sqlExecute(sqlQuery)
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub datTransactions_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datTransactions.CellContentClick
+        Try
+            If datTransactions.Columns(e.ColumnIndex).Name = "colOthers" Then
+                frmPurchasedProducts.strID = datTransactions.Rows(e.RowIndex).Cells("colTransactionID").Value
+                frmPurchasedProducts.ShowDialog()
+            End If
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

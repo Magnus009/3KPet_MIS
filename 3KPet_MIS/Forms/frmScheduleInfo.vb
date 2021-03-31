@@ -32,6 +32,12 @@
     End Sub
 
     Private Sub txtCustomer_TextChanged(sender As Object, e As EventArgs) Handles txtCustomer.TextChanged
+        With subform
+            clearFields(.grpHistory)
+            clearFields(.grpTreatment)
+            .datProduct.Columns.Clear()
+        End With
+        
         subform.loadPetsInformation(txtOwnerID.Text)
     End Sub
     Public Sub getsubForm()

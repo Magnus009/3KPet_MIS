@@ -84,6 +84,12 @@
 
 
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        If (_gbUserType <> 1) Then
+            ACCOUNTSToolStripMenuItem.Visible = False
+            ACCOUNTSETTINGToolStripMenuItem.Visible = True
+        Else
+            ACCOUNTSETTINGToolStripMenuItem.Visible = False
+        End If
         mnuAccount.Text = UCase(_gbUSerName)
         Call getSchedules()
     End Sub
@@ -189,14 +195,61 @@
     End Sub
 
     Private Sub LOGOUTToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LOGOUTToolStripMenuItem.Click
-        Me.Hide()
+        Me.Close()
         frmUserLogin.txtUsername.Text = ""
         frmUserLogin.txtPassword.Text = ""
         _gbAccountID = ""
         _gbUSerName = ""
+        _gbUserType = ""
         mnuAccount.Text = ""
         frmUserLogin.Show()
     End Sub
 
    
+    Private Sub ACCOUNTSETTINGToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ACCOUNTSETTINGToolStripMenuItem.Click
+        Dim dsAccount As New DataSet
+        Try
+            With frmCreateAccount
+                .txtUserID.ReadOnly = True
+                .txtLName.ReadOnly = True
+                .txtFName.ReadOnly = True
+                .txtMName.ReadOnly = True
+                .txtPassword.Text = ""
+                .cboQuestion_1.Enabled = False
+                .cboQuestion_2.Enabled = False
+                .txtAnswer_1.ReadOnly = True
+                .txtAnswer_2.ReadOnly = True
+                .btnDeactivate.Enabled = False
+
+                sqlQuery = ""
+                sqlQuery += "SELECT * FROM Accounts A" & vbCrLf
+                sqlQuery += "INNER JOIN UserLevel UL ON A.Userlevel = UL.LevelID" & vbCrLf
+                sqlQuery += "INNER JOIN Users U ON A.AccountID = U.UserID" & vbCrLf
+                sqlQuery += "WHERE U.UserID = '" + _gbAccountID + "'" & vbCrLf
+                dsAccount = SQLPetMIS(sqlQuery)
+
+                .txtUserID.Text = dsAccount.Tables(0).Rows(0)("UserID")
+                .txtLName.Text = dsAccount.Tables(0).Rows(0)("LastName")
+                .txtFName.Text = dsAccount.Tables(0).Rows(0)("FirstName")
+                .txtMName.Text = dsAccount.Tables(0).Rows(0)("MiddleName")
+
+                .cboLevel.SelectedValue = dsAccount.Tables(0).Rows(0)("UserLevel")
+                .txtUserName.Text = dsAccount.Tables(0).Rows(0)("UserName")
+                .cboQuestion_1.SelectedValue = dsAccount.Tables(0).Rows(0)("Q1")
+                .cboQuestion_2.SelectedValue = dsAccount.Tables(0).Rows(0)("Q2")
+                .txtAnswer_1.Text = dsAccount.Tables(0).Rows(0)("A1")
+                .txtAnswer_2.Text = dsAccount.Tables(0).Rows(0)("A2")
+                .blnIsUpdate = True
+                .ShowDialog()
+            End With
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+       
+    End Sub
+
+ 
+    Private Sub PRODUCTTYPEToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PRODUCTTYPEToolStripMenuItem.Click
+        frmProductType.ShowDialog()
+    End Sub
 End Class

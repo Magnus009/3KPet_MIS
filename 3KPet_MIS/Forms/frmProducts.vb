@@ -41,7 +41,7 @@
                 dr(2) = Convert.ToInt32(dr(2)) + 1
                 dr(3) = Convert.ToInt32(dr(3)) * Convert.ToInt32(dr(2))
             End If
-
+            sub_frmPetInformation.setGridProperties()
             Me.Hide()
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical)

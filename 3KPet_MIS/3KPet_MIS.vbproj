@@ -129,6 +129,18 @@
     <Compile Include="Forms\frmProducts.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmProductType.Designer.vb">
+      <DependentUpon>frmProductType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmProductType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPurchasedProducts.Designer.vb">
+      <DependentUpon>frmPurchasedProducts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPurchasedProducts.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmRecords.Designer.vb">
       <DependentUpon>frmRecords.vb</DependentUpon>
     </Compile>
@@ -251,6 +263,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmProducts.resx">
       <DependentUpon>frmProducts.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmProductType.resx">
+      <DependentUpon>frmProductType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPurchasedProducts.resx">
+      <DependentUpon>frmPurchasedProducts.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmRecords.resx">
       <DependentUpon>frmRecords.vb</DependentUpon>

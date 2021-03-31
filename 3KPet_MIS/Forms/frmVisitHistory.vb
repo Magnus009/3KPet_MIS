@@ -76,6 +76,7 @@
                     .txtAddress.Text = datLogs.Rows(e.RowIndex).Cells(6).Value
                     .txtContactNo.Text = datLogs.Rows(e.RowIndex).Cells(2).Value
 
+                    getOwnerInfo(.txtOwnerID.Text)
                     .ShowDialog()
                 End With
             End If

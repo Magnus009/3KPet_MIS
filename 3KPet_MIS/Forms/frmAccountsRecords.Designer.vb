@@ -127,6 +127,7 @@ Partial Class frmAccountsRecords
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.lblSearch)
         Me.Controls.Add(Me.Panel1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
