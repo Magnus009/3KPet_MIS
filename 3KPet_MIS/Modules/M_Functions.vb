@@ -103,7 +103,7 @@
 
     Public Sub numericOnly(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         Dim numbers As TextBox = sender
-        If InStr("1234567890", e.KeyChar) = 0 And Asc(e.KeyChar) <> 8 Then
+        If InStr("1234567890.-", e.KeyChar) = 0 And Asc(e.KeyChar) <> 8 Then
             e.KeyChar = Chr(0)
             e.Handled = True
         End If

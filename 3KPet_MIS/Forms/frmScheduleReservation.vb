@@ -17,7 +17,7 @@
 
 
             If blnisUpdate Then
-                If MsgBox("Are you sure you want to update?", vbYesNo + vbQuestion) Then
+                If MsgBox("Are you sure you want to update?", vbYesNo + vbQuestion) = vbYes Then
                     sqlQuery = ""
                     sqlQuery += "UPDATE dbo.Schedules" & vbCrLf
                     sqlQuery += "SET ScheduleDate = '" + Format(dtpDateSched.Value, "yyyy/MM/dd") + "'" & vbCrLf
@@ -43,7 +43,7 @@
 
             Else
                 
-                If MsgBox("Are you sure you want to save?", vbYesNo + vbQuestion) Then
+                If MsgBox("Are you sure you want to save?", vbYesNo + vbQuestion) = vbYes Then
                     sqlQuery = ""
                     sqlQuery += "SELECT dbo.fn_colID ('S')"
 
@@ -54,9 +54,11 @@
                     txtContact.Text = dsOwnerInfo.Tables(0).Rows(0)("ContactNo")
                     strScheduleID = dsID.Tables(0).Rows(0)(0)
 
+
+                    strRequire = "" : blnRequired = False
                     If fn_CheckRequire(Me) Then
                         MsgBox("Please Fill out Required Field:" & vbCrLf & strRequire, MsgBoxStyle.Exclamation)
-                        strRequire = ""
+                        strRequire = "" : blnRequired = False
                     Else
                         sqlQuery = ""
                         sqlQuery += "INSERT INTO dbo.Schedules " & vbCrLf
@@ -96,6 +98,7 @@
                             strNextvisit = Format(dtpDateSched.Value, "yyyy/MM/dd")
                             Call saveLogs(1, "Save a schedule with Schedule code of : " + strScheduleID)
                             frmSchedules.getSchedules()
+                            frmDashboard.getSchedules()
                             Me.Hide()
                             Call clearFields(Me)
 

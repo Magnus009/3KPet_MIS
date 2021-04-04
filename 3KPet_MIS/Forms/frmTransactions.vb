@@ -19,7 +19,7 @@
 
             '/Get Transaction Header
             sqlQuery = ""
-            sqlQuery += "SELECT TransactionID, LastName + ', ' + FirstNAme as OwnerName, Amount, Others, VisitDate FROM TransactionHeader TH" & vbCrLf
+            sqlQuery += "SELECT TransactionID, LastName + ', ' + FirstNAme as OwnerName,Others, ProductAmount, ServicesAmount, DiscountedAmount, TotalAmount, VisitDate FROM TransactionHeader TH" & vbCrLf
             sqlQuery += "INNER JOIN Owners O ON O.OwnerID = TH.OwnerID" & vbCrLf
             sqlQuery += "WHERE TH.DeletedDate IS NULL" & vbCrLf
             If txtSearch.Text <> "" Then
@@ -37,9 +37,6 @@
             sqlQuery += "ORDER BY VisitDate DESC" & vbCrLf
             dsHeader = SQLPetMIS(sqlQuery)
 
-            
-
-
             '/Get treatment
             sqlQuery = ""
             sqlQuery += "SELECT TRID, TRDescription FROM Treatments " & vbCrLf
@@ -54,15 +51,13 @@
             With datTransactions
                 .Columns.Clear()
                 .Columns.Add("colTransactionID", "ID")
-                .Columns("colTransactionID").Frozen = True
-                .Columns("colTransactionID").Width = .Width * 0.1
+                '.Columns("colTransactionID").Width = .Width * 0.07
                 .Columns.Add("colOwnerName", "Owner")
-                .Columns("colOwnerName").Frozen = True
-                .Columns("colOwnerName").Width = .Width * 0.15
+                '.Columns("colOwnerName").Width = .Width * 0.2
 
                 For Each row As DataRow In dsVaccines.Tables(0).Rows
                     Dim chkVax As New DataGridViewCheckBoxColumn
-                    chkVax.Width = 20
+                    'chkVax.Width = 30
                     chkVax.HeaderText = row.Item(1)
                     chkVax.Name = row.Item(1)
                     .Columns.Add(chkVax)
@@ -78,7 +73,7 @@
                 Next
 
                 .Columns.Add("colVisitDate", "VISIT DATE")
-                .Columns("colVisitDate").Width = .Width * 0.1
+                .Columns("colVisitDate").Width = .Width * 0.09
 
                 Dim btnSelect As New DataGridViewButtonColumn
                 btnSelect.Text = "•••"
@@ -92,11 +87,23 @@
                 btnSelect.DefaultCellStyle.ForeColor = Color.White
                 '.Columns("colOthers").Width = .Width * 0.1
 
-                .Columns.Add("colAmount", "Amount")
-                .Columns("colAmount").Width = .Width * 0.1
-                .Columns("colAmount").Frozen = True
+                .Columns.Add("colProdTotal", "Product")
+                '.Columns("colProdTotal").Width = .Width * 0.05
+                '.Columns("colProdTotal").Frozen = True
 
-                .Columns(1).ReadOnly = True
+
+                .Columns.Add("colSerTotal", "Service")
+                '.Columns("colSerTotal").Width = .Width * 0.05
+                '.Columns("colSerTotal").Frozen = True
+
+                .Columns.Add("colAmount", "Total")
+                '.Columns("colAmount").Width = .Width * 0.05
+                '.Columns("colAmount").Frozen = True
+
+                .Columns.Add("colDiscount", "Discount")
+                '.Columns("colDiscount").Width = .Width * 0.05
+                .Columns("colDiscount").ReadOnly = False
+
 
                 For Each row As DataRow In dsHeader.Tables(0).Rows
                     .Rows.Add()
@@ -104,7 +111,9 @@
                     .Rows(.RowCount - 1).Cells("colOwnerName").Value = row.Item("OwnerName")
                     .Rows(.RowCount - 1).Cells("colVisitDate").Value = Format(row.Item("VisitDate"), "Short Date")
                     '.Rows(.RowCount - 1).Cells("colOthers").Value =
-                    .Rows(.RowCount - 1).Cells("colAmount").Value = row.Item("Amount")
+                    .Rows(.RowCount - 1).Cells("colProdTotal").Value = IIf(IsDBNull(row.Item("ProductAmount")), 0, row.Item("ProductAmount"))
+                    .Rows(.RowCount - 1).Cells("colSerTotal").Value = IIf(IsDBNull(row.Item("ServicesAmount")), 0, row.Item("ServicesAmount"))
+                    .Rows(.RowCount - 1).Cells("colAmount").Value = IIf(IsDBNull(row.Item("TotalAmount")), 0, row.Item("TotalAmount"))
 
                     '/Transaction Details
                     sqlQuery = ""
@@ -178,7 +187,6 @@
     End Sub
     Private Sub datTransactions_CellEndEdit(sender As Object, e As DataGridViewCellEventArgs) Handles datTransactions.CellEndEdit
         Try
-
             sqlQuery = ""
             sqlQuery += "UPDATE dbo.TransactionHeader" & vbCrLf
             sqlQuery += "SET Others = '" + datTransactions.Rows(e.RowIndex).Cells("colOthers").Value + "'" & vbCrLf

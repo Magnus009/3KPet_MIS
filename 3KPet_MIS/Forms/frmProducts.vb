@@ -10,7 +10,7 @@
             sqlQuery = ""
             sqlQuery += "SELECT P.ProductID, P.Description, Price FROM Products P" & vbCrLf
             sqlQuery += "INNER JOIN ProductInventory PI ON PI.ProductID = P.ProductID" & vbCrLf
-            sqlQuery += "WHERE P.DeletedDate is null AND Stocks <> 0 " & vbCrLf
+            sqlQuery += "WHERE P.DeletedDate is null AND Stocks <> 0 AND TypeID <>2" & vbCrLf
             If txtSearch.Text <> "" Then
                 sqlQuery += "AND (Description LIKE '%" + txtSearch.Text + "%')" & vbCrLf
             End If

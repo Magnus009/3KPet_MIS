@@ -59,25 +59,8 @@
 
     End Sub
 
-    Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
-        strdestination = "ADD"
-        frmRecords.Text = Me.Text
-        frmRecords.lblHeader.Text = "ADD RECORD"
-        frmRecords.ShowDialog()
-    End Sub
-
-    Private Sub UPDATEToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UPDATEToolStripMenuItem.Click
-        strdestination = "UPDATE"
-        frmRecords.Text = Me.Text
-        frmRecords.lblHeader.Text = "UPDATE RECORD"
-        frmRecords.ShowDialog()
-    End Sub
-
-
     Private Sub RECORDSToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RECORDSToolStripMenuItem.Click
-        frmRecords.Text = Me.Text
-        strdestination = "ADD"
-        frmRecords.lblHeader.Text = "RECORDS"
+        clearFields(frmRecords)
         frmRecords.ShowDialog()
     End Sub
 
@@ -90,7 +73,6 @@
         Else
             ACCOUNTSETTINGToolStripMenuItem.Visible = False
         End If
-        mnuAccount.Text = UCase(_gbUSerName)
         Call getSchedules()
     End Sub
     Public Sub getSchedules()
@@ -162,9 +144,9 @@
         frmSchedules.ShowDialog()
     End Sub
 
-    Private Sub PAYMENTMODULEToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PAYMENTMODULEToolStripMenuItem.Click
-        frmTransactions.ShowDialog()
-    End Sub
+    'Private Sub PAYMENTMODULEToolStripMenuItem_Click(sender As Object, e As EventArgs)
+    '    frmTransactions.ShowDialog()
+    'End Sub
 
     Private Sub MEDICALHISTORIESToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MEDICALHISTORIESToolStripMenuItem.Click
         frmVisitHistory.ShowDialog()
@@ -251,5 +233,14 @@
  
     Private Sub PRODUCTTYPEToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PRODUCTTYPEToolStripMenuItem.Click
         frmProductType.ShowDialog()
+    End Sub
+
+    Private Sub SERVICESToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SERVICESToolStripMenuItem.Click
+        frmServices.ShowDialog()
+    End Sub
+
+
+    Private Sub MEDICALHISTORYToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MEDICALHISTORYToolStripMenuItem.Click
+        frmHistoryReport.ShowDialog()
     End Sub
 End Class

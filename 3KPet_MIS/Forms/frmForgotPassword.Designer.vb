@@ -39,26 +39,21 @@ Partial Class frmForgetPassword
         Me.lblSecurityFrame = New System.Windows.Forms.Label()
         Me.txtAnswer_1 = New System.Windows.Forms.TextBox()
         Me.lblA1 = New System.Windows.Forms.Label()
-        Me.txtAnswer_2 = New System.Windows.Forms.TextBox()
-        Me.lblA2 = New System.Windows.Forms.Label()
         Me.lblQ1 = New System.Windows.Forms.Label()
-        Me.lblQ2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.pnlRight = New System.Windows.Forms.Panel()
-        Me.txtQuestion_2 = New System.Windows.Forms.TextBox()
-        Me.txtQuestion_1 = New System.Windows.Forms.TextBox()
-        Me.btnSearch = New System.Windows.Forms.Button()
         Me.btnSubmit = New System.Windows.Forms.Button()
-        Me.datUserInfo = New System.Windows.Forms.DataGridView()
-        Me.lblSearch = New System.Windows.Forms.Label()
-        Me.txtSearch = New System.Windows.Forms.TextBox()
+        Me.lblUsername = New System.Windows.Forms.Label()
+        Me.txtUserName = New System.Windows.Forms.TextBox()
+        Me.lblHeader = New System.Windows.Forms.Label()
+        Me.cboQuestions = New System.Windows.Forms.ComboBox()
+        Me.lblHead = New System.Windows.Forms.Label()
         Me.pnlLeft.SuspendLayout()
         CType(Me.picOP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picCNP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picNP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picChangePass, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlRight.SuspendLayout()
-        CType(Me.datUserInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pnlLeft
@@ -79,7 +74,7 @@ Partial Class frmForgetPassword
         Me.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.pnlLeft.Location = New System.Drawing.Point(0, 0)
         Me.pnlLeft.Name = "pnlLeft"
-        Me.pnlLeft.Size = New System.Drawing.Size(438, 316)
+        Me.pnlLeft.Size = New System.Drawing.Size(15, 316)
         Me.pnlLeft.TabIndex = 2
         '
         'btnConfirm
@@ -90,7 +85,7 @@ Partial Class frmForgetPassword
         Me.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnConfirm.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnConfirm.ForeColor = System.Drawing.Color.White
-        Me.btnConfirm.Location = New System.Drawing.Point(257, 241)
+        Me.btnConfirm.Location = New System.Drawing.Point(-166, 241)
         Me.btnConfirm.Name = "btnConfirm"
         Me.btnConfirm.Size = New System.Drawing.Size(120, 31)
         Me.btnConfirm.TabIndex = 4
@@ -102,7 +97,7 @@ Partial Class frmForgetPassword
         Me.picOP.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.picOP.BackColor = System.Drawing.Color.White
         Me.picOP.Image = Global._3KPet_MIS.My.Resources.Resources.show
-        Me.picOP.Location = New System.Drawing.Point(349, 165)
+        Me.picOP.Location = New System.Drawing.Point(-74, 165)
         Me.picOP.Name = "picOP"
         Me.picOP.Size = New System.Drawing.Size(20, 17)
         Me.picOP.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -116,7 +111,7 @@ Partial Class frmForgetPassword
         Me.lblOP.AutoSize = True
         Me.lblOP.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblOP.ForeColor = System.Drawing.Color.White
-        Me.lblOP.Location = New System.Drawing.Point(88, 167)
+        Me.lblOP.Location = New System.Drawing.Point(-335, 167)
         Me.lblOP.Name = "lblOP"
         Me.lblOP.Size = New System.Drawing.Size(86, 13)
         Me.lblOP.TabIndex = 43
@@ -128,7 +123,7 @@ Partial Class frmForgetPassword
         Me.txtOldPass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtOldPass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtOldPass.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtOldPass.Location = New System.Drawing.Point(180, 163)
+        Me.txtOldPass.Location = New System.Drawing.Point(-243, 163)
         Me.txtOldPass.MaxLength = 20
         Me.txtOldPass.Name = "txtOldPass"
         Me.txtOldPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(8226)
@@ -144,7 +139,7 @@ Partial Class frmForgetPassword
         Me.picCNP.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.picCNP.BackColor = System.Drawing.Color.White
         Me.picCNP.Image = Global._3KPet_MIS.My.Resources.Resources.show
-        Me.picCNP.Location = New System.Drawing.Point(349, 217)
+        Me.picCNP.Location = New System.Drawing.Point(-74, 217)
         Me.picCNP.Name = "picCNP"
         Me.picCNP.Size = New System.Drawing.Size(20, 17)
         Me.picCNP.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -156,7 +151,7 @@ Partial Class frmForgetPassword
         Me.picNP.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.picNP.BackColor = System.Drawing.Color.White
         Me.picNP.Image = Global._3KPet_MIS.My.Resources.Resources.show
-        Me.picNP.Location = New System.Drawing.Point(349, 191)
+        Me.picNP.Location = New System.Drawing.Point(-74, 191)
         Me.picNP.Name = "picNP"
         Me.picNP.Size = New System.Drawing.Size(20, 17)
         Me.picNP.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -169,7 +164,7 @@ Partial Class frmForgetPassword
         Me.lblCNPassword.AutoSize = True
         Me.lblCNPassword.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblCNPassword.ForeColor = System.Drawing.Color.White
-        Me.lblCNPassword.Location = New System.Drawing.Point(40, 219)
+        Me.lblCNPassword.Location = New System.Drawing.Point(-383, 219)
         Me.lblCNPassword.Name = "lblCNPassword"
         Me.lblCNPassword.Size = New System.Drawing.Size(134, 13)
         Me.lblCNPassword.TabIndex = 39
@@ -180,7 +175,7 @@ Partial Class frmForgetPassword
         Me.txtConfirmNewPass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtConfirmNewPass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtConfirmNewPass.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtConfirmNewPass.Location = New System.Drawing.Point(180, 215)
+        Me.txtConfirmNewPass.Location = New System.Drawing.Point(-243, 215)
         Me.txtConfirmNewPass.MaxLength = 20
         Me.txtConfirmNewPass.Name = "txtConfirmNewPass"
         Me.txtConfirmNewPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(8226)
@@ -195,7 +190,7 @@ Partial Class frmForgetPassword
         Me.lblNP.AutoSize = True
         Me.lblNP.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblNP.ForeColor = System.Drawing.Color.White
-        Me.lblNP.Location = New System.Drawing.Point(85, 193)
+        Me.lblNP.Location = New System.Drawing.Point(-338, 193)
         Me.lblNP.Name = "lblNP"
         Me.lblNP.Size = New System.Drawing.Size(89, 13)
         Me.lblNP.TabIndex = 38
@@ -206,7 +201,7 @@ Partial Class frmForgetPassword
         Me.txtNewPass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.txtNewPass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtNewPass.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtNewPass.Location = New System.Drawing.Point(180, 189)
+        Me.txtNewPass.Location = New System.Drawing.Point(-243, 189)
         Me.txtNewPass.MaxLength = 20
         Me.txtNewPass.Name = "txtNewPass"
         Me.txtNewPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(8226)
@@ -219,7 +214,7 @@ Partial Class frmForgetPassword
         '
         Me.picChangePass.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.picChangePass.Image = CType(resources.GetObject("picChangePass.Image"), System.Drawing.Image)
-        Me.picChangePass.Location = New System.Drawing.Point(156, 20)
+        Me.picChangePass.Location = New System.Drawing.Point(-267, 20)
         Me.picChangePass.Name = "picChangePass"
         Me.picChangePass.Size = New System.Drawing.Size(135, 130)
         Me.picChangePass.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -234,7 +229,7 @@ Partial Class frmForgetPassword
         Me.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnBack.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnBack.ForeColor = System.Drawing.Color.Black
-        Me.btnBack.Location = New System.Drawing.Point(43, 275)
+        Me.btnBack.Location = New System.Drawing.Point(-380, 275)
         Me.btnBack.Name = "btnBack"
         Me.btnBack.Size = New System.Drawing.Size(98, 31)
         Me.btnBack.TabIndex = 5
@@ -245,16 +240,16 @@ Partial Class frmForgetPassword
         '
         Me.lblSecurityFrame.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.lblSecurityFrame.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.lblSecurityFrame.Location = New System.Drawing.Point(30, 144)
+        Me.lblSecurityFrame.Location = New System.Drawing.Point(31, 155)
         Me.lblSecurityFrame.Name = "lblSecurityFrame"
-        Me.lblSecurityFrame.Size = New System.Drawing.Size(371, 128)
+        Me.lblSecurityFrame.Size = New System.Drawing.Size(371, 80)
         Me.lblSecurityFrame.TabIndex = 29
         '
         'txtAnswer_1
         '
         Me.txtAnswer_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtAnswer_1.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtAnswer_1.Location = New System.Drawing.Point(120, 186)
+        Me.txtAnswer_1.Location = New System.Drawing.Point(121, 197)
         Me.txtAnswer_1.Name = "txtAnswer_1"
         Me.txtAnswer_1.Size = New System.Drawing.Size(262, 21)
         Me.txtAnswer_1.TabIndex = 5
@@ -264,57 +259,27 @@ Partial Class frmForgetPassword
         '
         Me.lblA1.AutoSize = True
         Me.lblA1.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblA1.Location = New System.Drawing.Point(53, 190)
+        Me.lblA1.Location = New System.Drawing.Point(54, 201)
         Me.lblA1.Name = "lblA1"
         Me.lblA1.Size = New System.Drawing.Size(61, 13)
         Me.lblA1.TabIndex = 24
         Me.lblA1.Text = "ANSWER 1 : "
         '
-        'txtAnswer_2
-        '
-        Me.txtAnswer_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtAnswer_2.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtAnswer_2.Location = New System.Drawing.Point(120, 245)
-        Me.txtAnswer_2.Name = "txtAnswer_2"
-        Me.txtAnswer_2.Size = New System.Drawing.Size(262, 21)
-        Me.txtAnswer_2.TabIndex = 7
-        Me.txtAnswer_2.Tag = "*Answer 2"
-        '
-        'lblA2
-        '
-        Me.lblA2.AutoSize = True
-        Me.lblA2.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblA2.Location = New System.Drawing.Point(53, 249)
-        Me.lblA2.Name = "lblA2"
-        Me.lblA2.Size = New System.Drawing.Size(61, 13)
-        Me.lblA2.TabIndex = 25
-        Me.lblA2.Text = "ANSWER 2 : "
-        '
         'lblQ1
         '
         Me.lblQ1.AutoSize = True
         Me.lblQ1.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblQ1.Location = New System.Drawing.Point(46, 165)
+        Me.lblQ1.Location = New System.Drawing.Point(47, 176)
         Me.lblQ1.Name = "lblQ1"
         Me.lblQ1.Size = New System.Drawing.Size(68, 13)
         Me.lblQ1.TabIndex = 26
         Me.lblQ1.Text = "QUESTION 1 : "
         '
-        'lblQ2
-        '
-        Me.lblQ2.AutoSize = True
-        Me.lblQ2.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblQ2.Location = New System.Drawing.Point(46, 224)
-        Me.lblQ2.Name = "lblQ2"
-        Me.lblQ2.Size = New System.Drawing.Size(68, 13)
-        Me.lblQ2.TabIndex = 27
-        Me.lblQ2.Text = "QUESTION 2 : "
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(60, 137)
+        Me.Label1.Location = New System.Drawing.Point(61, 148)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(116, 15)
         Me.Label1.TabIndex = 28
@@ -323,60 +288,22 @@ Partial Class frmForgetPassword
         '
         'pnlRight
         '
-        Me.pnlRight.Controls.Add(Me.txtQuestion_2)
-        Me.pnlRight.Controls.Add(Me.txtQuestion_1)
-        Me.pnlRight.Controls.Add(Me.btnSearch)
+        Me.pnlRight.Controls.Add(Me.lblHead)
+        Me.pnlRight.Controls.Add(Me.cboQuestions)
+        Me.pnlRight.Controls.Add(Me.lblHeader)
+        Me.pnlRight.Controls.Add(Me.txtUserName)
+        Me.pnlRight.Controls.Add(Me.lblUsername)
         Me.pnlRight.Controls.Add(Me.btnSubmit)
-        Me.pnlRight.Controls.Add(Me.datUserInfo)
-        Me.pnlRight.Controls.Add(Me.lblSearch)
-        Me.pnlRight.Controls.Add(Me.txtSearch)
         Me.pnlRight.Controls.Add(Me.Label1)
-        Me.pnlRight.Controls.Add(Me.lblQ2)
         Me.pnlRight.Controls.Add(Me.lblQ1)
-        Me.pnlRight.Controls.Add(Me.lblA2)
-        Me.pnlRight.Controls.Add(Me.txtAnswer_2)
         Me.pnlRight.Controls.Add(Me.lblA1)
         Me.pnlRight.Controls.Add(Me.txtAnswer_1)
         Me.pnlRight.Controls.Add(Me.lblSecurityFrame)
         Me.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlRight.Location = New System.Drawing.Point(438, 0)
+        Me.pnlRight.Location = New System.Drawing.Point(15, 0)
         Me.pnlRight.Name = "pnlRight"
-        Me.pnlRight.Size = New System.Drawing.Size(12, 316)
+        Me.pnlRight.Size = New System.Drawing.Size(435, 316)
         Me.pnlRight.TabIndex = 1
-        '
-        'txtQuestion_2
-        '
-        Me.txtQuestion_2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtQuestion_2.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtQuestion_2.Location = New System.Drawing.Point(120, 220)
-        Me.txtQuestion_2.Name = "txtQuestion_2"
-        Me.txtQuestion_2.ReadOnly = True
-        Me.txtQuestion_2.Size = New System.Drawing.Size(262, 21)
-        Me.txtQuestion_2.TabIndex = 6
-        '
-        'txtQuestion_1
-        '
-        Me.txtQuestion_1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtQuestion_1.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtQuestion_1.Location = New System.Drawing.Point(120, 161)
-        Me.txtQuestion_1.Name = "txtQuestion_1"
-        Me.txtQuestion_1.ReadOnly = True
-        Me.txtQuestion_1.Size = New System.Drawing.Size(262, 21)
-        Me.txtQuestion_1.TabIndex = 4
-        '
-        'btnSearch
-        '
-        Me.btnSearch.BackColor = System.Drawing.Color.Purple
-        Me.btnSearch.FlatAppearance.BorderColor = System.Drawing.Color.Black
-        Me.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnSearch.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnSearch.ForeColor = System.Drawing.Color.White
-        Me.btnSearch.Location = New System.Drawing.Point(303, 20)
-        Me.btnSearch.Name = "btnSearch"
-        Me.btnSearch.Size = New System.Drawing.Size(79, 24)
-        Me.btnSearch.TabIndex = 2
-        Me.btnSearch.Text = "SEARCH"
-        Me.btnSearch.UseVisualStyleBackColor = False
         '
         'btnSubmit
         '
@@ -392,42 +319,49 @@ Partial Class frmForgetPassword
         Me.btnSubmit.Text = "&SUBMIT"
         Me.btnSubmit.UseVisualStyleBackColor = False
         '
-        'datUserInfo
+        'lblUsername
         '
-        Me.datUserInfo.AllowUserToAddRows = False
-        Me.datUserInfo.AllowUserToDeleteRows = False
-        Me.datUserInfo.AllowUserToResizeRows = False
-        Me.datUserInfo.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
-        Me.datUserInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.datUserInfo.Location = New System.Drawing.Point(20, 49)
-        Me.datUserInfo.MultiSelect = False
-        Me.datUserInfo.Name = "datUserInfo"
-        Me.datUserInfo.ReadOnly = True
-        Me.datUserInfo.RowHeadersVisible = False
-        Me.datUserInfo.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.datUserInfo.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datUserInfo.Size = New System.Drawing.Size(394, 85)
-        Me.datUserInfo.TabIndex = 3
+        Me.lblUsername.AutoSize = True
+        Me.lblUsername.Location = New System.Drawing.Point(54, 123)
+        Me.lblUsername.Name = "lblUsername"
+        Me.lblUsername.Size = New System.Drawing.Size(64, 13)
+        Me.lblUsername.TabIndex = 30
+        Me.lblUsername.Text = "USER NAME :"
         '
-        'lblSearch
+        'txtUserName
         '
-        Me.lblSearch.AutoSize = True
-        Me.lblSearch.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblSearch.Location = New System.Drawing.Point(47, 26)
-        Me.lblSearch.Name = "lblSearch"
-        Me.lblSearch.Size = New System.Drawing.Size(47, 13)
-        Me.lblSearch.TabIndex = 31
-        Me.lblSearch.Text = "SEARCH: "
+        Me.txtUserName.Location = New System.Drawing.Point(124, 118)
+        Me.txtUserName.Name = "txtUserName"
+        Me.txtUserName.Size = New System.Drawing.Size(262, 21)
+        Me.txtUserName.TabIndex = 31
         '
-        'txtSearch
+        'lblHeader
         '
-        Me.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.txtSearch.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtSearch.Location = New System.Drawing.Point(100, 22)
-        Me.txtSearch.MaxLength = 20
-        Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(197, 21)
-        Me.txtSearch.TabIndex = 1
+        Me.lblHeader.AutoSize = True
+        Me.lblHeader.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeader.Location = New System.Drawing.Point(50, 75)
+        Me.lblHeader.Name = "lblHeader"
+        Me.lblHeader.Size = New System.Drawing.Size(261, 15)
+        Me.lblHeader.TabIndex = 32
+        Me.lblHeader.Text = "Please enter your user name you use to sign in"
+        '
+        'cboQuestions
+        '
+        Me.cboQuestions.FormattingEnabled = True
+        Me.cboQuestions.Location = New System.Drawing.Point(121, 173)
+        Me.cboQuestions.Name = "cboQuestions"
+        Me.cboQuestions.Size = New System.Drawing.Size(262, 21)
+        Me.cboQuestions.TabIndex = 33
+        '
+        'lblHead
+        '
+        Me.lblHead.AutoSize = True
+        Me.lblHead.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHead.Location = New System.Drawing.Point(48, 46)
+        Me.lblHead.Name = "lblHead"
+        Me.lblHead.Size = New System.Drawing.Size(243, 29)
+        Me.lblHead.TabIndex = 34
+        Me.lblHead.Text = "Forgot your password?"
         '
         'frmForgetPassword
         '
@@ -455,7 +389,6 @@ Partial Class frmForgetPassword
         CType(Me.picChangePass, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlRight.ResumeLayout(False)
         Me.pnlRight.PerformLayout()
-        CType(Me.datUserInfo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -463,19 +396,10 @@ Partial Class frmForgetPassword
     Friend WithEvents lblSecurityFrame As System.Windows.Forms.Label
     Friend WithEvents txtAnswer_1 As System.Windows.Forms.TextBox
     Friend WithEvents lblA1 As System.Windows.Forms.Label
-    Friend WithEvents txtAnswer_2 As System.Windows.Forms.TextBox
-    Friend WithEvents lblA2 As System.Windows.Forms.Label
     Friend WithEvents lblQ1 As System.Windows.Forms.Label
-    Friend WithEvents lblQ2 As System.Windows.Forms.Label
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents pnlRight As System.Windows.Forms.Panel
-    Friend WithEvents datUserInfo As System.Windows.Forms.DataGridView
-    Friend WithEvents lblSearch As System.Windows.Forms.Label
-    Friend WithEvents txtSearch As System.Windows.Forms.TextBox
-    Friend WithEvents btnSearch As System.Windows.Forms.Button
     Friend WithEvents btnSubmit As System.Windows.Forms.Button
-    Friend WithEvents txtQuestion_2 As System.Windows.Forms.TextBox
-    Friend WithEvents txtQuestion_1 As System.Windows.Forms.TextBox
     Friend WithEvents btnBack As System.Windows.Forms.Button
     Friend WithEvents picChangePass As System.Windows.Forms.PictureBox
     Friend WithEvents picOP As System.Windows.Forms.PictureBox
@@ -488,4 +412,9 @@ Partial Class frmForgetPassword
     Friend WithEvents lblNP As System.Windows.Forms.Label
     Friend WithEvents txtNewPass As System.Windows.Forms.TextBox
     Friend WithEvents btnConfirm As System.Windows.Forms.Button
+    Friend WithEvents lblHeader As Label
+    Friend WithEvents txtUserName As TextBox
+    Friend WithEvents lblUsername As Label
+    Friend WithEvents cboQuestions As ComboBox
+    Friend WithEvents lblHead As Label
 End Class

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmRecords
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class frmRecords
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -31,6 +31,9 @@ Partial Class frmRecords
         Me.pnlContent = New System.Windows.Forms.Panel()
         Me.btnNewRecord = New System.Windows.Forms.Button()
         Me.grpPetInfo = New System.Windows.Forms.GroupBox()
+        Me.chkBirthday = New System.Windows.Forms.CheckBox()
+        Me.dtpBirthday = New System.Windows.Forms.DateTimePicker()
+        Me.lblBirthday = New System.Windows.Forms.Label()
         Me.chkisDeceased = New System.Windows.Forms.CheckBox()
         Me.optFemale = New System.Windows.Forms.RadioButton()
         Me.optMale = New System.Windows.Forms.RadioButton()
@@ -78,7 +81,7 @@ Partial Class frmRecords
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(736, 57)
+        Me.pnlHeader.Size = New System.Drawing.Size(819, 57)
         Me.pnlHeader.TabIndex = 3
         '
         'lblHeader
@@ -88,9 +91,9 @@ Partial Class frmRecords
         Me.lblHeader.ForeColor = System.Drawing.Color.White
         Me.lblHeader.Location = New System.Drawing.Point(12, 12)
         Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(163, 33)
+        Me.lblHeader.Size = New System.Drawing.Size(120, 33)
         Me.lblHeader.TabIndex = 0
-        Me.lblHeader.Text = "ADD RECORD"
+        Me.lblHeader.Text = "RECORDS"
         '
         'pnlContent
         '
@@ -104,7 +107,7 @@ Partial Class frmRecords
         Me.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlContent.Location = New System.Drawing.Point(0, 57)
         Me.pnlContent.Name = "pnlContent"
-        Me.pnlContent.Size = New System.Drawing.Size(736, 469)
+        Me.pnlContent.Size = New System.Drawing.Size(819, 496)
         Me.pnlContent.TabIndex = 4
         '
         'btnNewRecord
@@ -114,7 +117,7 @@ Partial Class frmRecords
         Me.btnNewRecord.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnNewRecord.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnNewRecord.ForeColor = System.Drawing.Color.White
-        Me.btnNewRecord.Location = New System.Drawing.Point(474, 421)
+        Me.btnNewRecord.Location = New System.Drawing.Point(559, 448)
         Me.btnNewRecord.Name = "btnNewRecord"
         Me.btnNewRecord.Size = New System.Drawing.Size(121, 35)
         Me.btnNewRecord.TabIndex = 5
@@ -123,6 +126,9 @@ Partial Class frmRecords
         '
         'grpPetInfo
         '
+        Me.grpPetInfo.Controls.Add(Me.chkBirthday)
+        Me.grpPetInfo.Controls.Add(Me.dtpBirthday)
+        Me.grpPetInfo.Controls.Add(Me.lblBirthday)
         Me.grpPetInfo.Controls.Add(Me.chkisDeceased)
         Me.grpPetInfo.Controls.Add(Me.optFemale)
         Me.grpPetInfo.Controls.Add(Me.optMale)
@@ -139,18 +145,48 @@ Partial Class frmRecords
         Me.grpPetInfo.Controls.Add(Me.txtPetID)
         Me.grpPetInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.grpPetInfo.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grpPetInfo.Location = New System.Drawing.Point(392, 207)
+        Me.grpPetInfo.Location = New System.Drawing.Point(474, 207)
         Me.grpPetInfo.Name = "grpPetInfo"
-        Me.grpPetInfo.Size = New System.Drawing.Size(330, 208)
+        Me.grpPetInfo.Size = New System.Drawing.Size(330, 235)
         Me.grpPetInfo.TabIndex = 3
         Me.grpPetInfo.TabStop = False
         Me.grpPetInfo.Text = "PET INFORMATION"
+        '
+        'chkBirthday
+        '
+        Me.chkBirthday.AutoSize = True
+        Me.chkBirthday.Location = New System.Drawing.Point(198, 152)
+        Me.chkBirthday.Name = "chkBirthday"
+        Me.chkBirthday.Size = New System.Drawing.Size(15, 14)
+        Me.chkBirthday.TabIndex = 14
+        Me.chkBirthday.UseVisualStyleBackColor = True
+        '
+        'dtpBirthday
+        '
+        Me.dtpBirthday.CustomFormat = "yyyy/MM/dd"
+        Me.dtpBirthday.Enabled = False
+        Me.dtpBirthday.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpBirthday.Location = New System.Drawing.Point(96, 148)
+        Me.dtpBirthday.Name = "dtpBirthday"
+        Me.dtpBirthday.Size = New System.Drawing.Size(100, 22)
+        Me.dtpBirthday.TabIndex = 13
+        '
+        'lblBirthday
+        '
+        Me.lblBirthday.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblBirthday.Location = New System.Drawing.Point(6, 149)
+        Me.lblBirthday.Name = "lblBirthday"
+        Me.lblBirthday.Size = New System.Drawing.Size(84, 18)
+        Me.lblBirthday.TabIndex = 12
+        Me.lblBirthday.Text = "BIRTHDAY :"
+        Me.lblBirthday.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'chkisDeceased
         '
         Me.chkisDeceased.AutoSize = True
         Me.chkisDeceased.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkisDeceased.Location = New System.Drawing.Point(209, 172)
+        Me.chkisDeceased.Location = New System.Drawing.Point(212, 199)
         Me.chkisDeceased.Name = "chkisDeceased"
         Me.chkisDeceased.Size = New System.Drawing.Size(78, 19)
         Me.chkisDeceased.TabIndex = 11
@@ -163,7 +199,7 @@ Partial Class frmRecords
         Me.optFemale.BackColor = System.Drawing.Color.Transparent
         Me.optFemale.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.optFemale.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.optFemale.Location = New System.Drawing.Point(264, 149)
+        Me.optFemale.Location = New System.Drawing.Point(267, 177)
         Me.optFemale.Name = "optFemale"
         Me.optFemale.Size = New System.Drawing.Size(59, 17)
         Me.optFemale.TabIndex = 6
@@ -178,7 +214,7 @@ Partial Class frmRecords
         Me.optMale.Checked = True
         Me.optMale.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.optMale.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.optMale.Location = New System.Drawing.Point(209, 149)
+        Me.optMale.Location = New System.Drawing.Point(212, 177)
         Me.optMale.Name = "optMale"
         Me.optMale.Size = New System.Drawing.Size(48, 17)
         Me.optMale.TabIndex = 5
@@ -189,7 +225,7 @@ Partial Class frmRecords
         'Label10
         '
         Me.Label10.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(234, 124)
+        Me.Label10.Location = New System.Drawing.Point(230, 152)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(60, 18)
         Me.Label10.TabIndex = 10
@@ -199,7 +235,7 @@ Partial Class frmRecords
         'Label5
         '
         Me.Label5.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(6, 149)
+        Me.Label5.Location = New System.Drawing.Point(6, 177)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(84, 18)
         Me.Label5.TabIndex = 9
@@ -210,7 +246,7 @@ Partial Class frmRecords
         '
         Me.txtPetAge.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtPetAge.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPetAge.Location = New System.Drawing.Point(96, 148)
+        Me.txtPetAge.Location = New System.Drawing.Point(96, 176)
         Me.txtPetAge.MaxLength = 3
         Me.txtPetAge.Name = "txtPetAge"
         Me.txtPetAge.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -314,7 +350,7 @@ Partial Class frmRecords
         Me.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnConfirm.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnConfirm.ForeColor = System.Drawing.Color.White
-        Me.btnConfirm.Location = New System.Drawing.Point(601, 421)
+        Me.btnConfirm.Location = New System.Drawing.Point(683, 448)
         Me.btnConfirm.Name = "btnConfirm"
         Me.btnConfirm.Size = New System.Drawing.Size(121, 35)
         Me.btnConfirm.TabIndex = 4
@@ -353,7 +389,7 @@ Partial Class frmRecords
         Me.grpOwnerInfo.Controls.Add(Me.txtOwnerID)
         Me.grpOwnerInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.grpOwnerInfo.Font = New System.Drawing.Font("Calibri", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grpOwnerInfo.Location = New System.Drawing.Point(392, 15)
+        Me.grpOwnerInfo.Location = New System.Drawing.Point(474, 15)
         Me.grpOwnerInfo.Name = "grpOwnerInfo"
         Me.grpOwnerInfo.Size = New System.Drawing.Size(330, 186)
         Me.grpOwnerInfo.TabIndex = 2
@@ -495,14 +531,14 @@ Partial Class frmRecords
         DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.datInformation.DefaultCellStyle = DataGridViewCellStyle3
-        Me.datInformation.Location = New System.Drawing.Point(12, 42)
+        Me.datInformation.Location = New System.Drawing.Point(17, 42)
         Me.datInformation.MultiSelect = False
         Me.datInformation.Name = "datInformation"
         Me.datInformation.ReadOnly = True
         Me.datInformation.RowHeadersVisible = False
         Me.datInformation.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.datInformation.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datInformation.Size = New System.Drawing.Size(374, 414)
+        Me.datInformation.Size = New System.Drawing.Size(451, 414)
         Me.datInformation.TabIndex = 1
         '
         'colOwnerID
@@ -539,7 +575,7 @@ Partial Class frmRecords
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.ClientSize = New System.Drawing.Size(736, 526)
+        Me.ClientSize = New System.Drawing.Size(819, 553)
         Me.Controls.Add(Me.pnlContent)
         Me.Controls.Add(Me.pnlHeader)
         Me.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -550,7 +586,7 @@ Partial Class frmRecords
         Me.Name = "frmRecords"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = " "
+        Me.Text = " Records"
         Me.pnlHeader.ResumeLayout(False)
         Me.pnlHeader.PerformLayout()
         Me.pnlContent.ResumeLayout(False)
@@ -601,4 +637,7 @@ Partial Class frmRecords
     Friend WithEvents btnNewRecord As System.Windows.Forms.Button
     Friend WithEvents txtPetAge As System.Windows.Forms.TextBox
     Friend WithEvents chkisDeceased As System.Windows.Forms.CheckBox
+    Friend WithEvents dtpBirthday As DateTimePicker
+    Friend WithEvents lblBirthday As Label
+    Friend WithEvents chkBirthday As CheckBox
 End Class

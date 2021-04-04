@@ -34,7 +34,7 @@
     Private Sub txtCustomer_TextChanged(sender As Object, e As EventArgs) Handles txtCustomer.TextChanged
         With subform
             clearFields(.grpHistory)
-            clearFields(.grpTreatment)
+            'clearFields(.grpTreatment)
             .datProduct.Columns.Clear()
         End With
         

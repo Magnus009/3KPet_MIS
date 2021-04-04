@@ -29,25 +29,26 @@ Partial Class frmDashboard
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.mnuDashboard = New System.Windows.Forms.MenuStrip()
         Me.PATIENTSRECORDSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.UPDATEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RECORDSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ARCHIVEToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SCHEDULESToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PAYMENTMODULEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MEDICALHISTORIESToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.INVENTORYToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmSettings = New System.Windows.Forms.ToolStripMenuItem()
         Me.AUDITTRAILToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ACCOUNTSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TREATMENTSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PRODUCTTYPEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SERVICESToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmReports = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MEDICALHISTORYToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TRANSACTIONSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuAccount = New System.Windows.Forms.ToolStripMenuItem()
         Me.ACCOUNTSETTINGToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LOGOUTToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlContent = New System.Windows.Forms.Panel()
         Me.datSchedules = New System.Windows.Forms.DataGridView()
-        Me.PRODUCTTYPEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlHeader.SuspendLayout()
         Me.mnuDashboard.SuspendLayout()
         Me.pnlContent.SuspendLayout()
@@ -80,31 +81,19 @@ Partial Class frmDashboard
         '
         Me.mnuDashboard.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.mnuDashboard.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.mnuDashboard.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PATIENTSRECORDSToolStripMenuItem, Me.SCHEDULESToolStripMenuItem, Me.PAYMENTMODULEToolStripMenuItem, Me.MEDICALHISTORIESToolStripMenuItem, Me.INVENTORYToolStripMenuItem, Me.tsmSettings, Me.tsmReports, Me.mnuAccount})
+        Me.mnuDashboard.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PATIENTSRECORDSToolStripMenuItem, Me.SCHEDULESToolStripMenuItem, Me.MEDICALHISTORIESToolStripMenuItem, Me.INVENTORYToolStripMenuItem, Me.tsmSettings, Me.tsmReports, Me.mnuAccount, Me.ToolStripMenuItem1})
         Me.mnuDashboard.Location = New System.Drawing.Point(0, 0)
         Me.mnuDashboard.Name = "mnuDashboard"
-        Me.mnuDashboard.Size = New System.Drawing.Size(825, 24)
+        Me.mnuDashboard.Size = New System.Drawing.Size(825, 32)
         Me.mnuDashboard.TabIndex = 1
         Me.mnuDashboard.Text = "MenuStrip1"
         '
         'PATIENTSRECORDSToolStripMenuItem
         '
-        Me.PATIENTSRECORDSToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.UPDATEToolStripMenuItem, Me.RECORDSToolStripMenuItem, Me.ARCHIVEToolStripMenuItem1})
+        Me.PATIENTSRECORDSToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.RECORDSToolStripMenuItem, Me.ARCHIVEToolStripMenuItem1})
         Me.PATIENTSRECORDSToolStripMenuItem.Name = "PATIENTSRECORDSToolStripMenuItem"
-        Me.PATIENTSRECORDSToolStripMenuItem.Size = New System.Drawing.Size(124, 20)
+        Me.PATIENTSRECORDSToolStripMenuItem.Size = New System.Drawing.Size(124, 28)
         Me.PATIENTSRECORDSToolStripMenuItem.Text = "PATIENT'S RECORDS"
-        '
-        'ToolStripMenuItem1
-        '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(124, 22)
-        Me.ToolStripMenuItem1.Text = "ADD"
-        '
-        'UPDATEToolStripMenuItem
-        '
-        Me.UPDATEToolStripMenuItem.Name = "UPDATEToolStripMenuItem"
-        Me.UPDATEToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
-        Me.UPDATEToolStripMenuItem.Text = "UPDATE"
         '
         'RECORDSToolStripMenuItem
         '
@@ -121,32 +110,26 @@ Partial Class frmDashboard
         'SCHEDULESToolStripMenuItem
         '
         Me.SCHEDULESToolStripMenuItem.Name = "SCHEDULESToolStripMenuItem"
-        Me.SCHEDULESToolStripMenuItem.Size = New System.Drawing.Size(80, 20)
+        Me.SCHEDULESToolStripMenuItem.Size = New System.Drawing.Size(80, 28)
         Me.SCHEDULESToolStripMenuItem.Text = "SCHEDULES"
-        '
-        'PAYMENTMODULEToolStripMenuItem
-        '
-        Me.PAYMENTMODULEToolStripMenuItem.Name = "PAYMENTMODULEToolStripMenuItem"
-        Me.PAYMENTMODULEToolStripMenuItem.Size = New System.Drawing.Size(122, 20)
-        Me.PAYMENTMODULEToolStripMenuItem.Text = "PAYMENT MODULE"
         '
         'MEDICALHISTORIESToolStripMenuItem
         '
         Me.MEDICALHISTORIESToolStripMenuItem.Name = "MEDICALHISTORIESToolStripMenuItem"
-        Me.MEDICALHISTORIESToolStripMenuItem.Size = New System.Drawing.Size(125, 20)
+        Me.MEDICALHISTORIESToolStripMenuItem.Size = New System.Drawing.Size(125, 28)
         Me.MEDICALHISTORIESToolStripMenuItem.Text = "MEDICAL HISTORIES"
         '
         'INVENTORYToolStripMenuItem
         '
         Me.INVENTORYToolStripMenuItem.Name = "INVENTORYToolStripMenuItem"
-        Me.INVENTORYToolStripMenuItem.Size = New System.Drawing.Size(83, 20)
+        Me.INVENTORYToolStripMenuItem.Size = New System.Drawing.Size(83, 28)
         Me.INVENTORYToolStripMenuItem.Text = "INVENTORY"
         '
         'tsmSettings
         '
-        Me.tsmSettings.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AUDITTRAILToolStripMenuItem, Me.ACCOUNTSToolStripMenuItem, Me.TREATMENTSToolStripMenuItem, Me.PRODUCTTYPEToolStripMenuItem})
+        Me.tsmSettings.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AUDITTRAILToolStripMenuItem, Me.ACCOUNTSToolStripMenuItem, Me.TREATMENTSToolStripMenuItem, Me.PRODUCTTYPEToolStripMenuItem, Me.SERVICESToolStripMenuItem})
         Me.tsmSettings.Name = "tsmSettings"
-        Me.tsmSettings.Size = New System.Drawing.Size(69, 20)
+        Me.tsmSettings.Size = New System.Drawing.Size(69, 28)
         Me.tsmSettings.Text = "SETTINGS"
         '
         'AUDITTRAILToolStripMenuItem
@@ -167,18 +150,43 @@ Partial Class frmDashboard
         Me.TREATMENTSToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.TREATMENTSToolStripMenuItem.Text = "TREATMENTS"
         '
+        'PRODUCTTYPEToolStripMenuItem
+        '
+        Me.PRODUCTTYPEToolStripMenuItem.Name = "PRODUCTTYPEToolStripMenuItem"
+        Me.PRODUCTTYPEToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.PRODUCTTYPEToolStripMenuItem.Text = "PRODUCT TYPE"
+        '
+        'SERVICESToolStripMenuItem
+        '
+        Me.SERVICESToolStripMenuItem.Name = "SERVICESToolStripMenuItem"
+        Me.SERVICESToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.SERVICESToolStripMenuItem.Text = "SERVICES"
+        '
         'tsmReports
         '
+        Me.tsmReports.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MEDICALHISTORYToolStripMenuItem, Me.TRANSACTIONSToolStripMenuItem})
         Me.tsmReports.Name = "tsmReports"
-        Me.tsmReports.Size = New System.Drawing.Size(67, 20)
+        Me.tsmReports.Size = New System.Drawing.Size(67, 28)
         Me.tsmReports.Text = "REPORTS"
+        '
+        'MEDICALHISTORYToolStripMenuItem
+        '
+        Me.MEDICALHISTORYToolStripMenuItem.Name = "MEDICALHISTORYToolStripMenuItem"
+        Me.MEDICALHISTORYToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.MEDICALHISTORYToolStripMenuItem.Text = "MEDICAL HISTORY"
+        '
+        'TRANSACTIONSToolStripMenuItem
+        '
+        Me.TRANSACTIONSToolStripMenuItem.Name = "TRANSACTIONSToolStripMenuItem"
+        Me.TRANSACTIONSToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.TRANSACTIONSToolStripMenuItem.Text = "TRANSACTIONS"
         '
         'mnuAccount
         '
         Me.mnuAccount.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ACCOUNTSETTINGToolStripMenuItem, Me.LOGOUTToolStripMenuItem})
+        Me.mnuAccount.Image = Global._3KPet_MIS.My.Resources.Resources.user_Black_
         Me.mnuAccount.Name = "mnuAccount"
-        Me.mnuAccount.Size = New System.Drawing.Size(80, 20)
-        Me.mnuAccount.Text = "User Name"
+        Me.mnuAccount.Size = New System.Drawing.Size(36, 28)
         '
         'ACCOUNTSETTINGToolStripMenuItem
         '
@@ -191,6 +199,11 @@ Partial Class frmDashboard
         Me.LOGOUTToolStripMenuItem.Name = "LOGOUTToolStripMenuItem"
         Me.LOGOUTToolStripMenuItem.Size = New System.Drawing.Size(175, 22)
         Me.LOGOUTToolStripMenuItem.Text = "LOG OUT"
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(12, 28)
         '
         'pnlContent
         '
@@ -231,12 +244,6 @@ Partial Class frmDashboard
         Me.datSchedules.Size = New System.Drawing.Size(805, 365)
         Me.datSchedules.TabIndex = 0
         '
-        'PRODUCTTYPEToolStripMenuItem
-        '
-        Me.PRODUCTTYPEToolStripMenuItem.Name = "PRODUCTTYPEToolStripMenuItem"
-        Me.PRODUCTTYPEToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
-        Me.PRODUCTTYPEToolStripMenuItem.Text = "PRODUCT TYPE"
-        '
         'frmDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -269,12 +276,9 @@ Partial Class frmDashboard
     Friend WithEvents lblHeader As System.Windows.Forms.Label
     Friend WithEvents mnuDashboard As System.Windows.Forms.MenuStrip
     Friend WithEvents PATIENTSRECORDSToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents UPDATEToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RECORDSToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SCHEDULESToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MEDICALHISTORIESToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents PAYMENTMODULEToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AUDITTRAILToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ACCOUNTSToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TREATMENTSToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -287,4 +291,8 @@ Partial Class frmDashboard
     Friend WithEvents tsmSettings As ToolStripMenuItem
     Friend WithEvents ACCOUNTSETTINGToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PRODUCTTYPEToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SERVICESToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents MEDICALHISTORYToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TRANSACTIONSToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

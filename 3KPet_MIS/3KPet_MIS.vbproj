@@ -50,10 +50,13 @@
     <ApplicationIcon>3k.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -75,6 +78,16 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSources\dsMedHis.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsMedHis.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\dsTransactions.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsTransactions.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmAccountsRecords.Designer.vb">
       <DependentUpon>frmAccountsRecords.vb</DependentUpon>
     </Compile>
@@ -105,6 +118,12 @@
     <Compile Include="Forms\frmForgotPassword.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmHistoryReport.Designer.vb">
+      <DependentUpon>frmHistoryReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmHistoryReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmInfoDialog.Designer.vb">
       <DependentUpon>frmInfoDialog.vb</DependentUpon>
     </Compile>
@@ -115,6 +134,18 @@
       <DependentUpon>frmInventory.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmInventory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmInvoice.Designer.vb">
+      <DependentUpon>frmInvoice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmInvoice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMedHistReport.Designer.vb">
+      <DependentUpon>frmMedHistReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMedHistReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmNewTransaction.Designer.vb">
@@ -153,6 +184,12 @@
     <Compile Include="Forms\frmDashboard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmRestock.Designer.vb">
+      <DependentUpon>frmRestock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmRestock.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmScheduleInfo.Designer.vb">
       <DependentUpon>frmScheduleInfo.vb</DependentUpon>
     </Compile>
@@ -169,6 +206,18 @@
       <DependentUpon>frmSchedules.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmSchedules.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmServices.Designer.vb">
+      <DependentUpon>frmServices.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmServices.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmTransactionReport.Designer.vb">
+      <DependentUpon>frmTransactionReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmTransactionReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmTransactions.Designer.vb">
@@ -251,11 +300,20 @@
       <DependentUpon>frmForgotPassword.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmHistoryReport.resx">
+      <DependentUpon>frmHistoryReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmInfoDialog.resx">
       <DependentUpon>frmInfoDialog.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmInventory.resx">
       <DependentUpon>frmInventory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmInvoice.resx">
+      <DependentUpon>frmInvoice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMedHistReport.resx">
+      <DependentUpon>frmMedHistReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmNewTransaction.resx">
       <DependentUpon>frmNewTransaction.vb</DependentUpon>
@@ -278,6 +336,9 @@
       <DependentUpon>frmDashboard.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmRestock.resx">
+      <DependentUpon>frmRestock.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmScheduleInfo.resx">
       <DependentUpon>frmScheduleInfo.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -288,6 +349,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmSchedules.resx">
       <DependentUpon>frmSchedules.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmServices.resx">
+      <DependentUpon>frmServices.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTransactionReport.resx">
+      <DependentUpon>frmTransactionReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTransactions.resx">
       <DependentUpon>frmTransactions.vb</DependentUpon>
@@ -317,8 +384,32 @@
       <DependentUpon>frmOwnerList.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpMedicalHistory.rdlc" />
+    <EmbeddedResource Include="Reports\rpTransactions.rdlc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataSources\dsMedHis.xsc">
+      <DependentUpon>dsMedHis.xsd</DependentUpon>
+    </None>
+    <None Include="DataSources\dsMedHis.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsMedHis.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSources\dsMedHis.xss">
+      <DependentUpon>dsMedHis.xsd</DependentUpon>
+    </None>
+    <None Include="DataSources\dsTransactions.xsc">
+      <DependentUpon>dsTransactions.xsd</DependentUpon>
+    </None>
+    <None Include="DataSources\dsTransactions.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsTransactions.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSources\dsTransactions.xss">
+      <DependentUpon>dsTransactions.xsd</DependentUpon>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -338,6 +429,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="3k.ico" />
+    <None Include="Resources\user%28Black%29.png" />
     <None Include="Resources\LoginLogo.png" />
     <None Include="Resources\changepassword.png" />
     <None Include="Resources\hide.png" />

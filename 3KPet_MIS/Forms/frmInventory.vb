@@ -6,7 +6,7 @@
         btnUpdate.Visible = False
     End Sub
 
-    Private Sub getProducts()
+    Public Sub getProducts()
         Try
             Dim dsProducts As New DataSet
 
@@ -29,16 +29,17 @@
             With datRecords
                 .Columns.Clear()
                 .Columns.Add("colProductID", "PRODUCT ID") : .Columns("colProductID").Width = .Width * 0.15
-                .Columns.Add("colProdName", "NAME") : .Columns("colProdName").Width = .Width * 0.3
+                .Columns.Add("colProdName", "NAME") : .Columns("colProdName").Width = .Width * 0.27
                 .Columns.Add("colProdType", "TYPE") : .Columns("colProdType").Width = .Width * 0.15
                 .Columns.Add("colTotalQTY", "TOTAL QTY") : .Columns("colTotalQTY").Width = .Width * 0.1
                 .Columns.Add("colAvail", "AVAILABLE QTY") : .Columns("colAvail").Width = .Width * 0.1
                 .Columns.Add("colPrice", "PRICE") : .Columns("colPrice").Width = .Width * 0.1
+                .Columns.Add("colStatus", "STATUS") : .Columns("colStatus").Visible = False
 
                 Dim btnSelect As New DataGridViewButtonColumn
-                btnSelect.Text = "•••"
+                btnSelect.Text = "RESTOCK"
                 btnSelect.UseColumnTextForButtonValue = True
-                btnSelect.Width = .Width * 0.09
+                btnSelect.Width = .Width * 0.12
                 .Columns.Add(btnSelect)
 
                 For Each row As DataRow In dsProducts.Tables(0).Rows
@@ -49,7 +50,14 @@
                     .Rows(.RowCount - 1).Cells(3).Value = row.Item("TotalQTY")
                     .Rows(.RowCount - 1).Cells(4).Value = row.Item("Stocks")
                     .Rows(.RowCount - 1).Cells(5).Value = row.Item("Price")
+                    If row.Item("Stocks") <= 3 And row.Item("Stocks") > 0 Then
+                        .Rows(.RowCount - 1).Cells(6).Value = "deactivated"
+                    ElseIf row.Item("Stocks") = 0 Then
+                        .Rows(.RowCount - 1).Cells(6).Value = "deleted"
+                    End If
+
                 Next
+                AddHandler .CellFormatting, AddressOf subCellFormat
             End With
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -156,19 +164,16 @@
 
     Private Sub datRecords_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datRecords.CellContentClick
         Try
-            If e.ColumnIndex() = 6 Then
-                txtID.Text = datRecords.Rows(e.RowIndex).Cells(0).Value
-                txtDescription.Text = datRecords.Rows(e.RowIndex).Cells(1).Value
-                cboType.Text = datRecords.Rows(e.RowIndex).Cells(2).Value
-                txtTotalQTY.Text = datRecords.Rows(e.RowIndex).Cells(3).Value
-                txtAvailableQTY.Text = datRecords.Rows(e.RowIndex).Cells(4).Value
-                txtPrice.Text = datRecords.Rows(e.RowIndex).Cells(5).Value
-
-                btnSave.Visible = False
-                btnUpdate.Visible = True
+            If e.ColumnIndex = 7 Then
+                clearFields(frmRestock)
+                With frmRestock
+                    .txtProductID.Text = datRecords.Rows(e.RowIndex).Cells(0).Value
+                    .txtProductName.Text = datRecords.Rows(e.RowIndex).Cells(1).Value
+                    .ShowDialog()
+                End With
             End If
         Catch ex As Exception
-
+            MsgBox(ex.Message)
         End Try
     End Sub
 
@@ -206,6 +211,24 @@
             End If
         Catch ex As Exception
 
+        End Try
+    End Sub
+
+    Private Sub datRecords_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles datRecords.CellContentDoubleClick
+        Try
+            If e.ColumnIndex() <> 7 Then
+                txtID.Text = datRecords.Rows(e.RowIndex).Cells(0).Value
+                txtDescription.Text = datRecords.Rows(e.RowIndex).Cells(1).Value
+                cboType.Text = datRecords.Rows(e.RowIndex).Cells(2).Value
+                txtTotalQTY.Text = datRecords.Rows(e.RowIndex).Cells(3).Value
+                txtAvailableQTY.Text = datRecords.Rows(e.RowIndex).Cells(4).Value
+                txtPrice.Text = datRecords.Rows(e.RowIndex).Cells(5).Value
+
+                btnSave.Visible = False
+                btnUpdate.Visible = True
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
         End Try
     End Sub
 End Class

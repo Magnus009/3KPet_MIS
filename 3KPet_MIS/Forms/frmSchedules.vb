@@ -90,7 +90,7 @@
         End If
     End Sub
 
-    Private Sub btnReservation_Click(sender As Object, e As EventArgs) Handles btnReservation.Click
+    Private Sub btnReservation_Click(sender As Object, e As EventArgs)
         Call clearFields(frmScheduleReservation)
         frmScheduleReservation.Text = "Reservation Details"
         frmScheduleReservation.ShowDialog()

@@ -15,8 +15,8 @@
             sqlQuery += "SELECT TRID, TRDescription FROM Treatments" & vbCrLf
             sqlQuery += "WHERE DeletedDate IS NULL " & vbCrLf
             If txtSearch.Text <> "" Then
-                sqlQuery += "AND TRID LIKE '%" + txtSearch.Text + "%'" & vbCrLf
-                sqlQuery += "AND TRDescription LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "AND (TRID LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "OR TRDescription LIKE '%" + txtSearch.Text + "%')" & vbCrLf
             End If
 
             dsTreatments = SQLPetMIS(sqlQuery)

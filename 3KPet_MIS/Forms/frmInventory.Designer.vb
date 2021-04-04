@@ -46,6 +46,10 @@ Partial Class frmInventory
         Me.lblProductID = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
         Me.lblSearch = New System.Windows.Forms.Label()
+        Me.lblOrange = New System.Windows.Forms.Label()
+        Me.lblCritical = New System.Windows.Forms.Label()
+        Me.lblOut = New System.Windows.Forms.Label()
+        Me.lblRed = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         CType(Me.datRecords, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpProduct.SuspendLayout()
@@ -132,7 +136,7 @@ Partial Class frmInventory
         Me.btnUpdate.BackColor = System.Drawing.Color.Purple
         Me.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnUpdate.ForeColor = System.Drawing.Color.White
-        Me.btnUpdate.Location = New System.Drawing.Point(25, 279)
+        Me.btnUpdate.Location = New System.Drawing.Point(25, 256)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(106, 40)
         Me.btnUpdate.TabIndex = 14
@@ -141,10 +145,10 @@ Partial Class frmInventory
         '
         'btnCancel
         '
-        Me.btnCancel.BackColor = System.Drawing.Color.Purple
+        Me.btnCancel.BackColor = System.Drawing.Color.Red
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancel.ForeColor = System.Drawing.Color.White
-        Me.btnCancel.Location = New System.Drawing.Point(140, 279)
+        Me.btnCancel.Location = New System.Drawing.Point(140, 256)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(106, 40)
         Me.btnCancel.TabIndex = 13
@@ -156,17 +160,17 @@ Partial Class frmInventory
         Me.btnSave.BackColor = System.Drawing.Color.Purple
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(25, 279)
+        Me.btnSave.Location = New System.Drawing.Point(25, 256)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(106, 40)
         Me.btnSave.TabIndex = 12
-        Me.btnSave.Text = "SAVE"
+        Me.btnSave.Text = "ADD"
         Me.btnSave.UseVisualStyleBackColor = False
         '
         'txtPrice
         '
         Me.txtPrice.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPrice.Location = New System.Drawing.Point(13, 224)
+        Me.txtPrice.Location = New System.Drawing.Point(13, 219)
         Me.txtPrice.Name = "txtPrice"
         Me.txtPrice.Size = New System.Drawing.Size(114, 23)
         Me.txtPrice.TabIndex = 11
@@ -175,7 +179,7 @@ Partial Class frmInventory
         '
         Me.lblPrice.AutoSize = True
         Me.lblPrice.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblPrice.Location = New System.Drawing.Point(8, 206)
+        Me.lblPrice.Location = New System.Drawing.Point(8, 201)
         Me.lblPrice.Name = "lblPrice"
         Me.lblPrice.Size = New System.Drawing.Size(38, 15)
         Me.lblPrice.TabIndex = 10
@@ -184,7 +188,7 @@ Partial Class frmInventory
         'txtAvailableQTY
         '
         Me.txtAvailableQTY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtAvailableQTY.Location = New System.Drawing.Point(154, 180)
+        Me.txtAvailableQTY.Location = New System.Drawing.Point(154, 176)
         Me.txtAvailableQTY.Name = "txtAvailableQTY"
         Me.txtAvailableQTY.Size = New System.Drawing.Size(110, 23)
         Me.txtAvailableQTY.TabIndex = 9
@@ -193,7 +197,7 @@ Partial Class frmInventory
         '
         Me.lblAvailableQTY.AutoSize = True
         Me.lblAvailableQTY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblAvailableQTY.Location = New System.Drawing.Point(149, 162)
+        Me.lblAvailableQTY.Location = New System.Drawing.Point(149, 158)
         Me.lblAvailableQTY.Name = "lblAvailableQTY"
         Me.lblAvailableQTY.Size = New System.Drawing.Size(84, 15)
         Me.lblAvailableQTY.TabIndex = 8
@@ -202,7 +206,7 @@ Partial Class frmInventory
         'txtTotalQTY
         '
         Me.txtTotalQTY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTotalQTY.Location = New System.Drawing.Point(13, 180)
+        Me.txtTotalQTY.Location = New System.Drawing.Point(13, 176)
         Me.txtTotalQTY.Name = "txtTotalQTY"
         Me.txtTotalQTY.Size = New System.Drawing.Size(114, 23)
         Me.txtTotalQTY.TabIndex = 7
@@ -211,7 +215,7 @@ Partial Class frmInventory
         '
         Me.lblTotalQTY.AutoSize = True
         Me.lblTotalQTY.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblTotalQTY.Location = New System.Drawing.Point(8, 162)
+        Me.lblTotalQTY.Location = New System.Drawing.Point(8, 158)
         Me.lblTotalQTY.Name = "lblTotalQTY"
         Me.lblTotalQTY.Size = New System.Drawing.Size(63, 15)
         Me.lblTotalQTY.TabIndex = 6
@@ -221,7 +225,7 @@ Partial Class frmInventory
         '
         Me.cboType.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cboType.FormattingEnabled = True
-        Me.cboType.Location = New System.Drawing.Point(13, 136)
+        Me.cboType.Location = New System.Drawing.Point(13, 133)
         Me.cboType.Name = "cboType"
         Me.cboType.Size = New System.Drawing.Size(251, 23)
         Me.cboType.TabIndex = 5
@@ -230,7 +234,7 @@ Partial Class frmInventory
         '
         Me.lblType.AutoSize = True
         Me.lblType.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblType.Location = New System.Drawing.Point(8, 118)
+        Me.lblType.Location = New System.Drawing.Point(8, 116)
         Me.lblType.Name = "lblType"
         Me.lblType.Size = New System.Drawing.Size(32, 15)
         Me.lblType.TabIndex = 4
@@ -239,7 +243,7 @@ Partial Class frmInventory
         'txtDescription
         '
         Me.txtDescription.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtDescription.Location = New System.Drawing.Point(11, 92)
+        Me.txtDescription.Location = New System.Drawing.Point(11, 90)
         Me.txtDescription.Name = "txtDescription"
         Me.txtDescription.Size = New System.Drawing.Size(253, 23)
         Me.txtDescription.TabIndex = 3
@@ -248,11 +252,11 @@ Partial Class frmInventory
         '
         Me.lblDescription.AutoSize = True
         Me.lblDescription.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDescription.Location = New System.Drawing.Point(8, 74)
+        Me.lblDescription.Location = New System.Drawing.Point(8, 73)
         Me.lblDescription.Name = "lblDescription"
-        Me.lblDescription.Size = New System.Drawing.Size(79, 15)
+        Me.lblDescription.Size = New System.Drawing.Size(39, 15)
         Me.lblDescription.TabIndex = 2
-        Me.lblDescription.Text = "DESCRIPTION"
+        Me.lblDescription.Text = "NAME"
         '
         'txtID
         '
@@ -275,19 +279,57 @@ Partial Class frmInventory
         '
         'txtSearch
         '
-        Me.txtSearch.Location = New System.Drawing.Point(359, 79)
+        Me.txtSearch.Location = New System.Drawing.Point(355, 79)
         Me.txtSearch.Name = "txtSearch"
-        Me.txtSearch.Size = New System.Drawing.Size(417, 23)
+        Me.txtSearch.Size = New System.Drawing.Size(244, 23)
         Me.txtSearch.TabIndex = 3
         '
         'lblSearch
         '
         Me.lblSearch.AutoSize = True
-        Me.lblSearch.Location = New System.Drawing.Point(299, 82)
+        Me.lblSearch.Location = New System.Drawing.Point(295, 82)
         Me.lblSearch.Name = "lblSearch"
         Me.lblSearch.Size = New System.Drawing.Size(54, 15)
         Me.lblSearch.TabIndex = 4
         Me.lblSearch.Text = "SEARCH :"
+        '
+        'lblOrange
+        '
+        Me.lblOrange.AutoSize = True
+        Me.lblOrange.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.lblOrange.Location = New System.Drawing.Point(618, 83)
+        Me.lblOrange.Name = "lblOrange"
+        Me.lblOrange.Size = New System.Drawing.Size(16, 15)
+        Me.lblOrange.TabIndex = 5
+        Me.lblOrange.Text = "   "
+        '
+        'lblCritical
+        '
+        Me.lblCritical.AutoSize = True
+        Me.lblCritical.Location = New System.Drawing.Point(640, 83)
+        Me.lblCritical.Name = "lblCritical"
+        Me.lblCritical.Size = New System.Drawing.Size(85, 15)
+        Me.lblCritical.TabIndex = 6
+        Me.lblCritical.Text = "LOW/CRITICAL"
+        '
+        'lblOut
+        '
+        Me.lblOut.AutoSize = True
+        Me.lblOut.Location = New System.Drawing.Point(753, 83)
+        Me.lblOut.Name = "lblOut"
+        Me.lblOut.Size = New System.Drawing.Size(92, 15)
+        Me.lblOut.TabIndex = 8
+        Me.lblOut.Text = "OUT OF STOCKS"
+        '
+        'lblRed
+        '
+        Me.lblRed.AutoSize = True
+        Me.lblRed.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.lblRed.Location = New System.Drawing.Point(735, 83)
+        Me.lblRed.Name = "lblRed"
+        Me.lblRed.Size = New System.Drawing.Size(16, 15)
+        Me.lblRed.TabIndex = 7
+        Me.lblRed.Text = "   "
         '
         'frmInventory
         '
@@ -295,6 +337,10 @@ Partial Class frmInventory
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.ClientSize = New System.Drawing.Size(853, 458)
+        Me.Controls.Add(Me.lblOut)
+        Me.Controls.Add(Me.lblRed)
+        Me.Controls.Add(Me.lblCritical)
+        Me.Controls.Add(Me.lblOrange)
         Me.Controls.Add(Me.lblSearch)
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.grpProduct)
@@ -338,4 +384,8 @@ Partial Class frmInventory
     Friend WithEvents txtSearch As System.Windows.Forms.TextBox
     Friend WithEvents lblSearch As System.Windows.Forms.Label
     Friend WithEvents btnUpdate As System.Windows.Forms.Button
+    Friend WithEvents lblOrange As Label
+    Friend WithEvents lblCritical As Label
+    Friend WithEvents lblOut As Label
+    Friend WithEvents lblRed As Label
 End Class

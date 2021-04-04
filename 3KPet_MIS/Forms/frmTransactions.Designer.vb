@@ -58,7 +58,7 @@ Partial Class frmTransactions
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(940, 57)
+        Me.pnlHeader.Size = New System.Drawing.Size(1049, 57)
         Me.pnlHeader.TabIndex = 4
         '
         'pnlContent
@@ -74,7 +74,7 @@ Partial Class frmTransactions
         Me.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlContent.Location = New System.Drawing.Point(0, 57)
         Me.pnlContent.Name = "pnlContent"
-        Me.pnlContent.Size = New System.Drawing.Size(940, 531)
+        Me.pnlContent.Size = New System.Drawing.Size(1049, 534)
         Me.pnlContent.TabIndex = 5
         '
         'btnFIlter
@@ -166,7 +166,7 @@ Partial Class frmTransactions
         Me.datTransactions.ReadOnly = True
         Me.datTransactions.RowHeadersVisible = False
         Me.datTransactions.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datTransactions.Size = New System.Drawing.Size(916, 483)
+        Me.datTransactions.Size = New System.Drawing.Size(1022, 483)
         Me.datTransactions.TabIndex = 0
         '
         'frmTransactions
@@ -174,7 +174,7 @@ Partial Class frmTransactions
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.ClientSize = New System.Drawing.Size(940, 588)
+        Me.ClientSize = New System.Drawing.Size(1049, 591)
         Me.Controls.Add(Me.pnlContent)
         Me.Controls.Add(Me.pnlHeader)
         Me.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))

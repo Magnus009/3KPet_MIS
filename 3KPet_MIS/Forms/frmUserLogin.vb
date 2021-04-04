@@ -45,7 +45,6 @@
                     _gbUSerName = dsRecord.Tables(0).Rows(0)(1)
                     _gbUserType = dsRecord.Tables(0).Rows(0)("UserLevel")
                     Call saveLogs(4, "Account " + _gbAccountID + " logged in")
-                    frmDashboard.mnuAccount.Text = UCase(_gbUSerName)
                     frmDashboard.Show()
                     Me.Hide()
                 End If

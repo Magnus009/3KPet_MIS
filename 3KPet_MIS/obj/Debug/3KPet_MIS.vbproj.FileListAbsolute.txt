@@ -1,64 +1,41 @@
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\bin\Debug\3KPet_MIS.exe.config
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\bin\Debug\3KPet_MIS.exe
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\bin\Debug\3KPet_MIS.pdb
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\bin\Debug\3KPet_MIS.xml
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmAccountsRecords.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmActivityLogs.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmArchive.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmCreateAccount.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmForgetPassword.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmInfoDialog.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmInventory.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmNewTransaction.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmProducts.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmProductType.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmPurchasedProducts.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmRecords.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmDashboard.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmScheduleInfo.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmScheduleReservation.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmSchedules.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmTransactions.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmTreatment.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmUserLogin.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmVaccine.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmVisitHistory.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.sub_frmPetInformation.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.Resources.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmOwnerList.resources
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\3KPet_MIS.vbproj.GenerateResource.Cache
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\3KPet_MIS.exe
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\3KPet_MIS.xml
-C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3K Pet MIS\3KPet_MIS\obj\Debug\3KPet_MIS.pdb
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\bin\Debug\3KPet_MIS.exe.config
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\3KPet_MIS.exe
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\3KPet_MIS.xml
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\3KPet_MIS.pdb
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\bin\Debug\3KPet_MIS.exe
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\bin\Debug\3KPet_MIS.pdb
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\bin\Debug\3KPet_MIS.xml
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmAccountsRecords.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmActivityLogs.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmArchive.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmCreateAccount.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmForgetPassword.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmInfoDialog.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmInventory.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmNewTransaction.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmProducts.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmProductType.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmPurchasedProducts.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmRecords.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmDashboard.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmScheduleInfo.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmScheduleReservation.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmSchedules.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmTransactions.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmTreatment.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmUserLogin.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmVaccine.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmVisitHistory.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.sub_frmPetInformation.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.Resources.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmOwnerList.resources
-C:\Users\smd147\Desktop\3K Pet MIS\3KPet_MIS\obj\Debug\3KPet_MIS.vbproj.GenerateResource.Cache
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\bin\Debug\3KPet_MIS.exe.config
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\bin\Debug\3KPet_MIS.exe
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\bin\Debug\3KPet_MIS.pdb
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\bin\Debug\3KPet_MIS.xml
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\3KPet_MIS.vbprojResolveAssemblyReference.cache
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmAccountsRecords.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmActivityLogs.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmArchive.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmCreateAccount.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmForgetPassword.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmHistoryReport.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmInfoDialog.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmInventory.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmInvoice.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmMedHistReport.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmNewTransaction.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmProducts.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmProductType.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmPurchasedProducts.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmRecords.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmDashboard.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmRestock.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmScheduleInfo.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmScheduleReservation.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmSchedules.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmServices.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmTransactionReport.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmTransactions.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmTreatment.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmUserLogin.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmVaccine.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmVisitHistory.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.sub_frmPetInformation.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.Resources.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\_3KPet_MIS.frmOwnerList.resources
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\3KPet_MIS.vbproj.GenerateResource.Cache
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\RdlCompile.cache
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\RdlCompile.compiled
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\3KPet_MIS.exe
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\3KPet_MIS.xml
+C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\obj\Debug\3KPet_MIS.pdb
