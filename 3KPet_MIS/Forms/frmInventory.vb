@@ -1,8 +1,9 @@
 ﻿Public Class frmInventory
-
+    Dim blnResult As Boolean = False
     Private Sub frmInventory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call getProducts()
         Call getProductType()
+        txtAvailableQTY.Enabled = False
         btnUpdate.Visible = False
     End Sub
 
@@ -91,65 +92,69 @@
             Dim strID As String
             Dim blnSaved As Boolean
 
-            If MsgBox("Are you sure you want to add new product?", vbYesNo + vbQuestion) Then
-                sqlQuery = ""
-                sqlQuery += "SELECT dbo.fn_colID ('I')" & vbCrLf
-                dsID = SQLPetMIS(sqlQuery)
-                strID = dsID.Tables(0).Rows(0)(0)
+            If blnResult = False Then
+                If MsgBox("Are you sure you want to add new product?", vbYesNo + vbQuestion) Then
+                    sqlQuery = ""
+                    sqlQuery += "SELECT dbo.fn_colID ('I')" & vbCrLf
+                    dsID = SQLPetMIS(sqlQuery)
+                    strID = dsID.Tables(0).Rows(0)(0)
 
 
-                sqlQuery = ""
-                sqlQuery += "INSERT INTO dbo.Products " & vbCrLf
-                sqlQuery += "( " & vbCrLf
-                sqlQuery += "ProductID," & vbCrLf
-                sqlQuery += "Description," & vbCrLf
-                sqlQuery += "TypeID," & vbCrLf
-                sqlQuery += "CreatedDate," & vbCrLf
-                sqlQuery += "UpdatedDate," & vbCrLf
-                sqlQuery += "DeletedDate," & vbCrLf
-                sqlQuery += "UpdatedBy" & vbCrLf
-                sqlQuery += ")" & vbCrLf
-                sqlQuery += "VALUES " & vbCrLf
-                sqlQuery += "(" & vbCrLf
-                sqlQuery += "'" + strID + "'," & vbCrLf
-                sqlQuery += "'" + txtDescription.Text + "'," & vbCrLf
-                sqlQuery += "'" + cboType.SelectedValue.ToString + "'," & vbCrLf
-                sqlQuery += "getdate()," & vbCrLf
-                sqlQuery += "getdate()," & vbCrLf
-                sqlQuery += "null," & vbCrLf
-                sqlQuery += "'" + _gbAccountID + "')" & vbCrLf
-                blnSaved = sqlExecute(sqlQuery)
+                    sqlQuery = ""
+                    sqlQuery += "INSERT INTO dbo.Products " & vbCrLf
+                    sqlQuery += "( " & vbCrLf
+                    sqlQuery += "ProductID," & vbCrLf
+                    sqlQuery += "Description," & vbCrLf
+                    sqlQuery += "TypeID," & vbCrLf
+                    sqlQuery += "CreatedDate," & vbCrLf
+                    sqlQuery += "UpdatedDate," & vbCrLf
+                    sqlQuery += "DeletedDate," & vbCrLf
+                    sqlQuery += "UpdatedBy" & vbCrLf
+                    sqlQuery += ")" & vbCrLf
+                    sqlQuery += "VALUES " & vbCrLf
+                    sqlQuery += "(" & vbCrLf
+                    sqlQuery += "'" + strID + "'," & vbCrLf
+                    sqlQuery += "'" + txtDescription.Text + "'," & vbCrLf
+                    sqlQuery += "'" + cboType.SelectedValue.ToString + "'," & vbCrLf
+                    sqlQuery += "getdate()," & vbCrLf
+                    sqlQuery += "getdate()," & vbCrLf
+                    sqlQuery += "null," & vbCrLf
+                    sqlQuery += "'" + _gbAccountID + "')" & vbCrLf
+                    blnSaved = sqlExecute(sqlQuery)
 
-                sqlQuery = ""
-                sqlQuery += "INSERT INTO dbo.ProductInventory " & vbCrLf
-                sqlQuery += "( " & vbCrLf
-                sqlQuery += "ProductID," & vbCrLf
-                sqlQuery += "TotalQTY," & vbCrLf
-                sqlQuery += "Stocks," & vbCrLf
-                sqlQuery += "Price," & vbCrLf
-                sqlQuery += "CreatedDate," & vbCrLf
-                sqlQuery += "UpdatedDate," & vbCrLf
-                sqlQuery += "DeletedDate," & vbCrLf
-                sqlQuery += "UpdatedBy" & vbCrLf
-                sqlQuery += ")" & vbCrLf
-                sqlQuery += "VALUES " & vbCrLf
-                sqlQuery += "(" & vbCrLf
-                sqlQuery += "'" + strID + "'," & vbCrLf
-                sqlQuery += "'" + txtTotalQTY.Text + "'," & vbCrLf
-                sqlQuery += "'" + txtAvailableQTY.Text + "'," & vbCrLf
-                sqlQuery += "'" + txtPrice.Text + "'," & vbCrLf
-                sqlQuery += "getdate()," & vbCrLf
-                sqlQuery += "getdate()," & vbCrLf
-                sqlQuery += "null," & vbCrLf
-                sqlQuery += "'" + _gbAccountID + "')" & vbCrLf
-                blnSaved = sqlExecute(sqlQuery)
+                    sqlQuery = ""
+                    sqlQuery += "INSERT INTO dbo.ProductInventory " & vbCrLf
+                    sqlQuery += "( " & vbCrLf
+                    sqlQuery += "ProductID," & vbCrLf
+                    sqlQuery += "TotalQTY," & vbCrLf
+                    sqlQuery += "Stocks," & vbCrLf
+                    sqlQuery += "Price," & vbCrLf
+                    sqlQuery += "CreatedDate," & vbCrLf
+                    sqlQuery += "UpdatedDate," & vbCrLf
+                    sqlQuery += "DeletedDate," & vbCrLf
+                    sqlQuery += "UpdatedBy" & vbCrLf
+                    sqlQuery += ")" & vbCrLf
+                    sqlQuery += "VALUES " & vbCrLf
+                    sqlQuery += "(" & vbCrLf
+                    sqlQuery += "'" + strID + "'," & vbCrLf
+                    sqlQuery += "'" + txtTotalQTY.Text + "'," & vbCrLf
+                    sqlQuery += "'" + txtAvailableQTY.Text + "'," & vbCrLf
+                    sqlQuery += "'" + txtPrice.Text + "'," & vbCrLf
+                    sqlQuery += "getdate()," & vbCrLf
+                    sqlQuery += "getdate()," & vbCrLf
+                    sqlQuery += "null," & vbCrLf
+                    sqlQuery += "'" + _gbAccountID + "')" & vbCrLf
+                    blnSaved = sqlExecute(sqlQuery)
 
-                If blnSaved Then
-                    Call saveLogs(1, "New product added with product code of " + strID)
-                    MsgBox("Saved Succesfully", vbOKOnly + vbInformation)
-                    Call getProducts()
+                    If blnSaved Then
+                        Call saveLogs(1, "New product added with product code of " + strID)
+                        MsgBox("Saved Succesfully", vbOKOnly + vbInformation)
+                        Call getProducts()
+                    End If
                 End If
             End If
+
+            
            
         Catch ex As Exception
             MsgBox(ex.Message)
@@ -160,6 +165,7 @@
         Call clearFields(grpProduct)
         btnSave.Visible = True
         btnUpdate.Visible = False
+        txtAvailableQTY.Enabled = False
     End Sub
 
     Private Sub datRecords_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datRecords.CellContentClick
@@ -181,34 +187,38 @@
         Try
             Dim blnSaved As Boolean
 
-            If MsgBox("Are you sure you want to update?", vbYesNo + vbQuestion) Then
+            If blnResult = false Then
+                If MsgBox("Are you sure you want to update?", vbYesNo + vbQuestion) Then
 
-                sqlQuery = ""
-                sqlQuery += "UPDATE dbo.Products" & vbCrLf
-                sqlQuery += "SET Description ='" + txtDescription.Text + "'," & vbCrLf
-                sqlQuery += "TypeID ='" + cboType.SelectedValue.ToString + "'," & vbCrLf
-                sqlQuery += "UpdatedDate =getdate()" & vbCrLf
-                sqlQuery += "WHERE ProductID ='" + txtID.Text + "'" & vbCrLf
-                blnSaved = sqlExecute(sqlQuery)
+                    sqlQuery = ""
+                    sqlQuery += "UPDATE dbo.Products" & vbCrLf
+                    sqlQuery += "SET Description ='" + txtDescription.Text + "'," & vbCrLf
+                    sqlQuery += "TypeID ='" + cboType.SelectedValue.ToString + "'," & vbCrLf
+                    sqlQuery += "UpdatedDate =getdate()" & vbCrLf
+                    sqlQuery += "WHERE ProductID ='" + txtID.Text + "'" & vbCrLf
+                    blnSaved = sqlExecute(sqlQuery)
 0:
-                sqlQuery = ""
-                sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
-                sqlQuery += "SET TotalQTY ='" + txtTotalQTY.Text + "'," & vbCrLf
-                sqlQuery += "Stocks ='" + txtAvailableQTY.Text + "'," & vbCrLf
-                sqlQuery += "Price ='" + txtPrice.Text + "'," & vbCrLf
-                sqlQuery += "UpdatedDate =getdate()" & vbCrLf
-                sqlQuery += "WHERE ProductID ='" + txtID.Text + "'" & vbCrLf
-                blnSaved = sqlExecute(sqlQuery)
+                    sqlQuery = ""
+                    sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
+                    sqlQuery += "SET TotalQTY ='" + txtTotalQTY.Text + "'," & vbCrLf
+                    sqlQuery += "Stocks ='" + txtAvailableQTY.Text + "'," & vbCrLf
+                    sqlQuery += "Price ='" + txtPrice.Text + "'," & vbCrLf
+                    sqlQuery += "UpdatedDate =getdate()" & vbCrLf
+                    sqlQuery += "WHERE ProductID ='" + txtID.Text + "'" & vbCrLf
+                    blnSaved = sqlExecute(sqlQuery)
 
-                If blnSaved Then
-                    Call clearFields(grpProduct)
-                    Call getProducts()
-                    Call saveLogs(2, "Updated product information with product ID of " + txtID.Text)
-                    MsgBox("Product information updated!", vbOKOnly + vbInformation)
+                    If blnSaved Then
+                        Call clearFields(grpProduct)
+                        Call getProducts()
+                        Call saveLogs(2, "Updated product information with product ID of " + txtID.Text)
+                        txtAvailableQTY.Enabled = False
+                        MsgBox("Product information updated!", vbOKOnly + vbInformation)
+                    End If
+
+
                 End If
-
-
             End If
+         
         Catch ex As Exception
 
         End Try
@@ -224,11 +234,31 @@
                 txtAvailableQTY.Text = datRecords.Rows(e.RowIndex).Cells(4).Value
                 txtPrice.Text = datRecords.Rows(e.RowIndex).Cells(5).Value
 
+                txtAvailableQTY.Enabled = True
                 btnSave.Visible = False
                 btnUpdate.Visible = True
             End If
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+    End Sub
+
+    Private Sub txtAvailableQTY_Leave(sender As Object, e As EventArgs) Handles txtAvailableQTY.Leave
+        checkMaxStocks()
+    End Sub
+
+    Private Sub txtAvailableQTY_TextChanged(sender As Object, e As EventArgs) Handles txtAvailableQTY.TextChanged
+        txtAvailableQTY.ForeColor = Color.Black
+        blnResult = False
+    End Sub
+
+    Private Sub checkMaxStocks()
+
+        If txtAvailableQTY.Text > txtTotalQTY.Text Then
+            MsgBox("Stocks are more than the Max QTY", vbOKOnly + vbExclamation)
+            txtAvailableQTY.ForeColor = Color.Red
+            blnResult = True
+
+        End If
     End Sub
 End Class

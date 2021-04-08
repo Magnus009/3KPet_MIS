@@ -42,12 +42,13 @@ Partial Class frmForgetPassword
         Me.lblQ1 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.pnlRight = New System.Windows.Forms.Panel()
-        Me.btnSubmit = New System.Windows.Forms.Button()
-        Me.lblUsername = New System.Windows.Forms.Label()
-        Me.txtUserName = New System.Windows.Forms.TextBox()
-        Me.lblHeader = New System.Windows.Forms.Label()
-        Me.cboQuestions = New System.Windows.Forms.ComboBox()
+        Me.btnCheck = New System.Windows.Forms.Button()
         Me.lblHead = New System.Windows.Forms.Label()
+        Me.cboQuestions = New System.Windows.Forms.ComboBox()
+        Me.lblHeader = New System.Windows.Forms.Label()
+        Me.txtUserName = New System.Windows.Forms.TextBox()
+        Me.lblUsername = New System.Windows.Forms.Label()
+        Me.btnSubmit = New System.Windows.Forms.Button()
         Me.pnlLeft.SuspendLayout()
         CType(Me.picOP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.picCNP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -288,6 +289,7 @@ Partial Class frmForgetPassword
         '
         'pnlRight
         '
+        Me.pnlRight.Controls.Add(Me.btnCheck)
         Me.pnlRight.Controls.Add(Me.lblHead)
         Me.pnlRight.Controls.Add(Me.cboQuestions)
         Me.pnlRight.Controls.Add(Me.lblHeader)
@@ -305,6 +307,63 @@ Partial Class frmForgetPassword
         Me.pnlRight.Size = New System.Drawing.Size(435, 316)
         Me.pnlRight.TabIndex = 1
         '
+        'btnCheck
+        '
+        Me.btnCheck.BackColor = System.Drawing.Color.Purple
+        Me.btnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCheck.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCheck.ForeColor = System.Drawing.Color.White
+        Me.btnCheck.Location = New System.Drawing.Point(327, 117)
+        Me.btnCheck.Name = "btnCheck"
+        Me.btnCheck.Size = New System.Drawing.Size(65, 23)
+        Me.btnCheck.TabIndex = 35
+        Me.btnCheck.Text = "CONFIRM"
+        Me.btnCheck.UseVisualStyleBackColor = False
+        '
+        'lblHead
+        '
+        Me.lblHead.AutoSize = True
+        Me.lblHead.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHead.Location = New System.Drawing.Point(48, 46)
+        Me.lblHead.Name = "lblHead"
+        Me.lblHead.Size = New System.Drawing.Size(243, 29)
+        Me.lblHead.TabIndex = 34
+        Me.lblHead.Text = "Forgot your password?"
+        '
+        'cboQuestions
+        '
+        Me.cboQuestions.FormattingEnabled = True
+        Me.cboQuestions.Location = New System.Drawing.Point(121, 173)
+        Me.cboQuestions.Name = "cboQuestions"
+        Me.cboQuestions.Size = New System.Drawing.Size(262, 21)
+        Me.cboQuestions.TabIndex = 33
+        '
+        'lblHeader
+        '
+        Me.lblHeader.AutoSize = True
+        Me.lblHeader.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblHeader.Location = New System.Drawing.Point(50, 75)
+        Me.lblHeader.Name = "lblHeader"
+        Me.lblHeader.Size = New System.Drawing.Size(261, 15)
+        Me.lblHeader.TabIndex = 32
+        Me.lblHeader.Text = "Please enter your user name you use to sign in"
+        '
+        'txtUserName
+        '
+        Me.txtUserName.Location = New System.Drawing.Point(124, 118)
+        Me.txtUserName.Name = "txtUserName"
+        Me.txtUserName.Size = New System.Drawing.Size(202, 21)
+        Me.txtUserName.TabIndex = 31
+        '
+        'lblUsername
+        '
+        Me.lblUsername.AutoSize = True
+        Me.lblUsername.Location = New System.Drawing.Point(54, 123)
+        Me.lblUsername.Name = "lblUsername"
+        Me.lblUsername.Size = New System.Drawing.Size(64, 13)
+        Me.lblUsername.TabIndex = 30
+        Me.lblUsername.Text = "USER NAME :"
+        '
         'btnSubmit
         '
         Me.btnSubmit.BackColor = System.Drawing.Color.Green
@@ -318,50 +377,6 @@ Partial Class frmForgetPassword
         Me.btnSubmit.TabIndex = 8
         Me.btnSubmit.Text = "&SUBMIT"
         Me.btnSubmit.UseVisualStyleBackColor = False
-        '
-        'lblUsername
-        '
-        Me.lblUsername.AutoSize = True
-        Me.lblUsername.Location = New System.Drawing.Point(54, 123)
-        Me.lblUsername.Name = "lblUsername"
-        Me.lblUsername.Size = New System.Drawing.Size(64, 13)
-        Me.lblUsername.TabIndex = 30
-        Me.lblUsername.Text = "USER NAME :"
-        '
-        'txtUserName
-        '
-        Me.txtUserName.Location = New System.Drawing.Point(124, 118)
-        Me.txtUserName.Name = "txtUserName"
-        Me.txtUserName.Size = New System.Drawing.Size(262, 21)
-        Me.txtUserName.TabIndex = 31
-        '
-        'lblHeader
-        '
-        Me.lblHeader.AutoSize = True
-        Me.lblHeader.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHeader.Location = New System.Drawing.Point(50, 75)
-        Me.lblHeader.Name = "lblHeader"
-        Me.lblHeader.Size = New System.Drawing.Size(261, 15)
-        Me.lblHeader.TabIndex = 32
-        Me.lblHeader.Text = "Please enter your user name you use to sign in"
-        '
-        'cboQuestions
-        '
-        Me.cboQuestions.FormattingEnabled = True
-        Me.cboQuestions.Location = New System.Drawing.Point(121, 173)
-        Me.cboQuestions.Name = "cboQuestions"
-        Me.cboQuestions.Size = New System.Drawing.Size(262, 21)
-        Me.cboQuestions.TabIndex = 33
-        '
-        'lblHead
-        '
-        Me.lblHead.AutoSize = True
-        Me.lblHead.Font = New System.Drawing.Font("Calibri", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblHead.Location = New System.Drawing.Point(48, 46)
-        Me.lblHead.Name = "lblHead"
-        Me.lblHead.Size = New System.Drawing.Size(243, 29)
-        Me.lblHead.TabIndex = 34
-        Me.lblHead.Text = "Forgot your password?"
         '
         'frmForgetPassword
         '
@@ -417,4 +432,5 @@ Partial Class frmForgetPassword
     Friend WithEvents lblUsername As Label
     Friend WithEvents cboQuestions As ComboBox
     Friend WithEvents lblHead As Label
+    Friend WithEvents btnCheck As System.Windows.Forms.Button
 End Class

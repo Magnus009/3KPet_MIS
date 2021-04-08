@@ -1,6 +1,7 @@
 ﻿Public Class frmForgetPassword
     Dim strID As String
     Dim dsAccount As New DataSet
+    Dim isCheck As Boolean = False
 
     Private Sub frmForgetPassword_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         subPanelSwitch(False)
@@ -21,30 +22,33 @@
         Try
             Dim dsAnswer As New DataSet
 
-            If txtAnswer_1.Text <> "" Then
-                If fn_CheckRequire(pnlRight) Then
-                    MsgBox("Answer required!", vbExclamation + vbOKOnly)
-                    strRequire = ""
-                    blnRequired = False
-                Else
-                    sqlQuery = ""
-                    sqlQuery += "DECLARE @question AS NVARCHAR" & vbCrLf
-                    sqlQuery += "SET @question = '" + cboQuestions.SelectedValue + "'" & vbCrLf
-                    sqlQuery += "SELECT CASE WHEN Q1 = @question THEN A1" & vbCrLf
-                    sqlQuery += "WHEN Q2  = @question THEN A2" & vbCrLf
-                    sqlQuery += "END AS Answer FROM Accounts" & vbCrLf
-                    sqlQuery += "WHERE AccountID = '" + dsAccount.Tables(0).Rows(0)("AccountID") + "'" & vbCrLf
-                    dsAnswer = SQLPetMIS(sqlQuery)
-
-                    If txtAnswer_1.Text.ToUpper = dsAnswer.Tables(0).Rows(0)("Answer").ToString.ToUpper Then
-                        subPanelSwitch(True)
+            If isCheck = False Then
+                If txtAnswer_1.Text <> "" Then
+                    If fn_CheckRequire(pnlRight) Then
+                        MsgBox("Answer required!", vbExclamation + vbOKOnly)
+                        strRequire = ""
+                        blnRequired = False
                     Else
-                        MsgBox("The answer you've entered is incorrect. Please, Try again.", vbExclamation + vbOKOnly)
-                        txtAnswer_1.ForeColor = Color.Red
+                        sqlQuery = ""
+                        sqlQuery += "DECLARE @question AS NVARCHAR" & vbCrLf
+                        sqlQuery += "SET @question = '" + cboQuestions.SelectedValue + "'" & vbCrLf
+                        sqlQuery += "SELECT CASE WHEN Q1 = @question THEN A1" & vbCrLf
+                        sqlQuery += "WHEN Q2  = @question THEN A2" & vbCrLf
+                        sqlQuery += "END AS Answer FROM Accounts" & vbCrLf
+                        sqlQuery += "WHERE AccountID = '" + dsAccount.Tables(0).Rows(0)("AccountID") + "'" & vbCrLf
+                        dsAnswer = SQLPetMIS(sqlQuery)
 
+                        If txtAnswer_1.Text.ToUpper = dsAnswer.Tables(0).Rows(0)("Answer").ToString.ToUpper Then
+                            subPanelSwitch(True)
+                        Else
+                            MsgBox("The answer you've entered is incorrect. Please, Try again.", vbExclamation + vbOKOnly)
+                            txtAnswer_1.ForeColor = Color.Red
+
+                        End If
                     End If
                 End If
             End If
+          
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -142,7 +146,7 @@
         txtConfirmNewPass.ForeColor = Color.Black
     End Sub
 
-    Private Sub txtUserName_Leave(sender As Object, e As EventArgs) Handles txtUserName.Leave
+    Private Sub btnCheck_Click(sender As Object, e As EventArgs) Handles btnCheck.Click
         Try
 
 
@@ -155,6 +159,7 @@
 
             If dsAccount.Tables(0).Rows.Count = 0 Then
                 MsgBox("User name doesn't exist!", vbOKOnly + vbExclamation)
+                isCheck = True
             Else
                 cboQuestions.Items.Clear()
                 Dim comboSource As New Dictionary(Of String, String)()
@@ -163,6 +168,7 @@
                 cboQuestions.DataSource = New BindingSource(comboSource, Nothing)
                 cboQuestions.DisplayMember = "Value"
                 cboQuestions.ValueMember = "Key"
+                isCheck = False
             End If
         Catch ex As Exception
             MsgBox(ex.Message)

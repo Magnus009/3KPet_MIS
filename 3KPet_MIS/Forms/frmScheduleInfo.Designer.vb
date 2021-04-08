@@ -34,8 +34,6 @@ Partial Class frmScheduleInfo
         Me.btnView = New System.Windows.Forms.Button()
         Me.txtContactNo = New System.Windows.Forms.TextBox()
         Me.pnlPetInfo = New System.Windows.Forms.Panel()
-        Me.txtTransactionID = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'pnlHeader
@@ -44,14 +42,14 @@ Partial Class frmScheduleInfo
         Me.pnlHeader.Dock = System.Windows.Forms.DockStyle.Left
         Me.pnlHeader.Location = New System.Drawing.Point(0, 0)
         Me.pnlHeader.Name = "pnlHeader"
-        Me.pnlHeader.Size = New System.Drawing.Size(25, 570)
+        Me.pnlHeader.Size = New System.Drawing.Size(25, 538)
         Me.pnlHeader.TabIndex = 0
         '
         'lblCustomer
         '
         Me.lblCustomer.AutoSize = True
         Me.lblCustomer.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCustomer.Location = New System.Drawing.Point(52, 84)
+        Me.lblCustomer.Location = New System.Drawing.Point(54, 54)
         Me.lblCustomer.Name = "lblCustomer"
         Me.lblCustomer.Size = New System.Drawing.Size(108, 15)
         Me.lblCustomer.TabIndex = 3
@@ -70,7 +68,7 @@ Partial Class frmScheduleInfo
         'txtCustomer
         '
         Me.txtCustomer.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtCustomer.Location = New System.Drawing.Point(166, 80)
+        Me.txtCustomer.Location = New System.Drawing.Point(168, 50)
         Me.txtCustomer.Name = "txtCustomer"
         Me.txtCustomer.ReadOnly = True
         Me.txtCustomer.Size = New System.Drawing.Size(209, 22)
@@ -90,7 +88,7 @@ Partial Class frmScheduleInfo
         'txtOwnerID
         '
         Me.txtOwnerID.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtOwnerID.Location = New System.Drawing.Point(166, 50)
+        Me.txtOwnerID.Location = New System.Drawing.Point(168, 20)
         Me.txtOwnerID.Name = "txtOwnerID"
         Me.txtOwnerID.ReadOnly = True
         Me.txtOwnerID.Size = New System.Drawing.Size(239, 22)
@@ -100,7 +98,7 @@ Partial Class frmScheduleInfo
         '
         Me.lblCustomerCD.AutoSize = True
         Me.lblCustomerCD.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblCustomerCD.Location = New System.Drawing.Point(90, 54)
+        Me.lblCustomerCD.Location = New System.Drawing.Point(92, 24)
         Me.lblCustomerCD.Name = "lblCustomerCD"
         Me.lblCustomerCD.Size = New System.Drawing.Size(70, 15)
         Me.lblCustomerCD.TabIndex = 7
@@ -122,7 +120,7 @@ Partial Class frmScheduleInfo
         Me.btnView.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnView.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnView.ForeColor = System.Drawing.Color.White
-        Me.btnView.Location = New System.Drawing.Point(375, 80)
+        Me.btnView.Location = New System.Drawing.Point(377, 50)
         Me.btnView.Name = "btnView"
         Me.btnView.Size = New System.Drawing.Size(31, 22)
         Me.btnView.TabIndex = 3
@@ -142,38 +140,17 @@ Partial Class frmScheduleInfo
         'pnlPetInfo
         '
         Me.pnlPetInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pnlPetInfo.Location = New System.Drawing.Point(39, 117)
+        Me.pnlPetInfo.Location = New System.Drawing.Point(39, 90)
         Me.pnlPetInfo.Name = "pnlPetInfo"
         Me.pnlPetInfo.Size = New System.Drawing.Size(726, 436)
         Me.pnlPetInfo.TabIndex = 8
-        '
-        'txtTransactionID
-        '
-        Me.txtTransactionID.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtTransactionID.Location = New System.Drawing.Point(167, 20)
-        Me.txtTransactionID.Name = "txtTransactionID"
-        Me.txtTransactionID.ReadOnly = True
-        Me.txtTransactionID.Size = New System.Drawing.Size(239, 22)
-        Me.txtTransactionID.TabIndex = 0
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(57, 24)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(103, 15)
-        Me.Label1.TabIndex = 20
-        Me.Label1.Text = "TRANSACTION ID :"
         '
         'frmScheduleInfo
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.ClientSize = New System.Drawing.Size(780, 570)
-        Me.Controls.Add(Me.txtTransactionID)
-        Me.Controls.Add(Me.Label1)
+        Me.ClientSize = New System.Drawing.Size(780, 538)
         Me.Controls.Add(Me.pnlPetInfo)
         Me.Controls.Add(Me.btnView)
         Me.Controls.Add(Me.txtContactNo)
@@ -207,6 +184,4 @@ Partial Class frmScheduleInfo
     Friend WithEvents btnView As System.Windows.Forms.Button
     Friend WithEvents txtContactNo As System.Windows.Forms.TextBox
     Friend WithEvents pnlPetInfo As System.Windows.Forms.Panel
-    Friend WithEvents txtTransactionID As System.Windows.Forms.TextBox
-    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

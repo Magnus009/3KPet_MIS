@@ -84,9 +84,12 @@
     Private Sub datSchedules_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datSchedules.CellContentClick
         If e.ColumnIndex = 7 Then
             frmScheduleReservation.txtSchedCode.Text = datSchedules.Rows(e.RowIndex).Cells(0).Value
-            frmScheduleReservation.blnisUpdate = True
-            frmScheduleReservation.ShowDialog()
-
+            With frmScheduleReservation
+                .blnisUpdate = True
+                .chkCancel.Enabled = True
+                .chkIsArrived.Enabled = True
+                .ShowDialog()
+            End With
         End If
     End Sub
 

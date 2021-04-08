@@ -2,16 +2,16 @@
     Dim dsVisitLogs As New DataSet
     Dim blnFilter As Boolean = False
 
+
     Private Sub frmVisitHistory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call getVisitLogs()
     End Sub
 
-    Private Sub getVisitLogs()
+    Public Sub getVisitLogs()
         Try
-            Dim dsVisitLogs As New DataSet
 
             sqlQuery = ""
-            sqlQuery += "SELECT TransactionID, TH.OwnerID, LastName + ', ' + FirstName AS 'OwnerName', ContactNo, Address, Name, VisitDate FROM TransactionHeader TH" & vbCrLf
+            sqlQuery += "SELECT TransactionID, TH.OwnerID, LastName + ', ' + FirstName AS 'OwnerName', ContactNo,TH.PetID, Address, Name, VisitDate FROM TransactionHeader TH" & vbCrLf
             sqlQuery += "INNER JOIN Owners O ON TH.OwnerID = O.OwnerID " & vbCrLf
             sqlQuery += "INNER JOIN Pets P ON TH.PetID = P.PetID" & vbCrLf
             sqlQuery += "WHERE TH.DeletedDate is null" & vbCrLf
@@ -41,6 +41,7 @@
                 .Columns.Add("colVisitDate", "VISIT DATE") : .Columns("colVisitDate").Width = .Width * 0.2
                 .Columns.Add("colOwnerID", "OwnerID") : .Columns("colOwnerID").Visible = False
                 .Columns.Add("colAddress", "Address") : .Columns("colAddress").Visible = False
+                .Columns.Add("colPetID", "PetID") : .Columns("colPetID").Visible = False
 
                 Dim btnSelect As New DataGridViewButtonColumn
                 btnSelect.Text = "•••"
@@ -58,6 +59,7 @@
                     .Rows(.RowCount - 1).Cells(4).Value = Format(row.Item("VisitDate"), "Short Date")
                     .Rows(.RowCount - 1).Cells(5).Value = row.Item("OwnerId")
                     .Rows(.RowCount - 1).Cells(6).Value = row.Item("Address")
+                    .Rows(.RowCount - 1).Cells(7).Value = row.Item("PetID")
                 Next
             End With
             blnFilter = False
@@ -68,15 +70,18 @@
 
     Private Sub datLogs_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datLogs.CellContentClick
         Try
-            If e.ColumnIndex = 7 Then
+            If e.ColumnIndex = 8 Then
                 With frmScheduleInfo
-                    .txtTransactionID.Text = datLogs.Rows(e.RowIndex).Cells(0).Value
+                    '.txtTransactionID.Text = datLogs.Rows(e.RowIndex).Cells(0).Value
                     .txtOwnerID.Text = datLogs.Rows(e.RowIndex).Cells(5).Value
                     .txtCustomer.Text = datLogs.Rows(e.RowIndex).Cells(1).Value
                     .txtAddress.Text = datLogs.Rows(e.RowIndex).Cells(6).Value
                     .txtContactNo.Text = datLogs.Rows(e.RowIndex).Cells(2).Value
 
                     getOwnerInfo(.txtOwnerID.Text)
+                    .strPetID = datLogs.Rows(e.RowIndex).Cells(7).Value
+                    'sub_frmPetInformation.loadPetsInformation(.txtOwnerID.Text)
+                    .strTID = datLogs.Rows(e.RowIndex).Cells(0).Value
                     .ShowDialog()
                 End With
             End If

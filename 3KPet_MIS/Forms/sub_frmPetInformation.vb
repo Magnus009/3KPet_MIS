@@ -19,7 +19,6 @@
             cboPet.ValueMember = "PetID"
 
             AddHandler cboPet.SelectedIndexChanged, AddressOf petSelect
-
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical)
         End Try
@@ -36,7 +35,7 @@
             'Get transaction Header
             sqlQuery = "SELECT * FROM TransactionHeader" + vbCrLf
             sqlQuery += "WHERE TransactionID = '" + strTransactionID + "'" + vbCrLf
-            sqlQuery += "AND PetID = '" + cboPet.SelectedValue + "'" & vbCrLf
+            'sqlQuery += "AND PetID = '" + cboPet.SelectedValue + "'" & vbCrLf
             sqlQuery += "ORDER BY VisitDate"
             dtTransHeader = SQLPetMIS(sqlQuery).Tables(0)
 
@@ -51,11 +50,13 @@
             sqlQuery = ""
             sqlQuery += "SELECT PP.ProductID, Description, QTY, TotatlPrice FROM PurschasedProducts PP" & vbCrLf
             sqlQuery += "INNER JOIN Products P ON PP.ProductID = P.ProductID" & vbCrLf
-            sqlQuery += "WHERE PP.TransactionID = '" + strTransactionID + "'" & vbCrLf
+            sqlQuery += "WHERE PP.TransactionID = '" + strTransactionID + "' AND TypeID <>2" & vbCrLf
             dtPurchasedProd = SQLPetMIS(sqlQuery).Tables(0)
 
+            'setGridColumns()
+
             datProduct.DataSource = dtPurchasedProd
-            Call setGridProperties()
+            setGridProperties()
 
             If dtTransHeader.Rows.Count <> 0 Then
                 dtpVisitDate.Value = dtTransHeader.Rows(0)("VisitDate")
@@ -96,6 +97,7 @@
                     End With
                 Next
 
+
                 'History
                 datHistory.Columns.Clear()
                 Dim dtPetMedHistory As New DataTable("PetMedHistory")
@@ -107,6 +109,7 @@
                 'view Button
                 Dim btnView As New DataGridViewButtonColumn
                 btnView.Text = "•••"
+                btnView.Name = "VIEW"
                 btnView.UseColumnTextForButtonValue = True
                 btnView.Width = datHistory.Width * 0.15
                 datHistory.Columns.Add(btnView)
@@ -130,6 +133,7 @@
                 setGridColumns()
                 setGridProperties()
             End If
+            cboPet.SelectedIndex = 0
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical)
@@ -201,6 +205,7 @@
             'view Button
             Dim btnView As New DataGridViewButtonColumn
             btnView.Text = "•••"
+            btnView.Name = "VIEW"
             btnView.UseColumnTextForButtonValue = True
             btnView.Width = datHistory.Width * 0.15
             datHistory.Columns.Add(btnView)
@@ -210,12 +215,12 @@
         End Try
     End Sub
     Private Sub datHistory_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datHistory.CellContentClick
-        If e.ColumnIndex = 2 Then
+
+        If datHistory.Columns(e.ColumnIndex).Name = "VIEW" Then
             With frmInvoice
-                .strTransID = datHistory.Rows(e.RowIndex).Cells(0).Value
+                .strTransID = datHistory.Rows(e.RowIndex).Cells("TransactionID").Value
                 .ShowDialog()
             End With
-
         End If
     End Sub
 
@@ -224,6 +229,8 @@
             .txtCustomer.Text = dsOwnerInfo.Tables(0).Rows(0)("LastName") + ", " + dsOwnerInfo.Tables(0).Rows(0)("FirstName")
             .txtContact.Text = dsOwnerInfo.Tables(0).Rows(0)("Address")
             .txtAddress.Text = dsOwnerInfo.Tables(0).Rows(0)("ContactNo")
+            .chkCancel.Enabled = False
+            .chkIsArrived.Enabled = False
         End With
         frmScheduleReservation.ShowDialog()
         txtNextVisit.Text = strNextvisit
@@ -243,7 +250,6 @@
                 .Columns.Add("TotatlPrice")
 
             End With
-
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -275,9 +281,9 @@
     'End Sub
 
     Private Sub sub_frmPetInformation_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        setVaccines()
-        setTreatments()
-        Call setGridColumns()
+        'setVaccines()
+        'setTreatments()
+        'Call setGridColumns()
         If fn_CheckRequire(grpHistory) = True Then
             btnAddRecord.Enabled = False
             btnSave.Enabled = True
@@ -468,6 +474,7 @@
                 btnSave.Enabled = False
                 btnPurchase.Enabled = False
                 btnAddRecord.Enabled = True
+                frmVisitHistory.getVisitLogs()
             End If
 
         Catch ex As Exception
@@ -568,4 +575,9 @@
         End Try
     End Sub
 
+    'Private Sub datHistory_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles datHistory.CellClick
+    '    If datHistory.Columns(e.ColumnIndex).Name = "VIEW" Then
+    '        MsgBox(datHistory.Rows(e.RowIndex).Cells("TransactionID").Value)
+    '    End If
+    'End Sub
 End Class

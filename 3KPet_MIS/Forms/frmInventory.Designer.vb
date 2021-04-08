@@ -100,9 +100,11 @@ Partial Class frmInventory
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.datRecords.DefaultCellStyle = DataGridViewCellStyle2
         Me.datRecords.Location = New System.Drawing.Point(296, 108)
+        Me.datRecords.MultiSelect = False
         Me.datRecords.Name = "datRecords"
         Me.datRecords.ReadOnly = True
         Me.datRecords.RowHeadersVisible = False
+        Me.datRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datRecords.Size = New System.Drawing.Size(545, 334)
         Me.datRecords.TabIndex = 1
         '

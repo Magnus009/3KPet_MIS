@@ -34,7 +34,7 @@ Public Class frmTransactionReport
             Me.rpvTrans.RefreshReport()
             With rpvTrans
                 .LocalReport.DataSources.Clear()
-                .LocalReport.ReportPath = "C:\Users\Brian\Desktop\3KPet_MIS\3KPet_MIS\Reports\rpTransactions.rdlc"
+                .LocalReport.ReportPath = "C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3KPet_MIS\3KPet_MIS\Reports\rpTransactions.rdlc"
                 .LocalReport.DataSources.Add(New Microsoft.Reporting.WinForms.ReportDataSource("dsTransHistory", dtTrans))
                 .SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout)
                 .ZoomMode = ZoomMode.Percent

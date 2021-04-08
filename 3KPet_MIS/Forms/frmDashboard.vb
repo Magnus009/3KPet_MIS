@@ -94,29 +94,29 @@
             With datSchedules
                 .Columns.Clear()
                 .Columns.Add("colCode", "CODE")
-                .Columns("colCode").Width = .Width * 0.15
+                .Columns("colCode").Width = .Width * 0.15 : .Columns("colCode").ReadOnly = True
                 .Columns.Add("colCustomer", "CUSTOMER")
-                .Columns("colCustomer").Width = .Width * 0.2
+                .Columns("colCustomer").Width = .Width * 0.2 : .Columns("colCustomer").ReadOnly = True
                 .Columns.Add("colService", "SERVICE")
-                .Columns("colService").Width = .Width * 0.15
+                .Columns("colService").Width = .Width * 0.15 : .Columns("colService").ReadOnly = True
                 .Columns.Add("colPurpose", "PURPOSE")
-                .Columns("colPurpose").Width = .Width * 0.2
+                .Columns("colPurpose").Width = .Width * 0.2 : .Columns("colPurpose").ReadOnly = True
                 .Columns.Add("colDate", "DATE")
-                .Columns("colDate").Width = .Width * 0.12
+                .Columns("colDate").Width = .Width * 0.12 : .Columns("colDate").ReadOnly = True
 
                 Dim chkIsArrived As New DataGridViewCheckBoxColumn
                 chkIsArrived.Width = 50
                 chkIsArrived.HeaderText = "ARRIVE"
                 chkIsArrived.Name = "colArrived"
                 .Columns.Add(chkIsArrived)
-                .Columns("colArrived").ReadOnly = True
+                .Columns("colArrived").ReadOnly = False
 
                 Dim chkIsCancel As New DataGridViewCheckBoxColumn
                 chkIsCancel.Width = 50
                 chkIsCancel.HeaderText = "CANCEL"
                 chkIsCancel.Name = "colCancel"
                 .Columns.Add(chkIsCancel)
-                .Columns("colCancel").ReadOnly = True
+                .Columns("colCancel").ReadOnly = False
 
                 'Dim btnSelect As New DataGridViewButtonColumn
                 'btnSelect.Text = "•••"
@@ -192,36 +192,7 @@
         Dim dsAccount As New DataSet
         Try
             With frmCreateAccount
-                .txtUserID.ReadOnly = True
-                .txtLName.ReadOnly = True
-                .txtFName.ReadOnly = True
-                .txtMName.ReadOnly = True
-                .txtPassword.Text = ""
-                .cboQuestion_1.Enabled = False
-                .cboQuestion_2.Enabled = False
-                .txtAnswer_1.ReadOnly = True
-                .txtAnswer_2.ReadOnly = True
-                .btnDeactivate.Enabled = False
-
-                sqlQuery = ""
-                sqlQuery += "SELECT * FROM Accounts A" & vbCrLf
-                sqlQuery += "INNER JOIN UserLevel UL ON A.Userlevel = UL.LevelID" & vbCrLf
-                sqlQuery += "INNER JOIN Users U ON A.AccountID = U.UserID" & vbCrLf
-                sqlQuery += "WHERE U.UserID = '" + _gbAccountID + "'" & vbCrLf
-                dsAccount = SQLPetMIS(sqlQuery)
-
-                .txtUserID.Text = dsAccount.Tables(0).Rows(0)("UserID")
-                .txtLName.Text = dsAccount.Tables(0).Rows(0)("LastName")
-                .txtFName.Text = dsAccount.Tables(0).Rows(0)("FirstName")
-                .txtMName.Text = dsAccount.Tables(0).Rows(0)("MiddleName")
-
-                .cboLevel.SelectedValue = dsAccount.Tables(0).Rows(0)("UserLevel")
-                .txtUserName.Text = dsAccount.Tables(0).Rows(0)("UserName")
-                .cboQuestion_1.SelectedValue = dsAccount.Tables(0).Rows(0)("Q1")
-                .cboQuestion_2.SelectedValue = dsAccount.Tables(0).Rows(0)("Q2")
-                .txtAnswer_1.Text = dsAccount.Tables(0).Rows(0)("A1")
-                .txtAnswer_2.Text = dsAccount.Tables(0).Rows(0)("A2")
-                .blnIsUpdate = True
+                .isExisting = True
                 .ShowDialog()
             End With
         Catch ex As Exception
@@ -242,5 +213,33 @@
 
     Private Sub MEDICALHISTORYToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles MEDICALHISTORYToolStripMenuItem.Click
         frmHistoryReport.ShowDialog()
+    End Sub
+
+   
+    Private Sub datSchedules_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles datSchedules.CellValueChanged
+        Try
+            If e.ColumnIndex = 5 Then
+                sqlQuery = ""
+                sqlQuery += "UPDATE dbo.Schedules" & vbCrLf
+                sqlQuery += "SET isArrived = " + Convert.ToInt32(datSchedules.Rows(e.RowIndex).Cells(5).Value).ToString & vbCrLf
+                sqlQuery += ", UpdatedDate = getdate()"
+                sqlQuery += ", UpdatedBy = '" + _gbAccountID + "'"
+                sqlQuery += "WHERE ScheduleCode = '" + datSchedules.Rows(e.RowIndex).Cells(0).Value + "'"
+                sqlExecute(sqlQuery)
+
+            ElseIf e.ColumnIndex = 6 Then
+                sqlQuery = ""
+                sqlQuery += "UPDATE dbo.Schedules" & vbCrLf
+                sqlQuery += "SET isCancelled = " + Convert.ToInt32(datSchedules.Rows(e.RowIndex).Cells(6).Value).ToString & vbCrLf
+                sqlQuery += ", UpdatedDate = getdate()"
+                sqlQuery += ", UpdatedBy = '" + _gbAccountID + "'"
+                sqlQuery += "WHERE ScheduleCode = '" + datSchedules.Rows(e.RowIndex).Cells(0).Value + "'"
+                sqlExecute(sqlQuery)
+
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class

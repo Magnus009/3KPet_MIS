@@ -239,7 +239,6 @@ Partial Class frmDashboard
         Me.datSchedules.DefaultCellStyle = DataGridViewCellStyle2
         Me.datSchedules.Location = New System.Drawing.Point(9, 6)
         Me.datSchedules.Name = "datSchedules"
-        Me.datSchedules.ReadOnly = True
         Me.datSchedules.RowHeadersVisible = False
         Me.datSchedules.Size = New System.Drawing.Size(805, 365)
         Me.datSchedules.TabIndex = 0

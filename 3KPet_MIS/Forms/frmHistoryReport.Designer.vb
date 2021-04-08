@@ -29,6 +29,7 @@ Partial Class frmHistoryReport
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.txtSearch = New System.Windows.Forms.TextBox()
+        Me.btnPrint = New System.Windows.Forms.Button()
         CType(Me.datRecords, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -77,7 +78,7 @@ Partial Class frmHistoryReport
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(62, 30)
+        Me.Label1.Location = New System.Drawing.Point(42, 32)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(53, 14)
         Me.Label1.TabIndex = 2
@@ -85,16 +86,30 @@ Partial Class frmHistoryReport
         '
         'txtSearch
         '
-        Me.txtSearch.Location = New System.Drawing.Point(119, 29)
+        Me.txtSearch.Location = New System.Drawing.Point(99, 29)
         Me.txtSearch.Name = "txtSearch"
         Me.txtSearch.Size = New System.Drawing.Size(339, 21)
         Me.txtSearch.TabIndex = 3
+        '
+        'btnPrint
+        '
+        Me.btnPrint.BackColor = System.Drawing.Color.Purple
+        Me.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnPrint.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnPrint.ForeColor = System.Drawing.Color.White
+        Me.btnPrint.Location = New System.Drawing.Point(509, 25)
+        Me.btnPrint.Name = "btnPrint"
+        Me.btnPrint.Size = New System.Drawing.Size(87, 29)
+        Me.btnPrint.TabIndex = 4
+        Me.btnPrint.Text = "PRINT ALL"
+        Me.btnPrint.UseVisualStyleBackColor = False
         '
         'frmHistoryReport
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(607, 368)
+        Me.Controls.Add(Me.btnPrint)
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Panel1)
@@ -116,4 +131,5 @@ Partial Class frmHistoryReport
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents txtSearch As System.Windows.Forms.TextBox
+    Friend WithEvents btnPrint As System.Windows.Forms.Button
 End Class

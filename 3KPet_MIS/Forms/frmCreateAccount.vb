@@ -1,6 +1,7 @@
 ﻿
 Public Class frmCreateAccount
-    Public blnIsUpdate As Boolean
+    Public blnIsUpdate As Boolean = False
+    Public isExisting As Boolean = False
     Private Sub picHideShowPassword_Click(sender As Object, e As EventArgs) Handles picHideShowPassword.Click
         Call subShowHidePassword(sender, txtPassword)
     End Sub
@@ -38,7 +39,7 @@ Public Class frmCreateAccount
                         txtUserName.ForeColor = Color.Red
                         txtUserName.Focus()
                     Else
-                        If MsgBox("Are you sure you want to save?", vbYesNo + vbQuestion) Then
+                        If MsgBox("Are you sure you want to save?", vbYesNo + vbQuestion) = vbYes Then
                             strSQL = ""
                             strSQL = "SELECT dbo.fn_colID ('U')"
 
@@ -131,7 +132,7 @@ Public Class frmCreateAccount
                     txtUserName.ForeColor = Color.Red
                     txtUserName.Focus()
                 Else
-                    If MsgBox("Are you sure you want to save changes?", vbYesNo + vbQuestion) Then
+                    If MsgBox("Are you sure you want to save changes?", vbYesNo + vbQuestion) = vbYes Then
                         strSQL = ""
                         strSQL += "UPDATE dbo.Accounts" & vbCrLf
                         strSQL += "SET UserName = '" + txtUserName.Text + "'" & vbCrLf
@@ -210,6 +211,47 @@ Public Class frmCreateAccount
         cboLevel.DisplayMember = "Description"
         cboLevel.ValueMember = "LevelID"
 
+        getAccountInfo()
+
+
+    End Sub
+
+    Private Sub getAccountInfo()
+        Try
+            Dim dsAccount As New DataSet
+            txtUserID.ReadOnly = True
+            txtLName.ReadOnly = True
+            txtFName.ReadOnly = True
+            txtMName.ReadOnly = True
+            txtPassword.Text = ""
+            cboQuestion_1.Enabled = False
+            cboQuestion_2.Enabled = False
+            txtAnswer_1.ReadOnly = True
+            txtAnswer_2.ReadOnly = True
+            btnDeactivate.Enabled = False
+
+            sqlQuery = ""
+            sqlQuery += "SELECT * FROM Accounts A" & vbCrLf
+            sqlQuery += "INNER JOIN UserLevel UL ON A.Userlevel = UL.LevelID" & vbCrLf
+            sqlQuery += "INNER JOIN Users U ON A.AccountID = U.UserID" & vbCrLf
+            sqlQuery += "WHERE U.UserID = '" + _gbAccountID + "'" & vbCrLf
+            dsAccount = SQLPetMIS(sqlQuery)
+
+            txtUserID.Text = dsAccount.Tables(0).Rows(0)("UserID")
+            txtLName.Text = dsAccount.Tables(0).Rows(0)("LastName")
+            txtFName.Text = dsAccount.Tables(0).Rows(0)("FirstName")
+            txtMName.Text = dsAccount.Tables(0).Rows(0)("MiddleName")
+
+            cboLevel.SelectedValue = Convert.ToInt32(dsAccount.Tables(0).Rows(0)("UserLevel"))
+            txtUserName.Text = dsAccount.Tables(0).Rows(0)("UserName")
+            cboQuestion_1.SelectedValue = dsAccount.Tables(0).Rows(0)("Q1")
+            cboQuestion_2.SelectedValue = dsAccount.Tables(0).Rows(0)("Q2")
+            txtAnswer_1.Text = dsAccount.Tables(0).Rows(0)("A1")
+            txtAnswer_2.Text = dsAccount.Tables(0).Rows(0)("A2")
+            blnIsUpdate = True
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 
     Private Sub txtConfirmPassword_TextChanged(sender As Object, e As EventArgs) Handles txtConfirmPassword.TextChanged
@@ -258,7 +300,7 @@ Public Class frmCreateAccount
 
                 End If
             End If
-         
+
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

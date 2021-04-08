@@ -78,10 +78,23 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSources\dsInvoice.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsInvoice.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSources\dsMedHis.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsMedHis.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\dsPurchasedProd.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsPurchasedProd.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSources\dsPurchasedProd.vb">
+      <DependentUpon>dsPurchasedProd.xsd</DependentUpon>
     </Compile>
     <Compile Include="DataSources\dsTransactions.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -154,10 +167,22 @@
     <Compile Include="Forms\frmNewTransaction.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmPrintTransaction.Designer.vb">
+      <DependentUpon>frmPrintTransaction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPrintTransaction.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmProducts.Designer.vb">
       <DependentUpon>frmProducts.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmProducts.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmProductsReport.Designer.vb">
+      <DependentUpon>frmProductsReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmProductsReport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmProductType.Designer.vb">
@@ -251,6 +276,12 @@
     <Compile Include="Forms\frmVisitHistory.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmInvoiceReport.Designer.vb">
+      <DependentUpon>frmInvoiceReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmInvoiceReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\sub_frmPetInformation.Designer.vb">
       <DependentUpon>sub_frmPetInformation.vb</DependentUpon>
     </Compile>
@@ -319,8 +350,14 @@
       <DependentUpon>frmNewTransaction.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPrintTransaction.resx">
+      <DependentUpon>frmPrintTransaction.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmProducts.resx">
       <DependentUpon>frmProducts.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmProductsReport.resx">
+      <DependentUpon>frmProductsReport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmProductType.resx">
       <DependentUpon>frmProductType.vb</DependentUpon>
@@ -371,6 +408,9 @@
     <EmbeddedResource Include="Forms\frmVisitHistory.resx">
       <DependentUpon>frmVisitHistory.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmInvoiceReport.resx">
+      <DependentUpon>frmInvoiceReport.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\sub_frmPetInformation.resx">
       <DependentUpon>sub_frmPetInformation.vb</DependentUpon>
     </EmbeddedResource>
@@ -384,10 +424,24 @@
       <DependentUpon>frmOwnerList.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rpInvoice.rdlc" />
+    <EmbeddedResource Include="Reports\rpMedicalHistory_All.rdlc" />
     <EmbeddedResource Include="Reports\rpMedicalHistory.rdlc" />
+    <EmbeddedResource Include="Reports\rpProducts.rdlc" />
     <EmbeddedResource Include="Reports\rpTransactions.rdlc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DataSources\dsInvoice.xsc">
+      <DependentUpon>dsInvoice.xsd</DependentUpon>
+    </None>
+    <None Include="DataSources\dsInvoice.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsInvoice.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSources\dsInvoice.xss">
+      <DependentUpon>dsInvoice.xsd</DependentUpon>
+    </None>
     <None Include="DataSources\dsMedHis.xsc">
       <DependentUpon>dsMedHis.xsd</DependentUpon>
     </None>
@@ -398,6 +452,17 @@
     </None>
     <None Include="DataSources\dsMedHis.xss">
       <DependentUpon>dsMedHis.xsd</DependentUpon>
+    </None>
+    <None Include="DataSources\dsPurchasedProd.xsc">
+      <DependentUpon>dsPurchasedProd.xsd</DependentUpon>
+    </None>
+    <None Include="DataSources\dsPurchasedProd.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsPurchasedProd.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DataSources\dsPurchasedProd.xss">
+      <DependentUpon>dsPurchasedProd.xsd</DependentUpon>
     </None>
     <None Include="DataSources\dsTransactions.xsc">
       <DependentUpon>dsTransactions.xsd</DependentUpon>

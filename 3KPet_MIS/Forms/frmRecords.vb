@@ -72,7 +72,8 @@
         End Try
     End Sub
     Private Sub frmRecords_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ''AddHandler txtPetAge.KeyPress, AddressOf numericOnly
+        AddHandler txtPetAge.KeyPress, AddressOf numericOnly
+        AddHandler txtOwnerContactNo.KeyPress, AddressOf numericOnly
         Call loadOwnerInfo()
         btnNewRecord.Enabled = False
         txtOwnerLName.ReadOnly = False
@@ -182,7 +183,7 @@
             If fn_CheckRequire(Me) Then
                 MsgBox("Please fill out all the required details", vbOKOnly + vbExclamation)
             Else
-                If MsgBox("Are you sure you want to save?", vbYesNo + vbQuestion) Then
+                If MsgBox("Are you sure you want to save?", vbYesNo + vbQuestion) = vbYes Then
                     If blnAddPet Then
                         sqlQuery = ""
                         sqlQuery += "INSERT INTO dbo.Pets " & vbCrLf
@@ -394,8 +395,10 @@
     Private Sub chkBirthday_CheckedChanged(sender As Object, e As EventArgs) Handles chkBirthday.CheckedChanged
         If chkBirthday.Checked Then
             dtpBirthday.Enabled = True
+            txtPetAge.Enabled = False
         Else
             dtpBirthday.Enabled = False
+            txtPetAge.Enabled = True
         End If
     End Sub
 
@@ -406,5 +409,13 @@
             MsgBox(ex.Message)
         End Try
 
+    End Sub
+
+    Private Sub txtPetColor_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtPetColor.KeyPress
+        If e.KeyChar <> ControlChars.Back AndAlso e.KeyChar <> " " Then
+            If Not Char.IsLetter(e.KeyChar) Then
+                e.Handled = True
+            End If
+        End If
     End Sub
 End Class
