@@ -494,6 +494,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="3k.ico" />
+    <None Include="Resources\no-profile.png" />
     <None Include="Resources\user%28Black%29.png" />
     <None Include="Resources\LoginLogo.png" />
     <None Include="Resources\changepassword.png" />

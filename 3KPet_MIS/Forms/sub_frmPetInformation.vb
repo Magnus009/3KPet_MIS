@@ -200,6 +200,7 @@
             sqlQuery += "WHERE PetID = '" + cboPet.SelectedValue + "'"
             dtVisitHistory = SQLPetMIS(sqlQuery).Tables(0)
 
+            datHistory.Columns.Clear()
             datHistory.DataSource = dtVisitHistory
 
             'view Button
@@ -541,7 +542,7 @@
             Dim dsTreatments As New DataSet
 
             sqlQuery = ""
-            sqlQuery += "SELECT TRID,TRDescription,Price FROM Treatments" & vbCrLf
+            sqlQuery += "SELECT TRID, TRDescription, Price FROM Treatments" & vbCrLf
             dsTreatments = SQLPetMIS(sqlQuery)
 
             datTreatment.Columns.Clear()
@@ -555,6 +556,7 @@
                 chkTX.Width = .Width * 0.09
                 chkTX.Name = "Status"
                 .Columns.Add(chkTX)
+                .Columns("Status").HeaderText = ""
 
             End With
         Catch ex As Exception

@@ -1,4 +1,5 @@
-﻿Module M_Functions
+﻿Imports System.IO
+Module M_Functions
     Public strRequire As String
     Public blnRequired As Boolean = False
     Public _gbAccountID As String
@@ -69,9 +70,6 @@
                     For i As Integer = 1 To chkListBox.Items.Count - 1
                         chkListBox.SetItemChecked(i, False)
                     Next
-
-
-
                 Case Else
                     'No Event
             End Select
@@ -174,15 +172,27 @@
         Dim strFileName As String = ""
 
         With fileDialog
-            .Title = "Select Supporting Documents"
+            .Title = "Select Pet Profile"
             .Multiselect = False
             .InitialDirectory = My.Computer.FileSystem.SpecialDirectories.Desktop
-            .Filter = "Picture Files (*)|*.jpg;*.jpeg;*.jpe;*.png"
+            .Filter = "Image Files|*.jpg;*.jpeg;*.png;"
 
-            If .ShowDialog = DialogResult.OK Then
-                strFileName = .FileName
+            If .ShowDialog = DialogResult.OK Then 'When dialog is close and result is OK
+                strFileName = .FileName 'get File path name
             End If
         End With
         Return strFileName
+    End Function
+
+    Public Function getDesktopProfilesPath() As String
+        Dim strDesktopPath As String
+
+        strDesktopPath = My.Computer.FileSystem.SpecialDirectories.Desktop + "\PetProfiles\"
+
+        If Not Directory.Exists(strDesktopPath) Then
+            Directory.CreateDirectory(strDesktopPath)
+        End If
+
+        Return strDesktopPath
     End Function
 End Module

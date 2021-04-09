@@ -6,6 +6,7 @@
     Dim strOwnerID As String
     Dim blnAddPet As Boolean = False
     Dim blnUpdate As Boolean = False
+    Dim strProfilePath As String
 
     Private Sub btnConfirm_Click(sender As Object, e As EventArgs) Handles btnConfirm.Click
         Try
@@ -88,7 +89,6 @@
             If e.ColumnIndex = 6 Then
 
                 Dim dtData As New DataTable
-
                 blnAddPet = True
                 dtData = dsRecords.Tables(0).Select(strSearch, "OwnerID ASC").CopyToDataTable
 
@@ -106,15 +106,12 @@
                 'txtPetAge.Text = IIf(IsDBNull(dtData.Rows(0)("Age")), "", dtData.Rows(0)("Age"))
                 'chkisDeceased.Checked = dtData.Rows(0)("isDeceased")
 
-
                 txtOwnerLName.ReadOnly = True
                 txtOwnerFName.ReadOnly = True
                 txtOwnerContactNo.ReadOnly = True
                 txtOwnerContactNo.ReadOnly = True
                 txtOwnerAddress.ReadOnly = True
                 btnNewRecord.Enabled = True
-
-
             End If
 
         Catch ex As Exception
@@ -128,8 +125,9 @@
     End Sub
 
     Private Sub btnNewRecord_Click(sender As Object, e As EventArgs) Handles btnNewRecord.Click
+        blnAddPet = False
         Call clearFields(Me)
-        Call subGenerateOwnerID(False)
+        Call subGenerateOwnerID(blnAddPet)
 
         txtOwnerID.Text = "- - -"
         txtPetID.Text = "- - -"
@@ -158,11 +156,6 @@
             sqlQuery = "SELECT dbo.fn_colID ('O')"
             strOwnerID = SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0).ToString
         End If
-    End Sub
-
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
-        MsgBox(My.Application.Info.DirectoryPath)
     End Sub
 
     Private Sub saveInfo()
@@ -230,6 +223,8 @@
                         blnResult = sqlExecute(sqlQuery)
 
                         If blnResult Then
+                            petProfile(strPetID, True)
+
                             MsgBox("Records saved succesfully", vbInformation + vbOKOnly)
                             saveLogs(1, "Add pet to owner " + txtOwnerID.Text)
                             blnAddPet = False
@@ -256,6 +251,8 @@
                         blnResult = sqlExecute(sqlQuery)
 
                         If blnResult Then
+                            petProfile(txtPetID.Text, False)
+
                             MsgBox("Records saved succesfully", vbInformation + vbOKOnly)
                             saveLogs(2, "Update pet records to owner " + txtOwnerID.Text)
                             blnUpdate = False
@@ -263,7 +260,6 @@
                             Call loadOwnerInfo()
                         End If
                     Else
-
 
                         sqlQuery = ""
                         sqlQuery += "INSERT INTO dbo.Owners" & vbCrLf
@@ -339,6 +335,8 @@
                         blnResult = sqlExecute(sqlQuery)
 
                         If blnResult Then
+                            petProfile(strPetID, True)
+
                             MsgBox("Records saved succesfully", vbInformation + vbOKOnly)
                             saveLogs(1, "Added new patient records")
                             Call clearFields(Me)
@@ -351,8 +349,6 @@
             MsgBox(ex.Message)
         End Try
     End Sub
-
-
 
     Private Sub datInformation_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles datInformation.CellContentDoubleClick
         Try
@@ -417,5 +413,36 @@
                 e.Handled = True
             End If
         End If
+    End Sub
+
+    Private Sub btnUpload_Click(sender As Object, e As EventArgs) Handles btnUpload.Click
+        Try
+            strProfilePath = ""
+            strProfilePath = openFileDialog()
+            If strProfilePath <> "" Then
+                picPet.Image = Image.FromFile(strProfilePath)
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+        End Try
+    End Sub
+
+    Private Sub petProfile(strPetID As String, blnInsert As Boolean)
+        If blnInsert Then 'Insert
+            sqlQuery = "INSERT INTO PetsProfile (PetID, ProfilePath, CreatedDate, UpdateDate, UpdatedBy)" + vbCrLf
+            sqlQuery += "VALUES (" + vbCrLf
+            sqlQuery += "'" + strPetID + "', " + vbCrLf
+            sqlQuery += "'" + strProfilePath + "', " + vbCrLf
+            sqlQuery += "getdate(), " + vbCrLf
+            sqlQuery += "getdate(), " + vbCrLf
+            sqlQuery += "'" + _gbAccountID + "')"
+        Else 'Update
+            sqlQuery = "UPDATE PetsProfile" + vbCrLf
+            sqlQuery += "SET ProfilePath = '" + strProfilePath + "'" + vbCrLf
+            sqlQuery += ", UpdateDate = getdate()" + vbCrLf
+            sqlQuery += ", UpdatedBy = '" + _gbAccountID + "'" + vbCrLf
+            sqlQuery += "WHERE PetID = '" + strPetID + "'" + vbCrLf
+        End If
+        sqlExecute(sqlQuery)
     End Sub
 End Class

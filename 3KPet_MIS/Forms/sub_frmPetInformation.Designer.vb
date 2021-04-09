@@ -231,6 +231,7 @@ Partial Class sub_frmPetInformation
         Me.datHistory.Name = "datHistory"
         Me.datHistory.ReadOnly = True
         Me.datHistory.RowHeadersVisible = False
+        Me.datHistory.ScrollBars = System.Windows.Forms.ScrollBars.None
         Me.datHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datHistory.Size = New System.Drawing.Size(240, 173)
         Me.datHistory.TabIndex = 1
@@ -300,6 +301,7 @@ Partial Class sub_frmPetInformation
         Me.datProduct.Location = New System.Drawing.Point(3, 248)
         Me.datProduct.Name = "datProduct"
         Me.datProduct.RowHeadersVisible = False
+        Me.datProduct.ScrollBars = System.Windows.Forms.ScrollBars.None
         Me.datProduct.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.datProduct.Size = New System.Drawing.Size(240, 134)
         Me.datProduct.TabIndex = 31
@@ -341,6 +343,7 @@ Partial Class sub_frmPetInformation
         Me.datVaccine.Location = New System.Drawing.Point(254, 231)
         Me.datVaccine.Name = "datVaccine"
         Me.datVaccine.RowHeadersVisible = False
+        Me.datVaccine.ScrollBars = System.Windows.Forms.ScrollBars.None
         Me.datVaccine.Size = New System.Drawing.Size(225, 151)
         Me.datVaccine.TabIndex = 33
         '
@@ -380,6 +383,7 @@ Partial Class sub_frmPetInformation
         Me.datTreatment.Location = New System.Drawing.Point(485, 232)
         Me.datTreatment.Name = "datTreatment"
         Me.datTreatment.RowHeadersVisible = False
+        Me.datTreatment.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.datTreatment.Size = New System.Drawing.Size(228, 150)
         Me.datTreatment.TabIndex = 35
         '

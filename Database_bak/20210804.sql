@@ -654,4 +654,19 @@ GO
 
 
 
+IF OBJECT_ID ('dbo.PetsProfile') IS NOT NULL
+	DROP TABLE dbo.PetsProfile
+GO
+
+CREATE TABLE dbo.PetsProfile
+	(
+	PetID       NVARCHAR (10) NOT NULL,
+	ProfilePath VARCHAR (500) NULL,
+	CreatedDate DATETIME NULL,
+	UpdateDate  DATETIME NULL,
+	DeletedDate DATETIME NULL,
+	UpdatedBy   VARCHAR (10) NULL,
+	PRIMARY KEY (PetID)
+	)
+GO
 

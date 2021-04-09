@@ -31,6 +31,8 @@ Partial Class frmRecords
         Me.pnlContent = New System.Windows.Forms.Panel()
         Me.btnNewRecord = New System.Windows.Forms.Button()
         Me.grpPetInfo = New System.Windows.Forms.GroupBox()
+        Me.btnUpload = New System.Windows.Forms.Button()
+        Me.picPet = New System.Windows.Forms.PictureBox()
         Me.chkBirthday = New System.Windows.Forms.CheckBox()
         Me.dtpBirthday = New System.Windows.Forms.DateTimePicker()
         Me.lblBirthday = New System.Windows.Forms.Label()
@@ -70,6 +72,7 @@ Partial Class frmRecords
         Me.pnlHeader.SuspendLayout()
         Me.pnlContent.SuspendLayout()
         Me.grpPetInfo.SuspendLayout()
+        CType(Me.picPet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpOwnerInfo.SuspendLayout()
         CType(Me.datInformation, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -126,6 +129,8 @@ Partial Class frmRecords
         '
         'grpPetInfo
         '
+        Me.grpPetInfo.Controls.Add(Me.btnUpload)
+        Me.grpPetInfo.Controls.Add(Me.picPet)
         Me.grpPetInfo.Controls.Add(Me.chkBirthday)
         Me.grpPetInfo.Controls.Add(Me.dtpBirthday)
         Me.grpPetInfo.Controls.Add(Me.lblBirthday)
@@ -152,10 +157,35 @@ Partial Class frmRecords
         Me.grpPetInfo.TabStop = False
         Me.grpPetInfo.Text = "PET INFORMATION"
         '
+        'btnUpload
+        '
+        Me.btnUpload.BackColor = System.Drawing.Color.Purple
+        Me.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnUpload.Font = New System.Drawing.Font("Calibri", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnUpload.ForeColor = System.Drawing.Color.White
+        Me.btnUpload.Location = New System.Drawing.Point(228, 93)
+        Me.btnUpload.Name = "btnUpload"
+        Me.btnUpload.Size = New System.Drawing.Size(84, 23)
+        Me.btnUpload.TabIndex = 16
+        Me.btnUpload.Text = "UPLOAD"
+        Me.btnUpload.UseVisualStyleBackColor = False
+        '
+        'picPet
+        '
+        Me.picPet.BackColor = System.Drawing.Color.LightGray
+        Me.picPet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.picPet.Image = Global._3KPet_MIS.My.Resources.Resources.no_profile
+        Me.picPet.Location = New System.Drawing.Point(228, 18)
+        Me.picPet.Name = "picPet"
+        Me.picPet.Size = New System.Drawing.Size(84, 75)
+        Me.picPet.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.picPet.TabIndex = 15
+        Me.picPet.TabStop = False
+        '
         'chkBirthday
         '
         Me.chkBirthday.AutoSize = True
-        Me.chkBirthday.Location = New System.Drawing.Point(198, 152)
+        Me.chkBirthday.Location = New System.Drawing.Point(152, 151)
         Me.chkBirthday.Name = "chkBirthday"
         Me.chkBirthday.Size = New System.Drawing.Size(15, 14)
         Me.chkBirthday.TabIndex = 14
@@ -167,9 +197,9 @@ Partial Class frmRecords
         Me.dtpBirthday.Enabled = False
         Me.dtpBirthday.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpBirthday.Location = New System.Drawing.Point(96, 148)
+        Me.dtpBirthday.Location = New System.Drawing.Point(68, 147)
         Me.dtpBirthday.Name = "dtpBirthday"
-        Me.dtpBirthday.Size = New System.Drawing.Size(100, 22)
+        Me.dtpBirthday.Size = New System.Drawing.Size(82, 22)
         Me.dtpBirthday.TabIndex = 13
         '
         'lblBirthday
@@ -177,7 +207,7 @@ Partial Class frmRecords
         Me.lblBirthday.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblBirthday.Location = New System.Drawing.Point(6, 149)
         Me.lblBirthday.Name = "lblBirthday"
-        Me.lblBirthday.Size = New System.Drawing.Size(84, 18)
+        Me.lblBirthday.Size = New System.Drawing.Size(61, 18)
         Me.lblBirthday.TabIndex = 12
         Me.lblBirthday.Text = "BIRTHDAY :"
         Me.lblBirthday.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -186,7 +216,7 @@ Partial Class frmRecords
         '
         Me.chkisDeceased.AutoSize = True
         Me.chkisDeceased.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.chkisDeceased.Location = New System.Drawing.Point(212, 199)
+        Me.chkisDeceased.Location = New System.Drawing.Point(212, 177)
         Me.chkisDeceased.Name = "chkisDeceased"
         Me.chkisDeceased.Size = New System.Drawing.Size(78, 19)
         Me.chkisDeceased.TabIndex = 11
@@ -199,7 +229,7 @@ Partial Class frmRecords
         Me.optFemale.BackColor = System.Drawing.Color.Transparent
         Me.optFemale.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.optFemale.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.optFemale.Location = New System.Drawing.Point(267, 177)
+        Me.optFemale.Location = New System.Drawing.Point(267, 150)
         Me.optFemale.Name = "optFemale"
         Me.optFemale.Size = New System.Drawing.Size(59, 17)
         Me.optFemale.TabIndex = 6
@@ -214,7 +244,7 @@ Partial Class frmRecords
         Me.optMale.Checked = True
         Me.optMale.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.optMale.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.optMale.Location = New System.Drawing.Point(212, 177)
+        Me.optMale.Location = New System.Drawing.Point(212, 150)
         Me.optMale.Name = "optMale"
         Me.optMale.Size = New System.Drawing.Size(48, 17)
         Me.optMale.TabIndex = 5
@@ -225,19 +255,19 @@ Partial Class frmRecords
         'Label10
         '
         Me.Label10.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label10.Location = New System.Drawing.Point(230, 152)
+        Me.Label10.Location = New System.Drawing.Point(234, 129)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(60, 18)
         Me.Label10.TabIndex = 10
         Me.Label10.Text = "GENDER : "
-        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'Label5
         '
         Me.Label5.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.Location = New System.Drawing.Point(6, 177)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(84, 18)
+        Me.Label5.Size = New System.Drawing.Size(61, 18)
         Me.Label5.TabIndex = 9
         Me.Label5.Text = "AGE : "
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -246,11 +276,11 @@ Partial Class frmRecords
         '
         Me.txtPetAge.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtPetAge.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPetAge.Location = New System.Drawing.Point(96, 176)
+        Me.txtPetAge.Location = New System.Drawing.Point(68, 176)
         Me.txtPetAge.MaxLength = 3
         Me.txtPetAge.Name = "txtPetAge"
         Me.txtPetAge.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.txtPetAge.Size = New System.Drawing.Size(71, 21)
+        Me.txtPetAge.Size = New System.Drawing.Size(48, 21)
         Me.txtPetAge.TabIndex = 4
         Me.txtPetAge.Tag = ""
         '
@@ -259,7 +289,7 @@ Partial Class frmRecords
         Me.Label6.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label6.Location = New System.Drawing.Point(6, 122)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(84, 18)
+        Me.Label6.Size = New System.Drawing.Size(61, 18)
         Me.Label6.TabIndex = 7
         Me.Label6.Text = "PET COLOR : "
         Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -268,10 +298,10 @@ Partial Class frmRecords
         '
         Me.txtPetColor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtPetColor.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPetColor.Location = New System.Drawing.Point(96, 121)
+        Me.txtPetColor.Location = New System.Drawing.Point(68, 121)
         Me.txtPetColor.MaxLength = 20
         Me.txtPetColor.Name = "txtPetColor"
-        Me.txtPetColor.Size = New System.Drawing.Size(100, 21)
+        Me.txtPetColor.Size = New System.Drawing.Size(82, 21)
         Me.txtPetColor.TabIndex = 3
         Me.txtPetColor.Tag = "*Pet Color"
         '
@@ -280,7 +310,7 @@ Partial Class frmRecords
         Me.Label7.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label7.Location = New System.Drawing.Point(6, 95)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(84, 18)
+        Me.Label7.Size = New System.Drawing.Size(61, 18)
         Me.Label7.TabIndex = 5
         Me.Label7.Text = "BREED : "
         Me.Label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -289,10 +319,10 @@ Partial Class frmRecords
         '
         Me.txtPetBreed.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtPetBreed.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPetBreed.Location = New System.Drawing.Point(96, 94)
+        Me.txtPetBreed.Location = New System.Drawing.Point(68, 94)
         Me.txtPetBreed.MaxLength = 50
         Me.txtPetBreed.Name = "txtPetBreed"
-        Me.txtPetBreed.Size = New System.Drawing.Size(157, 21)
+        Me.txtPetBreed.Size = New System.Drawing.Size(100, 21)
         Me.txtPetBreed.TabIndex = 2
         Me.txtPetBreed.Tag = "*Breed"
         '
@@ -301,7 +331,7 @@ Partial Class frmRecords
         Me.Label8.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.Location = New System.Drawing.Point(6, 68)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(84, 18)
+        Me.Label8.Size = New System.Drawing.Size(61, 18)
         Me.Label8.TabIndex = 3
         Me.Label8.Text = "NAME : "
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight
@@ -310,17 +340,17 @@ Partial Class frmRecords
         '
         Me.txtPetName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtPetName.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPetName.Location = New System.Drawing.Point(96, 67)
+        Me.txtPetName.Location = New System.Drawing.Point(68, 67)
         Me.txtPetName.MaxLength = 100
         Me.txtPetName.Name = "txtPetName"
-        Me.txtPetName.Size = New System.Drawing.Size(222, 21)
+        Me.txtPetName.Size = New System.Drawing.Size(138, 21)
         Me.txtPetName.TabIndex = 1
         Me.txtPetName.Tag = "*Pet Name"
         '
         'Label9
         '
         Me.Label9.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label9.Location = New System.Drawing.Point(47, 41)
+        Me.Label9.Location = New System.Drawing.Point(24, 41)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(43, 18)
         Me.Label9.TabIndex = 1
@@ -331,11 +361,11 @@ Partial Class frmRecords
         '
         Me.txtPetID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.txtPetID.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtPetID.Location = New System.Drawing.Point(96, 40)
+        Me.txtPetID.Location = New System.Drawing.Point(68, 40)
         Me.txtPetID.MaxLength = 10
         Me.txtPetID.Name = "txtPetID"
         Me.txtPetID.ReadOnly = True
-        Me.txtPetID.Size = New System.Drawing.Size(100, 21)
+        Me.txtPetID.Size = New System.Drawing.Size(82, 21)
         Me.txtPetID.TabIndex = 0
         Me.txtPetID.Text = "- - -"
         Me.txtPetID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
@@ -593,6 +623,7 @@ Partial Class frmRecords
         Me.pnlContent.PerformLayout()
         Me.grpPetInfo.ResumeLayout(False)
         Me.grpPetInfo.PerformLayout()
+        CType(Me.picPet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpOwnerInfo.ResumeLayout(False)
         Me.grpOwnerInfo.PerformLayout()
         CType(Me.datInformation, System.ComponentModel.ISupportInitialize).EndInit()
@@ -640,4 +671,6 @@ Partial Class frmRecords
     Friend WithEvents dtpBirthday As DateTimePicker
     Friend WithEvents lblBirthday As Label
     Friend WithEvents chkBirthday As CheckBox
+    Friend WithEvents btnUpload As System.Windows.Forms.Button
+    Friend WithEvents picPet As System.Windows.Forms.PictureBox
 End Class

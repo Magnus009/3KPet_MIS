@@ -9,15 +9,14 @@
             Dim dsRecords As DataSet
 
             sqlQuery = ""
-            sqlQuery += "SELECT Owners.OwnerID, LastName + ', ' + FirstName AS OwnerName, Address, ContactNo FROM Owners" & vbCrLf
+            sqlQuery += "SELECT OwnerID, LastName + ', ' + FirstName AS OwnerName, Address, ContactNo FROM Owners" & vbCrLf
             If txtSearch.Text <> "" Then
                 sqlQuery += "WHERE LastName LIKE '%" + txtSearch.Text + "%'" & vbCrLf
                 sqlQuery += "OR FirstName LIKE '%" + txtSearch.Text + "%'" & vbCrLf
-                sqlQuery += "OR Name LIKE LIKE '%" + txtSearch.Text + "%'" & vbCrLf
 
             End If
             sqlQuery += "GROUP BY OwnerID, LastName, FirstName, Address, ContactNo" & vbCrLf
-            sqlQuery += "ORDER BY Owners.OwnerID" & vbCrLf
+            sqlQuery += "ORDER BY OwnerID" & vbCrLf
 
             dsRecords = SQLPetMIS(sqlQuery)
             With datData
@@ -42,4 +41,7 @@
     End Sub
   
 
+    Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
+        getOwnerList()
+    End Sub
 End Class

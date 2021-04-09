@@ -54,8 +54,8 @@ Public Class frmInvoice
         Try
             Dim intTotal As Integer
             If txtDiscount.Text <> "00.00" And txtDiscount.Text <> "" Then
-                intTotal = Convert.ToInt32(dsInvoice.Tables(0).Rows(0)("TotalAmount"))
-                intTotal = intTotal - Convert.ToInt32(txtDiscount.Text)
+                intTotal = Convert.ToDouble(dsInvoice.Tables(0).Rows(0)("TotalAmount"))
+                intTotal = intTotal - Convert.ToDouble(txtDiscount.Text)
                 lblTotal.Text = intTotal.ToString
             Else
                 lblTotal.Text = IIf(IsDBNull(dsInvoice.Tables(0).Rows(0)("TotalAmount")), "00.00", dsInvoice.Tables(0).Rows(0)("TotalAmount"))

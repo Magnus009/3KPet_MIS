@@ -35,6 +35,7 @@ Partial Class frmHistoryReport
         '
         'datRecords
         '
+        Me.datRecords.AllowUserToAddRows = False
         Me.datRecords.AllowUserToDeleteRows = False
         Me.datRecords.AllowUserToResizeColumns = False
         Me.datRecords.AllowUserToResizeRows = False
@@ -59,6 +60,7 @@ Partial Class frmHistoryReport
         Me.datRecords.Location = New System.Drawing.Point(36, 56)
         Me.datRecords.MultiSelect = False
         Me.datRecords.Name = "datRecords"
+        Me.datRecords.ReadOnly = True
         Me.datRecords.RowHeadersVisible = False
         Me.datRecords.RowTemplate.Height = 28
         Me.datRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
