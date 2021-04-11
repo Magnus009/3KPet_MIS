@@ -102,6 +102,7 @@ Partial Class frmActivityLogs
         '
         'dtpFrom
         '
+        Me.dtpFrom.CustomFormat = "yyyy/MM/dd"
         Me.dtpFrom.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpFrom.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpFrom.Location = New System.Drawing.Point(66, 74)
@@ -121,6 +122,7 @@ Partial Class frmActivityLogs
         '
         'dtpTo
         '
+        Me.dtpTo.CustomFormat = "yyyy/MM/dd"
         Me.dtpTo.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.dtpTo.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.dtpTo.Location = New System.Drawing.Point(198, 74)

@@ -1,6 +1,8 @@
 ﻿Public Class frmActivityLogs
     Dim blnFilter As Boolean
     Private Sub frmActivityLogs_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        dtpFrom.Value = Date.Now
+        dtpTo.Value = Date.Now
         Call getLogs()
         Call getActions()
 
@@ -40,7 +42,7 @@
                 For Each row As DataRow In dsLogs.Tables(0).Rows
                     .Rows.Add()
                     .Rows(.RowCount - 1).Cells(0).Value = row.Item("UserID")
-                    .Rows(.RowCount - 1).Cells(1).Value = Format(row.Item("ActionDate"), "Short Date")
+                    .Rows(.RowCount - 1).Cells(1).Value = Format(row.Item("ActionDate"), "dd/MM/yyyy")
                     .Rows(.RowCount - 1).Cells(2).Value = row.Item("Description")
                     .Rows(.RowCount - 1).Cells(3).Value = row.Item("Remarks")
                 Next

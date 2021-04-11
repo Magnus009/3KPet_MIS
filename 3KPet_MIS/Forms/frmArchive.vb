@@ -12,6 +12,10 @@
             sqlQuery += "SELECT P.OwnerID, LastNAme + ', '+ FirstName AS OwnerName, P.PetID, P.Name, P.Breed, P.PetColor, P.Age, P.Gender FROM Pets P" & vbCrLf
             sqlQuery += "INNER JOIN Owners O ON P.OwnerID = O.OwnerID " & vbCrLf
             sqlQuery += "WHERE P.isDeceased = 1" & vbCrLf
+            sqlQuery += "OR O.OwnerID IN (" & vbCrLf
+            sqlQuery += "SELECT OwnerID FROM TransactionHeader" & vbCrLf
+            sqlQuery += "GROUP BY OwnerID" & vbCrLf
+            sqlQuery += "HAVING month(max(VisitDate)) <= month(getdate())-3)" & vbCrLf
             If txtSearch.Text <> "" Then
                 sqlQuery += "AND (O.OwnerID LIKE '%" + txtSearch.Text + "%'" & vbCrLf
                 sqlQuery += "OR O.LastName  LIKE '%" + txtSearch.Text + "%'" & vbCrLf

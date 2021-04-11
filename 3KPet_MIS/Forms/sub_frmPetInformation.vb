@@ -41,8 +41,7 @@
 
             'Get Transaction Details
             sqlQuery = ""
-            sqlQuery += "select TD.TransactionID, TD.Treatment, TRDescription from TransactionDetails TD" & vbCrLf
-            sqlQuery += "inner join Treatments T on TD.Treatment = T.TRID" & vbCrLf
+            sqlQuery += "select TD.TransactionID, TD.Treatment from TransactionDetails TD" & vbCrLf
             sqlQuery += "WHERE TransactionID = '" + strTransactionID + "'" + vbCrLf
             dtTransDetails = SQLPetMIS(sqlQuery).Tables(0)
 
@@ -65,19 +64,21 @@
                 txtTemp.Text += "°C"
                 txtDX.Text = dtTransHeader.Rows(0)("Diagnostic")
                 'txtAmount.Text = IIf(dtTransHeader.Rows(0)("TotalAmount")
+                txtTX.Text = dtTransDetails.Rows(0)("Treatment")
+                txtTXAmount.Text = Convert.ToDecimal(dtTransHeader.Rows(0)("ServicesAmount"))
                 txtNextVisit.Text = Format(dtTransHeader.Rows(0)("NextVisit"), "yyyy/MM/dd")
 
                 'clearFields(grpTreatment)
-                For Each row As DataRow In dtTransDetails.Rows
-                    'For Each row1 As DataRow In datTreatment.Rows
-                    With datTreatment
-                        For i As Integer = 0 To .Rows.Count - 1
-                            If .Item(0, i).Value = row.Item("Treatment") Then
-                                .Item(3, i).Value = True
-                            End If
-                        Next
-                    End With
-                Next
+                'For Each row As DataRow In dtTransDetails.Rows
+                '    'For Each row1 As DataRow In datTreatment.Rows
+                '    With datTreatment
+                '        For i As Integer = 0 To .Rows.Count - 1
+                '            If .Item(0, i).Value = row.Item("Treatment") Then
+                '                .Item(3, i).Value = True
+                '            End If
+                '        Next
+                '    End With
+                'Next
 
                 'get Vaccines
                 sqlQuery = ""
@@ -175,9 +176,9 @@
             dtPurchasedProd.Clear()
             setGridColumns()
             setGridProperties()
-            datTreatment.Columns.Clear()
+            'datTreatment.Columns.Clear()
             datVaccine.Columns.Clear()
-            setTreatments()
+            'setTreatments()
             setVaccines()
             loadTransactionDetails(strTransactionCode)
         Else
@@ -185,9 +186,9 @@
             dtPurchasedProd.Clear()
             setGridColumns()
             setGridProperties()
-            datTreatment.Columns.Clear()
+            'datTreatment.Columns.Clear()
             datVaccine.Columns.Clear()
-            setTreatments()
+            'setTreatments()
             setVaccines()
         End If
     End Sub
@@ -230,8 +231,8 @@
             .txtCustomer.Text = dsOwnerInfo.Tables(0).Rows(0)("LastName") + ", " + dsOwnerInfo.Tables(0).Rows(0)("FirstName")
             .txtContact.Text = dsOwnerInfo.Tables(0).Rows(0)("Address")
             .txtAddress.Text = dsOwnerInfo.Tables(0).Rows(0)("ContactNo")
-            .chkCancel.Enabled = False
-            .chkIsArrived.Enabled = False
+            '.chkCancel.Enabled = False
+            '.chkIsArrived.Enabled = False
         End With
         frmScheduleReservation.ShowDialog()
         txtNextVisit.Text = strNextvisit
@@ -314,35 +315,35 @@
                 strTransID = dsTransactionID.Tables(0).Rows(0)(0)
 
                 strServiceAmount = "0"
-                For Each row As DataGridViewRow In datTreatment.Rows
-                    If row.Cells(3).Value = True Then
-                        '//Insert into transaction details
-                        sqlQuery = ""
-                        sqlQuery += "INSERT INTO dbo.TransactionDetails " & vbCrLf
-                        sqlQuery += "( " & vbCrLf
-                        sqlQuery += "TransactionID," & vbCrLf
-                        sqlQuery += "Treatment," & vbCrLf
-                        sqlQuery += "Vaccine," & vbCrLf
-                        sqlQuery += "CreatedDate, " & vbCrLf
-                        sqlQuery += "UpdatedDate, " & vbCrLf
-                        sqlQuery += "DeletedDate," & vbCrLf
-                        sqlQuery += "UpdatedBy " & vbCrLf
-                        sqlQuery += ") " & vbCrLf
-                        sqlQuery += "VALUES" & vbCrLf
-                        sqlQuery += "( " & vbCrLf
-                        sqlQuery += "'" + strTransID + "'," & vbCrLf
-                        sqlQuery += "'" + row.Cells(0).Value.ToString + "'," & vbCrLf
-                        sqlQuery += "null," & vbCrLf
-                        sqlQuery += "getdate(), " & vbCrLf
-                        sqlQuery += "getdate(), " & vbCrLf
-                        sqlQuery += "null," & vbCrLf
-                        sqlQuery += "'" + _gbAccountID + "' " & vbCrLf
-                        sqlQuery += ") "
-                        sqlExecute(sqlQuery)
+                'For Each row As DataGridViewRow In datTreatment.Rows
+                'If row.Cells(3).Value = True Then
+                '//Insert into transaction details
+                sqlQuery = ""
+                sqlQuery += "INSERT INTO dbo.TransactionDetails " & vbCrLf
+                sqlQuery += "( " & vbCrLf
+                sqlQuery += "TransactionID," & vbCrLf
+                sqlQuery += "Treatment," & vbCrLf
+                sqlQuery += "Vaccine," & vbCrLf
+                sqlQuery += "CreatedDate, " & vbCrLf
+                sqlQuery += "UpdatedDate, " & vbCrLf
+                sqlQuery += "DeletedDate," & vbCrLf
+                sqlQuery += "UpdatedBy " & vbCrLf
+                sqlQuery += ") " & vbCrLf
+                sqlQuery += "VALUES" & vbCrLf
+                sqlQuery += "( " & vbCrLf
+                sqlQuery += "'" + strTransID + "'," & vbCrLf
+                sqlQuery += "'" + txtTX.Text + "'," & vbCrLf
+                sqlQuery += "null," & vbCrLf
+                sqlQuery += "getdate(), " & vbCrLf
+                sqlQuery += "getdate(), " & vbCrLf
+                sqlQuery += "null," & vbCrLf
+                sqlQuery += "'" + _gbAccountID + "' " & vbCrLf
+                sqlQuery += ") "
+                sqlExecute(sqlQuery)
 
-                        strServiceAmount = (Convert.ToInt32(strServiceAmount) + Convert.ToInt32(row.Cells(2).Value))
-                    End If
-                Next
+                'strServiceAmount = (Convert.ToInt32(strServiceAmount) + Convert.ToInt32(row.Cells(2).Value))
+                'End If
+                'Next
 
                 strProdAmount = "0"
                 For Each row As DataGridViewRow In datVaccine.Rows
@@ -455,7 +456,7 @@
                 sqlQuery += "'" + txtDX.Text + "', " & vbCrLf
                 sqlQuery += "Null, " & vbCrLf
                 sqlQuery += strTotalPrice + ", " & vbCrLf
-                sqlQuery += strServiceAmount + ", " & vbCrLf
+                sqlQuery += txtTXAmount.Text + ", " & vbCrLf
                 sqlQuery += (Convert.ToInt32(strTotalPrice) + Convert.ToInt32(strServiceAmount)).ToString + ", " & vbCrLf
                 sqlQuery += "'" + txtNextVisit.Text + "', " & vbCrLf
                 sqlQuery += "getdate(), " & vbCrLf
@@ -470,7 +471,7 @@
                 Call clearFields(grpHistory)
                 'Call clearFields(grpTreatment)
                 datProduct.Columns.Clear()
-                setTreatments()
+                'setTreatments()
                 setVaccines()
                 btnSave.Enabled = False
                 btnPurchase.Enabled = False
@@ -494,10 +495,10 @@
             dtPurchasedProd.Clear()
             setGridColumns()
             setGridProperties()
-            datTreatment.Columns.Clear()
+            'datTreatment.Columns.Clear()
             datVaccine.Columns.Clear()
             setVaccines()
-            setTreatments()
+            'setTreatments()
 
 
         Catch ex As Exception
@@ -537,32 +538,32 @@
         End Try
     End Sub
 
-    Private Sub setTreatments()
-        Try
-            Dim dsTreatments As New DataSet
+    'Private Sub setTreatments()
+    '    Try
+    '        Dim dsTreatments As New DataSet
 
-            sqlQuery = ""
-            sqlQuery += "SELECT TRID, TRDescription, Price FROM Treatments" & vbCrLf
-            dsTreatments = SQLPetMIS(sqlQuery)
+    '        sqlQuery = ""
+    '        sqlQuery += "SELECT TRID, TRDescription, Price FROM Treatments" & vbCrLf
+    '        dsTreatments = SQLPetMIS(sqlQuery)
 
-            datTreatment.Columns.Clear()
+    '        datTreatment.Columns.Clear()
 
-            With datTreatment
-                .DataSource = dsTreatments.Tables(0)
-                .Columns(0).Visible = False
-                .Columns(2).Width = .Width * 0.36
+    '        With datTreatment
+    '            .DataSource = dsTreatments.Tables(0)
+    '            .Columns(0).Visible = False
+    '            .Columns(2).Width = .Width * 0.36
 
-                Dim chkTX As New DataGridViewCheckBoxColumn
-                chkTX.Width = .Width * 0.09
-                chkTX.Name = "Status"
-                .Columns.Add(chkTX)
-                .Columns("Status").HeaderText = ""
+    '            Dim chkTX As New DataGridViewCheckBoxColumn
+    '            chkTX.Width = .Width * 0.09
+    '            chkTX.Name = "Status"
+    '            .Columns.Add(chkTX)
+    '            .Columns("Status").HeaderText = ""
 
-            End With
-        Catch ex As Exception
+    '        End With
+    '    Catch ex As Exception
 
-        End Try
-    End Sub
+    '    End Try
+    'End Sub
 
     Private Sub datHistory_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles datHistory.CellContentDoubleClick
         Try
@@ -582,4 +583,6 @@
     '        MsgBox(datHistory.Rows(e.RowIndex).Cells("TransactionID").Value)
     '    End If
     'End Sub
+
+   
 End Class

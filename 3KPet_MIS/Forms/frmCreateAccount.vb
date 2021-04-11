@@ -2,6 +2,8 @@
 Public Class frmCreateAccount
     Public blnIsUpdate As Boolean = False
     Public isExisting As Boolean = False
+    Public isNew As Boolean = False
+    Public strUserID As String
     Private Sub picHideShowPassword_Click(sender As Object, e As EventArgs) Handles picHideShowPassword.Click
         Call subShowHidePassword(sender, txtPassword)
     End Sub
@@ -174,49 +176,75 @@ Public Class frmCreateAccount
     End Sub
 
     Private Sub frmCreateAccount_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim dsQuestions As New DataSet
-        Dim dsUserLevel As New DataSet
+        Try
+            Dim dsQuestions As New DataSet
+            Dim dsUserLevel As New DataSet
 
-        sqlQuery = ""
-        sqlQuery += "SELECT * FROM M_SecurityQuestion" + vbCrLf
-        sqlQuery += "WHERE DeletedDate IS NULL"
-        dsQuestions = SQLPetMIS(sqlQuery)
+            sqlQuery = ""
+            sqlQuery += "SELECT * FROM M_SecurityQuestion" + vbCrLf
+            sqlQuery += "WHERE DeletedDate IS NULL"
+            dsQuestions = SQLPetMIS(sqlQuery)
 
-        sqlQuery = ""
-        sqlQuery += "SELECT * FROM UserLevel" & vbCrLf
-        sqlQuery += "WHERE DeletedDate IS NULL"
-        dsUserLevel = SQLPetMIS(sqlQuery)
+            sqlQuery = ""
+            sqlQuery += "SELECT * FROM UserLevel" & vbCrLf
+            sqlQuery += "WHERE DeletedDate IS NULL"
+            dsUserLevel = SQLPetMIS(sqlQuery)
 
-        'cboQuestion_1.Items.Clear()
-        'cboQuestion_2.Items.Clear()
+            'cboQuestion_1.Items.Clear()
+            'cboQuestion_2.Items.Clear()
 
-        cboQuestion_1.DataSource = dsQuestions.Tables(0)
-        cboQuestion_1.DisplayMember = "Question"
-        cboQuestion_1.ValueMember = "QuestionID"
+            cboQuestion_1.DataSource = dsQuestions.Tables(0)
+            cboQuestion_1.DisplayMember = "Question"
+            cboQuestion_1.ValueMember = "QuestionID"
 
-        cboQuestion_2.DataSource = dsQuestions.Tables(0)
-        cboQuestion_2.DisplayMember = "Question"
-        cboQuestion_2.ValueMember = "QuestionID"
-        'For Each row As DataRow In dsQuestions.Tables(0).Rows
-        '    cboQuestion_1.Items.Add(row.Item("Question"))
-        '    cboQuestion_2.Items.Add(row.Item("Question"))
-        'Next
+            cboQuestion_2.DataSource = dsQuestions.Tables(0)
+            cboQuestion_2.DisplayMember = "Question"
+            cboQuestion_2.ValueMember = "QuestionID"
+            'For Each row As DataRow In dsQuestions.Tables(0).Rows
+            '    cboQuestion_1.Items.Add(row.Item("Question"))
+            '    cboQuestion_2.Items.Add(row.Item("Question"))
+            'Next
 
-        'cboLevel.Items.Clear()
-        'cboLevel.Items.Add("Admin")
-        'cboLevel.Items.Add("Staff")
-        'sqlQuery = ""
+            'cboLevel.Items.Clear()
+            'cboLevel.Items.Add("Admin")
+            'cboLevel.Items.Add("Staff")
+            'sqlQuery = ""
 
-        cboLevel.DataSource = dsUserLevel.Tables(0)
-        cboLevel.DisplayMember = "Description"
-        cboLevel.ValueMember = "LevelID"
+            cboLevel.DataSource = dsUserLevel.Tables(0)
+            cboLevel.DisplayMember = "Description"
+            cboLevel.ValueMember = "LevelID"
 
-        getAccountInfo()
+            ''If _gbUserType <> 1 Then
+            If isNew = False Then
+                getAccountInfo()
+            Else
+                isNew = False
+                txtUserID.Enabled = True
+                txtLName.Enabled = True
+                txtFName.Enabled = True
+                txtMName.Enabled = True
+                txtPassword.Enabled = True
+                txtConfirmPassword.Enabled = True
+                cboQuestion_1.Enabled = True
+                cboQuestion_2.Enabled = True
+                txtAnswer_1.Enabled = True
+                txtAnswer_2.Enabled = True
+                btnDeactivate.Enabled = True
+                txtUserName.Enabled = True
+                txtPassword.Text = ""
+            End If
 
+            'End If
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+       
 
     End Sub
 
-    Private Sub getAccountInfo()
+    Public Sub getAccountInfo()
         Try
             Dim dsAccount As New DataSet
             txtUserID.ReadOnly = True
@@ -224,17 +252,17 @@ Public Class frmCreateAccount
             txtFName.ReadOnly = True
             txtMName.ReadOnly = True
             txtPassword.Text = ""
-            cboQuestion_1.Enabled = False
-            cboQuestion_2.Enabled = False
-            txtAnswer_1.ReadOnly = True
-            txtAnswer_2.ReadOnly = True
-            btnDeactivate.Enabled = False
+            cboQuestion_1.Enabled = True
+            cboQuestion_2.Enabled = True
+            txtAnswer_1.ReadOnly = False
+            txtAnswer_2.ReadOnly = False
+            btnDeactivate.Enabled = True
 
             sqlQuery = ""
             sqlQuery += "SELECT * FROM Accounts A" & vbCrLf
             sqlQuery += "INNER JOIN UserLevel UL ON A.Userlevel = UL.LevelID" & vbCrLf
             sqlQuery += "INNER JOIN Users U ON A.AccountID = U.UserID" & vbCrLf
-            sqlQuery += "WHERE U.UserID = '" + _gbAccountID + "'" & vbCrLf
+            sqlQuery += "WHERE U.UserID = '" + strUserID + "'" & vbCrLf
             dsAccount = SQLPetMIS(sqlQuery)
 
             txtUserID.Text = dsAccount.Tables(0).Rows(0)("UserID")

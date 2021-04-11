@@ -162,7 +162,9 @@
             dtpDateSched.Value = Format(dsSched.Tables(0).Rows(0)("ScheduleDate"), "yyyy/MM/dd")
             cboServices.Text = IIf(IsDBNull(dsSched.Tables(0).Rows(0)("Description")), "", dsSched.Tables(0).Rows(0)("Description"))
             txtPurpose.Text = dsSched.Tables(0).Rows(0)("Purpose")
+            chkCancel.Visible = True
             chkCancel.Checked = dsSched.Tables(0).Rows(0)("isCancelled")
+            chkIsArrived.Visible = True
             chkIsArrived.Checked = dsSched.Tables(0).Rows(0)("isArrived")
         Catch ex As Exception
             MsgBox(ex.Message)

@@ -63,10 +63,11 @@
     Private Sub btnAdd_Click(sender As Object, e As EventArgs) Handles btnAdd.Click
         clearFields(frmCreateAccount)
         With frmCreateAccount
-           
             .blnIsUpdate = False
+            .isNew = True
             .btnDeactivate.Enabled = False
             enableObjects()
+            .txtUserID.Enabled = False
             .ShowDialog()
         End With
 
@@ -82,32 +83,45 @@
             strFilter = "AccountID ='" & datAccounts.Rows(e.RowIndex).Cells(0).Value & "'"
 
             If e.ColumnIndex = 4 Then
+
                 drResult = dsAccounts.Tables(0).Select(strFilter)(0)
                 With frmCreateAccount
-                    .blnIsUpdate = True
-                    .txtUserID.Text = drResult.Item("AccountID")
-                    .txtLName.Text = drResult.Item("LastName")
-                    .txtFName.Text = drResult.Item("FirstName")
-                    .txtMName.Text = drResult.Item("MiddleName")
-                    .txtUserName.Text = drResult.Item("UserName")
-                    .txtPassword.Text = drResult.Item("Password") : .txtPassword.Enabled = False
-                    .cboLevel.Text = drResult.Item("UserLevel")
-                    .cboQuestion_1.SelectedValue = drResult.Item("Q1")
-                    .txtAnswer_1.Text = drResult.Item("A1")
-                    .cboQuestion_2.SelectedValue = drResult.Item("Q2")
-                    .txtAnswer_2.Text = drResult.Item("A2")
-                    .btnDeactivate.Enabled = True
-                    Dim blnDeactivate As Boolean = drResult.Item("isDeactivate")
-                    .lblDeact.Visible = blnDeactivate
-                    If blnDeactivate = True Then
-                        .btnDeactivate.Text = "ACTIVATE"
-                    Else
-                        .btnDeactivate.Text = "DEACTIVATE"
-                    End If
+                    .strUserID = datAccounts.Rows(e.RowIndex).Cells(0).Value
+                    '.blnIsUpdate = True
+                    '.txtUserID.Text = drResult.Item("AccountID")
+                    '.txtLName.Text = drResult.Item("LastName")
+                    '.txtFName.Text = drResult.Item("FirstName")
+                    '.txtMName.Text = drResult.Item("MiddleName")
+                    '.txtUserName.Text = drResult.Item("UserName")
+                    '.txtPassword.Text = drResult.Item("Password") : .txtPassword.Enabled = False
+                    '.cboLevel.Text = drResult.Item("UserLevel")
+                    '.cboQuestion_1.SelectedValue = drResult.Item("Q1")
+                    '.txtAnswer_1.Text = drResult.Item("A1")
+                    '.cboQuestion_2.SelectedValue = drResult.Item("Q2")
+                    '.txtAnswer_2.Text = drResult.Item("A2")
+                    '.btnDeactivate.Enabled = True
+                    'Dim blnDeactivate As Boolean = drResult.Item("isDeactivate")
+                    '.lblDeact.Visible = blnDeactivate
+                    'If blnDeactivate = True Then
+                    '    .btnDeactivate.Text = "ACTIVATE"
+                    'Else
+                    '    .btnDeactivate.Text = "DEACTIVATE"
+                    'End If
 
-                    If _gbAccountID <> .txtUserID.Text Then
+                    If _gbAccountID <> .strUserID Then
                         .btnSave.Enabled = False
                         .btnDeactivate.Enabled = False
+                        .txtFName.Enabled = False
+                        .txtLName.Enabled = False
+                        .txtMName.Enabled = False
+                        .txtPassword.Enabled = False
+                        .txtConfirmPassword.Enabled = False
+                        .txtAnswer_1.Enabled = False
+                        .txtAnswer_2.Enabled = False
+                        .txtUserID.Enabled = False
+                        .txtUserName.Enabled = False
+                        .cboQuestion_1.Enabled = False
+                        .cboQuestion_2.Enabled = False
                     Else
                         enableObjects()
                     End If
@@ -122,16 +136,20 @@
     End Sub
     Private Sub enableObjects()
         With frmCreateAccount
-            .txtUserID.ReadOnly = False
-            .txtLName.ReadOnly = False
-            .txtFName.ReadOnly = False
-            .txtMName.ReadOnly = False
-            .txtPassword.Text = ""
+            .txtUserID.Enabled = True
+            .txtLName.Enabled = True
+            .txtFName.Enabled = True
+            .txtMName.Enabled = True
+            .txtPassword.Enabled = True
+            .txtConfirmPassword.Enabled = True
             .cboQuestion_1.Enabled = True
             .cboQuestion_2.Enabled = True
-            .txtAnswer_1.ReadOnly = False
-            .txtAnswer_2.ReadOnly = False
-            .btnDeactivate.Enabled = False
+            .txtAnswer_1.Enabled = True
+            .txtAnswer_2.Enabled = True
+            .btnDeactivate.Enabled = True
+            .txtUserName.Enabled = True
+            .txtPassword.Text = ""
+
         End With
     End Sub
 End Class

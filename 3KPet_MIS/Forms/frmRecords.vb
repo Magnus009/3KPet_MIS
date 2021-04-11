@@ -172,7 +172,7 @@
             sqlQuery = "SELECT dbo.fn_colID ('P')"
             strPetID = SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0).ToString
 
-
+            blnRequired = False
             If fn_CheckRequire(Me) Then
                 MsgBox("Please fill out all the required details", vbOKOnly + vbExclamation)
             Else
@@ -240,6 +240,7 @@
                         sqlQuery += "PetColor ='" + txtPetColor.Text + "'," & vbCrLf
                         sqlQuery += "Age ='" + txtPetAge.Text + "'," & vbCrLf
                         sqlQuery += "Gender ='" + IIf(optMale.Checked = True, "M", "F") + "'," & vbCrLf
+                        sqlQuery += "isDeceased =" + IIf(chkisDeceased.Checked, "1", "0") + "," & vbCrLf
                         If chkBirthday.Checked Then
                             sqlQuery += "Birthday = '" + dtpBirthday.Value + "'," & vbCrLf
                         Else
@@ -350,7 +351,7 @@
         End Try
     End Sub
 
-    Private Sub datInformation_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles datInformation.CellContentDoubleClick
+    Private Sub datInformation_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles datInformation.CellDoubleClick
         Try
             If e.ColumnIndex <> 6 Then
                 Dim dtData As New DataTable
@@ -370,8 +371,8 @@
                 txtPetBreed.Text = dtData.Rows(e.RowIndex)("Breed")
                 txtPetColor.Text = dtData.Rows(e.RowIndex)("PetColor")
                 txtPetAge.Text = IIf(IsDBNull(dtData.Rows(e.RowIndex)("Age")), "", dtData.Rows(e.RowIndex)("Age"))
-                dtpBirthday.Value = IIf(IsDBNull(dtData.Rows(e.RowIndex)("Birthday")), DateTime.Now, dtData.Rows(e.RowIndex)("Birthday"))
                 chkBirthday.Checked = IIf(IsDBNull(dtData.Rows(e.RowIndex)("Birthday")), False, True)
+                If chkBirthday.Checked Then dtpBirthday.Value = IIf(IsDBNull(dtData.Rows(e.RowIndex)("Birthday")), DateTime.Now, dtData.Rows(e.RowIndex)("Birthday"))
                 chkisDeceased.Checked = dtData.Rows(e.RowIndex)("isDeceased")
 
 

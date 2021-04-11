@@ -7,11 +7,6 @@
     Private Sub btnLogin_Click(sender As Object, e As EventArgs) Handles btnLogin.Click
         Call Login()
     End Sub
-
-    Private Sub lnkCreateAccount_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles lnkCreateAccount.LinkClicked
-        frmCreateAccount.ShowDialog()
-    End Sub
-
     Private Sub picHideShow_Click(sender As Object, e As EventArgs) Handles picHideShow.Click
         Call subShowHidePassword(sender, txtPassword)
     End Sub
@@ -61,4 +56,5 @@
             Call Login()
         End If
     End Sub
+
 End Class

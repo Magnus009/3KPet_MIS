@@ -149,6 +149,7 @@
     Private Sub btnCheck_Click(sender As Object, e As EventArgs) Handles btnCheck.Click
         Try
 
+            Dim comboSource As New Dictionary(Of String, String)()
 
             sqlQuery = ""
             sqlQuery += "SELECT AccountID,UserName,Q1,Q1.Question as QS1 ,Q2,Q2.Question as QS2,A1,A2 FROM Accounts A" & vbCrLf
@@ -159,10 +160,10 @@
 
             If dsAccount.Tables(0).Rows.Count = 0 Then
                 MsgBox("User name doesn't exist!", vbOKOnly + vbExclamation)
+                cboQuestions.DataSource = Nothing
                 isCheck = True
             Else
                 cboQuestions.Items.Clear()
-                Dim comboSource As New Dictionary(Of String, String)()
                 comboSource.Add(dsAccount.Tables(0).Rows(0)("Q1"), dsAccount.Tables(0).Rows(0)("QS1"))
                 comboSource.Add(dsAccount.Tables(0).Rows(0)("Q2"), dsAccount.Tables(0).Rows(0)("QS2"))
                 cboQuestions.DataSource = New BindingSource(comboSource, Nothing)

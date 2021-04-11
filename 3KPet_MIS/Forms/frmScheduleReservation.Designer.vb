@@ -86,6 +86,7 @@ Partial Class frmScheduleReservation
         Me.chkCancel.TabIndex = 31
         Me.chkCancel.Text = "CANCEL"
         Me.chkCancel.UseVisualStyleBackColor = True
+        Me.chkCancel.Visible = False
         '
         'chkIsArrived
         '
@@ -97,6 +98,7 @@ Partial Class frmScheduleReservation
         Me.chkIsArrived.TabIndex = 30
         Me.chkIsArrived.Text = "ARRIVED"
         Me.chkIsArrived.UseVisualStyleBackColor = True
+        Me.chkIsArrived.Visible = False
         '
         'btnOwner
         '

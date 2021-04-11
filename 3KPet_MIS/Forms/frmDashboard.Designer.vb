@@ -37,12 +37,12 @@ Partial Class frmDashboard
         Me.tsmSettings = New System.Windows.Forms.ToolStripMenuItem()
         Me.AUDITTRAILToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ACCOUNTSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TREATMENTSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PRODUCTTYPEToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SERVICESToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tsmReports = New System.Windows.Forms.ToolStripMenuItem()
         Me.MEDICALHISTORYToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TRANSACTIONSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PRODUCTSToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuAccount = New System.Windows.Forms.ToolStripMenuItem()
         Me.ACCOUNTSETTINGToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LOGOUTToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -127,7 +127,7 @@ Partial Class frmDashboard
         '
         'tsmSettings
         '
-        Me.tsmSettings.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AUDITTRAILToolStripMenuItem, Me.ACCOUNTSToolStripMenuItem, Me.TREATMENTSToolStripMenuItem, Me.PRODUCTTYPEToolStripMenuItem, Me.SERVICESToolStripMenuItem})
+        Me.tsmSettings.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AUDITTRAILToolStripMenuItem, Me.ACCOUNTSToolStripMenuItem, Me.PRODUCTTYPEToolStripMenuItem, Me.SERVICESToolStripMenuItem})
         Me.tsmSettings.Name = "tsmSettings"
         Me.tsmSettings.Size = New System.Drawing.Size(69, 28)
         Me.tsmSettings.Text = "SETTINGS"
@@ -144,12 +144,6 @@ Partial Class frmDashboard
         Me.ACCOUNTSToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
         Me.ACCOUNTSToolStripMenuItem.Text = "ACCOUNTS"
         '
-        'TREATMENTSToolStripMenuItem
-        '
-        Me.TREATMENTSToolStripMenuItem.Name = "TREATMENTSToolStripMenuItem"
-        Me.TREATMENTSToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
-        Me.TREATMENTSToolStripMenuItem.Text = "TREATMENTS"
-        '
         'PRODUCTTYPEToolStripMenuItem
         '
         Me.PRODUCTTYPEToolStripMenuItem.Name = "PRODUCTTYPEToolStripMenuItem"
@@ -164,7 +158,7 @@ Partial Class frmDashboard
         '
         'tsmReports
         '
-        Me.tsmReports.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MEDICALHISTORYToolStripMenuItem, Me.TRANSACTIONSToolStripMenuItem})
+        Me.tsmReports.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MEDICALHISTORYToolStripMenuItem, Me.TRANSACTIONSToolStripMenuItem, Me.PRODUCTSToolStripMenuItem})
         Me.tsmReports.Name = "tsmReports"
         Me.tsmReports.Size = New System.Drawing.Size(67, 28)
         Me.tsmReports.Text = "REPORTS"
@@ -180,6 +174,12 @@ Partial Class frmDashboard
         Me.TRANSACTIONSToolStripMenuItem.Name = "TRANSACTIONSToolStripMenuItem"
         Me.TRANSACTIONSToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
         Me.TRANSACTIONSToolStripMenuItem.Text = "TRANSACTIONS"
+        '
+        'PRODUCTSToolStripMenuItem
+        '
+        Me.PRODUCTSToolStripMenuItem.Name = "PRODUCTSToolStripMenuItem"
+        Me.PRODUCTSToolStripMenuItem.Size = New System.Drawing.Size(172, 22)
+        Me.PRODUCTSToolStripMenuItem.Text = "PRODUCTS"
         '
         'mnuAccount
         '
@@ -280,7 +280,6 @@ Partial Class frmDashboard
     Friend WithEvents MEDICALHISTORIESToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AUDITTRAILToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ACCOUNTSToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TREATMENTSToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents datSchedules As System.Windows.Forms.DataGridView
     Friend WithEvents mnuAccount As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LOGOUTToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -294,4 +293,5 @@ Partial Class frmDashboard
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MEDICALHISTORYToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TRANSACTIONSToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PRODUCTSToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

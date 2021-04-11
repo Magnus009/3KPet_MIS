@@ -164,7 +164,7 @@
         frmAccountsRecords.ShowDialog()
     End Sub
 
-    Private Sub TREATMENTSToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TREATMENTSToolStripMenuItem.Click
+    Private Sub TREATMENTSToolStripMenuItem_Click(sender As Object, e As EventArgs)
         frmTreatment.ShowDialog()
     End Sub
 
@@ -241,5 +241,9 @@
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
+    End Sub
+
+    Private Sub PRODUCTSToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PRODUCTSToolStripMenuItem.Click
+        frmPrintTransaction.ShowDialog()
     End Sub
 End Class

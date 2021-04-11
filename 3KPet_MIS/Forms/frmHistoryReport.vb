@@ -17,15 +17,15 @@ Public Class frmHistoryReport
             sqlQuery += "SELECT O.OwnerID, LastName + ', ' + FirstName AS OwnerName, PetId, P.Name FROM Owners O" & vbCrLf
             sqlQuery += "INNER JOIN Pets P ON O.OwnerID = P.OwnerID" & vbCrLf
             If txtSearch.Text <> "" Then
-                sqlQuery += "WHERE O.OwnerID LIKE '" + txtSearch.Text + "'" & vbCrLf
-                sqlQuery += "OR LastName LIKE '" + txtSearch.Text + "'" & vbCrLf
-                sqlQuery += "OR FirstName LIKE '" + txtSearch.Text + "'" & vbCrLf
-                sqlQuery += "OR P.PetID LIKE '" + txtSearch.Text + "'" & vbCrLf
-                sqlQuery += "OR P.Name LIKE '" + txtSearch.Text + "'" & vbCrLf
+                sqlQuery += "WHERE O.OwnerID LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "OR O.LastName LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "OR O.FirstName LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "OR P.PetID LIKE '%" + txtSearch.Text + "%'" & vbCrLf
+                sqlQuery += "OR P.Name LIKE '%" + txtSearch.Text + "%'" & vbCrLf
             End If
             sqlQuery += "ORDER BY O.OwnerID"
             dsRecords = SQLPetMIS(sqlQuery)
-
+            datRecords.Columns.Clear()
             datRecords.DataSource = dsRecords.Tables(0)
 
             Dim btnSelect As New DataGridViewButtonColumn

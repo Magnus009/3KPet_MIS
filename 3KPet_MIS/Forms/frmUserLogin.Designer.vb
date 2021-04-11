@@ -29,7 +29,6 @@ Partial Class frmUserLogin
         Me.picHideShow = New System.Windows.Forms.PictureBox()
         Me.txtPassword = New System.Windows.Forms.TextBox()
         Me.picLogo = New System.Windows.Forms.PictureBox()
-        Me.lnkCreateAccount = New System.Windows.Forms.LinkLabel()
         Me.btnClose = New System.Windows.Forms.Button()
         Me.btnLogin = New System.Windows.Forms.Button()
         Me.lnkForgotPass = New System.Windows.Forms.LinkLabel()
@@ -73,7 +72,6 @@ Partial Class frmUserLogin
         Me.pnlRight.Controls.Add(Me.txtPassword)
         Me.pnlRight.Controls.Add(Me.txtUsername)
         Me.pnlRight.Controls.Add(Me.picLogo)
-        Me.pnlRight.Controls.Add(Me.lnkCreateAccount)
         Me.pnlRight.Controls.Add(Me.btnClose)
         Me.pnlRight.Controls.Add(Me.btnLogin)
         Me.pnlRight.Controls.Add(Me.lnkForgotPass)
@@ -120,17 +118,6 @@ Partial Class frmUserLogin
         Me.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage
         Me.picLogo.TabIndex = 9
         Me.picLogo.TabStop = False
-        '
-        'lnkCreateAccount
-        '
-        Me.lnkCreateAccount.AutoSize = True
-        Me.lnkCreateAccount.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lnkCreateAccount.Location = New System.Drawing.Point(121, 352)
-        Me.lnkCreateAccount.Name = "lnkCreateAccount"
-        Me.lnkCreateAccount.Size = New System.Drawing.Size(79, 13)
-        Me.lnkCreateAccount.TabIndex = 5
-        Me.lnkCreateAccount.TabStop = True
-        Me.lnkCreateAccount.Text = "Create Account"
         '
         'btnClose
         '
@@ -219,7 +206,6 @@ Partial Class frmUserLogin
     Friend WithEvents txtUsername As System.Windows.Forms.TextBox
     Friend WithEvents pnlRight As System.Windows.Forms.Panel
     Friend WithEvents picLogo As System.Windows.Forms.PictureBox
-    Friend WithEvents lnkCreateAccount As System.Windows.Forms.LinkLabel
     Friend WithEvents btnClose As System.Windows.Forms.Button
     Friend WithEvents btnLogin As System.Windows.Forms.Button
     Friend WithEvents lnkForgotPass As System.Windows.Forms.LinkLabel
