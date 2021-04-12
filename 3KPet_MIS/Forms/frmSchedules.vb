@@ -4,6 +4,8 @@
 
 
     Private Sub frmSchedules_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        dtpVisitDateFrom.Value = Date.Now
+        dtpVisitDateTo.Value = Date.Now
         Call getSchedules()
 
     End Sub

@@ -193,6 +193,7 @@
         Try
             With frmCreateAccount
                 .isExisting = True
+                .strUserID = _gbAccountID
                 .ShowDialog()
             End With
         Catch ex As Exception

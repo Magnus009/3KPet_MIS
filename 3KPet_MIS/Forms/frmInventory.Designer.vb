@@ -50,6 +50,8 @@ Partial Class frmInventory
         Me.lblCritical = New System.Windows.Forms.Label()
         Me.lblOut = New System.Windows.Forms.Label()
         Me.lblRed = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.dtpExpiration = New System.Windows.Forms.DateTimePicker()
         Me.Panel1.SuspendLayout()
         CType(Me.datRecords, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpProduct.SuspendLayout()
@@ -110,6 +112,8 @@ Partial Class frmInventory
         '
         'grpProduct
         '
+        Me.grpProduct.Controls.Add(Me.dtpExpiration)
+        Me.grpProduct.Controls.Add(Me.Label1)
         Me.grpProduct.Controls.Add(Me.btnUpdate)
         Me.grpProduct.Controls.Add(Me.btnCancel)
         Me.grpProduct.Controls.Add(Me.btnSave)
@@ -333,6 +337,25 @@ Partial Class frmInventory
         Me.lblRed.TabIndex = 7
         Me.lblRed.Text = "   "
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(151, 201)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(38, 15)
+        Me.Label1.TabIndex = 15
+        Me.Label1.Text = "PRICE"
+        '
+        'dtpExpiration
+        '
+        Me.dtpExpiration.CustomFormat = "yyyy/MM/dd"
+        Me.dtpExpiration.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpExpiration.Location = New System.Drawing.Point(152, 219)
+        Me.dtpExpiration.Name = "dtpExpiration"
+        Me.dtpExpiration.Size = New System.Drawing.Size(112, 23)
+        Me.dtpExpiration.TabIndex = 16
+        '
         'frmInventory
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
@@ -390,4 +413,6 @@ Partial Class frmInventory
     Friend WithEvents lblCritical As Label
     Friend WithEvents lblOut As Label
     Friend WithEvents lblRed As Label
+    Friend WithEvents dtpExpiration As System.Windows.Forms.DateTimePicker
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 End Class

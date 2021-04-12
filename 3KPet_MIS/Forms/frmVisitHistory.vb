@@ -4,6 +4,8 @@
 
 
     Private Sub frmVisitHistory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        dtpFrom.Value = Date.Now
+        dtpTo.Value = Date.Now
         Call getVisitLogs()
     End Sub
 

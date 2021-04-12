@@ -175,6 +175,7 @@
                 With frmRestock
                     .txtProductID.Text = datRecords.Rows(e.RowIndex).Cells(0).Value
                     .txtProductName.Text = datRecords.Rows(e.RowIndex).Cells(1).Value
+                    .intMaxQTY = datRecords.Rows(e.RowIndex).Cells(3).Value
                     .ShowDialog()
                 End With
             End If

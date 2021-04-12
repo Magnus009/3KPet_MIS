@@ -190,9 +190,6 @@ Public Class frmCreateAccount
             sqlQuery += "WHERE DeletedDate IS NULL"
             dsUserLevel = SQLPetMIS(sqlQuery)
 
-            'cboQuestion_1.Items.Clear()
-            'cboQuestion_2.Items.Clear()
-
             cboQuestion_1.DataSource = dsQuestions.Tables(0)
             cboQuestion_1.DisplayMember = "Question"
             cboQuestion_1.ValueMember = "QuestionID"
@@ -200,21 +197,12 @@ Public Class frmCreateAccount
             cboQuestion_2.DataSource = dsQuestions.Tables(0)
             cboQuestion_2.DisplayMember = "Question"
             cboQuestion_2.ValueMember = "QuestionID"
-            'For Each row As DataRow In dsQuestions.Tables(0).Rows
-            '    cboQuestion_1.Items.Add(row.Item("Question"))
-            '    cboQuestion_2.Items.Add(row.Item("Question"))
-            'Next
-
-            'cboLevel.Items.Clear()
-            'cboLevel.Items.Add("Admin")
-            'cboLevel.Items.Add("Staff")
-            'sqlQuery = ""
+     
 
             cboLevel.DataSource = dsUserLevel.Tables(0)
             cboLevel.DisplayMember = "Description"
             cboLevel.ValueMember = "LevelID"
 
-            ''If _gbUserType <> 1 Then
             If isNew = False Then
                 getAccountInfo()
             Else
@@ -234,8 +222,6 @@ Public Class frmCreateAccount
                 txtPassword.Text = ""
             End If
 
-            'End If
-
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -251,12 +237,13 @@ Public Class frmCreateAccount
             txtLName.ReadOnly = True
             txtFName.ReadOnly = True
             txtMName.ReadOnly = True
-            txtPassword.Text = ""
-            cboQuestion_1.Enabled = True
-            cboQuestion_2.Enabled = True
-            txtAnswer_1.ReadOnly = False
-            txtAnswer_2.ReadOnly = False
-            btnDeactivate.Enabled = True
+            cboLevel.Enabled = False
+            'txtPassword.Text = ""
+            'cboQuestion_1.Enabled = True
+            'cboQuestion_2.Enabled = True
+            'txtAnswer_1.ReadOnly = False
+            'txtAnswer_2.ReadOnly = False
+            'btnDeactivate.Enabled = True
 
             sqlQuery = ""
             sqlQuery += "SELECT * FROM Accounts A" & vbCrLf
@@ -272,8 +259,8 @@ Public Class frmCreateAccount
 
             cboLevel.SelectedValue = Convert.ToInt32(dsAccount.Tables(0).Rows(0)("UserLevel"))
             txtUserName.Text = dsAccount.Tables(0).Rows(0)("UserName")
-            cboQuestion_1.SelectedValue = dsAccount.Tables(0).Rows(0)("Q1")
-            cboQuestion_2.SelectedValue = dsAccount.Tables(0).Rows(0)("Q2")
+            cboQuestion_1.SelectedValue = Convert.ToInt32(dsAccount.Tables(0).Rows(0)("Q1"))
+            cboQuestion_2.SelectedValue = Convert.ToInt32(dsAccount.Tables(0).Rows(0)("Q2"))
             txtAnswer_1.Text = dsAccount.Tables(0).Rows(0)("A1")
             txtAnswer_2.Text = dsAccount.Tables(0).Rows(0)("A2")
             blnIsUpdate = True
