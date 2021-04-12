@@ -49,6 +49,12 @@ Partial Class frmDashboard
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlContent = New System.Windows.Forms.Panel()
         Me.datSchedules = New System.Windows.Forms.DataGridView()
+        Me.lblOwnersBorder = New System.Windows.Forms.Label()
+        Me.lblOwnerCount = New System.Windows.Forms.Label()
+        Me.lblOwnerTitle = New System.Windows.Forms.Label()
+        Me.lblPetTitle = New System.Windows.Forms.Label()
+        Me.lblPetCount = New System.Windows.Forms.Label()
+        Me.lblPetBorder = New System.Windows.Forms.Label()
         Me.pnlHeader.SuspendLayout()
         Me.mnuDashboard.SuspendLayout()
         Me.pnlContent.SuspendLayout()
@@ -98,13 +104,13 @@ Partial Class frmDashboard
         'RECORDSToolStripMenuItem
         '
         Me.RECORDSToolStripMenuItem.Name = "RECORDSToolStripMenuItem"
-        Me.RECORDSToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
+        Me.RECORDSToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.RECORDSToolStripMenuItem.Text = "RECORDS"
         '
         'ARCHIVEToolStripMenuItem1
         '
         Me.ARCHIVEToolStripMenuItem1.Name = "ARCHIVEToolStripMenuItem1"
-        Me.ARCHIVEToolStripMenuItem1.Size = New System.Drawing.Size(124, 22)
+        Me.ARCHIVEToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
         Me.ARCHIVEToolStripMenuItem1.Text = "ARCHIVE"
         '
         'SCHEDULESToolStripMenuItem
@@ -207,6 +213,12 @@ Partial Class frmDashboard
         '
         'pnlContent
         '
+        Me.pnlContent.Controls.Add(Me.lblPetTitle)
+        Me.pnlContent.Controls.Add(Me.lblPetCount)
+        Me.pnlContent.Controls.Add(Me.lblPetBorder)
+        Me.pnlContent.Controls.Add(Me.lblOwnerTitle)
+        Me.pnlContent.Controls.Add(Me.lblOwnerCount)
+        Me.pnlContent.Controls.Add(Me.lblOwnersBorder)
         Me.pnlContent.Controls.Add(Me.datSchedules)
         Me.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlContent.Location = New System.Drawing.Point(0, 101)
@@ -237,11 +249,82 @@ Partial Class frmDashboard
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
         Me.datSchedules.DefaultCellStyle = DataGridViewCellStyle2
-        Me.datSchedules.Location = New System.Drawing.Point(9, 6)
+        Me.datSchedules.Location = New System.Drawing.Point(10, 6)
         Me.datSchedules.Name = "datSchedules"
         Me.datSchedules.RowHeadersVisible = False
-        Me.datSchedules.Size = New System.Drawing.Size(805, 365)
+        Me.datSchedules.Size = New System.Drawing.Size(672, 365)
         Me.datSchedules.TabIndex = 0
+        '
+        'lblOwnersBorder
+        '
+        Me.lblOwnersBorder.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lblOwnersBorder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblOwnersBorder.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.lblOwnersBorder.Location = New System.Drawing.Point(688, 6)
+        Me.lblOwnersBorder.Name = "lblOwnersBorder"
+        Me.lblOwnersBorder.Size = New System.Drawing.Size(130, 138)
+        Me.lblOwnersBorder.TabIndex = 1
+        '
+        'lblOwnerCount
+        '
+        Me.lblOwnerCount.BackColor = System.Drawing.Color.White
+        Me.lblOwnerCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblOwnerCount.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.lblOwnerCount.Font = New System.Drawing.Font("Calibri", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOwnerCount.Location = New System.Drawing.Point(693, 47)
+        Me.lblOwnerCount.Name = "lblOwnerCount"
+        Me.lblOwnerCount.Size = New System.Drawing.Size(121, 93)
+        Me.lblOwnerCount.TabIndex = 2
+        Me.lblOwnerCount.Text = "0"
+        Me.lblOwnerCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblOwnerTitle
+        '
+        Me.lblOwnerTitle.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lblOwnerTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.lblOwnerTitle.Font = New System.Drawing.Font("Calibri", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOwnerTitle.Location = New System.Drawing.Point(693, 11)
+        Me.lblOwnerTitle.Name = "lblOwnerTitle"
+        Me.lblOwnerTitle.Size = New System.Drawing.Size(121, 31)
+        Me.lblOwnerTitle.TabIndex = 3
+        Me.lblOwnerTitle.Text = "OWNERS"
+        Me.lblOwnerTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblPetTitle
+        '
+        Me.lblPetTitle.BackColor = System.Drawing.Color.Purple
+        Me.lblPetTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.lblPetTitle.Font = New System.Drawing.Font("Calibri", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPetTitle.ForeColor = System.Drawing.Color.White
+        Me.lblPetTitle.Location = New System.Drawing.Point(693, 238)
+        Me.lblPetTitle.Name = "lblPetTitle"
+        Me.lblPetTitle.Size = New System.Drawing.Size(121, 31)
+        Me.lblPetTitle.TabIndex = 6
+        Me.lblPetTitle.Text = "PETS"
+        Me.lblPetTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblPetCount
+        '
+        Me.lblPetCount.BackColor = System.Drawing.Color.White
+        Me.lblPetCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblPetCount.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.lblPetCount.Font = New System.Drawing.Font("Calibri", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblPetCount.Location = New System.Drawing.Point(693, 274)
+        Me.lblPetCount.Name = "lblPetCount"
+        Me.lblPetCount.Size = New System.Drawing.Size(121, 93)
+        Me.lblPetCount.TabIndex = 5
+        Me.lblPetCount.Text = "0"
+        Me.lblPetCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblPetBorder
+        '
+        Me.lblPetBorder.BackColor = System.Drawing.Color.Purple
+        Me.lblPetBorder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblPetBorder.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.lblPetBorder.Location = New System.Drawing.Point(688, 233)
+        Me.lblPetBorder.Name = "lblPetBorder"
+        Me.lblPetBorder.Size = New System.Drawing.Size(130, 138)
+        Me.lblPetBorder.TabIndex = 4
         '
         'frmDashboard
         '
@@ -294,4 +377,10 @@ Partial Class frmDashboard
     Friend WithEvents MEDICALHISTORYToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TRANSACTIONSToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PRODUCTSToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents lblPetTitle As System.Windows.Forms.Label
+    Friend WithEvents lblPetCount As System.Windows.Forms.Label
+    Friend WithEvents lblPetBorder As System.Windows.Forms.Label
+    Friend WithEvents lblOwnerTitle As System.Windows.Forms.Label
+    Friend WithEvents lblOwnerCount As System.Windows.Forms.Label
+    Friend WithEvents lblOwnersBorder As System.Windows.Forms.Label
 End Class

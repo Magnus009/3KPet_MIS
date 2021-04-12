@@ -129,3 +129,4 @@ C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3KPet_MIS\3KPet_MIS\obj\
 C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3KPet_MIS\3KPet_MIS\obj\Debug\3KPet_MIS.vbproj.GenerateResource.Cache
 C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3KPet_MIS\3KPet_MIS\obj\Debug\RdlCompile.cache
 C:\Users\training\Desktop\WYANE\Exploring\System\VS2013\3KPet_MIS\3KPet_MIS\obj\Debug\RdlCompile.compiled
+C:\Users\Brian\Desktop\3KPet_MIS-master\3KPet_MIS\obj\Debug\3KPet_MIS.vbprojResolveAssemblyReference.cache

@@ -27,6 +27,7 @@ Partial Class frmRestock
         Me.lblHead = New System.Windows.Forms.Label()
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.grpProd = New System.Windows.Forms.GroupBox()
+        Me.lblExpiry = New System.Windows.Forms.Label()
         Me.txtQTY = New System.Windows.Forms.TextBox()
         Me.lblQTY = New System.Windows.Forms.Label()
         Me.txtProductName = New System.Windows.Forms.TextBox()
@@ -34,6 +35,7 @@ Partial Class frmRestock
         Me.txtProductID = New System.Windows.Forms.TextBox()
         Me.lblProductID = New System.Windows.Forms.Label()
         Me.btnRestock = New System.Windows.Forms.Button()
+        Me.dtpExpiry = New System.Windows.Forms.DateTimePicker()
         Me.grpProd.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -43,7 +45,7 @@ Partial Class frmRestock
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Left
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(31, 255)
+        Me.Panel1.Size = New System.Drawing.Size(31, 298)
         Me.Panel1.TabIndex = 0
         '
         'lblHead
@@ -68,6 +70,8 @@ Partial Class frmRestock
         '
         'grpProd
         '
+        Me.grpProd.Controls.Add(Me.dtpExpiry)
+        Me.grpProd.Controls.Add(Me.lblExpiry)
         Me.grpProd.Controls.Add(Me.txtQTY)
         Me.grpProd.Controls.Add(Me.lblQTY)
         Me.grpProd.Controls.Add(Me.txtProductName)
@@ -76,9 +80,18 @@ Partial Class frmRestock
         Me.grpProd.Controls.Add(Me.lblProductID)
         Me.grpProd.Location = New System.Drawing.Point(61, 84)
         Me.grpProd.Name = "grpProd"
-        Me.grpProd.Size = New System.Drawing.Size(324, 122)
+        Me.grpProd.Size = New System.Drawing.Size(324, 164)
         Me.grpProd.TabIndex = 3
         Me.grpProd.TabStop = False
+        '
+        'lblExpiry
+        '
+        Me.lblExpiry.AutoSize = True
+        Me.lblExpiry.Location = New System.Drawing.Point(16, 112)
+        Me.lblExpiry.Name = "lblExpiry"
+        Me.lblExpiry.Size = New System.Drawing.Size(77, 14)
+        Me.lblExpiry.TabIndex = 6
+        Me.lblExpiry.Text = "EXPIRY DATE :"
         '
         'txtQTY
         '
@@ -135,19 +148,28 @@ Partial Class frmRestock
         Me.btnRestock.BackColor = System.Drawing.Color.Purple
         Me.btnRestock.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnRestock.ForeColor = System.Drawing.Color.White
-        Me.btnRestock.Location = New System.Drawing.Point(293, 212)
+        Me.btnRestock.Location = New System.Drawing.Point(300, 254)
         Me.btnRestock.Name = "btnRestock"
         Me.btnRestock.Size = New System.Drawing.Size(93, 32)
         Me.btnRestock.TabIndex = 4
         Me.btnRestock.Text = "RESTOCK"
         Me.btnRestock.UseVisualStyleBackColor = False
         '
+        'dtpExpiry
+        '
+        Me.dtpExpiry.CustomFormat = "yyyy/MM/dd"
+        Me.dtpExpiry.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpExpiry.Location = New System.Drawing.Point(99, 110)
+        Me.dtpExpiry.Name = "dtpExpiry"
+        Me.dtpExpiry.Size = New System.Drawing.Size(100, 22)
+        Me.dtpExpiry.TabIndex = 7
+        '
         'frmRestock
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.ClientSize = New System.Drawing.Size(411, 255)
+        Me.ClientSize = New System.Drawing.Size(405, 298)
         Me.Controls.Add(Me.btnRestock)
         Me.Controls.Add(Me.grpProd)
         Me.Controls.Add(Me.lblHeader)
@@ -179,4 +201,6 @@ Partial Class frmRestock
     Friend WithEvents txtQTY As TextBox
     Friend WithEvents lblQTY As Label
     Friend WithEvents btnRestock As Button
+    Friend WithEvents lblExpiry As System.Windows.Forms.Label
+    Friend WithEvents dtpExpiry As System.Windows.Forms.DateTimePicker
 End Class

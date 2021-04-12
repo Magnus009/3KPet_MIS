@@ -15,6 +15,19 @@
     '    End If
     'End Sub
 
+    Private Sub loadOwnerCount()
+        sqlQuery = "SELECT count(*) FROM Owners" + vbCrLf
+        sqlQuery += "WHERE DeletedDate IS NULL"
+        lblOwnerCount.Text = SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0)
+    End Sub
+
+    Private Sub loadPetCount()
+        sqlQuery = "SELECT count(*) FROM Pets" + vbCrLf
+        sqlQuery += "WHERE isDeceased = 0" + vbCrLf
+        sqlQuery += "AND DeletedDate IS NULL"
+        lblPetCount.Text = SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0)
+    End Sub
+
     Private Sub btnAddRecord_Click(sender As Object, e As EventArgs)
         strdestination = "ADD"
         frmRecords.Text = Me.Text
@@ -64,8 +77,6 @@
         frmRecords.ShowDialog()
     End Sub
 
-
-
     Private Sub frmDashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If (_gbUserType <> 1) Then
             ACCOUNTSToolStripMenuItem.Visible = False
@@ -74,6 +85,8 @@
             ACCOUNTSETTINGToolStripMenuItem.Visible = False
         End If
         Call getSchedules()
+        Call loadOwnerCount()
+        Call loadPetCount()
     End Sub
     Public Sub getSchedules()
         Try

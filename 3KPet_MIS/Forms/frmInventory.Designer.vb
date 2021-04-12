@@ -29,6 +29,8 @@ Partial Class frmInventory
         Me.lblHeader = New System.Windows.Forms.Label()
         Me.datRecords = New System.Windows.Forms.DataGridView()
         Me.grpProduct = New System.Windows.Forms.GroupBox()
+        Me.dtpExpiration = New System.Windows.Forms.DateTimePicker()
+        Me.lblExpiry = New System.Windows.Forms.Label()
         Me.btnUpdate = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
         Me.btnSave = New System.Windows.Forms.Button()
@@ -50,8 +52,6 @@ Partial Class frmInventory
         Me.lblCritical = New System.Windows.Forms.Label()
         Me.lblOut = New System.Windows.Forms.Label()
         Me.lblRed = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.dtpExpiration = New System.Windows.Forms.DateTimePicker()
         Me.Panel1.SuspendLayout()
         CType(Me.datRecords, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpProduct.SuspendLayout()
@@ -64,7 +64,7 @@ Partial Class frmInventory
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(853, 73)
+        Me.Panel1.Size = New System.Drawing.Size(950, 73)
         Me.Panel1.TabIndex = 0
         '
         'lblHeader
@@ -107,13 +107,13 @@ Partial Class frmInventory
         Me.datRecords.ReadOnly = True
         Me.datRecords.RowHeadersVisible = False
         Me.datRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datRecords.Size = New System.Drawing.Size(545, 334)
+        Me.datRecords.Size = New System.Drawing.Size(642, 387)
         Me.datRecords.TabIndex = 1
         '
         'grpProduct
         '
         Me.grpProduct.Controls.Add(Me.dtpExpiration)
-        Me.grpProduct.Controls.Add(Me.Label1)
+        Me.grpProduct.Controls.Add(Me.lblExpiry)
         Me.grpProduct.Controls.Add(Me.btnUpdate)
         Me.grpProduct.Controls.Add(Me.btnCancel)
         Me.grpProduct.Controls.Add(Me.btnSave)
@@ -132,17 +132,37 @@ Partial Class frmInventory
         Me.grpProduct.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.grpProduct.Location = New System.Drawing.Point(12, 79)
         Me.grpProduct.Name = "grpProduct"
-        Me.grpProduct.Size = New System.Drawing.Size(270, 363)
+        Me.grpProduct.Size = New System.Drawing.Size(270, 416)
         Me.grpProduct.TabIndex = 2
         Me.grpProduct.TabStop = False
         Me.grpProduct.Text = "INFORMATION"
+        '
+        'dtpExpiration
+        '
+        Me.dtpExpiration.CustomFormat = "yyyy/MM/dd"
+        Me.dtpExpiration.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.dtpExpiration.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.dtpExpiration.Location = New System.Drawing.Point(152, 219)
+        Me.dtpExpiration.Name = "dtpExpiration"
+        Me.dtpExpiration.Size = New System.Drawing.Size(112, 23)
+        Me.dtpExpiration.TabIndex = 16
+        '
+        'lblExpiry
+        '
+        Me.lblExpiry.AutoSize = True
+        Me.lblExpiry.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblExpiry.Location = New System.Drawing.Point(151, 201)
+        Me.lblExpiry.Name = "lblExpiry"
+        Me.lblExpiry.Size = New System.Drawing.Size(100, 15)
+        Me.lblExpiry.TabIndex = 15
+        Me.lblExpiry.Text = "EXPIRATION DATE"
         '
         'btnUpdate
         '
         Me.btnUpdate.BackColor = System.Drawing.Color.Purple
         Me.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnUpdate.ForeColor = System.Drawing.Color.White
-        Me.btnUpdate.Location = New System.Drawing.Point(25, 256)
+        Me.btnUpdate.Location = New System.Drawing.Point(25, 278)
         Me.btnUpdate.Name = "btnUpdate"
         Me.btnUpdate.Size = New System.Drawing.Size(106, 40)
         Me.btnUpdate.TabIndex = 14
@@ -154,7 +174,7 @@ Partial Class frmInventory
         Me.btnCancel.BackColor = System.Drawing.Color.Red
         Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnCancel.ForeColor = System.Drawing.Color.White
-        Me.btnCancel.Location = New System.Drawing.Point(140, 256)
+        Me.btnCancel.Location = New System.Drawing.Point(140, 278)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(106, 40)
         Me.btnCancel.TabIndex = 13
@@ -166,7 +186,7 @@ Partial Class frmInventory
         Me.btnSave.BackColor = System.Drawing.Color.Purple
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(25, 256)
+        Me.btnSave.Location = New System.Drawing.Point(25, 278)
         Me.btnSave.Name = "btnSave"
         Me.btnSave.Size = New System.Drawing.Size(106, 40)
         Me.btnSave.TabIndex = 12
@@ -337,31 +357,12 @@ Partial Class frmInventory
         Me.lblRed.TabIndex = 7
         Me.lblRed.Text = "   "
         '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(151, 201)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(38, 15)
-        Me.Label1.TabIndex = 15
-        Me.Label1.Text = "PRICE"
-        '
-        'dtpExpiration
-        '
-        Me.dtpExpiration.CustomFormat = "yyyy/MM/dd"
-        Me.dtpExpiration.Format = System.Windows.Forms.DateTimePickerFormat.Custom
-        Me.dtpExpiration.Location = New System.Drawing.Point(152, 219)
-        Me.dtpExpiration.Name = "dtpExpiration"
-        Me.dtpExpiration.Size = New System.Drawing.Size(112, 23)
-        Me.dtpExpiration.TabIndex = 16
-        '
         'frmInventory
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.ClientSize = New System.Drawing.Size(853, 458)
+        Me.ClientSize = New System.Drawing.Size(950, 507)
         Me.Controls.Add(Me.lblOut)
         Me.Controls.Add(Me.lblRed)
         Me.Controls.Add(Me.lblCritical)
@@ -414,5 +415,5 @@ Partial Class frmInventory
     Friend WithEvents lblOut As Label
     Friend WithEvents lblRed As Label
     Friend WithEvents dtpExpiration As System.Windows.Forms.DateTimePicker
-    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents lblExpiry As System.Windows.Forms.Label
 End Class

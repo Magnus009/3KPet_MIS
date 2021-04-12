@@ -1,5 +1,7 @@
 ﻿Public Class frmInventory
     Dim blnResult As Boolean = False
+    Dim blnVax As Boolean = False
+
     Private Sub frmInventory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call getProducts()
         Call getProductType()
@@ -91,6 +93,7 @@
             Dim dsID As New DataSet
             Dim strID As String
             Dim blnSaved As Boolean
+            Dim intBatchNo As Integer
 
             If blnResult = False Then
                 If MsgBox("Are you sure you want to add new product?", vbYesNo + vbQuestion) Then
@@ -122,13 +125,17 @@
                     sqlQuery += "'" + _gbAccountID + "')" & vbCrLf
                     blnSaved = sqlExecute(sqlQuery)
 
+
+                    
                     sqlQuery = ""
                     sqlQuery += "INSERT INTO dbo.ProductInventory " & vbCrLf
                     sqlQuery += "( " & vbCrLf
+                    sqlQuery += "BatchNo," & vbCrLf
                     sqlQuery += "ProductID," & vbCrLf
                     sqlQuery += "TotalQTY," & vbCrLf
                     sqlQuery += "Stocks," & vbCrLf
                     sqlQuery += "Price," & vbCrLf
+                    sqlQuery += "ExpirationDate," & vbCrLf
                     sqlQuery += "CreatedDate," & vbCrLf
                     sqlQuery += "UpdatedDate," & vbCrLf
                     sqlQuery += "DeletedDate," & vbCrLf
@@ -136,16 +143,19 @@
                     sqlQuery += ")" & vbCrLf
                     sqlQuery += "VALUES " & vbCrLf
                     sqlQuery += "(" & vbCrLf
+                    sqlQuery += "'" + 0 + "'," & vbCrLf
                     sqlQuery += "'" + strID + "'," & vbCrLf
                     sqlQuery += "'" + txtTotalQTY.Text + "'," & vbCrLf
                     sqlQuery += "'" + txtAvailableQTY.Text + "'," & vbCrLf
                     sqlQuery += "'" + txtPrice.Text + "'," & vbCrLf
+                    sqlQuery += "Null," & vbCrLf
                     sqlQuery += "getdate()," & vbCrLf
                     sqlQuery += "getdate()," & vbCrLf
                     sqlQuery += "null," & vbCrLf
                     sqlQuery += "'" + _gbAccountID + "')" & vbCrLf
                     blnSaved = sqlExecute(sqlQuery)
 
+             
                     If blnSaved Then
                         Call saveLogs(1, "New product added with product code of " + strID)
                         MsgBox("Saved Succesfully", vbOKOnly + vbInformation)
@@ -225,8 +235,10 @@
         End Try
     End Sub
 
-    Private Sub datRecords_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles datRecords.CellContentDoubleClick
+    Private Sub datRecords_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles datRecords.CellDoubleClick
         Try
+            Dim strExpiration As String
+
             If e.ColumnIndex() <> 7 Then
                 txtID.Text = datRecords.Rows(e.RowIndex).Cells(0).Value
                 txtDescription.Text = datRecords.Rows(e.RowIndex).Cells(1).Value
@@ -234,6 +246,13 @@
                 txtTotalQTY.Text = datRecords.Rows(e.RowIndex).Cells(3).Value
                 txtAvailableQTY.Text = datRecords.Rows(e.RowIndex).Cells(4).Value
                 txtPrice.Text = datRecords.Rows(e.RowIndex).Cells(5).Value
+
+                sqlQuery = ""
+                sqlQuery += "SELECT ExpirationDate FROM ProductExpirations" & vbCrLf
+                sqlQuery += "WHERE ProductID = '" + txtID.Text + "'"
+                strExpiration = SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0)
+
+                dtpExpiration.Value = strExpiration
 
                 txtAvailableQTY.Enabled = True
                 btnSave.Visible = False
@@ -260,6 +279,16 @@
             txtAvailableQTY.ForeColor = Color.Red
             blnResult = True
 
+        End If
+    End Sub
+
+    Private Sub cboType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboType.SelectedIndexChanged
+        If cboType.SelectedValue = 2 Then
+            blnVax = True
+            dtpExpiration.Enabled = True
+        Else
+            blnVax = False
+            dtpExpiration.Enabled = False
         End If
     End Sub
 End Class
