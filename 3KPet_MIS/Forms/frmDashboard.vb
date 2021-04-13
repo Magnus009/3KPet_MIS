@@ -258,6 +258,10 @@
     End Sub
 
     Private Sub PRODUCTSToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PRODUCTSToolStripMenuItem.Click
-        frmPrintTransaction.ShowDialog()
+        frmPrintProducts.ShowDialog()
+    End Sub
+
+    Private Sub TRANSACTIONSToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TRANSACTIONSToolStripMenuItem.Click
+        frmPrintTransactions.ShowDialog()
     End Sub
 End Class

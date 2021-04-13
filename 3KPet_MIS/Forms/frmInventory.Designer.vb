@@ -27,8 +27,10 @@ Partial Class frmInventory
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmInventory))
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lblHeader = New System.Windows.Forms.Label()
-        Me.datRecords = New System.Windows.Forms.DataGridView()
+        Me.datProducts = New System.Windows.Forms.DataGridView()
         Me.grpProduct = New System.Windows.Forms.GroupBox()
+        Me.txtType = New System.Windows.Forms.TextBox()
+        Me.cboRegProducts = New System.Windows.Forms.ComboBox()
         Me.dtpExpiration = New System.Windows.Forms.DateTimePicker()
         Me.lblExpiry = New System.Windows.Forms.Label()
         Me.btnUpdate = New System.Windows.Forms.Button()
@@ -40,9 +42,7 @@ Partial Class frmInventory
         Me.lblAvailableQTY = New System.Windows.Forms.Label()
         Me.txtTotalQTY = New System.Windows.Forms.TextBox()
         Me.lblTotalQTY = New System.Windows.Forms.Label()
-        Me.cboType = New System.Windows.Forms.ComboBox()
         Me.lblType = New System.Windows.Forms.Label()
-        Me.txtDescription = New System.Windows.Forms.TextBox()
         Me.lblDescription = New System.Windows.Forms.Label()
         Me.txtID = New System.Windows.Forms.TextBox()
         Me.lblProductID = New System.Windows.Forms.Label()
@@ -52,8 +52,9 @@ Partial Class frmInventory
         Me.lblCritical = New System.Windows.Forms.Label()
         Me.lblOut = New System.Windows.Forms.Label()
         Me.lblRed = New System.Windows.Forms.Label()
+        Me.btnAdd = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
-        CType(Me.datRecords, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.datProducts, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.grpProduct.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -64,7 +65,7 @@ Partial Class frmInventory
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(950, 73)
+        Me.Panel1.Size = New System.Drawing.Size(968, 73)
         Me.Panel1.TabIndex = 0
         '
         'lblHeader
@@ -78,12 +79,12 @@ Partial Class frmInventory
         Me.lblHeader.TabIndex = 0
         Me.lblHeader.Text = "INVENTORY"
         '
-        'datRecords
+        'datProducts
         '
-        Me.datRecords.AllowUserToAddRows = False
-        Me.datRecords.AllowUserToDeleteRows = False
-        Me.datRecords.AllowUserToResizeColumns = False
-        Me.datRecords.AllowUserToResizeRows = False
+        Me.datProducts.AllowUserToAddRows = False
+        Me.datProducts.AllowUserToDeleteRows = False
+        Me.datProducts.AllowUserToResizeColumns = False
+        Me.datProducts.AllowUserToResizeRows = False
         DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
         DataGridViewCellStyle1.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -91,8 +92,8 @@ Partial Class frmInventory
         DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.datRecords.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.datRecords.ColumnHeadersHeight = 20
+        Me.datProducts.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.datProducts.ColumnHeadersHeight = 20
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -100,18 +101,20 @@ Partial Class frmInventory
         DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.datRecords.DefaultCellStyle = DataGridViewCellStyle2
-        Me.datRecords.Location = New System.Drawing.Point(296, 108)
-        Me.datRecords.MultiSelect = False
-        Me.datRecords.Name = "datRecords"
-        Me.datRecords.ReadOnly = True
-        Me.datRecords.RowHeadersVisible = False
-        Me.datRecords.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.datRecords.Size = New System.Drawing.Size(642, 387)
-        Me.datRecords.TabIndex = 1
+        Me.datProducts.DefaultCellStyle = DataGridViewCellStyle2
+        Me.datProducts.Location = New System.Drawing.Point(296, 108)
+        Me.datProducts.MultiSelect = False
+        Me.datProducts.Name = "datProducts"
+        Me.datProducts.ReadOnly = True
+        Me.datProducts.RowHeadersVisible = False
+        Me.datProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.datProducts.Size = New System.Drawing.Size(660, 387)
+        Me.datProducts.TabIndex = 1
         '
         'grpProduct
         '
+        Me.grpProduct.Controls.Add(Me.txtType)
+        Me.grpProduct.Controls.Add(Me.cboRegProducts)
         Me.grpProduct.Controls.Add(Me.dtpExpiration)
         Me.grpProduct.Controls.Add(Me.lblExpiry)
         Me.grpProduct.Controls.Add(Me.btnUpdate)
@@ -123,19 +126,33 @@ Partial Class frmInventory
         Me.grpProduct.Controls.Add(Me.lblAvailableQTY)
         Me.grpProduct.Controls.Add(Me.txtTotalQTY)
         Me.grpProduct.Controls.Add(Me.lblTotalQTY)
-        Me.grpProduct.Controls.Add(Me.cboType)
         Me.grpProduct.Controls.Add(Me.lblType)
-        Me.grpProduct.Controls.Add(Me.txtDescription)
         Me.grpProduct.Controls.Add(Me.lblDescription)
         Me.grpProduct.Controls.Add(Me.txtID)
         Me.grpProduct.Controls.Add(Me.lblProductID)
         Me.grpProduct.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.grpProduct.Location = New System.Drawing.Point(12, 79)
+        Me.grpProduct.Location = New System.Drawing.Point(12, 121)
         Me.grpProduct.Name = "grpProduct"
-        Me.grpProduct.Size = New System.Drawing.Size(270, 416)
+        Me.grpProduct.Size = New System.Drawing.Size(270, 371)
         Me.grpProduct.TabIndex = 2
         Me.grpProduct.TabStop = False
         Me.grpProduct.Text = "INFORMATION"
+        '
+        'txtType
+        '
+        Me.txtType.Location = New System.Drawing.Point(11, 134)
+        Me.txtType.Name = "txtType"
+        Me.txtType.ReadOnly = True
+        Me.txtType.Size = New System.Drawing.Size(253, 23)
+        Me.txtType.TabIndex = 19
+        '
+        'cboRegProducts
+        '
+        Me.cboRegProducts.FormattingEnabled = True
+        Me.cboRegProducts.Location = New System.Drawing.Point(10, 91)
+        Me.cboRegProducts.Name = "cboRegProducts"
+        Me.cboRegProducts.Size = New System.Drawing.Size(254, 23)
+        Me.cboRegProducts.TabIndex = 17
         '
         'dtpExpiration
         '
@@ -247,15 +264,6 @@ Partial Class frmInventory
         Me.lblTotalQTY.TabIndex = 6
         Me.lblTotalQTY.Text = "TOTAL QTY"
         '
-        'cboType
-        '
-        Me.cboType.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.cboType.FormattingEnabled = True
-        Me.cboType.Location = New System.Drawing.Point(13, 133)
-        Me.cboType.Name = "cboType"
-        Me.cboType.Size = New System.Drawing.Size(251, 23)
-        Me.cboType.TabIndex = 5
-        '
         'lblType
         '
         Me.lblType.AutoSize = True
@@ -265,14 +273,6 @@ Partial Class frmInventory
         Me.lblType.Size = New System.Drawing.Size(32, 15)
         Me.lblType.TabIndex = 4
         Me.lblType.Text = "TYPE"
-        '
-        'txtDescription
-        '
-        Me.txtDescription.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtDescription.Location = New System.Drawing.Point(11, 90)
-        Me.txtDescription.Name = "txtDescription"
-        Me.txtDescription.Size = New System.Drawing.Size(253, 23)
-        Me.txtDescription.TabIndex = 3
         '
         'lblDescription
         '
@@ -290,6 +290,7 @@ Partial Class frmInventory
         Me.txtID.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtID.Location = New System.Drawing.Point(11, 47)
         Me.txtID.Name = "txtID"
+        Me.txtID.ReadOnly = True
         Me.txtID.Size = New System.Drawing.Size(170, 23)
         Me.txtID.TabIndex = 1
         '
@@ -357,12 +358,26 @@ Partial Class frmInventory
         Me.lblRed.TabIndex = 7
         Me.lblRed.Text = "   "
         '
+        'btnAdd
+        '
+        Me.btnAdd.BackColor = System.Drawing.Color.Purple
+        Me.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnAdd.Font = New System.Drawing.Font("Calibri", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnAdd.ForeColor = System.Drawing.Color.White
+        Me.btnAdd.Location = New System.Drawing.Point(152, 83)
+        Me.btnAdd.Name = "btnAdd"
+        Me.btnAdd.Size = New System.Drawing.Size(130, 32)
+        Me.btnAdd.TabIndex = 9
+        Me.btnAdd.Text = "REGISTER PRODUCT"
+        Me.btnAdd.UseVisualStyleBackColor = False
+        '
         'frmInventory
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.ClientSize = New System.Drawing.Size(950, 507)
+        Me.ClientSize = New System.Drawing.Size(968, 507)
+        Me.Controls.Add(Me.btnAdd)
         Me.Controls.Add(Me.lblOut)
         Me.Controls.Add(Me.lblRed)
         Me.Controls.Add(Me.lblCritical)
@@ -370,7 +385,7 @@ Partial Class frmInventory
         Me.Controls.Add(Me.lblSearch)
         Me.Controls.Add(Me.txtSearch)
         Me.Controls.Add(Me.grpProduct)
-        Me.Controls.Add(Me.datRecords)
+        Me.Controls.Add(Me.datProducts)
         Me.Controls.Add(Me.Panel1)
         Me.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
@@ -382,7 +397,7 @@ Partial Class frmInventory
         Me.Text = "INVENTORY"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
-        CType(Me.datRecords, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.datProducts, System.ComponentModel.ISupportInitialize).EndInit()
         Me.grpProduct.ResumeLayout(False)
         Me.grpProduct.PerformLayout()
         Me.ResumeLayout(False)
@@ -391,9 +406,8 @@ Partial Class frmInventory
     End Sub
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents lblHeader As System.Windows.Forms.Label
-    Friend WithEvents datRecords As System.Windows.Forms.DataGridView
+    Friend WithEvents datProducts As System.Windows.Forms.DataGridView
     Friend WithEvents grpProduct As System.Windows.Forms.GroupBox
-    Friend WithEvents txtDescription As System.Windows.Forms.TextBox
     Friend WithEvents lblDescription As System.Windows.Forms.Label
     Friend WithEvents txtID As System.Windows.Forms.TextBox
     Friend WithEvents lblProductID As System.Windows.Forms.Label
@@ -406,7 +420,6 @@ Partial Class frmInventory
     Friend WithEvents lblAvailableQTY As System.Windows.Forms.Label
     Friend WithEvents txtTotalQTY As System.Windows.Forms.TextBox
     Friend WithEvents lblTotalQTY As System.Windows.Forms.Label
-    Friend WithEvents cboType As System.Windows.Forms.ComboBox
     Friend WithEvents txtSearch As System.Windows.Forms.TextBox
     Friend WithEvents lblSearch As System.Windows.Forms.Label
     Friend WithEvents btnUpdate As System.Windows.Forms.Button
@@ -416,4 +429,7 @@ Partial Class frmInventory
     Friend WithEvents lblRed As Label
     Friend WithEvents dtpExpiration As System.Windows.Forms.DateTimePicker
     Friend WithEvents lblExpiry As System.Windows.Forms.Label
+    Friend WithEvents btnAdd As System.Windows.Forms.Button
+    Friend WithEvents txtType As System.Windows.Forms.TextBox
+    Friend WithEvents cboRegProducts As System.Windows.Forms.ComboBox
 End Class

@@ -1,10 +1,12 @@
 ﻿Public Class frmInventory
     Dim blnResult As Boolean = False
     Dim blnVax As Boolean = False
+    Dim dsRegProducts As DataSet
 
     Private Sub frmInventory_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call getProducts()
-        Call getProductType()
+        getRegisteredProducts()
+        'Call getProductType()
         txtAvailableQTY.Enabled = False
         btnUpdate.Visible = False
     End Sub
@@ -14,7 +16,7 @@
             Dim dsProducts As New DataSet
 
             sqlQuery = ""
-            sqlQuery += "SELECT P.ProductID, P.Description, PT.Description as Type, PI.TotalQTY, PI.Stocks, PI.Price   FROM Products P" & vbCrLf
+            sqlQuery += "SELECT P.ProductID, P.Description, PT.Description as Type, PI.TotalQTY, PI.Stocks, PI.Price, PI.ExpirationDate   FROM Products P" & vbCrLf
             sqlQuery += "INNER JOIN ProductInventory PI ON PI.ProductID = P.ProductID" & vbCrLf
             sqlQuery += "INNER JOIN ProductTypes PT ON PT.TypeID = P.TypeID" & vbCrLf
             sqlQuery += "WHERE P.DeletedDate IS NULL " & vbCrLf
@@ -29,20 +31,21 @@
 
             dsProducts = SQLPetMIS(sqlQuery)
 
-            With datRecords
+            With datProducts
                 .Columns.Clear()
                 .Columns.Add("colProductID", "PRODUCT ID") : .Columns("colProductID").Width = .Width * 0.15
-                .Columns.Add("colProdName", "NAME") : .Columns("colProdName").Width = .Width * 0.27
-                .Columns.Add("colProdType", "TYPE") : .Columns("colProdType").Width = .Width * 0.15
+                .Columns.Add("colProdName", "NAME") : .Columns("colProdName").Width = .Width * 0.2
+                .Columns.Add("colProdType", "TYPE") : .Columns("colProdType").Width = .Width * 0.1
                 .Columns.Add("colTotalQTY", "TOTAL QTY") : .Columns("colTotalQTY").Width = .Width * 0.1
                 .Columns.Add("colAvail", "AVAILABLE QTY") : .Columns("colAvail").Width = .Width * 0.1
                 .Columns.Add("colPrice", "PRICE") : .Columns("colPrice").Width = .Width * 0.1
+                .Columns.Add("colExpiry", "EXPIRATION") : .Columns("colExpiry").Width = .Width * 0.13
                 .Columns.Add("colStatus", "STATUS") : .Columns("colStatus").Visible = False
 
                 Dim btnSelect As New DataGridViewButtonColumn
                 btnSelect.Text = "RESTOCK"
                 btnSelect.UseColumnTextForButtonValue = True
-                btnSelect.Width = .Width * 0.12
+                btnSelect.Width = .Width * 0.11
                 .Columns.Add(btnSelect)
 
                 For Each row As DataRow In dsProducts.Tables(0).Rows
@@ -53,10 +56,11 @@
                     .Rows(.RowCount - 1).Cells(3).Value = row.Item("TotalQTY")
                     .Rows(.RowCount - 1).Cells(4).Value = row.Item("Stocks")
                     .Rows(.RowCount - 1).Cells(5).Value = row.Item("Price")
+                    .Rows(.RowCount - 1).Cells(6).Value = Format(row.Item("ExpirationDate"), "yyyy/MM/dd")
                     If row.Item("Stocks") <= 3 And row.Item("Stocks") > 0 Then
-                        .Rows(.RowCount - 1).Cells(6).Value = "deactivated"
+                        .Rows(.RowCount - 1).Cells(7).Value = "deactivated"
                     ElseIf row.Item("Stocks") = 0 Then
-                        .Rows(.RowCount - 1).Cells(6).Value = "deleted"
+                        .Rows(.RowCount - 1).Cells(7).Value = "deleted"
                     End If
 
                 Next
@@ -66,24 +70,33 @@
             MsgBox(ex.Message)
         End Try
     End Sub
-    Private Sub getProductType()
+    'Private Sub getProductType()
+    '    Try
+    '        Dim dsProdType As New DataSet
+
+    '        sqlQuery = ""
+    '        sqlQuery += "SELECT TypeID, Description FROM ProductTypes" & vbCrLf
+    '        sqlQuery += "WHERE DeletedDate IS null" & vbCrLf
+    '        dsProdType = SQLPetMIS(sqlQuery)
+
+    '        cboType.DataSource = dsProdType.Tables(0)
+    '        cboType.ValueMember = "TypeID"
+    '        cboType.DisplayMember = "Description"
+
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message)
+    '    End Try
+    'End Sub
+
+    Private Sub getRegisteredProducts()
         Try
-            Dim dsProdType As New DataSet
-
             sqlQuery = ""
-            sqlQuery += "SELECT TypeID, Description FROM ProductTypes" & vbCrLf
-            sqlQuery += "WHERE DeletedDate IS null" & vbCrLf
-            dsProdType = SQLPetMIS(sqlQuery)
-
-            cboType.DataSource = dsProdType.Tables(0)
-            cboType.ValueMember = "TypeID"
-            cboType.DisplayMember = "Description"
-
+            sqlQuery += "SELECT * FROM Products"
+            cboDataBinding(cboRegProducts, sqlQuery, "SELECT PRODUCT")
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
     End Sub
-
     Private Sub txtSearch_TextChanged(sender As Object, e As EventArgs) Handles txtSearch.TextChanged
         Call getProducts()
     End Sub
@@ -97,36 +110,12 @@
 
             If blnResult = False Then
                 If MsgBox("Are you sure you want to add new product?", vbYesNo + vbQuestion) Then
-                    sqlQuery = ""
-                    sqlQuery += "SELECT dbo.fn_colID ('I')" & vbCrLf
-                    dsID = SQLPetMIS(sqlQuery)
-                    strID = dsID.Tables(0).Rows(0)(0)
-
 
                     sqlQuery = ""
-                    sqlQuery += "INSERT INTO dbo.Products " & vbCrLf
-                    sqlQuery += "( " & vbCrLf
-                    sqlQuery += "ProductID," & vbCrLf
-                    sqlQuery += "Description," & vbCrLf
-                    sqlQuery += "TypeID," & vbCrLf
-                    sqlQuery += "CreatedDate," & vbCrLf
-                    sqlQuery += "UpdatedDate," & vbCrLf
-                    sqlQuery += "DeletedDate," & vbCrLf
-                    sqlQuery += "UpdatedBy" & vbCrLf
-                    sqlQuery += ")" & vbCrLf
-                    sqlQuery += "VALUES " & vbCrLf
-                    sqlQuery += "(" & vbCrLf
-                    sqlQuery += "'" + strID + "'," & vbCrLf
-                    sqlQuery += "'" + txtDescription.Text + "'," & vbCrLf
-                    sqlQuery += "'" + cboType.SelectedValue.ToString + "'," & vbCrLf
-                    sqlQuery += "getdate()," & vbCrLf
-                    sqlQuery += "getdate()," & vbCrLf
-                    sqlQuery += "null," & vbCrLf
-                    sqlQuery += "'" + _gbAccountID + "')" & vbCrLf
-                    blnSaved = sqlExecute(sqlQuery)
+                    sqlQuery += "SELECT coalesce(max(BatchNo), 0) + 1 as 'Batch No' FROM ProductInventory" & vbCrLf
+                    sqlQuery += "WHERE ProductID = '" + txtID.Text + "'"
+                    intBatchNo = SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0)
 
-
-                    
                     sqlQuery = ""
                     sqlQuery += "INSERT INTO dbo.ProductInventory " & vbCrLf
                     sqlQuery += "( " & vbCrLf
@@ -143,29 +132,34 @@
                     sqlQuery += ")" & vbCrLf
                     sqlQuery += "VALUES " & vbCrLf
                     sqlQuery += "(" & vbCrLf
-                    sqlQuery += "'" + 0 + "'," & vbCrLf
-                    sqlQuery += "'" + strID + "'," & vbCrLf
-                    sqlQuery += "'" + txtTotalQTY.Text + "'," & vbCrLf
-                    sqlQuery += "'" + txtAvailableQTY.Text + "'," & vbCrLf
+                    sqlQuery += intBatchNo.ToString + "," & vbCrLf
+                    sqlQuery += "'" + txtID.Text + "'," & vbCrLf
+                    sqlQuery += txtTotalQTY.Text + "," & vbCrLf
+                    If txtAvailableQTY.Text = "" Then
+                        sqlQuery += "0," & vbCrLf
+                    Else
+                        sqlQuery += txtAvailableQTY.Text + "," & vbCrLf
+                    End If
+
                     sqlQuery += "'" + txtPrice.Text + "'," & vbCrLf
-                    sqlQuery += "Null," & vbCrLf
+                    sqlQuery += "'" + dtpExpiration.Value + "'," & vbCrLf
                     sqlQuery += "getdate()," & vbCrLf
                     sqlQuery += "getdate()," & vbCrLf
                     sqlQuery += "null," & vbCrLf
                     sqlQuery += "'" + _gbAccountID + "')" & vbCrLf
                     blnSaved = sqlExecute(sqlQuery)
 
-             
+
                     If blnSaved Then
-                        Call saveLogs(1, "New product added with product code of " + strID)
+                        Call saveLogs(1, "Added batch of products with code of " + txtID.Text)
                         MsgBox("Saved Succesfully", vbOKOnly + vbInformation)
                         Call getProducts()
                     End If
                 End If
             End If
 
-            
-           
+
+
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -178,14 +172,14 @@
         txtAvailableQTY.Enabled = False
     End Sub
 
-    Private Sub datRecords_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datRecords.CellContentClick
+    Private Sub datRecords_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datProducts.CellContentClick
         Try
-            If e.ColumnIndex = 7 Then
+            If e.ColumnIndex = 8 Then
                 clearFields(frmRestock)
                 With frmRestock
-                    .txtProductID.Text = datRecords.Rows(e.RowIndex).Cells(0).Value
-                    .txtProductName.Text = datRecords.Rows(e.RowIndex).Cells(1).Value
-                    .intMaxQTY = datRecords.Rows(e.RowIndex).Cells(3).Value
+                    .txtProductID.Text = datProducts.Rows(e.RowIndex).Cells(0).Value
+                    .txtProductName.Text = datProducts.Rows(e.RowIndex).Cells(1).Value
+                    .intMaxQTY = datProducts.Rows(e.RowIndex).Cells(3).Value
                     .ShowDialog()
                 End With
             End If
@@ -198,17 +192,17 @@
         Try
             Dim blnSaved As Boolean
 
-            If blnResult = false Then
+            If blnResult = False Then
                 If MsgBox("Are you sure you want to update?", vbYesNo + vbQuestion) Then
 
-                    sqlQuery = ""
-                    sqlQuery += "UPDATE dbo.Products" & vbCrLf
-                    sqlQuery += "SET Description ='" + txtDescription.Text + "'," & vbCrLf
-                    sqlQuery += "TypeID ='" + cboType.SelectedValue.ToString + "'," & vbCrLf
-                    sqlQuery += "UpdatedDate =getdate()" & vbCrLf
-                    sqlQuery += "WHERE ProductID ='" + txtID.Text + "'" & vbCrLf
-                    blnSaved = sqlExecute(sqlQuery)
-0:
+                    'sqlQuery = ""
+                    'sqlQuery += "UPDATE dbo.Products" & vbCrLf
+                    'sqlQuery += "SET Description ='" + cboVal(cboRegProducts) + "'," & vbCrLf
+                    'sqlQuery += "TypeID ='" + txtType.Text + "'," & vbCrLf
+                    'sqlQuery += "UpdatedDate =getdate()" & vbCrLf
+                    'sqlQuery += "WHERE ProductID ='" + txtID.Text + "'" & vbCrLf
+                    'blnSaved = sqlExecute(sqlQuery)
+                    '0:
                     sqlQuery = ""
                     sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
                     sqlQuery += "SET TotalQTY ='" + txtTotalQTY.Text + "'," & vbCrLf
@@ -229,30 +223,24 @@
 
                 End If
             End If
-         
+
         Catch ex As Exception
 
         End Try
     End Sub
 
-    Private Sub datRecords_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles datRecords.CellDoubleClick
+    Private Sub datRecords_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles datProducts.CellDoubleClick
         Try
             Dim strExpiration As String
 
-            If e.ColumnIndex() <> 7 Then
-                txtID.Text = datRecords.Rows(e.RowIndex).Cells(0).Value
-                txtDescription.Text = datRecords.Rows(e.RowIndex).Cells(1).Value
-                cboType.Text = datRecords.Rows(e.RowIndex).Cells(2).Value
-                txtTotalQTY.Text = datRecords.Rows(e.RowIndex).Cells(3).Value
-                txtAvailableQTY.Text = datRecords.Rows(e.RowIndex).Cells(4).Value
-                txtPrice.Text = datRecords.Rows(e.RowIndex).Cells(5).Value
-
-                sqlQuery = ""
-                sqlQuery += "SELECT ExpirationDate FROM ProductExpirations" & vbCrLf
-                sqlQuery += "WHERE ProductID = '" + txtID.Text + "'"
-                strExpiration = SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0)
-
-                dtpExpiration.Value = strExpiration
+            If e.ColumnIndex() <> 8 Then
+                txtID.Text = datProducts.Rows(e.RowIndex).Cells(0).Value
+                cboRegProducts.SelectedValue = datProducts.Rows(e.RowIndex).Cells(0).Value
+                txtType.Text = datProducts.Rows(e.RowIndex).Cells(2).Value
+                txtTotalQTY.Text = datProducts.Rows(e.RowIndex).Cells(3).Value
+                txtAvailableQTY.Text = datProducts.Rows(e.RowIndex).Cells(4).Value
+                txtPrice.Text = datProducts.Rows(e.RowIndex).Cells(5).Value
+                dtpExpiration.Value = datProducts.Rows(e.RowIndex).Cells(6).Value
 
                 txtAvailableQTY.Enabled = True
                 btnSave.Visible = False
@@ -282,13 +270,39 @@
         End If
     End Sub
 
-    Private Sub cboType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboType.SelectedIndexChanged
-        If cboType.SelectedValue = 2 Then
-            blnVax = True
-            dtpExpiration.Enabled = True
-        Else
-            blnVax = False
-            dtpExpiration.Enabled = False
-        End If
+    Private Sub cboType_SelectedIndexChanged(sender As Object, e As EventArgs)
+        'If cboType.SelectedValue = 2 Then
+        '    blnVax = True
+        '    dtpExpiration.Enabled = True
+        'Else
+        '    blnVax = False
+        '    dtpExpiration.Enabled = False
+        'End If
+    End Sub
+
+    Private Sub cboRegProducts_Click(sender As Object, e As EventArgs) Handles cboRegProducts.Click
+        'MsgBox(cboVal(cboRegProducts).ToString)
+
+
+    End Sub
+
+    Private Sub cboRegProducts_SelectedValueChanged(sender As Object, e As EventArgs) Handles cboRegProducts.SelectedValueChanged
+        Try
+            Dim dsProductInfo As New DataSet
+
+            If cboRegProducts.SelectedValue <> "-1" Then
+                sqlQuery = ""
+                sqlQuery += "SELECT ProductID,P.Description,PT.Description AS 'Type' FROM Products P" & vbCrLf
+                sqlQuery += "INNER JOIN ProductTypes PT ON P.TypeID = PT.TypeID" & vbCrLf
+                sqlQuery += "WHERE ProductID = '" + cboRegProducts.SelectedValue + "'"
+                dsProductInfo = SQLPetMIS(sqlQuery)
+
+                txtID.Text = dsProductInfo.Tables(0).Rows(0)("ProductID")
+                txtType.Text = dsProductInfo.Tables(0).Rows(0)("Type")
+
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class

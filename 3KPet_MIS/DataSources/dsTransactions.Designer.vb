@@ -25,7 +25,7 @@ Option Explicit On
 Partial Public Class dsTransactions
     Inherits Global.System.Data.DataSet
     
-    Private tabledtTransactions As dtTransactionsDataTable
+    Private tabledtTransaction As dtTransactionDataTable
 
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
 
@@ -56,8 +56,8 @@ Partial Public Class dsTransactions
         If (Me.DetermineSchemaSerializationMode(info, context) = Global.System.Data.SchemaSerializationMode.IncludeSchema) Then
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXmlSchema(New Global.System.Xml.XmlTextReader(New Global.System.IO.StringReader(strSchema)))
-            If (Not (ds.Tables("dtTransactions")) Is Nothing) Then
-                MyBase.Tables.Add(New dtTransactionsDataTable(ds.Tables("dtTransactions")))
+            If (Not (ds.Tables("dtTransaction")) Is Nothing) Then
+                MyBase.Tables.Add(New dtTransactionDataTable(ds.Tables("dtTransaction")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -80,9 +80,9 @@ Partial Public Class dsTransactions
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
      Global.System.ComponentModel.Browsable(False), _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)> _
-    Public ReadOnly Property dtTransactions() As dtTransactionsDataTable
+    Public ReadOnly Property dtTransaction() As dtTransactionDataTable
         Get
-            Return Me.tabledtTransactions
+            Return Me.tabledtTransaction
         End Get
     End Property
 
@@ -153,8 +153,8 @@ Partial Public Class dsTransactions
             Me.Reset()
             Dim ds As Global.System.Data.DataSet = New Global.System.Data.DataSet()
             ds.ReadXml(reader)
-            If (Not (ds.Tables("dtTransactions")) Is Nothing) Then
-                MyBase.Tables.Add(New dtTransactionsDataTable(ds.Tables("dtTransactions")))
+            If (Not (ds.Tables("dtTransaction")) Is Nothing) Then
+                MyBase.Tables.Add(New dtTransactionDataTable(ds.Tables("dtTransaction")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -188,10 +188,10 @@ Partial Public Class dsTransactions
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
     Friend Overloads Sub InitVars(ByVal initTable As Boolean)
-        Me.tabledtTransactions = CType(MyBase.Tables("dtTransactions"), dtTransactionsDataTable)
+        Me.tabledtTransaction = CType(MyBase.Tables("dtTransaction"), dtTransactionDataTable)
         If (initTable = True) Then
-            If (Not (Me.tabledtTransactions) Is Nothing) Then
-                Me.tabledtTransactions.InitVars()
+            If (Not (Me.tabledtTransaction) Is Nothing) Then
+                Me.tabledtTransaction.InitVars()
             End If
         End If
     End Sub
@@ -204,13 +204,13 @@ Partial Public Class dsTransactions
         Me.Namespace = "http://tempuri.org/dsTransactions.xsd"
         Me.EnforceConstraints = True
         Me.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
-        Me.tabledtTransactions = New dtTransactionsDataTable()
-        MyBase.Tables.Add(Me.tabledtTransactions)
+        Me.tabledtTransaction = New dtTransactionDataTable()
+        MyBase.Tables.Add(Me.tabledtTransaction)
     End Sub
 
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Private Function ShouldSerializedtTransactions() As Boolean
+    Private Function ShouldSerializedtTransaction() As Boolean
         Return False
     End Function
 
@@ -273,27 +273,33 @@ Partial Public Class dsTransactions
     End Function
 
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Delegate Sub dtTransactionsRowChangeEventHandler(ByVal sender As Object, ByVal e As dtTransactionsRowChangeEvent)
+    Public Delegate Sub dtTransactionRowChangeEventHandler(ByVal sender As Object, ByVal e As dtTransactionRowChangeEvent)
 
     '''<summary>
     '''Represents the strongly named DataTable class.
     '''</summary>
     <Global.System.Serializable(), _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")> _
-    Partial Public Class dtTransactionsDataTable
-        Inherits Global.System.Data.TypedTableBase(Of dtTransactionsRow)
+    Partial Public Class dtTransactionDataTable
+        Inherits Global.System.Data.TypedTableBase(Of dtTransactionRow)
+
+        Private columnVisitDate As Global.System.Data.DataColumn
 
         Private columnTransactionID As Global.System.Data.DataColumn
 
-        Private columnProducts As Global.System.Data.DataColumn
+        Private columnProductName As Global.System.Data.DataColumn
 
-        Private columnProdQTY As Global.System.Data.DataColumn
+        Private columnProductQTY As Global.System.Data.DataColumn
 
-        Private columnVaccines As Global.System.Data.DataColumn
+        Private columnProdAmount As Global.System.Data.DataColumn
+
+        Private columnVaccine As Global.System.Data.DataColumn
 
         Private columnVXQTY As Global.System.Data.DataColumn
 
-        Private columnTreatments As Global.System.Data.DataColumn
+        Private columnVXAmount As Global.System.Data.DataColumn
+
+        Private columnTreatment As Global.System.Data.DataColumn
 
         Private columnProductAmount As Global.System.Data.DataColumn
 
@@ -303,13 +309,11 @@ Partial Public Class dsTransactions
 
         Private columnTotalAmount As Global.System.Data.DataColumn
 
-        Private columnVisitDate As Global.System.Data.DataColumn
-
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub New()
             MyBase.New()
-            Me.TableName = "dtTransactions"
+            Me.TableName = "dtTransaction"
             Me.BeginInit()
             Me.InitClass()
             Me.EndInit()
@@ -342,6 +346,14 @@ Partial Public Class dsTransactions
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public ReadOnly Property VisitDateColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnVisitDate
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public ReadOnly Property TransactionIDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnTransactionID
@@ -350,25 +362,33 @@ Partial Public Class dsTransactions
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public ReadOnly Property ProductsColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ProductNameColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnProducts
+                Return Me.columnProductName
             End Get
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public ReadOnly Property ProdQTYColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ProductQTYColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnProdQTY
+                Return Me.columnProductQTY
             End Get
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public ReadOnly Property VaccinesColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ProdAmountColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnVaccines
+                Return Me.columnProdAmount
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public ReadOnly Property VaccineColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnVaccine
             End Get
         End Property
 
@@ -382,9 +402,17 @@ Partial Public Class dsTransactions
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public ReadOnly Property TreatmentsColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property VXAmountColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnTreatments
+                Return Me.columnVXAmount
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public ReadOnly Property TreatmentColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnTreatment
             End Get
         End Property
 
@@ -421,14 +449,6 @@ Partial Public Class dsTransactions
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public ReadOnly Property VisitDateColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnVisitDate
-            End Get
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0"), _
          Global.System.ComponentModel.Browsable(False)> _
         Public ReadOnly Property Count() As Integer
@@ -439,44 +459,44 @@ Partial Public Class dsTransactions
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Default Public ReadOnly Property Item(ByVal index As Integer) As dtTransactionsRow
+        Default Public ReadOnly Property Item(ByVal index As Integer) As dtTransactionRow
             Get
-                Return CType(Me.Rows(index), dtTransactionsRow)
+                Return CType(Me.Rows(index), dtTransactionRow)
             End Get
         End Property
 
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Event dtTransactionsRowChanging As dtTransactionsRowChangeEventHandler
+        Public Event dtTransactionRowChanging As dtTransactionRowChangeEventHandler
 
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Event dtTransactionsRowChanged As dtTransactionsRowChangeEventHandler
+        Public Event dtTransactionRowChanged As dtTransactionRowChangeEventHandler
 
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Event dtTransactionsRowDeleting As dtTransactionsRowChangeEventHandler
+        Public Event dtTransactionRowDeleting As dtTransactionRowChangeEventHandler
 
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Event dtTransactionsRowDeleted As dtTransactionsRowChangeEventHandler
+        Public Event dtTransactionRowDeleted As dtTransactionRowChangeEventHandler
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Overloads Sub AdddtTransactionsRow(ByVal row As dtTransactionsRow)
+        Public Overloads Sub AdddtTransactionRow(ByVal row As dtTransactionRow)
             Me.Rows.Add(row)
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Overloads Function AdddtTransactionsRow(ByVal TransactionID As String, ByVal Products As String, ByVal ProdQTY As String, ByVal Vaccines As String, ByVal VXQTY As String, ByVal Treatments As String, ByVal ProductAmount As String, ByVal ServicesAmount As String, ByVal DiscountedAmount As String, ByVal TotalAmount As String, ByVal VisitDate As String) As dtTransactionsRow
-            Dim rowdtTransactionsRow As dtTransactionsRow = CType(Me.NewRow, dtTransactionsRow)
-            Dim columnValuesArray() As Object = New Object() {TransactionID, Products, ProdQTY, Vaccines, VXQTY, Treatments, ProductAmount, ServicesAmount, DiscountedAmount, TotalAmount, VisitDate}
-            rowdtTransactionsRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowdtTransactionsRow)
-            Return rowdtTransactionsRow
+        Public Overloads Function AdddtTransactionRow(ByVal VisitDate As String, ByVal TransactionID As String, ByVal ProductName As String, ByVal ProductQTY As String, ByVal ProdAmount As String, ByVal Vaccine As String, ByVal VXQTY As String, ByVal VXAmount As String, ByVal Treatment As String, ByVal ProductAmount As String, ByVal ServicesAmount As String, ByVal DiscountedAmount As String, ByVal TotalAmount As String) As dtTransactionRow
+            Dim rowdtTransactionRow As dtTransactionRow = CType(Me.NewRow, dtTransactionRow)
+            Dim columnValuesArray() As Object = New Object() {VisitDate, TransactionID, ProductName, ProductQTY, ProdAmount, Vaccine, VXQTY, VXAmount, Treatment, ProductAmount, ServicesAmount, DiscountedAmount, TotalAmount}
+            rowdtTransactionRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowdtTransactionRow)
+            Return rowdtTransactionRow
         End Function
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As dtTransactionsDataTable = CType(MyBase.Clone, dtTransactionsDataTable)
+            Dim cln As dtTransactionDataTable = CType(MyBase.Clone, dtTransactionDataTable)
             cln.InitVars()
             Return cln
         End Function
@@ -484,40 +504,48 @@ Partial Public Class dsTransactions
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New dtTransactionsDataTable()
+            Return New dtTransactionDataTable()
         End Function
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Friend Sub InitVars()
+            Me.columnVisitDate = MyBase.Columns("VisitDate")
             Me.columnTransactionID = MyBase.Columns("TransactionID")
-            Me.columnProducts = MyBase.Columns("Products")
-            Me.columnProdQTY = MyBase.Columns("ProdQTY")
-            Me.columnVaccines = MyBase.Columns("Vaccines")
+            Me.columnProductName = MyBase.Columns("ProductName")
+            Me.columnProductQTY = MyBase.Columns("ProductQTY")
+            Me.columnProdAmount = MyBase.Columns("ProdAmount")
+            Me.columnVaccine = MyBase.Columns("Vaccine")
             Me.columnVXQTY = MyBase.Columns("VXQTY")
-            Me.columnTreatments = MyBase.Columns("Treatments")
+            Me.columnVXAmount = MyBase.Columns("VXAmount")
+            Me.columnTreatment = MyBase.Columns("Treatment")
             Me.columnProductAmount = MyBase.Columns("ProductAmount")
             Me.columnServicesAmount = MyBase.Columns("ServicesAmount")
             Me.columnDiscountedAmount = MyBase.Columns("DiscountedAmount")
             Me.columnTotalAmount = MyBase.Columns("TotalAmount")
-            Me.columnVisitDate = MyBase.Columns("VisitDate")
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Private Sub InitClass()
+            Me.columnVisitDate = New Global.System.Data.DataColumn("VisitDate", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnVisitDate)
             Me.columnTransactionID = New Global.System.Data.DataColumn("TransactionID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTransactionID)
-            Me.columnProducts = New Global.System.Data.DataColumn("Products", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnProducts)
-            Me.columnProdQTY = New Global.System.Data.DataColumn("ProdQTY", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnProdQTY)
-            Me.columnVaccines = New Global.System.Data.DataColumn("Vaccines", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnVaccines)
+            Me.columnProductName = New Global.System.Data.DataColumn("ProductName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnProductName)
+            Me.columnProductQTY = New Global.System.Data.DataColumn("ProductQTY", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnProductQTY)
+            Me.columnProdAmount = New Global.System.Data.DataColumn("ProdAmount", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnProdAmount)
+            Me.columnVaccine = New Global.System.Data.DataColumn("Vaccine", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnVaccine)
             Me.columnVXQTY = New Global.System.Data.DataColumn("VXQTY", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnVXQTY)
-            Me.columnTreatments = New Global.System.Data.DataColumn("Treatments", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnTreatments)
+            Me.columnVXAmount = New Global.System.Data.DataColumn("VXAmount", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnVXAmount)
+            Me.columnTreatment = New Global.System.Data.DataColumn("Treatment", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnTreatment)
             Me.columnProductAmount = New Global.System.Data.DataColumn("ProductAmount", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnProductAmount)
             Me.columnServicesAmount = New Global.System.Data.DataColumn("ServicesAmount", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -526,34 +554,32 @@ Partial Public Class dsTransactions
             MyBase.Columns.Add(Me.columnDiscountedAmount)
             Me.columnTotalAmount = New Global.System.Data.DataColumn("TotalAmount", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTotalAmount)
-            Me.columnVisitDate = New Global.System.Data.DataColumn("VisitDate", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnVisitDate)
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Function NewdtTransactionsRow() As dtTransactionsRow
-            Return CType(Me.NewRow, dtTransactionsRow)
+        Public Function NewdtTransactionRow() As dtTransactionRow
+            Return CType(Me.NewRow, dtTransactionRow)
         End Function
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New dtTransactionsRow(builder)
+            Return New dtTransactionRow(builder)
         End Function
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(dtTransactionsRow)
+            Return GetType(dtTransactionRow)
         End Function
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me.dtTransactionsRowChangedEvent) Is Nothing) Then
-                RaiseEvent dtTransactionsRowChanged(Me, New dtTransactionsRowChangeEvent(CType(e.Row, dtTransactionsRow), e.Action))
+            If (Not (Me.dtTransactionRowChangedEvent) Is Nothing) Then
+                RaiseEvent dtTransactionRowChanged(Me, New dtTransactionRowChangeEvent(CType(e.Row, dtTransactionRow), e.Action))
             End If
         End Sub
 
@@ -561,8 +587,8 @@ Partial Public Class dsTransactions
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me.dtTransactionsRowChangingEvent) Is Nothing) Then
-                RaiseEvent dtTransactionsRowChanging(Me, New dtTransactionsRowChangeEvent(CType(e.Row, dtTransactionsRow), e.Action))
+            If (Not (Me.dtTransactionRowChangingEvent) Is Nothing) Then
+                RaiseEvent dtTransactionRowChanging(Me, New dtTransactionRowChangeEvent(CType(e.Row, dtTransactionRow), e.Action))
             End If
         End Sub
 
@@ -570,8 +596,8 @@ Partial Public Class dsTransactions
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me.dtTransactionsRowDeletedEvent) Is Nothing) Then
-                RaiseEvent dtTransactionsRowDeleted(Me, New dtTransactionsRowChangeEvent(CType(e.Row, dtTransactionsRow), e.Action))
+            If (Not (Me.dtTransactionRowDeletedEvent) Is Nothing) Then
+                RaiseEvent dtTransactionRowDeleted(Me, New dtTransactionRowChangeEvent(CType(e.Row, dtTransactionRow), e.Action))
             End If
         End Sub
 
@@ -579,14 +605,14 @@ Partial Public Class dsTransactions
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me.dtTransactionsRowDeletingEvent) Is Nothing) Then
-                RaiseEvent dtTransactionsRowDeleting(Me, New dtTransactionsRowChangeEvent(CType(e.Row, dtTransactionsRow), e.Action))
+            If (Not (Me.dtTransactionRowDeletingEvent) Is Nothing) Then
+                RaiseEvent dtTransactionRowDeleting(Me, New dtTransactionRowChangeEvent(CType(e.Row, dtTransactionRow), e.Action))
             End If
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Sub RemovedtTransactionsRow(ByVal row As dtTransactionsRow)
+        Public Sub RemovedtTransactionRow(ByVal row As dtTransactionRow)
             Me.Rows.Remove(row)
         End Sub
 
@@ -613,7 +639,7 @@ Partial Public Class dsTransactions
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "dtTransactionsDataTable"
+            attribute2.FixedValue = "dtTransactionDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -660,75 +686,105 @@ Partial Public Class dsTransactions
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
-    Partial Public Class dtTransactionsRow
+    Partial Public Class dtTransactionRow
         Inherits Global.System.Data.DataRow
 
-        Private tabledtTransactions As dtTransactionsDataTable
+        Private tabledtTransaction As dtTransactionDataTable
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tabledtTransactions = CType(Me.Table, dtTransactionsDataTable)
+            Me.tabledtTransaction = CType(Me.Table, dtTransactionDataTable)
         End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property VisitDate() As String
+            Get
+                Try
+                    Return CType(Me(Me.tabledtTransaction.VisitDateColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'VisitDate' in table 'dtTransaction' is DBNull.", e)
+                End Try
+            End Get
+            Set(value As String)
+                Me(Me.tabledtTransaction.VisitDateColumn) = value
+            End Set
+        End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Property TransactionID() As String
             Get
                 Try
-                    Return CType(Me(Me.tabledtTransactions.TransactionIDColumn), String)
+                    Return CType(Me(Me.tabledtTransaction.TransactionIDColumn), String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'TransactionID' in table 'dtTransactions' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TransactionID' in table 'dtTransaction' is DBNull.", e)
                 End Try
             End Get
             Set(value As String)
-                Me(Me.tabledtTransactions.TransactionIDColumn) = value
+                Me(Me.tabledtTransaction.TransactionIDColumn) = value
             End Set
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Property Products() As String
+        Public Property ProductName() As String
             Get
                 Try
-                    Return CType(Me(Me.tabledtTransactions.ProductsColumn), String)
+                    Return CType(Me(Me.tabledtTransaction.ProductNameColumn), String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Products' in table 'dtTransactions' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ProductName' in table 'dtTransaction' is DBNull.", e)
                 End Try
             End Get
             Set(value As String)
-                Me(Me.tabledtTransactions.ProductsColumn) = value
+                Me(Me.tabledtTransaction.ProductNameColumn) = value
             End Set
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Property ProdQTY() As String
+        Public Property ProductQTY() As String
             Get
                 Try
-                    Return CType(Me(Me.tabledtTransactions.ProdQTYColumn), String)
+                    Return CType(Me(Me.tabledtTransaction.ProductQTYColumn), String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'ProdQTY' in table 'dtTransactions' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ProductQTY' in table 'dtTransaction' is DBNull.", e)
                 End Try
             End Get
             Set(value As String)
-                Me(Me.tabledtTransactions.ProdQTYColumn) = value
+                Me(Me.tabledtTransaction.ProductQTYColumn) = value
             End Set
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Property Vaccines() As String
+        Public Property ProdAmount() As String
             Get
                 Try
-                    Return CType(Me(Me.tabledtTransactions.VaccinesColumn), String)
+                    Return CType(Me(Me.tabledtTransaction.ProdAmountColumn), String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Vaccines' in table 'dtTransactions' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ProdAmount' in table 'dtTransaction' is DBNull.", e)
                 End Try
             End Get
             Set(value As String)
-                Me(Me.tabledtTransactions.VaccinesColumn) = value
+                Me(Me.tabledtTransaction.ProdAmountColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property Vaccine() As String
+            Get
+                Try
+                    Return CType(Me(Me.tabledtTransaction.VaccineColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Vaccine' in table 'dtTransaction' is DBNull.", e)
+                End Try
+            End Get
+            Set(value As String)
+                Me(Me.tabledtTransaction.VaccineColumn) = value
             End Set
         End Property
 
@@ -737,28 +793,43 @@ Partial Public Class dsTransactions
         Public Property VXQTY() As String
             Get
                 Try
-                    Return CType(Me(Me.tabledtTransactions.VXQTYColumn), String)
+                    Return CType(Me(Me.tabledtTransaction.VXQTYColumn), String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'VXQTY' in table 'dtTransactions' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'VXQTY' in table 'dtTransaction' is DBNull.", e)
                 End Try
             End Get
             Set(value As String)
-                Me(Me.tabledtTransactions.VXQTYColumn) = value
+                Me(Me.tabledtTransaction.VXQTYColumn) = value
             End Set
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Property Treatments() As String
+        Public Property VXAmount() As String
             Get
                 Try
-                    Return CType(Me(Me.tabledtTransactions.TreatmentsColumn), String)
+                    Return CType(Me(Me.tabledtTransaction.VXAmountColumn), String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Treatments' in table 'dtTransactions' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'VXAmount' in table 'dtTransaction' is DBNull.", e)
                 End Try
             End Get
             Set(value As String)
-                Me(Me.tabledtTransactions.TreatmentsColumn) = value
+                Me(Me.tabledtTransaction.VXAmountColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Property Treatment() As String
+            Get
+                Try
+                    Return CType(Me(Me.tabledtTransaction.TreatmentColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Treatment' in table 'dtTransaction' is DBNull.", e)
+                End Try
+            End Get
+            Set(value As String)
+                Me(Me.tabledtTransaction.TreatmentColumn) = value
             End Set
         End Property
 
@@ -767,13 +838,13 @@ Partial Public Class dsTransactions
         Public Property ProductAmount() As String
             Get
                 Try
-                    Return CType(Me(Me.tabledtTransactions.ProductAmountColumn), String)
+                    Return CType(Me(Me.tabledtTransaction.ProductAmountColumn), String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'ProductAmount' in table 'dtTransactions' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ProductAmount' in table 'dtTransaction' is DBNull.", e)
                 End Try
             End Get
             Set(value As String)
-                Me(Me.tabledtTransactions.ProductAmountColumn) = value
+                Me(Me.tabledtTransaction.ProductAmountColumn) = value
             End Set
         End Property
 
@@ -782,13 +853,13 @@ Partial Public Class dsTransactions
         Public Property ServicesAmount() As String
             Get
                 Try
-                    Return CType(Me(Me.tabledtTransactions.ServicesAmountColumn), String)
+                    Return CType(Me(Me.tabledtTransaction.ServicesAmountColumn), String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'ServicesAmount' in table 'dtTransactions' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ServicesAmount' in table 'dtTransaction' is DBNull.", e)
                 End Try
             End Get
             Set(value As String)
-                Me(Me.tabledtTransactions.ServicesAmountColumn) = value
+                Me(Me.tabledtTransaction.ServicesAmountColumn) = value
             End Set
         End Property
 
@@ -797,13 +868,13 @@ Partial Public Class dsTransactions
         Public Property DiscountedAmount() As String
             Get
                 Try
-                    Return CType(Me(Me.tabledtTransactions.DiscountedAmountColumn), String)
+                    Return CType(Me(Me.tabledtTransaction.DiscountedAmountColumn), String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DiscountedAmount' in table 'dtTransactions' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DiscountedAmount' in table 'dtTransaction' is DBNull.", e)
                 End Try
             End Get
             Set(value As String)
-                Me(Me.tabledtTransactions.DiscountedAmountColumn) = value
+                Me(Me.tabledtTransaction.DiscountedAmountColumn) = value
             End Set
         End Property
 
@@ -812,161 +883,170 @@ Partial Public Class dsTransactions
         Public Property TotalAmount() As String
             Get
                 Try
-                    Return CType(Me(Me.tabledtTransactions.TotalAmountColumn), String)
+                    Return CType(Me(Me.tabledtTransaction.TotalAmountColumn), String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'TotalAmount' in table 'dtTransactions' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'TotalAmount' in table 'dtTransaction' is DBNull.", e)
                 End Try
             End Get
             Set(value As String)
-                Me(Me.tabledtTransactions.TotalAmountColumn) = value
+                Me(Me.tabledtTransaction.TotalAmountColumn) = value
             End Set
         End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Property VisitDate() As String
-            Get
-                Try
-                    Return CType(Me(Me.tabledtTransactions.VisitDateColumn), String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'VisitDate' in table 'dtTransactions' is DBNull.", e)
-                End Try
-            End Get
-            Set(value As String)
-                Me(Me.tabledtTransactions.VisitDateColumn) = value
-            End Set
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Function IsTransactionIDNull() As Boolean
-            Return Me.IsNull(Me.tabledtTransactions.TransactionIDColumn)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Sub SetTransactionIDNull()
-            Me(Me.tabledtTransactions.TransactionIDColumn) = Global.System.Convert.DBNull
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Function IsProductsNull() As Boolean
-            Return Me.IsNull(Me.tabledtTransactions.ProductsColumn)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Sub SetProductsNull()
-            Me(Me.tabledtTransactions.ProductsColumn) = Global.System.Convert.DBNull
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Function IsProdQTYNull() As Boolean
-            Return Me.IsNull(Me.tabledtTransactions.ProdQTYColumn)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Sub SetProdQTYNull()
-            Me(Me.tabledtTransactions.ProdQTYColumn) = Global.System.Convert.DBNull
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Function IsVaccinesNull() As Boolean
-            Return Me.IsNull(Me.tabledtTransactions.VaccinesColumn)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Sub SetVaccinesNull()
-            Me(Me.tabledtTransactions.VaccinesColumn) = Global.System.Convert.DBNull
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Function IsVXQTYNull() As Boolean
-            Return Me.IsNull(Me.tabledtTransactions.VXQTYColumn)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Sub SetVXQTYNull()
-            Me(Me.tabledtTransactions.VXQTYColumn) = Global.System.Convert.DBNull
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Function IsTreatmentsNull() As Boolean
-            Return Me.IsNull(Me.tabledtTransactions.TreatmentsColumn)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Sub SetTreatmentsNull()
-            Me(Me.tabledtTransactions.TreatmentsColumn) = Global.System.Convert.DBNull
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Function IsProductAmountNull() As Boolean
-            Return Me.IsNull(Me.tabledtTransactions.ProductAmountColumn)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Sub SetProductAmountNull()
-            Me(Me.tabledtTransactions.ProductAmountColumn) = Global.System.Convert.DBNull
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Function IsServicesAmountNull() As Boolean
-            Return Me.IsNull(Me.tabledtTransactions.ServicesAmountColumn)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Sub SetServicesAmountNull()
-            Me(Me.tabledtTransactions.ServicesAmountColumn) = Global.System.Convert.DBNull
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Function IsDiscountedAmountNull() As Boolean
-            Return Me.IsNull(Me.tabledtTransactions.DiscountedAmountColumn)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Sub SetDiscountedAmountNull()
-            Me(Me.tabledtTransactions.DiscountedAmountColumn) = Global.System.Convert.DBNull
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Function IsTotalAmountNull() As Boolean
-            Return Me.IsNull(Me.tabledtTransactions.TotalAmountColumn)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Sub SetTotalAmountNull()
-            Me(Me.tabledtTransactions.TotalAmountColumn) = Global.System.Convert.DBNull
-        End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Function IsVisitDateNull() As Boolean
-            Return Me.IsNull(Me.tabledtTransactions.VisitDateColumn)
+            Return Me.IsNull(Me.tabledtTransaction.VisitDateColumn)
         End Function
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
         Public Sub SetVisitDateNull()
-            Me(Me.tabledtTransactions.VisitDateColumn) = Global.System.Convert.DBNull
+            Me(Me.tabledtTransaction.VisitDateColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsTransactionIDNull() As Boolean
+            Return Me.IsNull(Me.tabledtTransaction.TransactionIDColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetTransactionIDNull()
+            Me(Me.tabledtTransaction.TransactionIDColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsProductNameNull() As Boolean
+            Return Me.IsNull(Me.tabledtTransaction.ProductNameColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetProductNameNull()
+            Me(Me.tabledtTransaction.ProductNameColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsProductQTYNull() As Boolean
+            Return Me.IsNull(Me.tabledtTransaction.ProductQTYColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetProductQTYNull()
+            Me(Me.tabledtTransaction.ProductQTYColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsProdAmountNull() As Boolean
+            Return Me.IsNull(Me.tabledtTransaction.ProdAmountColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetProdAmountNull()
+            Me(Me.tabledtTransaction.ProdAmountColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsVaccineNull() As Boolean
+            Return Me.IsNull(Me.tabledtTransaction.VaccineColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetVaccineNull()
+            Me(Me.tabledtTransaction.VaccineColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsVXQTYNull() As Boolean
+            Return Me.IsNull(Me.tabledtTransaction.VXQTYColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetVXQTYNull()
+            Me(Me.tabledtTransaction.VXQTYColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsVXAmountNull() As Boolean
+            Return Me.IsNull(Me.tabledtTransaction.VXAmountColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetVXAmountNull()
+            Me(Me.tabledtTransaction.VXAmountColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsTreatmentNull() As Boolean
+            Return Me.IsNull(Me.tabledtTransaction.TreatmentColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetTreatmentNull()
+            Me(Me.tabledtTransaction.TreatmentColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsProductAmountNull() As Boolean
+            Return Me.IsNull(Me.tabledtTransaction.ProductAmountColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetProductAmountNull()
+            Me(Me.tabledtTransaction.ProductAmountColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsServicesAmountNull() As Boolean
+            Return Me.IsNull(Me.tabledtTransaction.ServicesAmountColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetServicesAmountNull()
+            Me(Me.tabledtTransaction.ServicesAmountColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsDiscountedAmountNull() As Boolean
+            Return Me.IsNull(Me.tabledtTransaction.DiscountedAmountColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetDiscountedAmountNull()
+            Me(Me.tabledtTransaction.DiscountedAmountColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Function IsTotalAmountNull() As Boolean
+            Return Me.IsNull(Me.tabledtTransaction.TotalAmountColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
+        Public Sub SetTotalAmountNull()
+            Me(Me.tabledtTransaction.TotalAmountColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
 
@@ -974,16 +1054,16 @@ Partial Public Class dsTransactions
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-    Public Class dtTransactionsRowChangeEvent
+    Public Class dtTransactionRowChangeEvent
         Inherits Global.System.EventArgs
 
-        Private eventRow As dtTransactionsRow
+        Private eventRow As dtTransactionRow
 
         Private eventAction As Global.System.Data.DataRowAction
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public Sub New(ByVal row As dtTransactionsRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As dtTransactionRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New()
             Me.eventRow = row
             Me.eventAction = action
@@ -991,7 +1071,7 @@ Partial Public Class dsTransactions
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(), _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")> _
-        Public ReadOnly Property Row() As dtTransactionsRow
+        Public ReadOnly Property Row() As dtTransactionRow
             Get
                 Return Me.eventRow
             End Get

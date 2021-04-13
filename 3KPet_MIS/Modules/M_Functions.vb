@@ -195,4 +195,41 @@ Module M_Functions
 
         Return strDesktopPath
     End Function
+
+    Public Sub cboDataBinding(cbo As ComboBox, strSQL As String, Optional header As String = "--CHOOSE ITEM--")
+        Try
+            Dim dt As New DataTable
+            Dim dr As DataRow
+
+            dt = SQLPetMIS(strSQL).Tables(0)
+            dt.Columns(0).ColumnName = "ID"
+            dt.Columns(1).ColumnName = "NAME"
+            dr = dt.NewRow
+
+            cbo.Items.Clear()
+            dr(0) = -1
+            dr(1) = header
+            dt.Rows.InsertAt(dr, 0)
+
+            cbo.DataSource = dt
+            cbo.DisplayMember = "NAME"
+            cbo.ValueMember = "ID"
+            cbo.SelectedValue = -1
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+        End Try
+    End Sub
+    Public Function cboVal(cbo As ComboBox) As String
+        Dim strVal As String = ""
+        Try
+            If cbo.SelectedValue = -1 Then
+                strVal = "NULL"
+            Else
+                strVal = cbo.SelectedValue
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+        End Try
+        Return strVal
+    End Function
 End Module

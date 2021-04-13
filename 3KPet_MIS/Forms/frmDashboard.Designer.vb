@@ -48,13 +48,13 @@ Partial Class frmDashboard
         Me.LOGOUTToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlContent = New System.Windows.Forms.Panel()
-        Me.datSchedules = New System.Windows.Forms.DataGridView()
-        Me.lblOwnersBorder = New System.Windows.Forms.Label()
-        Me.lblOwnerCount = New System.Windows.Forms.Label()
-        Me.lblOwnerTitle = New System.Windows.Forms.Label()
         Me.lblPetTitle = New System.Windows.Forms.Label()
         Me.lblPetCount = New System.Windows.Forms.Label()
         Me.lblPetBorder = New System.Windows.Forms.Label()
+        Me.lblOwnerTitle = New System.Windows.Forms.Label()
+        Me.lblOwnerCount = New System.Windows.Forms.Label()
+        Me.lblOwnersBorder = New System.Windows.Forms.Label()
+        Me.datSchedules = New System.Windows.Forms.DataGridView()
         Me.pnlHeader.SuspendLayout()
         Me.mnuDashboard.SuspendLayout()
         Me.pnlContent.SuspendLayout()
@@ -104,13 +104,13 @@ Partial Class frmDashboard
         'RECORDSToolStripMenuItem
         '
         Me.RECORDSToolStripMenuItem.Name = "RECORDSToolStripMenuItem"
-        Me.RECORDSToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.RECORDSToolStripMenuItem.Size = New System.Drawing.Size(124, 22)
         Me.RECORDSToolStripMenuItem.Text = "RECORDS"
         '
         'ARCHIVEToolStripMenuItem1
         '
         Me.ARCHIVEToolStripMenuItem1.Name = "ARCHIVEToolStripMenuItem1"
-        Me.ARCHIVEToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.ARCHIVEToolStripMenuItem1.Size = New System.Drawing.Size(124, 22)
         Me.ARCHIVEToolStripMenuItem1.Text = "ARCHIVE"
         '
         'SCHEDULESToolStripMenuItem
@@ -226,70 +226,6 @@ Partial Class frmDashboard
         Me.pnlContent.Size = New System.Drawing.Size(825, 383)
         Me.pnlContent.TabIndex = 2
         '
-        'datSchedules
-        '
-        Me.datSchedules.AllowUserToAddRows = False
-        Me.datSchedules.AllowUserToDeleteRows = False
-        Me.datSchedules.AllowUserToResizeColumns = False
-        Me.datSchedules.AllowUserToResizeRows = False
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.datSchedules.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
-        Me.datSchedules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.datSchedules.DefaultCellStyle = DataGridViewCellStyle2
-        Me.datSchedules.Location = New System.Drawing.Point(10, 6)
-        Me.datSchedules.Name = "datSchedules"
-        Me.datSchedules.RowHeadersVisible = False
-        Me.datSchedules.Size = New System.Drawing.Size(672, 365)
-        Me.datSchedules.TabIndex = 0
-        '
-        'lblOwnersBorder
-        '
-        Me.lblOwnersBorder.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblOwnersBorder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lblOwnersBorder.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.lblOwnersBorder.Location = New System.Drawing.Point(688, 6)
-        Me.lblOwnersBorder.Name = "lblOwnersBorder"
-        Me.lblOwnersBorder.Size = New System.Drawing.Size(130, 138)
-        Me.lblOwnersBorder.TabIndex = 1
-        '
-        'lblOwnerCount
-        '
-        Me.lblOwnerCount.BackColor = System.Drawing.Color.White
-        Me.lblOwnerCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.lblOwnerCount.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.lblOwnerCount.Font = New System.Drawing.Font("Calibri", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOwnerCount.Location = New System.Drawing.Point(693, 47)
-        Me.lblOwnerCount.Name = "lblOwnerCount"
-        Me.lblOwnerCount.Size = New System.Drawing.Size(121, 93)
-        Me.lblOwnerCount.TabIndex = 2
-        Me.lblOwnerCount.Text = "0"
-        Me.lblOwnerCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'lblOwnerTitle
-        '
-        Me.lblOwnerTitle.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.lblOwnerTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.lblOwnerTitle.Font = New System.Drawing.Font("Calibri", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblOwnerTitle.Location = New System.Drawing.Point(693, 11)
-        Me.lblOwnerTitle.Name = "lblOwnerTitle"
-        Me.lblOwnerTitle.Size = New System.Drawing.Size(121, 31)
-        Me.lblOwnerTitle.TabIndex = 3
-        Me.lblOwnerTitle.Text = "OWNERS"
-        Me.lblOwnerTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'lblPetTitle
         '
         Me.lblPetTitle.BackColor = System.Drawing.Color.Purple
@@ -325,6 +261,70 @@ Partial Class frmDashboard
         Me.lblPetBorder.Name = "lblPetBorder"
         Me.lblPetBorder.Size = New System.Drawing.Size(130, 138)
         Me.lblPetBorder.TabIndex = 4
+        '
+        'lblOwnerTitle
+        '
+        Me.lblOwnerTitle.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lblOwnerTitle.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.lblOwnerTitle.Font = New System.Drawing.Font("Calibri", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOwnerTitle.Location = New System.Drawing.Point(693, 11)
+        Me.lblOwnerTitle.Name = "lblOwnerTitle"
+        Me.lblOwnerTitle.Size = New System.Drawing.Size(121, 31)
+        Me.lblOwnerTitle.TabIndex = 3
+        Me.lblOwnerTitle.Text = "OWNERS"
+        Me.lblOwnerTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblOwnerCount
+        '
+        Me.lblOwnerCount.BackColor = System.Drawing.Color.White
+        Me.lblOwnerCount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblOwnerCount.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.lblOwnerCount.Font = New System.Drawing.Font("Calibri", 48.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblOwnerCount.Location = New System.Drawing.Point(693, 47)
+        Me.lblOwnerCount.Name = "lblOwnerCount"
+        Me.lblOwnerCount.Size = New System.Drawing.Size(121, 93)
+        Me.lblOwnerCount.TabIndex = 2
+        Me.lblOwnerCount.Text = "0"
+        Me.lblOwnerCount.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'lblOwnersBorder
+        '
+        Me.lblOwnersBorder.BackColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.lblOwnersBorder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.lblOwnersBorder.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.lblOwnersBorder.Location = New System.Drawing.Point(688, 6)
+        Me.lblOwnersBorder.Name = "lblOwnersBorder"
+        Me.lblOwnersBorder.Size = New System.Drawing.Size(130, 138)
+        Me.lblOwnersBorder.TabIndex = 1
+        '
+        'datSchedules
+        '
+        Me.datSchedules.AllowUserToAddRows = False
+        Me.datSchedules.AllowUserToDeleteRows = False
+        Me.datSchedules.AllowUserToResizeColumns = False
+        Me.datSchedules.AllowUserToResizeRows = False
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.datSchedules.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        Me.datSchedules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Calibri", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.datSchedules.DefaultCellStyle = DataGridViewCellStyle2
+        Me.datSchedules.Location = New System.Drawing.Point(10, 6)
+        Me.datSchedules.Name = "datSchedules"
+        Me.datSchedules.RowHeadersVisible = False
+        Me.datSchedules.Size = New System.Drawing.Size(672, 365)
+        Me.datSchedules.TabIndex = 0
         '
         'frmDashboard
         '

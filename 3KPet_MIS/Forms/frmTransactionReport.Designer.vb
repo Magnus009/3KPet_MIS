@@ -22,8 +22,14 @@ Partial Class frmTransactionReport
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
+        Dim ReportDataSource1 As Microsoft.Reporting.WinForms.ReportDataSource = New Microsoft.Reporting.WinForms.ReportDataSource()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTransactionReport))
         Me.rpvTrans = New Microsoft.Reporting.WinForms.ReportViewer()
+        Me.dsTransactions = New _3KPet_MIS.dsTransactions()
+        Me.dtTransactionBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        CType(Me.dsTransactions, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtTransactionBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'rpvTrans
@@ -32,14 +38,28 @@ Partial Class frmTransactionReport
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rpvTrans.Font = New System.Drawing.Font("Calibri", 8.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        ReportDataSource1.Name = "dsTransaction"
+        ReportDataSource1.Value = Me.dtTransactionBindingSource
+        Me.rpvTrans.LocalReport.DataSources.Add(ReportDataSource1)
+        Me.rpvTrans.LocalReport.ReportEmbeddedResource = "_3KPet_MIS.rpTransactions.rdlc"
         Me.rpvTrans.Location = New System.Drawing.Point(11, 11)
         Me.rpvTrans.Name = "rpvTrans"
         Me.rpvTrans.Size = New System.Drawing.Size(1147, 634)
         Me.rpvTrans.TabIndex = 0
         '
+        'dsTransactions
+        '
+        Me.dsTransactions.DataSetName = "dsTransactions"
+        Me.dsTransactions.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'dtTransactionBindingSource
+        '
+        Me.dtTransactionBindingSource.DataMember = "dtTransaction"
+        Me.dtTransactionBindingSource.DataSource = Me.dsTransactions
+        '
         'frmTransactionReport
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 19.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1168, 650)
         Me.Controls.Add(Me.rpvTrans)
@@ -51,8 +71,12 @@ Partial Class frmTransactionReport
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Transaction Report"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
+        CType(Me.dsTransactions, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtTransactionBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents rpvTrans As Microsoft.Reporting.WinForms.ReportViewer
+    Friend WithEvents dtTransactionBindingSource As System.Windows.Forms.BindingSource
+    Friend WithEvents dsTransactions As _3KPet_MIS.dsTransactions
 End Class
