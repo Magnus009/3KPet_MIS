@@ -27,6 +27,7 @@ Public Class frmPrintProducts
         Try
             Dim cboSource As New Dictionary(Of String, String)()
             cboSource.Clear()
+
             If cboFilter.SelectedValue = 1 Then
                 dtpDay.Visible = True
                 txtYear.Visible = False
@@ -45,7 +46,7 @@ Public Class frmPrintProducts
                 maxWeek = SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0)
 
                 cboFil.Items.Clear()
-
+                cboFil.SelectedText = ""
                 For i As Integer = minWeek To maxWeek
                     cboFil.Items.Add(i)
                 Next
@@ -65,11 +66,14 @@ Public Class frmPrintProducts
                 sqlQuery += "SELECT datepart(month, max(VisitDate)) FROM TransactionHeader"
                 maxMonth = SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0)
 
+                cboFil.SelectedText = ""
                 cboFil.Items.Clear()
                 For i As Integer = minMonth To maxMonth
-                    cboSource.Add(i, DateAndTime.MonthName(i, False))
+                    cboFil.Items.Add(New DictionaryEntry(i, MonthName(i)))
+                    'cboSource.Add(i, DateAndTime.MonthName(i, False))
                 Next
-                cboFil.DataSource = New BindingSource(cboSource, Nothing)
+
+                'cboFil.DataSource = New BindingSource(cboSource, Nothing)
                 cboFil.DisplayMember = "Value"
                 cboFil.ValueMember = "Key"
                 cboFil.Visible = True

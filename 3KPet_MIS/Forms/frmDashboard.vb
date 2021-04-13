@@ -166,7 +166,8 @@
     End Sub
 
     Private Sub INVENTORYToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles INVENTORYToolStripMenuItem.Click
-        frmInventory.ShowDialog()
+        Dim formInventory As New frmInventory
+        formInventory.ShowDialog()
     End Sub
 
     Private Sub AUDITTRAILToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AUDITTRAILToolStripMenuItem.Click

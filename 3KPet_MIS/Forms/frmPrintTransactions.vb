@@ -67,9 +67,11 @@ Public Class frmPrintTransactions
 
                 cboFil.Items.Clear()
                 For i As Integer = minMonth To maxMonth
-                    cboSource.Add(i, DateAndTime.MonthName(i, False))
+                    cboFil.Items.Add(New DictionaryEntry(i, MonthName(i)))
+                    'cboSource.Add(i, DateAndTime.MonthName(i, False))
                 Next
-                cboFil.DataSource = New BindingSource(cboSource, Nothing)
+
+                'cboFil.DataSource = New BindingSource(cboSource, Nothing)
                 cboFil.DisplayMember = "Value"
                 cboFil.ValueMember = "Key"
                 cboFil.Visible = True

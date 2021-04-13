@@ -379,6 +379,8 @@
                         sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
                         sqlQuery += "SET Stocks = Stocks - 1" & vbCrLf
                         sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "'" & vbCrLf
+                        sqlQuery += "AND BatchNo = (SELECT min(BatchNo) FROM ProductInventory" & vbCrLf
+                        sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "' AND Stocks <> 0)" & vbCrLf
                         sqlExecute(sqlQuery)
 
                         strProdAmount = (Convert.ToInt32(strProdAmount) + Convert.ToInt32(row.Cells(2).Value))
@@ -421,6 +423,8 @@
                     sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
                     sqlQuery += "SET Stocks = Stocks - " + row.Cells(2).Value.ToString & vbCrLf
                     sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "'" & vbCrLf
+                    sqlQuery += "AND BatchNo = (SELECT min(BatchNo) FROM ProductInventory" & vbCrLf
+                    sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "' AND Stocks >=" + row.Cells(2).Value.ToString + ")" & vbCrLf
                     sqlExecute(sqlQuery)
                 Next
                 strTotalPrice = (Convert.ToInt32(strTotalPrice) + Convert.ToInt32(strProdAmount))
@@ -585,4 +589,7 @@
     'End Sub
 
    
+    Private Sub grpHistory_Enter(sender As Object, e As EventArgs) Handles grpHistory.Enter
+
+    End Sub
 End Class

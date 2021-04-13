@@ -1,31 +1,26 @@
 ﻿Public Class frmRestock
     Public intMaxQTY As Integer
+    Public intBatchNo As Integer
 
     Private Sub btnRestock_Click(sender As Object, e As EventArgs) Handles btnRestock.Click
         Try
             Dim blnResult As Boolean
-            Dim intMaxBatch As Integer
 
             If txtQTY.Text = "" Then
                 MsgBox("Please enter product quantity!", vbOKOnly + vbExclamation)
             Else
-                If intMaxQTY > Convert.ToInt32(txtQTY.Text) Then
+                If intMaxQTY < Convert.ToInt32(txtQTY.Text) Then
                     MsgBox("Stocks are more than the Max QTY", vbOKOnly + vbExclamation)
                 Else
                     If MsgBox("Are you sure you want to save?", vbYesNo + vbQuestion) = vbYes Then
 
-                        sqlQuery = ""
-                        sqlQuery += "SELECT max(BatchNo) + 1 FROM ProductInventory" & vbCrLf
-                        sqlQuery += "WHERE ProductID = '" + txtProductID.Text + "'" & vbCrLf
-                        intMaxBatch = SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0)
 
                         sqlQuery = ""
                         sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
                         sqlQuery += "SET Stocks = " + txtQTY.Text & vbCrLf
-                        sqlQuery += ", ExpirationDate ='" + dtpExpiry.Value + "'" & vbCrLf
-                        sqlQuery += ", BatchNo =" + intMaxBatch & vbCrLf
                         sqlQuery += ", UpdatedDate = getdate()" & vbCrLf
                         sqlQuery += "WHERE ProductID = '" + txtProductID.Text + "'" & vbCrLf
+                        sqlQuery += "AND BatchNo =" + intBatchNo.ToString & vbCrLf
                         blnResult = sqlExecute(sqlQuery)
 
                         If blnResult Then
@@ -39,7 +34,7 @@
                
             End If
         Catch ex As Exception
-
+            MsgBox(ex.Message)
         End Try
     End Sub
 

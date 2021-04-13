@@ -167,10 +167,22 @@
     <Compile Include="Forms\frmNewTransaction.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmPrintProducts.Designer.vb">
+      <DependentUpon>frmPrintProducts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPrintProducts.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\frmPrintTransaction.Designer.vb">
       <DependentUpon>frmPrintTransaction.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmPrintTransaction.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPrintTransactions.Designer.vb">
+      <DependentUpon>frmPrintTransactions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPrintTransactions.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmProducts.Designer.vb">
@@ -207,6 +219,12 @@
       <DependentUpon>frmDashboard.vb</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmDashboard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmRegisterProduct.Designer.vb">
+      <DependentUpon>frmRegisterProduct.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmRegisterProduct.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmRestock.Designer.vb">
@@ -350,8 +368,14 @@
       <DependentUpon>frmNewTransaction.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPrintProducts.resx">
+      <DependentUpon>frmPrintProducts.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmPrintTransaction.resx">
       <DependentUpon>frmPrintTransaction.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPrintTransactions.resx">
+      <DependentUpon>frmPrintTransactions.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmProducts.resx">
       <DependentUpon>frmProducts.vb</DependentUpon>
@@ -372,6 +396,9 @@
     <EmbeddedResource Include="Forms\frmDashboard.resx">
       <DependentUpon>frmDashboard.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmRegisterProduct.resx">
+      <DependentUpon>frmRegisterProduct.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmRestock.resx">
       <DependentUpon>frmRestock.vb</DependentUpon>
