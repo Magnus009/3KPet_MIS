@@ -71,7 +71,7 @@ Namespace My.Resources
         End Property
         
         '''<summary>
-        '''  Looks up a localized string similar to Data Source=LAPTOP-MI8RS0PS\SQLEXPRESS;Integrated Security=SSPI;Initial Catalog=Pet_MIS.
+        '''  Looks up a localized string similar to Data Source=ROLLAMAS\SQL_ROLLAMAS;Initial Catalog=Pet_MIS;Integrated Security=True.
         '''</summary>
         Friend ReadOnly Property ConnectionString() As String
             Get
