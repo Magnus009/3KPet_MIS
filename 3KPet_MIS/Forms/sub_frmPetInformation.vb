@@ -92,7 +92,7 @@
                     With datVaccine
                         For i As Integer = 0 To .Rows.Count - 1
                             If .Item(0, i).Value = row.Item("ProductID") Then
-                                .Item(3, i).Value = True
+                                .Item(4, i).Value = True
                             End If
                         Next
                     End With
@@ -134,7 +134,7 @@
                 setGridColumns()
                 setGridProperties()
             End If
-            cboPet.SelectedIndex = 0
+            'cboPet.SelectedIndex = 0
 
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical)
@@ -176,20 +176,17 @@
             dtPurchasedProd.Clear()
             setGridColumns()
             setGridProperties()
-            'datTreatment.Columns.Clear()
             datVaccine.Columns.Clear()
-            'setTreatments()
             setVaccines()
-            loadTransactionDetails(strTransactionCode)
+            clearFields(grpHistory)
         Else
             datProduct.Columns.Clear()
             dtPurchasedProd.Clear()
             setGridColumns()
             setGridProperties()
-            'datTreatment.Columns.Clear()
             datVaccine.Columns.Clear()
-            'setTreatments()
             setVaccines()
+            loadTransactionDetails(strTransactionCode)
         End If
     End Sub
 
@@ -522,8 +519,8 @@
     Private Sub setVaccines()
         Try
             sqlQuery = ""
-            sqlQuery += "SELECT P.ProductID,Description, Price FROM Products P" & vbCrLf
-            sqlQuery += "INNER JOIN ProductInventory PI ON P.ProductID = PI.ProductID" & vbCrLf
+            sqlQuery += "SELECT P.ProductID,Description, coalesce(Price,'0'), coalesce(PI.Stocks,0) FROM Products P" & vbCrLf
+            sqlQuery += "LEft JOIN ProductInventory PI ON P.ProductID = PI.ProductID" & vbCrLf
             sqlQuery += "WHERE TypeID = 2"
             dsVax = SQLPetMIS(sqlQuery)
 
@@ -531,10 +528,13 @@
             With datVaccine
                 .DataSource = dsVax.Tables(0)
                 .Columns(0).Visible = False
+                .Columns(3).Visible = False
 
                 Dim chkVX As New DataGridViewCheckBoxColumn
                 chkVX.Width = .Width * 0.09
                 .Columns.Add(chkVX)
+                chkVX.Name = "chkVX"
+
             End With
 
         Catch ex As Exception
@@ -569,7 +569,29 @@
     '    End Try
     'End Sub
 
-    Private Sub datHistory_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles datHistory.CellContentDoubleClick
+    'Private Sub datHistory_CellContentDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles datHistory.CellContentDoubleClick
+    '    Try
+    '        If e.ColumnIndex <> 2 Then
+    '            loadTransactionDetails(datHistory.Rows(e.RowIndex).Cells(0).Value)
+    '            btnAddRecord.Enabled = True
+    '            btnPurchase.Enabled = False
+    '            btnSave.Enabled = False
+    '        End If
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message)
+    '    End Try
+    'End Sub
+
+
+    'Private Sub datHistory_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles datHistory.CellClick
+    '    If datHistory.Columns(e.ColumnIndex).Name = "VIEW" Then
+    '        MsgBox(datHistory.Rows(e.RowIndex).Cells("TransactionID").Value)
+    '    End If
+    'End Sub
+
+
+  
+    Private Sub datHistory_CellDoubleClick(sender As Object, e As DataGridViewCellEventArgs) Handles datHistory.CellDoubleClick
         Try
             If e.ColumnIndex <> 2 Then
                 loadTransactionDetails(datHistory.Rows(e.RowIndex).Cells(0).Value)
@@ -582,14 +604,17 @@
         End Try
     End Sub
 
-    'Private Sub datHistory_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles datHistory.CellClick
-    '    If datHistory.Columns(e.ColumnIndex).Name = "VIEW" Then
-    '        MsgBox(datHistory.Rows(e.RowIndex).Cells("TransactionID").Value)
-    '    End If
-    'End Sub
 
-   
-    Private Sub grpHistory_Enter(sender As Object, e As EventArgs) Handles grpHistory.Enter
-
+    Private Sub datVaccine_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datVaccine.CellContentClick
+        Try
+            If datVaccine.Columns(e.ColumnIndex).Name = "chkVX" Then
+                If datVaccine.Rows(e.RowIndex).Cells(3).Value = 0 Then
+                    MsgBox("This item is currently out of stock!", vbOKOnly + vbExclamation)
+                    datVaccine.Rows(e.RowIndex).Cells(4).Value = False
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 End Class

@@ -87,6 +87,7 @@
         If e.ColumnIndex = 7 Then
             frmScheduleReservation.txtSchedCode.Text = datSchedules.Rows(e.RowIndex).Cells(0).Value
             With frmScheduleReservation
+                .btnOwner.Visible = False
                 .blnisUpdate = True
                 .chkCancel.Enabled = True
                 .chkIsArrived.Enabled = True

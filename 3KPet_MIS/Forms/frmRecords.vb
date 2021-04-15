@@ -6,7 +6,6 @@
     Dim strOwnerID As String
     Dim blnAddPet As Boolean = False
     Dim blnUpdate As Boolean = False
-    Dim strProfilePath As String
 
     Private Sub btnConfirm_Click(sender As Object, e As EventArgs) Handles btnConfirm.Click
         Try
@@ -19,8 +18,9 @@
         Try
             dsRecords = New DataSet
             sqlQuery = ""
-            sqlQuery += "SELECT * FROM Owners O" & vbCrLf
+            sqlQuery += "SELECT *, PP.ProfilePath FROM Owners O" & vbCrLf
             sqlQuery += "INNER JOIN Pets P ON O.OwnerID = P.OwnerID" & vbCrLf
+            sqlQuery += "LEFT JOIN PetsProfile PP ON P.PetID = PP.PetID" & vbCrLf
             'sqlQuery += "Left JOIN TransactionHeader TH ON O.OwnerID = TH.OwnerID" & vbCrLf
             'sqlQuery += "WHERE  month(getdate())-3 < month(TH.VisitDate) OR TH.VisitDate IS null" & vbCrLf
             If txtSearch.Text <> "" Then
@@ -105,6 +105,7 @@
                 'txtPetColor.Text = dtData.Rows(0)("PetColor")
                 'txtPetAge.Text = IIf(IsDBNull(dtData.Rows(0)("Age")), "", dtData.Rows(0)("Age"))
                 'chkisDeceased.Checked = dtData.Rows(0)("isDeceased")
+                clearFields(grpPetInfo)
 
                 txtOwnerLName.ReadOnly = True
                 txtOwnerFName.ReadOnly = True
@@ -258,6 +259,7 @@
                             saveLogs(2, "Update pet records to owner " + txtOwnerID.Text)
                             blnUpdate = False
                             Call clearFields(Me)
+                            picPet.Image = My.Resources.no_profile
                             Call loadOwnerInfo()
                         End If
                     Else
@@ -375,6 +377,14 @@
                 If chkBirthday.Checked Then dtpBirthday.Value = IIf(IsDBNull(dtData.Rows(e.RowIndex)("Birthday")), DateTime.Now, dtData.Rows(e.RowIndex)("Birthday"))
                 chkisDeceased.Checked = dtData.Rows(e.RowIndex)("isDeceased")
 
+                Dim strProfile As String = dtData.Rows(e.RowIndex)("ProfilePath").ToString
+                txtProfilePath.Text = strProfile
+                If strProfile <> "" And strProfile.Contains(".") Then
+                    picPet.Image = Image.FromFile(strProfile)
+                Else
+                    picPet.Image = My.Resources.no_profile
+                    txtProfilePath.Text = picPet.Image.RawFormat.Guid.ToString
+                End If
 
                 txtOwnerLName.ReadOnly = True
                 txtOwnerFName.ReadOnly = True
@@ -418,10 +428,10 @@
 
     Private Sub btnUpload_Click(sender As Object, e As EventArgs) Handles btnUpload.Click
         Try
-            strProfilePath = ""
-            strProfilePath = openFileDialog()
-            If strProfilePath <> "" Then
-                picPet.Image = Image.FromFile(strProfilePath)
+            txtProfilePath.Text = ""
+            txtProfilePath.Text = openFileDialog()
+            If txtProfilePath.Text <> "" Then
+                picPet.Image = Image.FromFile(txtProfilePath.Text)
             End If
         Catch ex As Exception
             MsgBox(ex.Message, MsgBoxStyle.Critical)
@@ -429,21 +439,31 @@
     End Sub
 
     Private Sub petProfile(strPetID As String, blnInsert As Boolean)
-        If blnInsert Then 'Insert
-            sqlQuery = "INSERT INTO PetsProfile (PetID, ProfilePath, CreatedDate, UpdateDate, UpdatedBy)" + vbCrLf
-            sqlQuery += "VALUES (" + vbCrLf
-            sqlQuery += "'" + strPetID + "', " + vbCrLf
-            sqlQuery += "'" + strProfilePath + "', " + vbCrLf
-            sqlQuery += "getdate(), " + vbCrLf
-            sqlQuery += "getdate(), " + vbCrLf
-            sqlQuery += "'" + _gbAccountID + "')"
-        Else 'Update
-            sqlQuery = "UPDATE PetsProfile" + vbCrLf
-            sqlQuery += "SET ProfilePath = '" + strProfilePath + "'" + vbCrLf
-            sqlQuery += ", UpdateDate = getdate()" + vbCrLf
-            sqlQuery += ", UpdatedBy = '" + _gbAccountID + "'" + vbCrLf
-            sqlQuery += "WHERE PetID = '" + strPetID + "'" + vbCrLf
-        End If
-        sqlExecute(sqlQuery)
+        Try
+            Dim strProfilePath As String = copyToProfilePath(txtProfilePath.Text, strPetID)
+            Dim intCount As Integer
+
+            sqlQuery = "SELECT count(*) FROM PetsProfile WHERE PetID = '" + strPetID + "'"
+            intCount = SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0)
+
+            If blnInsert Or intCount = 0 Then 'Insert
+                sqlQuery = "INSERT INTO PetsProfile (PetID, ProfilePath, CreatedDate, UpdateDate, UpdatedBy)" + vbCrLf
+                sqlQuery += "VALUES (" + vbCrLf
+                sqlQuery += "'" + strPetID + "', " + vbCrLf
+                sqlQuery += "'" + strProfilePath + "', " + vbCrLf
+                sqlQuery += "getdate(), " + vbCrLf
+                sqlQuery += "getdate(), " + vbCrLf
+                sqlQuery += "'" + _gbAccountID + "')"
+            Else 'Update
+                sqlQuery = "UPDATE PetsProfile" + vbCrLf
+                sqlQuery += "SET ProfilePath = '" + strProfilePath + "'" + vbCrLf
+                sqlQuery += ", UpdateDate = getdate()" + vbCrLf
+                sqlQuery += ", UpdatedBy = '" + _gbAccountID + "'" + vbCrLf
+                sqlQuery += "WHERE PetID = '" + strPetID + "'" + vbCrLf
+            End If
+            sqlExecute(sqlQuery)
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+        End Try
     End Sub
 End Class

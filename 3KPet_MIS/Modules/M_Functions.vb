@@ -184,16 +184,46 @@ Module M_Functions
         Return strFileName
     End Function
 
-    Public Function getDesktopProfilesPath() As String
-        Dim strDesktopPath As String
+    Public Function getProfilesPath() As String
+        Dim strPath As String
 
-        strDesktopPath = My.Computer.FileSystem.SpecialDirectories.Desktop + "\PetProfiles\"
+        strPath = My.Computer.FileSystem.SpecialDirectories.MyPictures + "\PetProfiles\"
 
-        If Not Directory.Exists(strDesktopPath) Then
-            Directory.CreateDirectory(strDesktopPath)
+        If Not Directory.Exists(strPath) Then
+            Directory.CreateDirectory(strPath)
         End If
 
-        Return strDesktopPath
+        Return strPath
+    End Function
+
+    Public Function copyToProfilePath(strSourceFile As String, Optional renameFile As String = "") As String
+        Dim strProfilePathName As String
+        Dim strNewName As String
+        Dim strExt As String
+
+        strProfilePathName = getProfilesPath() + getFileName(strSourceFile)
+        Try
+            If InStrRev(strProfilePathName, ".") <> 0 Then
+                strExt = Mid(strProfilePathName, InStrRev(strProfilePathName, "."))
+
+                File.Copy(strSourceFile, strProfilePathName, True)
+                If renameFile <> "" Then
+                    strNewName = getProfilesPath() + renameFile + strExt
+                    FileSystem.Rename(strProfilePathName, strNewName)
+                    strProfilePathName = strNewName
+                End If
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message, MsgBoxStyle.Critical)
+        End Try
+        Return strProfilePathName
+    End Function
+
+    Public Function getFileName(strSourceFile As String) As String
+        Dim strFile() As String
+
+        strFile = strSourceFile.Split("\")
+        Return strFile(strFile.Length - 1)
     End Function
 
     Public Sub cboDataBinding(cbo As ComboBox, strSQL As String, Optional header As String = "--CHOOSE ITEM--")

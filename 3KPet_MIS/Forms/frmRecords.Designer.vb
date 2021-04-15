@@ -31,6 +31,7 @@ Partial Class frmRecords
         Me.pnlContent = New System.Windows.Forms.Panel()
         Me.btnNewRecord = New System.Windows.Forms.Button()
         Me.grpPetInfo = New System.Windows.Forms.GroupBox()
+        Me.txtProfilePath = New System.Windows.Forms.TextBox()
         Me.btnUpload = New System.Windows.Forms.Button()
         Me.picPet = New System.Windows.Forms.PictureBox()
         Me.chkBirthday = New System.Windows.Forms.CheckBox()
@@ -129,6 +130,7 @@ Partial Class frmRecords
         '
         'grpPetInfo
         '
+        Me.grpPetInfo.Controls.Add(Me.txtProfilePath)
         Me.grpPetInfo.Controls.Add(Me.btnUpload)
         Me.grpPetInfo.Controls.Add(Me.picPet)
         Me.grpPetInfo.Controls.Add(Me.chkBirthday)
@@ -156,6 +158,14 @@ Partial Class frmRecords
         Me.grpPetInfo.TabIndex = 3
         Me.grpPetInfo.TabStop = False
         Me.grpPetInfo.Text = "PET INFORMATION"
+        '
+        'txtProfilePath
+        '
+        Me.txtProfilePath.Font = New System.Drawing.Font("Calibri", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtProfilePath.Location = New System.Drawing.Point(335, 18)
+        Me.txtProfilePath.Name = "txtProfilePath"
+        Me.txtProfilePath.Size = New System.Drawing.Size(116, 18)
+        Me.txtProfilePath.TabIndex = 17
         '
         'btnUpload
         '
@@ -673,4 +683,5 @@ Partial Class frmRecords
     Friend WithEvents chkBirthday As CheckBox
     Friend WithEvents btnUpload As System.Windows.Forms.Button
     Friend WithEvents picPet As System.Windows.Forms.PictureBox
+    Friend WithEvents txtProfilePath As System.Windows.Forms.TextBox
 End Class
