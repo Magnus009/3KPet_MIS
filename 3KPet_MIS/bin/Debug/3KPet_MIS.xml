@@ -22,38 +22,6 @@ Row event argument class
 	<summary>
 Represents a strongly typed in-memory cache of data.
 </summary>
-</member><member name="T:_3KPet_MIS.dsInvoice.dtInvoiceDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:_3KPet_MIS.dsInvoice.dtInvoiceRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:_3KPet_MIS.dsInvoice.dtInvoiceRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:_3KPet_MIS.dsInvoice">
-	<summary>
-Represents a strongly typed in-memory cache of data.
-</summary>
-</member><member name="T:_3KPet_MIS.dsTransactions.dtTransactionDataTable">
-	<summary>
-Represents the strongly named DataTable class.
-</summary>
-</member><member name="T:_3KPet_MIS.dsTransactions.dtTransactionRow">
-	<summary>
-Represents strongly named DataRow class.
-</summary>
-</member><member name="T:_3KPet_MIS.dsTransactions.dtTransactionRowChangeEvent">
-	<summary>
-Row event argument class
-</summary>
-</member><member name="T:_3KPet_MIS.dsTransactions">
-	<summary>
-Represents a strongly typed in-memory cache of data.
-</summary>
 </member><member name="T:_3KPet_MIS.dsMedHis.dtMedHisDataTable">
 	<summary>
 Represents the strongly named DataTable class.
@@ -79,6 +47,38 @@ Row event argument class
 Row event argument class
 </summary>
 </member><member name="T:_3KPet_MIS.dsMedHis">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:_3KPet_MIS.dsTransactions.dtTransactionDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:_3KPet_MIS.dsTransactions.dtTransactionRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:_3KPet_MIS.dsTransactions.dtTransactionRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:_3KPet_MIS.dsTransactions">
+	<summary>
+Represents a strongly typed in-memory cache of data.
+</summary>
+</member><member name="T:_3KPet_MIS.dsInvoice.dtInvoiceDataTable">
+	<summary>
+Represents the strongly named DataTable class.
+</summary>
+</member><member name="T:_3KPet_MIS.dsInvoice.dtInvoiceRow">
+	<summary>
+Represents strongly named DataRow class.
+</summary>
+</member><member name="T:_3KPet_MIS.dsInvoice.dtInvoiceRowChangeEvent">
+	<summary>
+Row event argument class
+</summary>
+</member><member name="T:_3KPet_MIS.dsInvoice">
 	<summary>
 Represents a strongly typed in-memory cache of data.
 </summary>
