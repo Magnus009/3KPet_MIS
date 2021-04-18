@@ -17,7 +17,7 @@
             sqlQuery += "INNER JOIN Actions A ON L.ActionID = A.ActionID " & vbCrLf
             If blnFilter Then
                 sqlQuery += "WHERE L.ActionDate BETWEEN" & vbCrLf
-                sqlQuery += "'" + dtpFrom.Text & " 00:00:00' and '" + dtpTo.Text + " 23:59:59'" & vbCrLf
+                sqlQuery += "'" + Format(dtpFrom.Value, "yyyy/MM/dd") & " 00:00:00' and '" + Format(dtpTo.Value, "yyyy/MM/dd") + " 23:59:59'" & vbCrLf
                 If cboActions.Text <> "ALL" Then
                     sqlQuery += "AND L.ActionID =" + cboActions.SelectedIndex.ToString & vbCrLf
                 End If

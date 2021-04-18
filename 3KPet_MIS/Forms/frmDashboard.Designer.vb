@@ -55,6 +55,7 @@ Partial Class frmDashboard
         Me.lblOwnerCount = New System.Windows.Forms.Label()
         Me.lblOwnersBorder = New System.Windows.Forms.Label()
         Me.datSchedules = New System.Windows.Forms.DataGridView()
+        Me.BackupAndRestoreToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.pnlHeader.SuspendLayout()
         Me.mnuDashboard.SuspendLayout()
         Me.pnlContent.SuspendLayout()
@@ -133,7 +134,7 @@ Partial Class frmDashboard
         '
         'tsmSettings
         '
-        Me.tsmSettings.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AUDITTRAILToolStripMenuItem, Me.ACCOUNTSToolStripMenuItem, Me.PRODUCTTYPEToolStripMenuItem, Me.SERVICESToolStripMenuItem})
+        Me.tsmSettings.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AUDITTRAILToolStripMenuItem, Me.ACCOUNTSToolStripMenuItem, Me.PRODUCTTYPEToolStripMenuItem, Me.SERVICESToolStripMenuItem, Me.BackupAndRestoreToolStripMenuItem})
         Me.tsmSettings.Name = "tsmSettings"
         Me.tsmSettings.Size = New System.Drawing.Size(69, 28)
         Me.tsmSettings.Text = "SETTINGS"
@@ -141,25 +142,25 @@ Partial Class frmDashboard
         'AUDITTRAILToolStripMenuItem
         '
         Me.AUDITTRAILToolStripMenuItem.Name = "AUDITTRAILToolStripMenuItem"
-        Me.AUDITTRAILToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.AUDITTRAILToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.AUDITTRAILToolStripMenuItem.Text = "AUDIT TRAIL"
         '
         'ACCOUNTSToolStripMenuItem
         '
         Me.ACCOUNTSToolStripMenuItem.Name = "ACCOUNTSToolStripMenuItem"
-        Me.ACCOUNTSToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.ACCOUNTSToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.ACCOUNTSToolStripMenuItem.Text = "ACCOUNTS"
         '
         'PRODUCTTYPEToolStripMenuItem
         '
         Me.PRODUCTTYPEToolStripMenuItem.Name = "PRODUCTTYPEToolStripMenuItem"
-        Me.PRODUCTTYPEToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.PRODUCTTYPEToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.PRODUCTTYPEToolStripMenuItem.Text = "PRODUCT TYPE"
         '
         'SERVICESToolStripMenuItem
         '
         Me.SERVICESToolStripMenuItem.Name = "SERVICESToolStripMenuItem"
-        Me.SERVICESToolStripMenuItem.Size = New System.Drawing.Size(155, 22)
+        Me.SERVICESToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
         Me.SERVICESToolStripMenuItem.Text = "SERVICES"
         '
         'tsmReports
@@ -326,6 +327,13 @@ Partial Class frmDashboard
         Me.datSchedules.Size = New System.Drawing.Size(672, 365)
         Me.datSchedules.TabIndex = 0
         '
+        'BackupAndRestoreToolStripMenuItem
+        '
+        Me.BackupAndRestoreToolStripMenuItem.Name = "BackupAndRestoreToolStripMenuItem"
+        Me.BackupAndRestoreToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.BackupAndRestoreToolStripMenuItem.Text = "BACKUP/RESTORE"
+        Me.BackupAndRestoreToolStripMenuItem.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
         'frmDashboard
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -383,4 +391,5 @@ Partial Class frmDashboard
     Friend WithEvents lblOwnerTitle As System.Windows.Forms.Label
     Friend WithEvents lblOwnerCount As System.Windows.Forms.Label
     Friend WithEvents lblOwnersBorder As System.Windows.Forms.Label
+    Friend WithEvents BackupAndRestoreToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

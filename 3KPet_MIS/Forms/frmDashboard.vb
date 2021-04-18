@@ -265,4 +265,9 @@
     Private Sub TRANSACTIONSToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TRANSACTIONSToolStripMenuItem.Click
         frmPrintTransactions.ShowDialog()
     End Sub
+
+    Private Sub BackupAndRestoreToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BackupAndRestoreToolStripMenuItem.Click
+        Dim frmBackupRestore As New frmBackupRestore
+        frmBackupRestore.ShowDialog()
+    End Sub
 End Class

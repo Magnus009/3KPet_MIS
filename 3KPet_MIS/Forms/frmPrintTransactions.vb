@@ -45,7 +45,7 @@ Public Class frmPrintTransactions
                 maxWeek = SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0)
 
                 cboFil.Items.Clear()
-
+                cboFil.Text = ""
                 For i As Integer = minWeek To maxWeek
                     cboFil.Items.Add(i)
                 Next
@@ -66,6 +66,7 @@ Public Class frmPrintTransactions
                 maxMonth = SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0)
 
                 cboFil.Items.Clear()
+                cboFil.Text = ""
                 For i As Integer = minMonth To maxMonth
                     cboFil.Items.Add(New DictionaryEntry(i, MonthName(i)))
                     'cboSource.Add(i, DateAndTime.MonthName(i, False))

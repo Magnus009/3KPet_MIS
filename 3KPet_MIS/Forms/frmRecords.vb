@@ -107,6 +107,14 @@
                 'chkisDeceased.Checked = dtData.Rows(0)("isDeceased")
                 clearFields(grpPetInfo)
 
+
+                lblOwnerID.Visible = True
+                txtOwnerID.Visible = True
+                adjustOwnerinfo(True)
+                lblPetID.Visible = False
+                txtPetID.Visible = False
+                adjustPetinfo(False)
+
                 txtOwnerLName.ReadOnly = True
                 txtOwnerFName.ReadOnly = True
                 txtOwnerContactNo.ReadOnly = True
@@ -129,6 +137,14 @@
         blnAddPet = False
         Call clearFields(Me)
         Call subGenerateOwnerID(blnAddPet)
+
+        'Hide ID
+        lblOwnerID.Visible = False
+        txtOwnerID.Visible = False
+        adjustOwnerinfo(False)
+        lblPetID.Visible = False
+        txtPetID.Visible = False
+        adjustPetinfo(False)
 
         txtOwnerID.Text = "- - -"
         txtPetID.Text = "- - -"
@@ -386,6 +402,13 @@
                     txtProfilePath.Text = picPet.Image.RawFormat.Guid.ToString
                 End If
 
+                lblOwnerID.Visible = True
+                txtOwnerID.Visible = True
+                adjustOwnerinfo(True)
+                lblPetID.Visible = True
+                txtPetID.Visible = True
+                adjustPetinfo(True)
+
                 txtOwnerLName.ReadOnly = True
                 txtOwnerFName.ReadOnly = True
                 txtOwnerContactNo.ReadOnly = True
@@ -466,4 +489,36 @@
             MsgBox(ex.Message, MsgBoxStyle.Critical)
         End Try
     End Sub
+    Private Sub adjustOwnerinfo(blnWithID As Boolean)
+        If blnWithID Then
+            lblLName.Top = 54 : txtOwnerLName.Top = 54
+            lblFName.Top = 81 : txtOwnerFName.Top = 81
+            lblContact.Top = 109 : txtOwnerContactNo.Top = 109
+            lblAddress.Top = 136 : txtOwnerAddress.Top = 136
+            txtOwnerAddress.Height = 40
+        Else
+            lblLName.Top = 27 : txtOwnerLName.Top = 27
+            lblFName.Top = 54 : txtOwnerFName.Top = 54
+            lblContact.Top = 81 : txtOwnerContactNo.Top = 81
+            lblAddress.Top = 109 : txtOwnerAddress.Top = 109
+            txtOwnerAddress.Height = 60
+        End If
+    End Sub
+
+    Private Sub adjustPetinfo(blnWithID As Boolean)
+        If blnWithID Then
+            lblpetName.Top = 67 : txtPetName.Top = 67
+            lblBreed.Top = 94 : txtPetBreed.Top = 94
+            lblPetColor.Top = 121 : txtPetColor.Top = 121
+            lblBirthday.Top = 147 : dtpBirthday.Top = 147 : chkBirthday.Top = 147
+            lblPetAge.Top = 176 : txtPetAge.Top = 176
+        Else
+            lblpetName.Top = 40 : txtPetName.Top = 40
+            lblBreed.Top = 67 : txtPetBreed.Top = 67
+            lblPetColor.Top = 94 : txtPetColor.Top = 94
+            lblBirthday.Top = 121 : dtpBirthday.Top = 121 : chkBirthday.Top = 121
+            lblPetAge.Top = 147 : txtPetAge.Top = 147
+        End If
+    End Sub
+
 End Class
