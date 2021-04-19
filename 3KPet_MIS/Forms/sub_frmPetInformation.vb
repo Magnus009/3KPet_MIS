@@ -375,6 +375,19 @@
                         sqlQuery += ") "
                         sqlExecute(sqlQuery)
 
+                        
+
+                        sqlQuery = ""
+                        sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
+                        sqlQuery += "SET Stocks = Stocks - 1" & vbCrLf
+                        sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "'" & vbCrLf
+                        sqlQuery += "AND BatchNo = (SELECT TOP 1 BatchNo FROM ProductInventory" & vbCrLf
+                        sqlQuery += "WHERE Stocks > 0 " & vbCrLf
+                        sqlQuery += "AND ProductID ='" + row.Cells(0).Value.ToString + "' " & vbCrLf
+                        sqlQuery += "AND DeletedDate is null" & vbCrLf
+                        sqlQuery += "ORDER BY ExpirationDate)" & vbCrLf
+                        sqlExecute(sqlQuery)
+
                         sqlQuery = ""
                         sqlQuery += "SELECT stocks FROM ProductInventory PI" & vbCrLf
                         sqlQuery += "where PI.BatchNo = (SELECT TOP 1 BatchNo FROM ProductInventory" & vbCrLf
@@ -383,19 +396,17 @@
                         sqlQuery += "ORDER BY ExpirationDate)" & vbCrLf
                         intStockCnt = Convert.ToInt32(SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0))
 
-                        sqlQuery = ""
-                        sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
-                        sqlQuery += "SET Stocks = Stocks - 1" & vbCrLf
                         If intStockCnt = 0 Then
+                            sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
                             sqlQuery += "DeletedDate = getdate()" & vbCrLf
+                            sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "'" & vbCrLf
+                            sqlQuery += "AND BatchNo = (SELECT TOP 1 BatchNo FROM ProductInventory" & vbCrLf
+                            sqlQuery += "WHERE Stocks > 0 " & vbCrLf
+                            sqlQuery += "AND ProductID ='" + row.Cells(0).Value.ToString + "' " & vbCrLf
+                            sqlQuery += "AND DeletedDate is null" & vbCrLf
+                            sqlQuery += "ORDER BY ExpirationDate)" & vbCrLf
+                            sqlExecute(sqlQuery)
                         End If
-                        sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "'" & vbCrLf
-                        sqlQuery += "AND BatchNo = (SELECT TOP 1 BatchNo FROM ProductInventory" & vbCrLf
-                        sqlQuery += "WHERE Stocks > 0 " & vbCrLf
-                        sqlQuery += "AND ProductID ='" + row.Cells(0).Value.ToString + "' " & vbCrLf
-                        sqlQuery += "AND DeletedDate is null" & vbCrLf
-                        sqlQuery += "ORDER BY ExpirationDate)" & vbCrLf
-                        sqlExecute(sqlQuery)
 
                         strProdAmount = (Convert.ToInt32(strProdAmount) + Convert.ToInt32(row.Cells(2).Value))
                     End If
@@ -433,6 +444,19 @@
                     sqlQuery += ") "
                     sqlExecute(sqlQuery)
 
+
+                    sqlQuery = ""
+                    sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
+                    sqlQuery += "SET Stocks = Stocks - " + row.Cells(2).Value.ToString & vbCrLf
+                    sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "'" & vbCrLf
+                    sqlQuery += "AND BatchNo = (SELECT TOP 1 BatchNo FROM ProductInventory" & vbCrLf
+                    sqlQuery += "WHERE Stocks > 0 " & vbCrLf
+                    sqlQuery += "AND ProductID ='" + row.Cells(0).Value.ToString + "' " & vbCrLf
+                    sqlQuery += "AND DeletedDate is null" & vbCrLf
+                    sqlQuery += "ORDER BY ExpirationDate)" & vbCrLf
+                    sqlExecute(sqlQuery)
+
+
                     sqlQuery = ""
                     sqlQuery += "SELECT stocks FROM ProductInventory PI" & vbCrLf
                     sqlQuery += "where PI.BatchNo = (SELECT TOP 1 BatchNo FROM ProductInventory" & vbCrLf
@@ -441,20 +465,17 @@
                     sqlQuery += "ORDER BY ExpirationDate)" & vbCrLf
                     intStockCnt = Convert.ToInt32(SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0))
 
-                    sqlQuery = ""
-                    sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
-                    sqlQuery += "SET Stocks = Stocks - " + row.Cells(2).Value.ToString & vbCrLf
                     If intStockCnt = 0 Then
+                        sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
                         sqlQuery += "DeletedDate = getdate()" & vbCrLf
+                        sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "'" & vbCrLf
+                        sqlQuery += "AND BatchNo = (SELECT TOP 1 BatchNo FROM ProductInventory" & vbCrLf
+                        sqlQuery += "WHERE Stocks > 0 " & vbCrLf
+                        sqlQuery += "AND ProductID ='" + row.Cells(0).Value.ToString + "' " & vbCrLf
+                        sqlQuery += "AND DeletedDate is null" & vbCrLf
+                        sqlQuery += "ORDER BY ExpirationDate)" & vbCrLf
+                        sqlExecute(sqlQuery)
                     End If
-                    sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "'" & vbCrLf
-                    sqlQuery += "AND BatchNo = (SELECT TOP 1 BatchNo FROM ProductInventory" & vbCrLf
-                    sqlQuery += "WHERE Stocks > 0 " & vbCrLf
-                    sqlQuery += "AND ProductID ='" + row.Cells(0).Value.ToString + "' " & vbCrLf
-                    sqlQuery += "AND DeletedDate is null" & vbCrLf
-                    sqlQuery += "ORDER BY ExpirationDate)" & vbCrLf
-
-                    sqlExecute(sqlQuery)
                 Next
                 strTotalPrice = (Convert.ToInt32(strTotalPrice) + Convert.ToInt32(strProdAmount))
                 '//Insert into Transaction Header
