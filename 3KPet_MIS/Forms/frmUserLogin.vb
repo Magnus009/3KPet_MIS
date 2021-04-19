@@ -23,6 +23,7 @@
             If fn_CheckRequire(Me) Then
                 MsgBox("Please insert a correct username and password.", MsgBoxStyle.Exclamation)
                 strRequire = ""
+                blnRequired = False
             Else
                 sqlQuery = ""
                 sqlQuery += "SELECT * FROM Accounts" & vbCrLf

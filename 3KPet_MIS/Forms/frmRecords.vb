@@ -192,6 +192,7 @@
             blnRequired = False
             If fn_CheckRequire(Me) Then
                 MsgBox("Please fill out all the required details", vbOKOnly + vbExclamation)
+                blnRequired = False
             Else
                 If MsgBox("Are you sure you want to save?", vbYesNo + vbQuestion) = vbYes Then
                     If blnAddPet Then
@@ -364,6 +365,7 @@
                     End If
                 End If
             End If
+
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try

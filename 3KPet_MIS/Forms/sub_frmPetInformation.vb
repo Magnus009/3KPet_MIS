@@ -31,6 +31,7 @@
             Dim dtTransDetails As New DataTable("TransactionDetails")
             Dim dtPurchased As New DataTable("PurchasedProducts")
             Dim dsVaccines As New DataSet
+            Dim intStockCnt As Integer
 
             'Get transaction Header
             sqlQuery = "SELECT * FROM TransactionHeader" + vbCrLf
@@ -283,6 +284,7 @@
         'setVaccines()
         'setTreatments()
         'Call setGridColumns()
+        AddHandler txtTXAmount.KeyPress, AddressOf numericOnly
         If fn_CheckRequire(grpHistory) = True Then
             btnAddRecord.Enabled = False
             btnSave.Enabled = True
@@ -303,6 +305,7 @@
             Dim strServiceAmount As String
             Dim strProdAmount As String
             Dim strTotalPrice As String
+            Dim intStockCnt As Integer
 
             If MsgBox("Are you sure you want to save?", vbYesNo + vbQuestion) = vbYes Then
                 '//Get Transaction ID
@@ -345,8 +348,8 @@
                 strProdAmount = "0"
                 For Each row As DataGridViewRow In datVaccine.Rows
 
-                    If row.Cells(3).Value = True Then
-                        strTotalPrice = Convert.ToDouble(row.Cells(2).Value) * Convert.ToDouble(row.Cells(3).Value)
+                    If row.Cells(4).Value = True Then
+                        'strTotalPrice = Convert.ToDouble(row.Cells(2).Value) * Convert.ToDouble(row.Cells(3).Value)
                         sqlQuery = ""
                         sqlQuery += "INSERT INTO dbo.PurschasedProducts " & vbCrLf
                         sqlQuery += "( " & vbCrLf
@@ -364,7 +367,7 @@
                         sqlQuery += "'" + strTransID + "'," & vbCrLf
                         sqlQuery += "'" + row.Cells(0).Value.ToString + "'," & vbCrLf
                         sqlQuery += "1," & vbCrLf
-                        sqlQuery += strTotalPrice + "," & vbCrLf
+                        sqlQuery += row.Cells(2).Value.ToString + "," & vbCrLf
                         sqlQuery += "getdate(), " & vbCrLf
                         sqlQuery += "getdate(), " & vbCrLf
                         sqlQuery += "null," & vbCrLf
@@ -373,11 +376,25 @@
                         sqlExecute(sqlQuery)
 
                         sqlQuery = ""
+                        sqlQuery += "SELECT stocks FROM ProductInventory PI" & vbCrLf
+                        sqlQuery += "where PI.BatchNo = (SELECT TOP 1 BatchNo FROM ProductInventory" & vbCrLf
+                        sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "'" & vbCrLf
+                        sqlQuery += "AND DeletedDate IS null" & vbCrLf
+                        sqlQuery += "ORDER BY ExpirationDate)" & vbCrLf
+                        intStockCnt = Convert.ToInt32(SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0))
+
+                        sqlQuery = ""
                         sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
                         sqlQuery += "SET Stocks = Stocks - 1" & vbCrLf
+                        If intStockCnt = 0 Then
+                            sqlQuery += "DeletedDate = getdate()" & vbCrLf
+                        End If
                         sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "'" & vbCrLf
-                        sqlQuery += "AND BatchNo = (SELECT min(BatchNo) FROM ProductInventory" & vbCrLf
-                        sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "' AND Stocks <> 0)" & vbCrLf
+                        sqlQuery += "AND BatchNo = (SELECT TOP 1 BatchNo FROM ProductInventory" & vbCrLf
+                        sqlQuery += "WHERE Stocks > 0 " & vbCrLf
+                        sqlQuery += "AND ProductID ='" + row.Cells(0).Value.ToString + "' " & vbCrLf
+                        sqlQuery += "AND DeletedDate is null" & vbCrLf
+                        sqlQuery += "ORDER BY ExpirationDate)" & vbCrLf
                         sqlExecute(sqlQuery)
 
                         strProdAmount = (Convert.ToInt32(strProdAmount) + Convert.ToInt32(row.Cells(2).Value))
@@ -417,11 +434,26 @@
                     sqlExecute(sqlQuery)
 
                     sqlQuery = ""
+                    sqlQuery += "SELECT stocks FROM ProductInventory PI" & vbCrLf
+                    sqlQuery += "where PI.BatchNo = (SELECT TOP 1 BatchNo FROM ProductInventory" & vbCrLf
+                    sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "'" & vbCrLf
+                    sqlQuery += "AND DeletedDate IS null" & vbCrLf
+                    sqlQuery += "ORDER BY ExpirationDate)" & vbCrLf
+                    intStockCnt = Convert.ToInt32(SQLPetMIS(sqlQuery).Tables(0).Rows(0)(0))
+
+                    sqlQuery = ""
                     sqlQuery += "UPDATE dbo.ProductInventory" & vbCrLf
                     sqlQuery += "SET Stocks = Stocks - " + row.Cells(2).Value.ToString & vbCrLf
+                    If intStockCnt = 0 Then
+                        sqlQuery += "DeletedDate = getdate()" & vbCrLf
+                    End If
                     sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "'" & vbCrLf
-                    sqlQuery += "AND BatchNo = (SELECT min(BatchNo) FROM ProductInventory" & vbCrLf
-                    sqlQuery += "WHERE ProductID = '" + row.Cells(0).Value.ToString + "' AND Stocks >=" + row.Cells(2).Value.ToString + ")" & vbCrLf
+                    sqlQuery += "AND BatchNo = (SELECT TOP 1 BatchNo FROM ProductInventory" & vbCrLf
+                    sqlQuery += "WHERE Stocks > 0 " & vbCrLf
+                    sqlQuery += "AND ProductID ='" + row.Cells(0).Value.ToString + "' " & vbCrLf
+                    sqlQuery += "AND DeletedDate is null" & vbCrLf
+                    sqlQuery += "ORDER BY ExpirationDate)" & vbCrLf
+
                     sqlExecute(sqlQuery)
                 Next
                 strTotalPrice = (Convert.ToInt32(strTotalPrice) + Convert.ToInt32(strProdAmount))
@@ -458,7 +490,7 @@
                 sqlQuery += "Null, " & vbCrLf
                 sqlQuery += strTotalPrice + ", " & vbCrLf
                 sqlQuery += txtTXAmount.Text + ", " & vbCrLf
-                sqlQuery += (Convert.ToInt32(strTotalPrice) + Convert.ToInt32(strServiceAmount)).ToString + ", " & vbCrLf
+                sqlQuery += (Convert.ToInt32(strTotalPrice) + Convert.ToInt32(txtTXAmount.Text)).ToString + ", " & vbCrLf
                 sqlQuery += "'" + txtNextVisit.Text + "', " & vbCrLf
                 sqlQuery += "getdate(), " & vbCrLf
                 sqlQuery += "getdate(), " & vbCrLf
@@ -519,9 +551,13 @@
     Private Sub setVaccines()
         Try
             sqlQuery = ""
-            sqlQuery += "SELECT P.ProductID,Description, coalesce(Price,'0'), coalesce(PI.Stocks,0) FROM Products P" & vbCrLf
+            sqlQuery += "SELECT P.ProductID,P.Description, coalesce(Price,'0'), coalesce(PI.Stocks,0) FROM Products P" & vbCrLf
             sqlQuery += "LEft JOIN ProductInventory PI ON P.ProductID = PI.ProductID" & vbCrLf
-            sqlQuery += "WHERE TypeID = 2"
+            sqlQuery += "AND PI.BatchNo = (SELECT TOP 1 BatchNo FROM ProductInventory" & vbCrLf
+            sqlQuery += "WHERE Stocks > 0 " & vbCrLf
+            sqlQuery += "AND ProductID = P.ProductID" & vbCrLf
+            sqlQuery += "ORDER BY ExpirationDate)" & vbCrLf
+            sqlQuery += "INNER JOIN ProductTypes PT ON P.TypeID = PT.TypeID" & vbCrLf
             dsVax = SQLPetMIS(sqlQuery)
 
             datVaccine.Columns.Clear()
@@ -617,4 +653,5 @@
             MsgBox(ex.Message)
         End Try
     End Sub
+
 End Class

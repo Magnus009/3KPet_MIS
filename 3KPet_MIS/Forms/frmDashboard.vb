@@ -87,6 +87,8 @@
         Call getSchedules()
         Call loadOwnerCount()
         Call loadPetCount()
+
+        'AddHandler datSchedules.CellValueChanged, AddressOf datSchedules_CellValueChanged
     End Sub
     Public Sub getSchedules()
         Try
@@ -149,7 +151,7 @@
                 Next
             End With
         Catch ex As Exception
-
+            MsgBox(ex.Message)
         End Try
     End Sub
 
@@ -230,33 +232,69 @@
         frmHistoryReport.ShowDialog()
     End Sub
 
-   
-    Private Sub datSchedules_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs) Handles datSchedules.CellValueChanged
-        Try
-            If e.ColumnIndex = 5 Then
-                sqlQuery = ""
-                sqlQuery += "UPDATE dbo.Schedules" & vbCrLf
-                sqlQuery += "SET isArrived = " + Convert.ToInt32(datSchedules.Rows(e.RowIndex).Cells(5).Value).ToString & vbCrLf
-                sqlQuery += ", UpdatedDate = getdate()"
-                sqlQuery += ", UpdatedBy = '" + _gbAccountID + "'"
-                sqlQuery += "WHERE ScheduleCode = '" + datSchedules.Rows(e.RowIndex).Cells(0).Value + "'"
-                sqlExecute(sqlQuery)
-
-            ElseIf e.ColumnIndex = 6 Then
-                sqlQuery = ""
-                sqlQuery += "UPDATE dbo.Schedules" & vbCrLf
-                sqlQuery += "SET isCancelled = " + Convert.ToInt32(datSchedules.Rows(e.RowIndex).Cells(6).Value).ToString & vbCrLf
-                sqlQuery += ", UpdatedDate = getdate()"
-                sqlQuery += ", UpdatedBy = '" + _gbAccountID + "'"
-                sqlQuery += "WHERE ScheduleCode = '" + datSchedules.Rows(e.RowIndex).Cells(0).Value + "'"
-                sqlExecute(sqlQuery)
-
+    Private Sub datSchedules_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles datSchedules.CellContentClick
+        If e.ColumnIndex = 5 Then
+            If datSchedules.Rows(e.RowIndex).Cells(5).Value = True Then
+                datSchedules.Rows(e.RowIndex).Cells(5).Value = False
+            Else
+                datSchedules.Rows(e.RowIndex).Cells(5).Value = True
             End If
-
-        Catch ex As Exception
-            MsgBox(ex.Message)
-        End Try
+            If datSchedules.Rows(e.RowIndex).Cells(5).Value = True Then
+                datSchedules.Rows(e.RowIndex).Cells(6).Value = False
+            End If
+            sqlQuery = ""
+            sqlQuery += "UPDATE dbo.Schedules" & vbCrLf
+            sqlQuery += "SET isArrived = " + Convert.ToInt32(datSchedules.Rows(e.RowIndex).Cells(5).Value).ToString & vbCrLf
+            sqlQuery += ", UpdatedDate = getdate()"
+            sqlQuery += ", UpdatedBy = '" + _gbAccountID + "'"
+            sqlQuery += "WHERE ScheduleCode = '" + datSchedules.Rows(e.RowIndex).Cells(0).Value + "'"
+            sqlExecute(sqlQuery)
+        ElseIf e.ColumnIndex = 6 Then
+            If datSchedules.Rows(e.RowIndex).Cells(6).Value = True Then
+                datSchedules.Rows(e.RowIndex).Cells(6).Value = False
+            Else
+                datSchedules.Rows(e.RowIndex).Cells(6).Value = True
+            End If
+            If datSchedules.Rows(e.RowIndex).Cells(6).Value = True Then
+                datSchedules.Rows(e.RowIndex).Cells(5).Value = False
+            End If
+            sqlQuery = ""
+            sqlQuery += "UPDATE dbo.Schedules" & vbCrLf
+            sqlQuery += "SET isCancelled = " + Convert.ToInt32(datSchedules.Rows(e.RowIndex).Cells(6).Value).ToString & vbCrLf
+            sqlQuery += ", UpdatedDate = getdate()"
+            sqlQuery += ", UpdatedBy = '" + _gbAccountID + "'"
+            sqlQuery += "WHERE ScheduleCode = '" + datSchedules.Rows(e.RowIndex).Cells(0).Value + "'"
+            sqlExecute(sqlQuery)
+        End If
     End Sub
+
+   
+    'Private Sub datSchedules_CellValueChanged(sender As Object, e As DataGridViewCellEventArgs)
+    '    Try
+    '        'Arrived
+    '        If e.ColumnIndex = 5 Then
+    '            sqlQuery = ""
+    '            sqlQuery += "UPDATE dbo.Schedules" & vbCrLf
+    '            sqlQuery += "SET isArrived = " + Convert.ToInt32(datSchedules.Rows(e.RowIndex).Cells(5).Value).ToString & vbCrLf
+    '            sqlQuery += ", UpdatedDate = getdate()"
+    '            sqlQuery += ", UpdatedBy = '" + _gbAccountID + "'"
+    '            sqlQuery += "WHERE ScheduleCode = '" + datSchedules.Rows(e.RowIndex).Cells(0).Value + "'"
+    '            sqlExecute(sqlQuery)
+    '            'Cancel
+    '        ElseIf e.ColumnIndex = 6 Then
+    '            sqlQuery = ""
+    '            sqlQuery += "UPDATE dbo.Schedules" & vbCrLf
+    '            sqlQuery += "SET isCancelled = " + Convert.ToInt32(datSchedules.Rows(e.RowIndex).Cells(6).Value).ToString & vbCrLf
+    '            sqlQuery += ", UpdatedDate = getdate()"
+    '            sqlQuery += ", UpdatedBy = '" + _gbAccountID + "'"
+    '            sqlQuery += "WHERE ScheduleCode = '" + datSchedules.Rows(e.RowIndex).Cells(0).Value + "'"
+    '            sqlExecute(sqlQuery)
+    '        End If
+    '        'getSchedules()
+    '    Catch ex As Exception
+    '        MsgBox(ex.Message)
+    '    End Try
+    'End Sub
 
     Private Sub PRODUCTSToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PRODUCTSToolStripMenuItem.Click
         frmPrintProducts.ShowDialog()

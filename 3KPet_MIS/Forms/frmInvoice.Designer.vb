@@ -41,7 +41,6 @@ Partial Class frmInvoice
         Me.lblIDLabel = New System.Windows.Forms.Label()
         Me.btnSave = New System.Windows.Forms.Button()
         Me.btnCancel = New System.Windows.Forms.Button()
-        Me.btnPrint = New System.Windows.Forms.Button()
         Me.grpInvoice.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -218,11 +217,11 @@ Partial Class frmInvoice
         Me.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnSave.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnSave.ForeColor = System.Drawing.Color.White
-        Me.btnSave.Location = New System.Drawing.Point(156, 214)
+        Me.btnSave.Location = New System.Drawing.Point(116, 214)
         Me.btnSave.Name = "btnSave"
-        Me.btnSave.Size = New System.Drawing.Size(82, 39)
+        Me.btnSave.Size = New System.Drawing.Size(122, 39)
         Me.btnSave.TabIndex = 2
-        Me.btnSave.Text = "SAVE"
+        Me.btnSave.Text = "SAVE AND PRINT"
         Me.btnSave.UseVisualStyleBackColor = False
         '
         'btnCancel
@@ -238,26 +237,12 @@ Partial Class frmInvoice
         Me.btnCancel.Text = "CANCEL"
         Me.btnCancel.UseVisualStyleBackColor = False
         '
-        'btnPrint
-        '
-        Me.btnPrint.BackColor = System.Drawing.Color.Purple
-        Me.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btnPrint.Font = New System.Drawing.Font("Calibri", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnPrint.ForeColor = System.Drawing.Color.White
-        Me.btnPrint.Location = New System.Drawing.Point(70, 213)
-        Me.btnPrint.Name = "btnPrint"
-        Me.btnPrint.Size = New System.Drawing.Size(82, 39)
-        Me.btnPrint.TabIndex = 4
-        Me.btnPrint.Text = "PRINT"
-        Me.btnPrint.UseVisualStyleBackColor = False
-        '
         'frmInvoice
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.ClientSize = New System.Drawing.Size(336, 263)
-        Me.Controls.Add(Me.btnPrint)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnSave)
         Me.Controls.Add(Me.grpInvoice)
@@ -294,5 +279,4 @@ Partial Class frmInvoice
     Friend WithEvents btnSave As Button
     Friend WithEvents btnCancel As Button
     Private WithEvents chkDiscount As System.Windows.Forms.CheckBox
-    Friend WithEvents btnPrint As System.Windows.Forms.Button
 End Class

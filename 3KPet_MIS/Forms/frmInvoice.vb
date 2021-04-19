@@ -52,11 +52,18 @@ Public Class frmInvoice
 
     Private Sub txtDiscountChanged(sender As Object, e As EventArgs)
         Try
+            txtDiscount.ForeColor = Color.Black
             Dim intTotal As Integer
             If txtDiscount.Text <> "00.00" And txtDiscount.Text <> "" Then
-                intTotal = Convert.ToDouble(dsInvoice.Tables(0).Rows(0)("TotalAmount"))
-                intTotal = intTotal - Convert.ToDouble(txtDiscount.Text)
-                lblTotal.Text = intTotal.ToString
+                If Convert.ToDouble(lblTotal.Text) < Convert.ToDouble(txtDiscount.Text) Then
+                    MsgBox("Discounted price is more than the total amount!", vbOKOnly + vbExclamation)
+                    txtDiscount.ForeColor = Color.Red
+                Else
+                    intTotal = Convert.ToDouble(dsInvoice.Tables(0).Rows(0)("TotalAmount"))
+                    intTotal = intTotal - Convert.ToDouble(txtDiscount.Text)
+                    lblTotal.Text = intTotal.ToString
+                End If
+                
             Else
                 lblTotal.Text = IIf(IsDBNull(dsInvoice.Tables(0).Rows(0)("TotalAmount")), "00.00", dsInvoice.Tables(0).Rows(0)("TotalAmount"))
             End If
@@ -83,6 +90,8 @@ Public Class frmInvoice
                     MsgBox("Record saved successfully!", vbOKOnly + vbInformation)
                     txtDiscount.Text = ""
                     Me.Hide()
+                    getInvoice(lblTransID.Text)
+                    frmInvoiceReport.ShowDialog()
                 End If
             End If
 
@@ -98,9 +107,5 @@ Public Class frmInvoice
             txtDiscount.Enabled = False
             txtDiscount.Text = 0
         End If
-    End Sub
-
-    Private Sub btnPrint_Click(sender As Object, e As EventArgs) Handles btnPrint.Click
-        frmInvoiceReport.ShowDialog()
     End Sub
 End Class
